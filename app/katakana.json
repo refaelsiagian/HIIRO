@@ -1,0 +1,674 @@
+[
+    {
+        "char": "ア",
+        "romaji": "a",
+        "consonant": "none",
+        "vowel": "a",
+        "confusable_with": [
+            "ma",
+            "mu",
+            "u"
+        ],
+        "group": "a-gyo",
+        "type": "basic"
+    },
+    {
+        "char": "イ",
+        "romaji": "i",
+        "consonant": "none",
+        "vowel": "i",
+        "confusable_with": [
+            "te",
+            "to",
+            "chi"
+        ],
+        "group": "a-gyo",
+        "type": "basic"
+    },
+    {
+        "char": "ウ",
+        "romaji": "u",
+        "consonant": "none",
+        "vowel": "u",
+        "confusable_with": [
+            "wa",
+            "ra",
+            "fu"
+        ],
+        "group": "a-gyo",
+        "type": "basic"
+    },
+    {
+        "char": "エ",
+        "romaji": "e",
+        "consonant": "none",
+        "vowel": "e",
+        "confusable_with": [
+            "ko",
+            "yo",
+            "i"
+        ],
+        "group": "a-gyo",
+        "type": "basic"
+    },
+    {
+        "char": "オ",
+        "romaji": "o",
+        "consonant": "none",
+        "vowel": "o",
+        "confusable_with": [
+            "ho",
+            "ha",
+            "mu"
+        ],
+        "group": "a-gyo",
+        "type": "basic"
+    },
+    {
+        "char": "カ",
+        "romaji": "ka",
+        "consonant": "k",
+        "vowel": "a",
+        "confusable_with": [
+            "chikara",
+            "ke",
+            "ku"
+        ],
+        "group": "k-gyo",
+        "type": "basic"
+    },
+    {
+        "char": "キ",
+        "romaji": "ki",
+        "consonant": "k",
+        "vowel": "i",
+        "confusable_with": [
+            "sa",
+            "chi",
+            "ta"
+        ],
+        "group": "k-gyo",
+        "type": "basic"
+    },
+    {
+        "char": "ク",
+        "romaji": "ku",
+        "consonant": "k",
+        "vowel": "u",
+        "confusable_with": [
+            "ke",
+            "ta",
+            "wa"
+        ],
+        "group": "k-gyo",
+        "type": "basic"
+    },
+    {
+        "char": "ケ",
+        "romaji": "ke",
+        "consonant": "k",
+        "vowel": "e",
+        "confusable_with": [
+            "ku",
+            "ta",
+            "ka"
+        ],
+        "group": "k-gyo",
+        "type": "basic"
+    },
+    {
+        "char": "コ",
+        "romaji": "ko",
+        "consonant": "k",
+        "vowel": "o",
+        "confusable_with": [
+            "yu",
+            "e",
+            "yo"
+        ],
+        "group": "k-gyo",
+        "type": "basic"
+    },
+    {
+        "char": "サ",
+        "romaji": "sa",
+        "consonant": "s",
+        "vowel": "a",
+        "confusable_with": [
+            "se",
+            "ki",
+            "chi"
+        ],
+        "group": "s-gyo",
+        "type": "basic"
+    },
+    {
+        "char": "シ",
+        "romaji": "shi",
+        "consonant": "s",
+        "vowel": "i",
+        "confusable_with": [
+            "tsu",
+            "so",
+            "n"
+        ],
+        "group": "s-gyo",
+        "type": "basic"
+    },
+    {
+        "char": "ス",
+        "romaji": "su",
+        "consonant": "s",
+        "vowel": "u",
+        "confusable_with": [
+            "nu",
+            "fu",
+            "wa"
+        ],
+        "group": "s-gyo",
+        "type": "basic"
+    },
+    {
+        "char": "セ",
+        "romaji": "se",
+        "consonant": "s",
+        "vowel": "e",
+        "confusable_with": [
+            "sa",
+            "hi",
+            "ya"
+        ],
+        "group": "s-gyo",
+        "type": "basic"
+    },
+    {
+        "char": "ソ",
+        "romaji": "so",
+        "consonant": "s",
+        "vowel": "o",
+        "confusable_with": [
+            "n",
+            "shi",
+            "tsu"
+        ],
+        "group": "s-gyo",
+        "type": "basic"
+    },
+    {
+        "char": "ナ",
+        "romaji": "na",
+        "consonant": "n",
+        "vowel": "a",
+        "confusable_with": [
+            "me",
+            "ta",
+            "chi"
+        ],
+        "group": "n-gyo",
+        "type": "basic"
+    },
+    {
+        "char": "ニ",
+        "romaji": "ni",
+        "consonant": "n",
+        "vowel": "i",
+        "confusable_with": [
+            "ko",
+            "e",
+            "i"
+        ],
+        "group": "n-gyo",
+        "type": "basic"
+    },
+    {
+        "char": "ヌ",
+        "romaji": "nu",
+        "consonant": "n",
+        "vowel": "u",
+        "confusable_with": [
+            "fu",
+            "me",
+            "su"
+        ],
+        "group": "n-gyo",
+        "type": "basic"
+    },
+    {
+        "char": "ネ",
+        "romaji": "ne",
+        "consonant": "n",
+        "vowel": "e",
+        "confusable_with": [
+            "nu",
+            "ho",
+            "re"
+        ],
+        "group": "n-gyo",
+        "type": "basic"
+    },
+    {
+        "char": "ノ",
+        "romaji": "no",
+        "consonant": "n",
+        "vowel": "o",
+        "confusable_with": [
+            "me",
+            "so",
+            "n"
+        ],
+        "group": "n-gyo",
+        "type": "basic"
+    },
+    {
+        "char": "ハ",
+        "romaji": "ha",
+        "consonant": "h",
+        "vowel": "a",
+        "confusable_with": [
+            "ba",
+            "pa",
+            "ya"
+        ],
+        "group": "h-gyo",
+        "type": "basic"
+    },
+    {
+        "char": "ヒ",
+        "romaji": "hi",
+        "consonant": "h",
+        "vowel": "i",
+        "confusable_with": [
+            "bi",
+            "pi",
+            "se"
+        ],
+        "group": "h-gyo",
+        "type": "basic"
+    },
+    {
+        "char": "フ",
+        "romaji": "fu",
+        "consonant": "h",
+        "vowel": "u",
+        "confusable_with": [
+            "nu",
+            "u",
+            "ra"
+        ],
+        "group": "h-gyo",
+        "type": "basic"
+    },
+    {
+        "char": "ヘ",
+        "romaji": "he",
+        "consonant": "h",
+        "vowel": "e",
+        "confusable_with": [
+            "be",
+            "pe",
+            "ku"
+        ],
+        "group": "h-gyo",
+        "type": "basic"
+    },
+    {
+        "char": "ホ",
+        "romaji": "ho",
+        "consonant": "h",
+        "vowel": "o",
+        "confusable_with": [
+            "bo",
+            "po",
+            "ma"
+        ],
+        "group": "h-gyo",
+        "type": "basic"
+    },
+    {
+        "char": "マ",
+        "romaji": "ma",
+        "consonant": "m",
+        "vowel": "a",
+        "confusable_with": [
+            "a",
+            "mu",
+            "mo"
+        ],
+        "group": "m-gyo",
+        "type": "basic"
+    },
+    {
+        "char": "ミ",
+        "romaji": "mi",
+        "consonant": "m",
+        "vowel": "i",
+        "confusable_with": [
+            "shi",
+            "tsu",
+            "i"
+        ],
+        "group": "m-gyo",
+        "type": "basic"
+    },
+    {
+        "char": "ム",
+        "romaji": "mu",
+        "consonant": "m",
+        "vowel": "u",
+        "confusable_with": [
+            "ma",
+            "ra",
+            "su"
+        ],
+        "group": "m-gyo",
+        "type": "basic"
+    },
+    {
+        "char": "メ",
+        "romaji": "me",
+        "consonant": "m",
+        "vowel": "e",
+        "confusable_with": [
+            "na",
+            "no",
+            "nu"
+        ],
+        "group": "m-gyo",
+        "type": "basic"
+    },
+    {
+        "char": "モ",
+        "romaji": "mo",
+        "consonant": "m",
+        "vowel": "o",
+        "confusable_with": [
+            "ma",
+            "ho",
+            "o"
+        ],
+        "group": "m-gyo",
+        "type": "basic"
+    },
+    {
+        "char": "ヤ",
+        "romaji": "ya",
+        "consonant": "y",
+        "vowel": "a",
+        "confusable_with": [
+            "se",
+            "ha",
+            "ma"
+        ],
+        "group": "y-gyo",
+        "type": "basic"
+    },
+    {
+        "char": "ユ",
+        "romaji": "yu",
+        "consonant": "y",
+        "vowel": "u",
+        "confusable_with": [
+            "ko",
+            "e",
+            "yo"
+        ],
+        "group": "y-gyo",
+        "type": "basic"
+    },
+    {
+        "char": "ヨ",
+        "romaji": "yo",
+        "consonant": "y",
+        "vowel": "o",
+        "confusable_with": [
+            "ko",
+            "e",
+            "yu"
+        ],
+        "group": "y-gyo",
+        "type": "basic"
+    },
+    {
+        "char": "ワ",
+        "romaji": "wa",
+        "consonant": "w",
+        "vowel": "a",
+        "confusable_with": [
+            "u",
+            "ra",
+            "fu"
+        ],
+        "group": "w-gyo",
+        "type": "basic"
+    },
+    {
+        "char": "ヲ",
+        "romaji": "wo",
+        "consonant": "w",
+        "vowel": "o",
+        "confusable_with": [
+            "o",
+            "yo",
+            "fu"
+        ],
+        "group": "w-gyo",
+        "type": "basic"
+    },
+    {
+        "char": "ラ",
+        "romaji": "ra",
+        "consonant": "r",
+        "vowel": "a",
+        "confusable_with": [
+            "fu",
+            "u",
+            "wa"
+        ],
+        "group": "r-gyo",
+        "type": "basic"
+    },
+    {
+        "char": "リ",
+        "romaji": "ri",
+        "consonant": "r",
+        "vowel": "i",
+        "confusable_with": [
+            "i",
+            "so",
+            "n"
+        ],
+        "group": "r-gyo",
+        "type": "basic"
+    },
+    {
+        "char": "ル",
+        "romaji": "ru",
+        "consonant": "r",
+        "vowel": "u",
+        "confusable_with": [
+            "re",
+            "ha",
+            "ma"
+        ],
+        "group": "r-gyo",
+        "type": "basic"
+    },
+    {
+        "char": "レ",
+        "romaji": "re",
+        "consonant": "r",
+        "vowel": "e",
+        "confusable_with": [
+            "ru",
+            "wa",
+            "fu"
+        ],
+        "group": "r-gyo",
+        "type": "basic"
+    },
+    {
+        "char": "ロ",
+        "romaji": "ro",
+        "consonant": "r",
+        "vowel": "o",
+        "confusable_with": [
+            "ko",
+            "e",
+            "o"
+        ],
+        "group": "r-gyo",
+        "type": "basic"
+    },
+    {
+        "char": "タ",
+        "romaji": "ta",
+        "consonant": "t",
+        "vowel": "a",
+        "confusable_with": [
+            "ku",
+            "ke",
+            "na"
+        ],
+        "group": "t-gyo",
+        "type": "basic"
+    },
+    {
+        "char": "チ",
+        "romaji": "chi",
+        "consonant": "t",
+        "vowel": "i",
+        "confusable_with": [
+            "te",
+            "sa",
+            "ki"
+        ],
+        "group": "t-gyo",
+        "type": "basic"
+    },
+    {
+        "char": "ツ",
+        "romaji": "tsu",
+        "consonant": "t",
+        "vowel": "u",
+        "confusable_with": [
+            "shi",
+            "so",
+            "n"
+        ],
+        "group": "t-gyo",
+        "type": "basic"
+    },
+    {
+        "char": "テ",
+        "romaji": "te",
+        "consonant": "t",
+        "vowel": "e",
+        "confusable_with": [
+            "chi",
+            "i",
+            "na"
+        ],
+        "group": "t-gyo",
+        "type": "basic"
+    },
+    {
+        "char": "ト",
+        "romaji": "to",
+        "consonant": "t",
+        "vowel": "o",
+        "confusable_with": [
+            "i",
+            "e",
+            "ro"
+        ],
+        "group": "t-gyo",
+        "type": "basic"
+    },
+    {
+        "char": "ン",
+        "romaji": "n",
+        "consonant": "none",
+        "vowel": "none",
+        "confusable_with": [
+            "so",
+            "shi",
+            "tsu"
+        ],
+        "group": "n-final",
+        "type": "basic"
+    },
+
+  { "char": "ガ", "romaji": "ga", "consonant": "g", "vowel": "a", "confusable_with": ["ka", "za", "da"], "group": "g-gyo", "type": "dakuten-handakuten" },
+  { "char": "ギ", "romaji": "gi", "consonant": "g", "vowel": "i", "confusable_with": ["ki", "zi", "bi"], "group": "g-gyo", "type": "dakuten-handakuten" },
+  { "char": "グ", "romaji": "gu", "consonant": "g", "vowel": "u", "confusable_with": ["ku", "zu", "bu"], "group": "g-gyo", "type": "dakuten-handakuten" },
+  { "char": "ゲ", "romaji": "ge", "consonant": "g", "vowel": "e", "confusable_with": ["ke", "ze", "de"], "group": "g-gyo", "type": "dakuten-handakuten" },
+  { "char": "ゴ", "romaji": "go", "consonant": "g", "vowel": "o", "confusable_with": ["ko", "zo", "do"], "group": "g-gyo", "type": "dakuten-handakuten" },
+
+  { "char": "ザ", "romaji": "za", "consonant": "z", "vowel": "a", "confusable_with": ["sa", "ga", "da"], "group": "z-gyo", "type": "dakuten-handakuten" },
+  { "char": "ジ", "romaji": "ji", "consonant": "z", "vowel": "i", "confusable_with": ["shi", "chi", "zu"], "group": "z-gyo", "type": "dakuten-handakuten" },
+  { "char": "ズ", "romaji": "zu", "consonant": "z", "vowel": "u", "confusable_with": ["su", "gu", "ji"], "group": "z-gyo", "type": "dakuten-handakuten" },
+  { "char": "ゼ", "romaji": "ze", "consonant": "z", "vowel": "e", "confusable_with": ["se", "ge", "de"], "group": "z-gyo", "type": "dakuten-handakuten" },
+  { "char": "ゾ", "romaji": "zo", "consonant": "z", "vowel": "o", "confusable_with": ["so", "go", "do"], "group": "z-gyo", "type": "dakuten-handakuten" },
+
+  { "char": "ダ", "romaji": "da", "consonant": "d", "vowel": "a", "confusable_with": ["ta", "ga", "za"], "group": "d-gyo", "type": "dakuten-handakuten" },
+  { "char": "ヂ", "romaji": "ji", "consonant": "d", "vowel": "i", "confusable_with": ["chi", "ji", "de"], "group": "d-gyo", "type": "dakuten-handakuten" },
+  { "char": "ヅ", "romaji": "zu", "consonant": "d", "vowel": "u", "confusable_with": ["tsu", "zu", "su"], "group": "d-gyo", "type": "dakuten-handakuten" },
+  { "char": "デ", "romaji": "de", "consonant": "d", "vowel": "e", "confusable_with": ["te", "ge", "ze"], "group": "d-gyo", "type": "dakuten-handakuten" },
+  { "char": "ド", "romaji": "do", "consonant": "d", "vowel": "o", "confusable_with": ["to", "go", "zo"], "group": "d-gyo", "type": "dakuten-handakuten" },
+
+  { "char": "バ", "romaji": "ba", "consonant": "b", "vowel": "a", "confusable_with": ["ha", "pa", "ma"], "group": "b-gyo", "type": "dakuten-handakuten" },
+  { "char": "ビ", "romaji": "bi", "consonant": "b", "vowel": "i", "confusable_with": ["hi", "pi", "mi"], "group": "b-gyo", "type": "dakuten-handakuten" },
+  { "char": "ブ", "romaji": "bu", "consonant": "b", "vowel": "u", "confusable_with": ["fu", "pu", "mu"], "group": "b-gyo", "type": "dakuten-handakuten" },
+  { "char": "ベ", "romaji": "be", "consonant": "b", "vowel": "e", "confusable_with": ["he", "pe", "me"], "group": "b-gyo", "type": "dakuten-handakuten" },
+  { "char": "ボ", "romaji": "bo", "consonant": "b", "vowel": "o", "confusable_with": ["ho", "po", "mo"], "group": "b-gyo", "type": "dakuten-handakuten" },
+
+  { "char": "パ", "romaji": "pa", "consonant": "p", "vowel": "a", "confusable_with": ["ba", "ha", "ma"], "group": "p-gyo", "type": "dakuten-handakuten" },
+  { "char": "ピ", "romaji": "pi", "consonant": "p", "vowel": "i", "confusable_with": ["bi", "hi", "mi"], "group": "p-gyo", "type": "dakuten-handakuten" },
+  { "char": "プ", "romaji": "pu", "consonant": "p", "vowel": "u", "confusable_with": ["bu", "fu", "mu"], "group": "p-gyo", "type": "dakuten-handakuten" },
+  { "char": "ペ", "romaji": "pe", "consonant": "p", "vowel": "e", "confusable_with": ["be", "he", "me"], "group": "p-gyo", "type": "dakuten-handakuten" },
+  { "char": "ポ", "romaji": "po", "consonant": "p", "vowel": "o", "confusable_with": ["bo", "ho", "mo"], "group": "p-gyo", "type": "dakuten-handakuten" },
+
+  { "char": "キャ", "romaji": "kya", "consonant": "k", "vowel": "a", "confusable_with": ["kiya", "sha", "cha"], "group": "k-yoon", "type": "yoon" },
+  { "char": "キュ", "romaji": "kyu", "consonant": "k", "vowel": "u", "confusable_with": ["kiyu", "shu", "chu"], "group": "k-yoon", "type": "yoon" },
+  { "char": "キョ", "romaji": "kyo", "consonant": "k", "vowel": "o", "confusable_with": ["kiyo", "sho", "cho"], "group": "k-yoon", "type": "yoon" },
+
+  { "char": "シャ", "romaji": "sha", "consonant": "s", "vowel": "a", "confusable_with": ["shiya", "cha", "kya"], "group": "s-yoon", "type": "yoon" },
+  { "char": "シュ", "romaji": "shu", "consonant": "s", "vowel": "u", "confusable_with": ["shiyu", "chu", "kyu"], "group": "s-yoon", "type": "yoon" },
+  { "char": "ショ", "romaji": "sho", "consonant": "s", "vowel": "o", "confusable_with": ["shiyo", "cho", "kyo"], "group": "s-yoon", "type": "yoon" },
+
+  { "char": "チャ", "romaji": "cha", "consonant": "c", "vowel": "a", "confusable_with": ["chiya", "sha", "nya"], "group": "t-yoon", "type": "yoon" },
+  { "char": "チュ", "romaji": "chu", "consonant": "c", "vowel": "u", "confusable_with": ["chiyu", "shu", "nyu"], "group": "t-yoon", "type": "yoon" },
+  { "char": "チョ", "romaji": "cho", "consonant": "c", "vowel": "o", "confusable_with": ["chiyo", "sho", "nyo"], "group": "t-yoon", "type": "yoon" },
+
+  { "char": "ニャ", "romaji": "nya", "consonant": "n", "vowel": "a", "confusable_with": ["niya", "mya", "hya"], "group": "n-yoon", "type": "yoon" },
+  { "char": "ニュ", "romaji": "nyu", "consonant": "n", "vowel": "u", "confusable_with": ["niyu", "myu", "hyu"], "group": "n-yoon", "type": "yoon" },
+  { "char": "ニョ", "romaji": "nyo", "consonant": "n", "vowel": "o", "confusable_with": ["niyo", "myo", "hyo"], "group": "n-yoon", "type": "yoon" },
+
+  { "char": "ギャ", "romaji": "gya", "consonant": "g", "vowel": "a", "confusable_with": ["giya", "kya", "ja"], "group": "g-yoon", "type": "yoon" },
+  { "char": "ギュ", "romaji": "gyu", "consonant": "g", "vowel": "u", "confusable_with": ["giyu", "kyu", "ju"], "group": "g-yoon", "type": "yoon" },
+  { "char": "ギョ", "romaji": "gyo", "consonant": "g", "vowel": "o", "confusable_with": ["giyo", "kyo", "jo"], "group": "g-yoon", "type": "yoon" },
+
+  { "char": "ジャ", "romaji": "ja", "consonant": "j", "vowel": "a", "confusable_with": ["jiya", "zya", "cha"], "group": "j-yoon", "type": "yoon" },
+  { "char": "ジュ", "romaji": "ju", "consonant": "j", "vowel": "u", "confusable_with": ["jiyu", "zyu", "chu"], "group": "j-yoon", "type": "yoon" },
+  { "char": "ジョ", "romaji": "jo", "consonant": "j", "vowel": "o", "confusable_with": ["jiyo", "zyo", "cho"], "group": "j-yoon", "type": "yoon" },
+
+  { "char": "ヴァ", "romaji": "va", "consonant": "v", "vowel": "a", "confusable_with": ["ba", "ha", "ua"], "group": "v-special", "type": "special" },
+  { "char": "ヴィ", "romaji": "vi", "consonant": "v", "vowel": "i", "confusable_with": ["bi", "hi", "ui"], "group": "v-special", "type": "special" },
+  { "char": "ヴ", "romaji": "vu", "consonant": "v", "vowel": "u", "confusable_with": ["u", "bu", "fu"], "group": "v-special", "type": "special" },
+  { "char": "ヴェ", "romaji": "ve", "consonant": "v", "vowel": "e", "confusable_with": ["be", "he", "ue"], "group": "v-special", "type": "special" },
+  { "char": "ヴォ", "romaji": "vo", "consonant": "v", "vowel": "o", "confusable_with": ["bo", "ho", "uo"], "group": "v-special", "type": "special" },
+
+  { "char": "ファ", "romaji": "fa", "consonant": "f", "vowel": "a", "confusable_with": ["ha", "pa", "fua"], "group": "f-special", "type": "special" },
+  { "char": "フィ", "romaji": "fi", "consonant": "f", "vowel": "i", "confusable_with": ["hi", "pi", "fui"], "group": "f-special", "type": "special" },
+  { "char": "フェ", "romaji": "fe", "consonant": "f", "vowel": "e", "confusable_with": ["he", "pe", "fue"], "group": "f-special", "type": "special" },
+  { "char": "フォ", "romaji": "fo", "consonant": "f", "vowel": "o", "confusable_with": ["ho", "po", "fuo"], "group": "f-special", "type": "special" },
+
+  { "char": "ティ", "romaji": "ti", "consonant": "t", "vowel": "i", "confusable_with": ["chi", "te", "di"], "group": "t-special", "type": "special" },
+  { "char": "ディ", "romaji": "di", "consonant": "d", "vowel": "i", "confusable_with": ["ji", "de", "ti"], "group": "d-special", "type": "special" },
+
+  { "char": "ウィ", "romaji": "wi", "consonant": "w", "vowel": "i", "confusable_with": ["ui", "i", "fi"], "group": "w-special", "type": "special" },
+  { "char": "ウェ", "romaji": "we", "consonant": "w", "vowel": "e", "confusable_with": ["ue", "e", "fe"], "group": "w-special", "type": "special" },
+
+  { "char": "ー", "romaji": "-", "consonant": "none", "vowel": "none", "confusable_with": ["ichi", "he", "ni"], "group": "symbol", "type": "basic" }
+
+]
