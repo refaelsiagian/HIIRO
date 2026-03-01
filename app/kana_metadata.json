@@ -1,58 +1,58 @@
 {
   "hiragana": {
     "basic": [
-      { "id": "a-gyo", "title": "Vokal Dasar", "chars": ["あ", "い", "う", "え", "お"] },
-      { "id": "k-gyo", "title": "K-Gyo", "chars": ["か", "き", "く", "け", "こ"] },
-      { "id": "s-gyo", "title": "S-Gyo", "chars": ["さ", "し", "す", "せ", "そ"] },
-      { "id": "t-gyo", "title": "T-Gyo", "chars": ["た", "ち", "つ", "て", "と"] },
-      { "id": "n-gyo", "title": "N-Gyo", "chars": ["な", "に", "ぬ", "ね", "の"] },
-      { "id": "h-gyo", "title": "H-Gyo", "chars": ["は", "ひ", "ふ", "へ", "ほ"] },
-      { "id": "m-gyo", "title": "M-Gyo", "chars": ["ま", "み", "む", "め", "も"] },
-      { "id": "y-gyo", "title": "Y-Gyo", "chars": ["や", "ゆ", "よ"] },
-      { "id": "r-gyo", "title": "R-Gyo", "chars": ["ら", "り", "る", "れ", "ろ"] },
-      { "id": "w-gyo", "title": "W-Gyo & N", "chars": ["わ", "を", "ん"] }
+      { "id": "a-gyo", "title": "Vokal Dasar", "chars": [{ "k": "あ", "r": "a" }, { "k": "い", "r": "i" }, { "k": "う", "r": "u" }, { "k": "え", "r": "e" }, { "k": "お", "r": "o" }] },
+      { "id": "k-gyo", "title": "K-Gyo", "chars": [{ "k": "か", "r": "ka" }, { "k": "き", "r": "ki" }, { "k": "く", "r": "ku" }, { "k": "け", "r": "ke" }, { "k": "ko", "r": "ko" }] },
+      { "id": "s-gyo", "title": "S-Gyo", "chars": [{ "k": "さ", "r": "sa" }, { "k": "し", "r": "shi" }, { "k": "す", "r": "su" }, { "k": "せ", "r": "se" }, { "k": "そ", "r": "so" }] },
+      { "id": "t-gyo", "title": "T-Gyo", "chars": [{ "k": "た", "r": "ta" }, { "k": "ち", "r": "chi" }, { "k": "つ", "r": "tsu" }, { "k": "て", "r": "te" }, { "k": "と", "r": "to" }] },
+      { "id": "n-gyo", "title": "N-Gyo", "chars": [{ "k": "な", "r": "na" }, { "k": "に", "r": "ni" }, { "k": "ぬ", "r": "nu" }, { "k": "ね", "r": "ne" }, { "k": "の", "r": "no" }] },
+      { "id": "h-gyo", "title": "H-Gyo", "chars": [{ "k": "は", "r": "ha" }, { "k": "ひ", "r": "hi" }, { "k": "ふ", "r": "fu" }, { "k": "へ", "r": "he" }, { "k": "ほ", "r": "ho" }] },
+      { "id": "m-gyo", "title": "M-Gyo", "chars": [{ "k": "ま", "r": "ma" }, { "k": "み", "r": "mi" }, { "k": "む", "r": "mu" }, { "k": "め", "r": "me" }, { "k": "も", "r": "mo" }] },
+      { "id": "y-gyo", "title": "Y-Gyo", "chars": [{ "k": "や", "r": "ya" }, { "k": "ゆ", "r": "yu" }, { "k": "よ", "r": "yo" }] },
+      { "id": "r-gyo", "title": "R-Gyo", "chars": [{ "k": "ら", "r": "ra" }, { "k": "り", "r": "ri" }, { "k": "る", "r": "ru" }, { "k": "れ", "r": "re" }, { "k": "ろ", "r": "ro" }] },
+      { "id": "w-gyo", "title": "W-Gyo & N", "chars": [{ "k": "わ", "r": "wa" }, { "k": "を", "r": "wo" }, { "k": "ん", "r": "n" }] }
     ],
     "dakuten": [
-      { "id": "g-gyo", "title": "G-Gyo", "chars": ["が", "ぎ", "ぐ", "げ", "ご"] },
-      { "id": "z-gyo", "title": "Z-Gyo", "chars": ["ざ", "じ", "ず", "ぜ", "ぞ"] },
-      { "id": "d-gyo", "title": "D-Gyo", "chars": ["だ", "ぢ", "づ", "で", "ど"] },
-      { "id": "b-gyo", "title": "B-Gyo", "chars": ["ば", "び", "ぶ", "べ", "ぼ"] },
-      { "id": "p-gyo", "title": "P-Gyo", "chars": ["ぱ", "ぴ", "ぷ", "ぺ", "ぽ"] }
+      { "id": "g-gyo", "title": "G-Gyo", "chars": [{ "k": "が", "r": "ga" }, { "k": "ぎ", "r": "gi" }, { "k": "ぐ", "r": "gu" }, { "k": "げ", "r": "ge" }, { "k": "ご", "r": "go" }] },
+      { "id": "z-gyo", "title": "Z-Gyo", "chars": [{ "k": "ざ", "r": "za" }, { "k": "じ", "r": "ji" }, { "k": "ず", "r": "zu" }, { "k": "ぜ", "r": "ze" }, { "k": "ぞ", "r": "zo" }] },
+      { "id": "d-gyo", "title": "D-Gyo", "chars": [{ "k": "だ", "r": "da" }, { "k": "ぢ", "r": "ji" }, { "k": "づ", "r": "zu" }, { "k": "で", "r": "de" }, { "k": "ど", "r": "do" }] },
+      { "id": "b-gyo", "title": "B-Gyo", "chars": [{ "k": "ば", "r": "ba" }, { "k": "び", "r": "bi" }, { "k": "ぶ", "r": "bu" }, { "k": "べ", "r": "be" }, { "k": "ぼ", "r": "bo" }] },
+      { "id": "p-gyo", "title": "P-Gyo", "chars": [{ "k": "ぱ", "r": "pa" }, { "k": "ぴ", "r": "pi" }, { "k": "ぷ", "r": "pu" }, { "k": "ぺ", "r": "pe" }, { "k": "ぽ", "r": "po" }] }
     ],
     "yoon": [
-      { "id": "k-yoon", "title": "K-Yoon", "chars": ["きゃ", "きゅ", "きょ"] },
-      { "id": "s-yoon", "title": "S-Yoon", "chars": ["しゃ", "しゅ", "しょ"] },
-      { "id": "t-yoon", "title": "T-Yoon", "chars": ["ちゃ", "ちゅ", "ちょ"] },
-      { "id": "n-yoon", "title": "N-Yoon", "chars": ["にゃ", "にゅ", "にょ"] },
-      { "id": "h-yoon", "title": "H-Yoon", "chars": ["ひゃ", "ひゅ", "ひょ"] },
-      { "id": "m-yoon", "title": "M-Yoon", "chars": ["みゃ", "みゅ", "みょ"] },
-      { "id": "r-yoon", "title": "R-Yoon", "chars": ["りゃ", "りゅ", "りょ"] }
+      { "id": "k-yoon", "title": "K-Yoon", "chars": [{ "k": "きゃ", "r": "kya" }, { "k": "きゅ", "r": "kyu" }, { "k": "きょ", "r": "kyo" }] },
+      { "id": "s-yoon", "title": "S-Yoon", "chars": [{ "k": "しゃ", "r": "sha" }, { "k": "しゅ", "r": "shu" }, { "k": "しょ", "r": "sho" }] },
+      { "id": "t-yoon", "title": "T-Yoon", "chars": [{ "k": "ちゃ", "r": "cha" }, { "k": "ちゅ", "r": "chu" }, { "k": "ちょ", "r": "cho" }] },
+      { "id": "n-yoon", "title": "N-Yoon", "chars": [{ "k": "にゃ", "r": "nya" }, { "k": "にゅ", "r": "nyu" }, { "k": "にょ", "r": "nyo" }] },
+      { "id": "h-yoon", "title": "H-Yoon", "chars": [{ "k": "ひゃ", "r": "hya" }, { "k": "ひゅ", "r": "hyu" }, { "k": "ひょ", "r": "hyo" }] },
+      { "id": "m-yoon", "title": "M-Yoon", "chars": [{ "k": "みゃ", "r": "mya" }, { "k": "みゅ", "r": "myu" }, { "k": "みょ", "r": "myo" }] },
+      { "id": "r-yoon", "title": "R-Yoon", "chars": [{ "k": "りゃ", "r": "rya" }, { "k": "りゅ", "r": "ryu" }, { "k": "りょ", "r": "ryo" }] }
     ]
   },
   "katakana": {
     "basic": [
-      { "id": "a-gyo", "title": "Vokal Dasar", "chars": ["ア", "イ", "ウ", "エ", "オ"] },
-      { "id": "k-gyo", "title": "K-Gyo", "chars": ["カ", "キ", "ク", "ケ", "コ"] },
-      { "id": "s-gyo", "title": "S-Gyo", "chars": ["サ", "シ", "ス", "セ", "ソ"] },
-      { "id": "t-gyo", "title": "T-Gyo", "chars": ["タ", "チ", "ツ", "テ", "ト"] },
-      { "id": "n-gyo", "title": "N-Gyo", "chars": ["ナ", "ニ", "ヌ", "ネ", "ノ"] },
-      { "id": "h-gyo", "title": "H-Gyo", "chars": ["ハ", "ヒ", "フ", "ヘ", "ホ"] },
-      { "id": "m-gyo", "title": "M-Gyo", "chars": ["マ", "ミ", "ム", "メ", "モ"] },
-      { "id": "y-gyo", "title": "Y-Gyo", "chars": ["ヤ", "ユ", "ヨ"] },
-      { "id": "r-gyo", "title": "R-Gyo", "chars": ["ラ", "リ", "ル", "レ", "ロ"] },
-      { "id": "w-gyo", "title": "W-Gyo & N", "chars": ["ワ", "ヲ", "ン"] }
+      { "id": "a-gyo", "title": "Vokal Dasar", "chars": [{ "k": "ア", "r": "a" }, { "k": "イ", "r": "i" }, { "k": "ウ", "r": "u" }, { "k": "エ", "r": "e" }, { "k": "オ", "r": "o" }] },
+      { "id": "k-gyo", "title": "K-Gyo", "chars": [{ "k": "カ", "r": "ka" }, { "k": "キ", "r": "ki" }, { "k": "ク", "r": "ku" }, { "k": "ケ", "r": "ke" }, { "k": "コ", "r": "ko" }] },
+      { "id": "s-gyo", "title": "S-Gyo", "chars": [{ "k": "サ", "r": "sa" }, { "k": "シ", "r": "shi" }, { "k": "ス", "r": "su" }, { "k": "セ", "r": "se" }, { "k": "ソ", "r": "so" }] },
+      { "id": "t-gyo", "title": "T-Gyo", "chars": [{ "k": "タ", "r": "ta" }, { "k": "チ", "r": "chi" }, { "k": "ツ", "r": "tsu" }, { "k": "テ", "r": "te" }, { "k": "ト", "r": "to" }] },
+      { "id": "n-gyo", "title": "N-Gyo", "chars": [{ "k": "ナ", "r": "na" }, { "k": "ニ", "r": "ni" }, { "k": "ヌ", "r": "nu" }, { "k": "ネ", "r": "ne" }, { "k": "ノ", "r": "no" }] },
+      { "id": "h-gyo", "title": "H-Gyo", "chars": [{ "k": "ハ", "r": "ha" }, { "k": "ヒ", "r": "hi" }, { "k": "フ", "r": "fu" }, { "k": "ヘ", "r": "he" }, { "k": "ホ", "r": "ho" }] },
+      { "id": "m-gyo", "title": "M-Gyo", "chars": [{ "k": "マ", "r": "ma" }, { "k": "ミ", "r": "mi" }, { "k": "ム", "r": "mu" }, { "k": "メ", "r": "me" }, { "k": "モ", "r": "mo" }] },
+      { "id": "y-gyo", "title": "Y-Gyo", "chars": [{ "k": "ヤ", "r": "ya" }, { "k": "ユ", "r": "yu" }, { "k": "ヨ", "r": "yo" }] },
+      { "id": "r-gyo", "title": "R-Gyo", "chars": [{ "k": "ラ", "r": "ra" }, { "k": "リ", "r": "ri" }, { "k": "ル", "r": "ru" }, { "k": "レ", "r": "re" }, { "k": "ロ", "r": "ro" }] },
+      { "id": "w-gyo", "title": "W-Gyo & N", "chars": [{ "k": "ワ", "r": "wa" }, { "k": "ヲ", "r": "wo" }, { "k": "ン", "r": "n" }] }
     ],
     "dakuten": [
-      { "id": "g-gyo", "title": "G-Gyo", "chars": ["ガ", "ギ", "グ", "ゲ", "ゴ"] },
-      { "id": "z-gyo", "title": "Z-Gyo", "chars": ["ザ", "ジ", "ズ", "ゼ", "ゾ"] },
-      { "id": "d-gyo", "title": "D-Gyo", "chars": ["ダ", "ヂ", "ヅ", "デ", "ド"] },
-      { "id": "b-gyo", "title": "B-Gyo", "chars": ["バ", "ビ", "ブ", "ベ", "ボ"] },
-      { "id": "p-gyo", "title": "P-Gyo", "chars": ["パ", "ピ", "プ", "ペ", "ポ"] }
+      { "id": "g-gyo", "title": "G-Gyo", "chars": [{ "k": "ガ", "r": "ga" }, { "k": "ギ", "r": "gi" }, { "k": "グ", "r": "gu" }, { "k": "ゲ", "r": "ge" }, { "k": "ゴ", "r": "go" }] },
+      { "id": "z-gyo", "title": "Z-Gyo", "chars": [{ "k": "ザ", "r": "za" }, { "k": "ジ", "r": "ji" }, { "k": "ズ", "r": "zu" }, { "k": "ゼ", "r": "ze" }, { "k": "ゾ", "r": "zo" }] },
+      { "id": "d-gyo", "title": "D-Gyo", "chars": [{ "k": "ダ", "r": "da" }, { "k": "ヂ", "r": "ji" }, { "k": "ヅ", "r": "zu" }, { "k": "デ", "r": "de" }, { "k": "ド", "r": "do" }] },
+      { "id": "b-gyo", "title": "B-Gyo", "chars": [{ "k": "バ", "r": "ba" }, { "k": "ビ", "r": "bi" }, { "k": "ブ", "r": "bu" }, { "k": "ベ", "r": "be" }, { "k": "ボ", "r": "bo" }] },
+      { "id": "p-gyo", "title": "P-Gyo", "chars": [{ "k": "パ", "r": "pa" }, { "k": "pi", "r": "pi" }, { "k": "プ", "r": "pu" }, { "k": "ペ", "r": "pe" }, { "k": "ポ", "r": "po" }] }
     ],
     "special": [
-      { "id": "v-special", "title": "V-Series", "chars": ["ヴァ", "ヴィ", "ヴ", "ヴェ", "ヴォ"] },
-      { "id": "f-special", "title": "F-Series", "chars": ["ファ", "フィ", "フェ", "フォ"] },
-      { "id": "t-special", "title": "Ti/Di Series", "chars": ["ティ", "ディ"] }
+      { "id": "v-special", "title": "V-Series", "chars": [{ "k": "ヴァ", "r": "va" }, { "k": "ヴィ", "r": "vi" }, { "k": "ヴ", "r": "vu" }, { "k": "ヴェ", "r": "ve" }, { "k": "ヴォ", "r": "vo" }] },
+      { "id": "f-special", "title": "F-Series", "chars": [{ "k": "ファ", "r": "fa" }, { "k": "フィ", "r": "fi" }, { "k": "フェ", "r": "fe" }, { "k": "フォ", "r": "fo" }] },
+      { "id": "t-special", "title": "Ti/Di Series", "chars": [{ "k": "ティ", "r": "ti" }, { "k": "ディ", "r": "di" }] }
     ]
   }
 }
