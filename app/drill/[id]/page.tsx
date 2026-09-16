@@ -50,7 +50,7 @@ export default function DrillPage() {
             {/* HEADER NAVIGASI */}
             <div className="max-w-md mx-auto flex justify-between items-center mb-12">
                 <button
-                    onClick={() => router.back()}
+                    onClick={() => router.push(`/stage/${category}/${groupId}`)}
                     className="group flex items-center space-x-2 font-bold text-slate-400 hover:text-blue-600 transition-colors"
                 >
                     <span className="text-xl group-hover:-translate-x-1 transition-transform">←</span>
