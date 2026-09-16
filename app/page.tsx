@@ -2,12 +2,8 @@
 
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
-// Pastikan path JSON sudah benar
-import KANA_METADATA_RAW from './data/kana_metadata.json';
-import { GroupData, KanaMetadata } from './types/kana';
-
-// Cast JSON ke tipe yang sudah kita buat
-const KANA_METADATA = KANA_METADATA_RAW as unknown as KanaMetadata;
+import { KANA_METADATA } from './utils/kanaData';
+import { GroupData } from './types/kana';
 
 const MainMenu: React.FC = () => {
     const router = useRouter();

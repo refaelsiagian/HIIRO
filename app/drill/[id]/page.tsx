@@ -3,10 +3,8 @@
 import React, { useMemo } from 'react';
 import { useParams, useSearchParams, useRouter } from 'next/navigation';
 import SequenceDrill from './SequenceDrill';
-import { GroupData, KanaMetadata } from '../../types/kana';
-import KANA_METADATA_RAW from '../../data/kana_metadata.json';
-
-const KANA_METADATA = KANA_METADATA_RAW as unknown as KanaMetadata;
+import { GroupData } from '../../types/kana';
+import { KANA_METADATA } from '../../utils/kanaData';
 
 export default function DrillPage() {
     const params = useParams();
