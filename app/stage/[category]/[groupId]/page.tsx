@@ -82,8 +82,6 @@ const StageSelection: React.FC = () => {
     }
 
     const renderFlower = (stageIndex: number, isUnlocked: boolean, customColor?: string) => {
-        let currentPetals = groupProgress[`${groupId}-petals`] || 0;
-        
         // Final stage has 10 petals, normal has 5
         const maxPetals = isFinal ? 10 : 5;
         const angleStep = 360 / maxPetals;
