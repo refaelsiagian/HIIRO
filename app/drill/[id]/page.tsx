@@ -1,74 +1,81 @@
 "use client";
 
 import React, { useMemo } from 'react';
-import { useParams, useSearchParams, useRouter } from 'next/navigation';
+import { useParams, useSearchParams } from 'next/navigation';
 import SequenceDrill from './SequenceDrill';
+import DrillEngine from './DrillEngine';
+// We will create these shortly
+// import TrueFalseDrill from './TrueFalseDrill';
+// import FindFillDrill from './FindFillDrill';
+import TrueFalseDrill from './TrueFalseDrill';
+import FindFillDrill from './FindFillDrill';
 import { GroupData } from '../../types/kana';
 import { KANA_METADATA } from '../../utils/kanaData';
 
 export default function DrillPage() {
     const params = useParams();
     const searchParams = useSearchParams();
-    const router = useRouter();
 
     const category = (searchParams.get('cat') as 'hiragana' | 'katakana') || 'hiragana';
     const groupId = params.id as string;
+    const stageId = searchParams.get('stageId') || 'unknown';
+    const mode = searchParams.get('mode') || 'sequence';
 
-    // --- SOLUSI: Gunakan useMemo daripada useEffect ---
-    // Ini akan menghitung 'groupData' langsung saat render pertama
-    // Gunakan useMemo dengan logika yang lebih linear
     const groupData = useMemo(() => {
         const sections = KANA_METADATA[category];
         if (!sections) return null;
-
-        // 1. Ambil semua array (basic, dakuten, yoon) dan gabung jadi satu array besar
-        // Object.values(sections) -> [ [GroupA, GroupB], [GroupC], ... ]
-        // .flat() -> [ GroupA, GroupB, GroupC, ... ]
         const allGroups = Object.values(sections).flat() as GroupData[];
-
-        // 2. Cari grup yang ID-nya cocok
-        const found = allGroups.find(g => g.id === groupId);
-
-        // 3. Kembalikan hasilnya (kalau gak ketemu kasih null)
-        return found || null;
+        return allGroups.find(g => g.id === groupId) || null;
     }, [groupId, category]);
 
-    // --- TYPE GUARD ---
-    // Pastikan blok ini ada SEBELUM kamu memanggil {groupData.title}
+    const section = useMemo(() => {
+        const sections = KANA_METADATA[category];
+        if (!sections) return 'basic';
+        for (const sec in sections) {
+            if (sections[sec].find(g => g.id === groupId)) return sec;
+        }
+        return 'basic';
+    }, [groupId, category]);
+
     if (!groupData) {
         return (
-            <div className="min-h-screen flex items-center justify-center">
-                <p className="font-bold text-slate-400">Grup tidak ditemukan...</p>
+            <div className="min-h-screen flex items-center justify-center bg-[#FDF0EB]">
+                <p className="font-bold text-[#5C3A21]">Grup tidak ditemukan...</p>
             </div>
         );
     }
 
-    // Di bawah sini, TypeScript sudah 100% yakin groupData ADALAH GroupData (bukan null/never)
+    let GameComponent = SequenceDrill;
+    let targetScore = 5; // e.g. 5 rounds for sequence
+    let maxTime = 60;
+
+    if (mode === 'true-false') {
+        GameComponent = TrueFalseDrill;
+        targetScore = 10;
+        maxTime = 45;
+    } else if (mode === 'find-fill') {
+        GameComponent = FindFillDrill;
+        targetScore = 5;
+        maxTime = 90;
+    }
 
     return (
-        <div className="min-h-screen bg-slate-50 p-6 font-sans">
-            {/* HEADER NAVIGASI */}
-            <div className="max-w-md mx-auto flex justify-between items-center mb-12">
-                <button
-                    onClick={() => router.push(`/stage/${category}/${groupId}`)}
-                    className="group flex items-center space-x-2 font-bold text-slate-400 hover:text-blue-600 transition-colors"
-                >
-                    <span className="text-xl group-hover:-translate-x-1 transition-transform">←</span>
-                    <span>Menu</span>
-                </button>
-
-                <div className="text-right">
-                    <p className="text-[10px] font-black text-blue-500 uppercase tracking-widest leading-none mb-1">
-                        Latihan {category}
-                    </p>
-                    <h1 className="text-xl font-black text-slate-800 leading-none">{groupData.title}</h1>
-                </div>
-            </div>
-
-            <div className="max-w-md mx-auto">
-                {/* Gunakan key agar SequenceDrill reset saat pindah grup */}
-                <SequenceDrill key={groupData.id} groupChars={groupData.chars} />
-            </div>
-        </div>
+        <DrillEngine
+            category={category}
+            section={section}
+            groupId={groupId}
+            stageId={stageId}
+            maxTime={maxTime}
+            maxLives={3}
+            targetScore={targetScore}
+        >
+            {({ onCorrect, onWrong }) => (
+                <GameComponent 
+                    groupChars={groupData.chars} 
+                    onCorrect={onCorrect} 
+                    onWrong={onWrong} 
+                />
+            )}
+        </DrillEngine>
     );
 }

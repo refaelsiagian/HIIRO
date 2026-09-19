@@ -3,6 +3,17 @@
 import React from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { KANA_METADATA } from '../../utils/kanaData';
+import { ArrowLeft } from 'lucide-react';
+import { useGameStore } from '../../store/useGameStore';
+import { Star } from 'lucide-react';
+
+const SECTION_DATA: Record<string, { title: string, subHiragana: string, subKatakana: string, kanji: string }> = {
+    'basic': { title: 'Gojūon', subHiragana: 'ごじゅうおん', subKatakana: 'ゴジュウオン', kanji: '五十音' },
+    'dakuten': { title: 'Dakuon\nHandakuon', subHiragana: 'だくおん\nはんだくおん', subKatakana: 'ダクオン\nハンダクオン', kanji: '濁音\n・\n半濁音' },
+    'yoon': { title: 'Yōon', subHiragana: 'ようおん', subKatakana: 'ヨウオン', kanji: '拗音' },
+    'special': { title: 'Tokushuon', subHiragana: 'とくしゅおん', subKatakana: 'トクシュオン', kanji: '特殊音' },
+    'daishiken': { title: 'Daishiken', subHiragana: 'だいしけん', subKatakana: 'ダイシケン', kanji: '大試験' },
+};
 
 const SectionSelection: React.FC = () => {
     const params = useParams();
@@ -10,6 +21,7 @@ const SectionSelection: React.FC = () => {
     const category = params.category as 'hiragana' | 'katakana';
 
     const currentData = KANA_METADATA[category];
+    const { getGroupStars } = useGameStore();
 
     if (!currentData) {
         return <div className="min-h-screen flex items-center justify-center font-bold text-slate-400">Kategori tidak ditemukan...</div>;
@@ -17,58 +29,121 @@ const SectionSelection: React.FC = () => {
 
     const sections = Object.keys(currentData);
 
-    const formatSectionName = (key: string) => {
-        switch (key) {
-            case 'basic': return 'Bagian Dasar';
-            case 'dakuten': return 'Dakuten & Handakuten';
-            case 'yoon': return 'Yoon (Kombinasi)';
-            case 'special': return 'Kombinasi Spesial';
-            default: return key;
-        }
+    const getSectionStars = (section: string) => {
+        let earned = 0;
+        let total = 0;
+        currentData[section].forEach(group => {
+            const isShotesto = group.id.startsWith('shotesto');
+            const isDaishiken = group.id.startsWith('daishiken');
+            const stgs = (isShotesto || isDaishiken) ? 1 : 5;
+            total += stgs * 3;
+            earned += getGroupStars(category, section, group.id);
+        });
+        return { earned, total };
     };
 
     return (
-        <div className="min-h-screen bg-slate-50 p-6 font-sans text-slate-800 flex flex-col">
+        <div className="min-h-screen p-6 flex flex-col overflow-hidden">
             {/* HEADER NAVIGASI */}
-            <div className="max-w-4xl mx-auto w-full mb-8 flex items-center">
+            <div className="absolute top-6 left-6 z-10">
                 <button
                     onClick={() => router.push('/')}
-                    className="group flex items-center space-x-2 font-bold text-slate-400 hover:text-blue-600 transition-colors"
+                    className="p-3 text-[#5C3A21] hover:text-[#DF7956] transition-colors"
                 >
-                    <span className="text-xl group-hover:-translate-x-1 transition-transform">←</span>
-                    <span>Menu Utama</span>
+                    <ArrowLeft size={40} strokeWidth={2} />
                 </button>
             </div>
 
             {/* HEADER */}
-            <header className="max-w-4xl mx-auto text-center mb-12">
-                <span className="text-[10px] font-black uppercase tracking-widest text-slate-400 bg-slate-200 px-3 py-1 rounded-full mb-3 inline-block">
-                    Kategori
-                </span>
-                <h1 className="text-4xl font-extrabold text-slate-900 tracking-tight capitalize">
+            <header className="text-center mt-12 mb-16">
+                <h1 className="text-6xl text-[#5C3A21] tracking-tight capitalize font-akaya">
                     {category}
                 </h1>
-                <p className="text-slate-500 font-medium mt-2">Pilih bagian yang ingin kamu pelajari</p>
+                <p className="text-[#5C3A21]/70 mt-2 text-3xl font-serif">
+                    {category === 'hiragana' ? 'ひらがな' : 'カタカナ'}
+                </p>
             </header>
 
-            {/* MAIN CONTENT */}
-            <main className="max-w-4xl mx-auto w-full grid grid-cols-1 sm:grid-cols-2 gap-6 flex-1">
-                {sections.map((sectionKey) => (
-                    <button
-                        key={sectionKey}
-                        onClick={() => router.push(`/select/${category}/${sectionKey}`)}
-                        className="bg-white border-2 border-slate-100 p-8 rounded-3xl hover:border-blue-300 hover:shadow-xl transition-all group text-left relative overflow-hidden active:scale-95"
-                    >
-                        <div className="absolute top-0 right-0 w-24 h-24 bg-blue-50/50 rounded-bl-full group-hover:scale-150 transition-transform duration-500 -z-10"></div>
-                        <h2 className="text-2xl font-bold text-slate-800 mb-2">{formatSectionName(sectionKey)}</h2>
-                        <p className="text-slate-400 text-sm font-medium">Terdapat {currentData[sectionKey].length} grup huruf</p>
-                    </button>
-                ))}
-            </main>
+            {/* HORIZONTAL CAROUSEL */}
+            <main className="flex-1 w-full flex items-center overflow-x-auto pb-12 snap-x snap-mandatory hide-scrollbar">
+                <div className="flex space-x-[64px] px-12 md:px-32 w-max mx-auto h-[520px]">
+                    {sections.map((sectionKey) => {
+                        const sData = SECTION_DATA[sectionKey] || { title: sectionKey, subHiragana: '', subKatakana: '', kanji: '' };
+                        const displaySub = category === 'katakana' ? sData.subKatakana : sData.subHiragana;
+                        const stars = getSectionStars(sectionKey);
+                        const totalHuruf = currentData[sectionKey].reduce((acc, curr) => acc + curr.chars.length, 0);
 
-            <footer className="text-center py-12 text-slate-300 text-xs font-bold tracking-widest uppercase mt-auto">
-                © 2026 KanaDrill Studio
-            </footer>
+                        const isDaishiken = sectionKey === 'daishiken';
+
+                        // COLOR LOGIC based on layout desc.txt
+                        let cardStyle = "";
+                        let fontColor = "";
+                        let starColor = "";
+                        let kanjiOpacity = "";
+
+                        if (category === 'katakana') {
+                            kanjiOpacity = "opacity-40";
+                            if (isDaishiken) {
+                                cardStyle = "bg-gradient-to-br from-[#753391] to-[#F5E0FF]";
+                                fontColor = "text-[#4F286F]";
+                                starColor = "fill-[#4F286F] text-[#4F286F]";
+                            } else {
+                                cardStyle = "bg-gradient-to-br from-[#F07B55] to-[#FFE8E0]";
+                                fontColor = "text-[#6F3E28]";
+                                starColor = "fill-[#CC6E34] text-[#CC6E34]";
+                            }
+                        } else {
+                            // Hiragana
+                            kanjiOpacity = "opacity-80";
+                            if (isDaishiken) {
+                                cardStyle = "bg-[#7D4E94]";
+                                fontColor = "text-[#FCEEFF]";
+                                starColor = "fill-[#FCEEFF] text-[#FCEEFF]";
+                            } else {
+                                cardStyle = "bg-[#DF7956]";
+                                fontColor = "text-[#FFEFE8]";
+                                starColor = "fill-[#FFEFE8] text-[#FFEFE8]";
+                            }
+                        }
+
+                        return (
+                            <button
+                                key={sectionKey}
+                                onClick={() => router.push(`/select/${category}/${sectionKey}`)}
+                                className={`w-[358px] h-[520px] shrink-0 snap-center ${cardStyle} shadow-2xl p-8 flex flex-col justify-between ${fontColor} hover:scale-105 active:scale-95 transition-all duration-300 relative overflow-hidden text-left`}
+                            >
+                                <div 
+                                    className={`absolute top-[36px] left-[30px] ${kanjiOpacity} text-[48px] font-serif leading-[60px] font-normal tracking-[12px]`}
+                                    style={{ writingMode: 'vertical-rl' }}
+                                >
+                                    {sData.kanji.replace(/\s/g, '').substring(0, 6)}
+                                </div>
+                                
+                                <div className="absolute top-[56px] right-[28px] flex flex-col items-end z-10 text-right">
+                                    <h2 className="text-[36px] font-arbutus font-normal whitespace-pre-line leading-[1.2] mb-2">
+                                        {sData.title}
+                                    </h2>
+                                    <p className="text-[20px] font-serif font-normal opacity-80 mb-3 whitespace-pre-line">
+                                        {displaySub}
+                                    </p>
+                                    <div className="flex items-center justify-end text-[16px] font-outfit font-normal opacity-90">
+                                        <Star className={`w-[20px] h-[20px] mr-2 ${starColor}`} />
+                                        {stars.earned}/{stars.total}
+                                    </div>
+                                </div>
+
+                                <div className={`absolute bottom-[42px] right-[42px] z-10 text-right ${fontColor}`}>
+                                    {isDaishiken ? (
+                                        <p className="text-[16px] font-outfit font-normal">Ujian akhir</p>
+                                    ) : (
+                                        <p className="text-[16px] font-outfit font-normal">{totalHuruf} huruf</p>
+                                    )}
+                                </div>
+                            </button>
+                        );
+                    })}
+                </div>
+            </main>
         </div>
     );
 };

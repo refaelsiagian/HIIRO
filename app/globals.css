@@ -8,19 +8,24 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  
+  /* Fonts */
+  --font-sans: var(--font-noto-sans-jp);
+  --font-serif: var(--font-noto-serif-jp);
+  --font-outfit: var(--font-outfit);
+  --font-arbutus: var(--font-arbutus-slab);
+  --font-akaya: var(--font-akaya);
+
+  /* Gradients based on layout desc.txt */
+  --background-image-app-bg: linear-gradient(to bottom right, #FFF3F0, #FFDAD1);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer utilities {
+  .hide-scrollbar::-webkit-scrollbar {
+      display: none;
   }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  .hide-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+  }
 }

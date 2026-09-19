@@ -3,6 +3,18 @@
 import React from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { KANA_METADATA } from '../../../utils/kanaData';
+import { ArrowLeft } from 'lucide-react';
+import { useGameStore } from '../../../store/useGameStore';
+import { Star, Lock } from 'lucide-react';
+import { SubKatakanaPaperSVG } from '../../../components/SubKatakanaPaperSVG';
+import { SubHiraganaPaperSVG } from '../../../components/SubHiraganaPaperSVG';
+const SECTION_DATA: Record<string, { title: string, sub: string }> = {
+    'basic': { title: 'Gojūon', sub: 'ごじゅうおん' },
+    'dakuten': { title: 'Dakuon\nHandakuon', sub: 'だくおん\nはんだくおん' },
+    'yoon': { title: 'Yōon', sub: 'ようおん' },
+    'special': { title: 'Tokushuon', sub: 'とくしゅおん' },
+    'daishiken': { title: 'Daishiken', sub: 'だいしけん' },
+};
 
 const GroupSelection: React.FC = () => {
     const params = useParams();
@@ -11,83 +23,181 @@ const GroupSelection: React.FC = () => {
     const section = params.section as string;
 
     const currentData = KANA_METADATA[category];
+    const { getGroupStars } = useGameStore();
 
     if (!currentData || !currentData[section]) {
         return <div className="min-h-screen flex items-center justify-center font-bold text-slate-400">Bagian tidak ditemukan...</div>;
     }
 
     const groups = currentData[section];
-
-    const formatSectionName = (key: string) => {
-        switch (key) {
-            case 'basic': return 'Bagian Dasar';
-            case 'dakuten': return 'Dakuten & Handakuten';
-            case 'yoon': return 'Yoon (Kombinasi)';
-            case 'special': return 'Kombinasi Spesial';
-            default: return key;
-        }
-    };
+    const sectionInfo = SECTION_DATA[section] || { title: section, sub: '' };
 
     return (
-        <div className="min-h-screen bg-slate-50 p-6 font-sans text-slate-800 flex flex-col">
+        <div className="min-h-screen p-6 flex flex-col overflow-hidden">
             {/* HEADER NAVIGASI */}
-            <div className="max-w-4xl mx-auto w-full mb-8 flex items-center justify-between">
+            <div className="absolute top-6 left-6 z-10">
                 <button
                     onClick={() => router.push(`/select/${category}`)}
-                    className="group flex items-center space-x-2 font-bold text-slate-400 hover:text-blue-600 transition-colors"
+                    className="p-3 text-slate-800 hover:text-blue-600 transition-colors"
                 >
-                    <span className="text-xl group-hover:-translate-x-1 transition-transform">←</span>
-                    <span>Kembali</span>
+                    <ArrowLeft size={40} strokeWidth={2} />
                 </button>
             </div>
 
             {/* HEADER */}
-            <header className="max-w-4xl mx-auto text-center mb-12">
-                <div className="flex justify-center space-x-2 mb-3">
-                    <span className="text-[10px] font-black uppercase tracking-widest text-slate-400 bg-slate-200 px-3 py-1 rounded-full">
-                        {category}
-                    </span>
-                    <span className="text-[10px] font-black uppercase tracking-widest text-blue-500 bg-blue-100 px-3 py-1 rounded-full">
-                        {formatSectionName(section)}
-                    </span>
-                </div>
-                <h1 className="text-4xl font-extrabold text-slate-900 tracking-tight capitalize">
-                    Pilih Grup
+            <header className="text-center mt-12 mb-16">
+                <h1 className="text-5xl text-[#5C3A21] tracking-tight font-arbutus">
+                    {sectionInfo.title}
                 </h1>
+                <p className="text-[#5C3A21]/70 mt-2 text-2xl font-akaya">
+                    {sectionInfo.sub}
+                </p>
             </header>
 
-            {/* MAIN CONTENT */}
-            <main className="max-w-4xl mx-auto w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 flex-1">
-                {groups.map((group) => (
-                    <button
-                        key={group.id}
-                        onClick={() => router.push(`/stage/${category}/${group.id}`)}
-                        className="bg-white border-2 border-slate-100 p-6 rounded-3xl hover:border-blue-300 hover:shadow-xl transition-all group relative overflow-hidden text-left active:scale-95 flex flex-col"
-                    >
-                        <div className="flex justify-between items-start mb-4 w-full">
-                            <span className="text-[10px] font-black uppercase tracking-widest text-slate-300 bg-slate-50 px-2 py-1 rounded">
-                                {group.id}
-                            </span>
-                            <div className="h-2 w-2 rounded-full bg-green-400 shadow-[0_0_8px_rgba(74,222,128,0.5)]"></div>
-                        </div>
+            {/* HORIZONTAL CAROUSEL */}
+            <main className="flex-1 w-full flex items-center overflow-x-auto pb-12 snap-x snap-mandatory hide-scrollbar">
+                <div className="flex space-x-12 px-12 md:px-32 w-max mx-auto h-[480px] items-center">
+                    {groups.map((group, index) => {
+                        // LOGIC UNTUK SHOTESTO & DAISHIKEN
+                        const isShotesto = group.id.includes('shotesto');
+                        const isDaishiken = group.id.includes('daishiken');
+                        
+                        let isUnlocked = true;
+                        if (index > 0) {
+                            const prevGroup = groups[index - 1];
+                            const prevStars = getGroupStars(category, section, prevGroup.id);
+                            if (prevStars < 1) {
+                                isUnlocked = false;
+                            }
+                        }
 
-                        {/* Preview Huruf */}
-                        <div className="flex justify-center w-full space-x-3 mb-6">
-                            {group.chars.slice(0, 5).map((char, idx) => (
-                                <span key={idx} className="text-2xl font-bold text-slate-300 group-hover:text-blue-400 transition-colors">
-                                    {char.k}
-                                </span>
-                            ))}
-                        </div>
+                        const earnedStars = getGroupStars(category, section, group.id);
+                        
+                        let displayTitle = group.title;
+                        let displaySubTitle = group.id === 'n-final' ? group.chars[0]?.k : `${group.chars[0]?.k}行`;
+                        let displayChars = group.chars.map(c => c.k).join('');
+                        
+                        if (isShotesto) {
+                            displayTitle = 'Shōtesuto';
+                            displaySubTitle = '小テスト';
+                            displayChars = '小テスト';
+                        }
+                        if (isDaishiken) {
+                            displayTitle = 'Daishiken';
+                            displaySubTitle = '大試験';
+                            displayChars = '大試験';
+                        }
 
-                        <h3 className="text-center w-full font-bold text-slate-800 text-lg">{group.title}</h3>
-                    </button>
-                ))}
+                        // COLORS LOGIC based on layout desc.txt
+                        let bgColor = "";
+                        let borderColor = "";
+                        let fontColor = "";
+                        let starColor = "";
+                        let letterOpacity = "opacity-40";
+
+                        if (category === 'katakana') {
+                            if (isDaishiken) {
+                                bgColor = "bg-[#F5E0FF]";
+                                borderColor = "bg-[#8656AC]"; // We use bg for mask-color
+                                fontColor = "text-[#4F286F]";
+                                starColor = "fill-[#8656AC] text-[#8656AC]";
+                            } else if (isShotesto) {
+                                bgColor = "bg-[#FFD4D4]";
+                                borderColor = "bg-[#CE6262]";
+                                fontColor = "text-[#6F3E28]";
+                                starColor = "fill-[#CE6262] text-[#CE6262]";
+                            } else {
+                                bgColor = "bg-[#FFE8E0]";
+                                borderColor = "bg-[#CC6E34]";
+                                fontColor = "text-[#6F3E28]";
+                                starColor = "fill-[#CC6E34] text-[#CC6E34]";
+                            }
+                        } else {
+                            if (isDaishiken) {
+                                bgColor = "bg-[#B576E7]";
+                                borderColor = "bg-[#794D9B]";
+                                fontColor = "text-[#4F286F]";
+                                starColor = "fill-[#794D9B] text-[#794D9B]";
+                            } else if (isShotesto) {
+                                bgColor = "bg-[#EC8080]";
+                                borderColor = "bg-[#B84444]";
+                                fontColor = "text-[#6F3E28]";
+                                starColor = "fill-[#B84444] text-[#B84444]";
+                            } else {
+                                bgColor = "bg-[#E89A81]";
+                                borderColor = "bg-[#915946]";
+                                fontColor = "text-[#6F3E28]";
+                                starColor = "fill-[#CC6E34] text-[#CC6E34]";
+                            }
+                        }
+
+                        const hexBg = bgColor.match(/\[(.*?)\]/)?.[1] || "transparent";
+                        const hexBorder = borderColor.match(/\[(.*?)\]/)?.[1] || "transparent";
+
+                        return (
+                            <button
+                                key={group.id}
+                                disabled={!isUnlocked}
+                                onClick={() => isUnlocked && router.push(`/stage/${category}/${group.id}`)}
+                                className={`w-[360px] h-[480px] shrink-0 snap-center transition-all duration-300 relative text-left group ${!isUnlocked ? 'opacity-60 cursor-not-allowed grayscale' : 'hover:scale-105 active:scale-95'}`}
+                            >
+                                {/* SVG BACKGROUND */}
+                                <div className={`absolute inset-0 z-0 ${!isUnlocked ? 'opacity-50' : 'group-hover:drop-shadow-xl'} transition-all duration-300`}>
+                                    {category === 'katakana' ? (
+                                        <SubKatakanaPaperSVG bgColor={hexBg} borderColor={hexBorder} className="w-full h-full drop-shadow-sm" />
+                                    ) : (
+                                        <SubHiraganaPaperSVG bgColor={hexBg} borderColor={hexBorder} className="w-full h-full drop-shadow-sm" />
+                                    )}
+                                </div>
+
+                                {/* INNER CARD CONTENT (transparent) */}
+                                <div className={`absolute inset-0 z-10 ${fontColor}`}>
+                                    {!isUnlocked && (
+                                        <div className="absolute inset-0 z-20 flex items-center justify-center bg-black/10">
+                                            <div className="bg-white/80 p-4 rounded-full shadow-lg">
+                                                <Lock className="w-8 h-8 text-[#5C3A21]" />
+                                            </div>
+                                        </div>
+                                    )}
+                                    
+                                    <div 
+                                        className={`absolute top-[36px] left-[30px] ${letterOpacity} text-[48px] font-serif leading-[60px] font-normal tracking-[12px]`}
+                                        style={{ writingMode: 'vertical-rl' }}
+                                    >
+                                        {isDaishiken || isShotesto 
+                                            ? displayChars 
+                                            : displayChars.replace(/\s/g, '').substring(0, 6)}
+                                    </div>
+                                    
+                                    <div className="absolute top-[92px] left-[152px] right-0 pr-[42px] flex flex-col items-start z-10">
+                                        <h2 className="text-[36px] font-arbutus font-normal whitespace-pre-line leading-none mb-2 text-left">
+                                            {displayTitle}
+                                        </h2>
+                                        
+                                        <p className="text-[20px] font-serif font-normal opacity-80 mb-3 text-left">
+                                            {displaySubTitle}
+                                        </p>
+                                        <div className="flex items-center text-[16px] font-outfit font-normal opacity-90 text-left">
+                                            <Star className={`w-[20px] h-[20px] mr-2 ${starColor}`} />
+                                            {isShotesto || isDaishiken ? `${earnedStars}/3` : `${earnedStars}/15`}
+                                        </div>
+                                    </div>
+
+                                    <div className={`absolute bottom-[42px] right-[42px] z-10 text-right ${fontColor}`}>
+                                        {isDaishiken ? (
+                                            <p className="text-[16px] font-outfit font-normal">Ujian akhir</p>
+                                        ) : isShotesto ? (
+                                            <p className="text-[16px] font-outfit font-normal">Ujian antara</p>
+                                        ) : (
+                                            <p className="text-[16px] font-outfit font-normal">{group.chars.length} huruf</p>
+                                        )}
+                                    </div>
+                                </div>
+                            </button>
+                        );
+                    })}
+                </div>
             </main>
-
-            <footer className="text-center py-12 text-slate-300 text-xs font-bold tracking-widest uppercase mt-auto">
-                © 2026 KanaDrill Studio
-            </footer>
         </div>
     );
 };

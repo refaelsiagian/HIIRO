@@ -1,0 +1,41 @@
+char json
+
+char
+category (hiragana, katakana)
+romaji
+consonant
+vowel
+confusable with [(put the kana here not the romaji)]
+group 
+
+group json
+
+group ("a-gyo", "ka-gyo", ...)
+category
+display name (A-Gyo, Ka-Gyo, ...)
+subtitle kanji (ア行,あ行)
+char member (ordered list)
+type (gojuon, dokuon, handakuon)
+(for type separate dokuon & handakuon)
+
+type json
+
+type (gojuon, dokuon handakuon)
+category
+display (Gojuon, Dokuon & Handakuon)
+(or) subtitle hiragana (ごじゅうおん, だくおん・はんだくおん)
+(or) subtitle katakana (ゴジュウオン, ダクオン・ハンドクオン)
+subtitle kanji (五十音, 濁音・半濁音)
+group member ["tokashuon", "gojuon, ...]
+
+the reason is because how i want to cater the di ti wa we wo in katakana
+and dokuon handakuon
+i want them to be mark as different and only grouped for display
+so in web you use the group for display and the type for display
+like wa we wo don't have a gyo from them so the group name will only
+their romaji, but in group we make Wa/We/Wo group to group them, also with
+Di/Ti
+
+
+
+

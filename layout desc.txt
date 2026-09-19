@@ -1,0 +1,64 @@
+fonts
+- Noto sans jp (japanese)
+- Noto serif jp (japanese)
+- Outfit (decorative: star count, letter count)
+- Arbutus slab (titles of sections)
+- akaya kanadaka (kana titles)
+
+colors
+
+bacground app
+- gradien diagonal FFF3F0 -> FFDAD1
+
+katakana section cover page
+- background gradien F07B55 -> FFE8E0
+- fonts 6F3E28
+- star CC6E34
+- daishiken background gradien 753391 -> F5E0FF
+- daishiken fonts n star 4F286F
+- left strip kanji transparency 40%
+- 358 x 520
+
+hiragana section cover page
+- background DF7956
+- fonts n stars FFEFE8
+- daishiken background 7D4E94
+- daishiken fonts n star FCEEFF
+- left strip kanji transparency 80%
+- 358 x 520
+
+katakana subsection paper page
+- background FFE8E0
+- border CC6E34
+- fonts 6F3E28
+- star CC6E34
+- daishiken background F5E0FF
+- daishiken border n star 8656AC
+- daishiken fonts 4F286F
+- shotesto background FFD4D4
+- shotesto border n star CE6262
+- shotesto fonts 6F3E28
+- left strip letter transparency 40%
+
+hiragana subsection paper page
+- background E89A81
+- border 915946
+- fonts 6F3E28
+- star CC6E34
+- daishiken background B576E7
+- daishiken border n star 794D9B
+- daishiken fonts 4F286F
+- shotesto background EC8080
+- shotesto border n star B84444
+- shotesto fonts 6F3E28
+- left strip letter transparency 40%
+
+quiz panel
+- background FFE8E0
+- border E89A81
+- fonts 6F3E28
+- stars n petals CC6E34
+- final background ECC5FF
+- final border C681E8
+- final fonts 4A286F
+- final stars n petals 8F34CC

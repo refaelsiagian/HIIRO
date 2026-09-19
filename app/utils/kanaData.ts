@@ -80,8 +80,43 @@ function parseKanaData(rawData: any[]): { [section: string]: GroupData[] } {
 
     const result: { [section: string]: GroupData[] } = {};
     for (const section in sections) {
-        result[section] = Object.values(sections[section]);
+        const groups = Object.values(sections[section]);
+        const finalGroups: GroupData[] = [];
+        let shotestoCount = 1;
+
+        // Inject Shotesto every 3 groups
+        for (let i = 0; i < groups.length; i++) {
+            finalGroups.push(groups[i]);
+            // Every 3 groups, if it's not the last group, insert a shotesto
+            if ((i + 1) % 3 === 0 && i !== groups.length - 1) {
+                finalGroups.push({
+                    id: `shotesto-${section}-${shotestoCount}`,
+                    title: `小テスト ${shotestoCount}`, // Shotesto
+                    chars: [] // Shotesto might not have specific preview chars, or we can take from previous 3 groups
+                });
+                shotestoCount++;
+            }
+        }
+        
+        // Add Daishiken at the end of this subsection
+        finalGroups.push({
+            id: `daishiken-${section}`,
+            title: '大試験',
+            chars: []
+        });
+
+        result[section] = finalGroups;
     }
+    
+    // Add Daishiken section at the end
+    result['daishiken'] = [
+        {
+            id: 'daishiken-final',
+            title: '大試験',
+            chars: []
+        }
+    ];
+    
     return result;
 }
 
