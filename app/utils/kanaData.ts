@@ -1,126 +1,122 @@
-import hiraganaData from '../data/hiragana.json';
-import katakanaData from '../data/katakana.json';
-import { KanaMetadata, GroupData } from '../types/kana';
+import charsDataRaw from '../data/chars.json';
+import groupsDataRaw from '../data/groups.json';
+import typesDataRaw from '../data/types.json';
+import { 
+    KanaMetadata, 
+    TypeData, 
+    GroupData, 
+    CharItem, 
+    RawChar, 
+    RawGroup, 
+    RawType 
+} from '../types/kana';
 
-interface RawKanaChar {
-    char: string;
-    romaji: string;
-    group: string;
-    type: string;
-}
+const charsData: RawChar[] = charsDataRaw as RawChar[];
+const groupsData: RawGroup[] = groupsDataRaw as RawGroup[];
+const typesData: RawType[] = typesDataRaw as RawType[];
 
-const TITLE_MAP: Record<string, string> = {
-    "a-gyo": "Vokal Dasar",
-    "k-gyo": "K-Gyo",
-    "s-gyo": "S-Gyo",
-    "t-gyo": "T-Gyo",
-    "n-gyo": "N-Gyo",
-    "h-gyo": "H-Gyo",
-    "m-gyo": "M-Gyo",
-    "y-gyo": "Y-Gyo",
-    "r-gyo": "R-Gyo",
-    "w-gyo": "W-Gyo",
-    "n-final": "N Akhiran",
-    "g-gyo": "G-Gyo",
-    "z-gyo": "Z-Gyo",
-    "d-gyo": "D-Gyo",
-    "b-gyo": "B-Gyo",
-    "p-gyo": "P-Gyo",
-    "k-yoon": "K-Yoon",
-    "s-yoon": "S-Yoon",
-    "t-yoon": "T-Yoon",
-    "n-yoon": "N-Yoon",
-    "h-yoon": "H-Yoon",
-    "m-yoon": "M-Yoon",
-    "r-yoon": "R-Yoon",
-    "g-yoon": "G-Yoon",
-    "j-yoon": "J-Yoon",
-    "b-yoon": "B-Yoon",
-    "p-yoon": "P-Yoon",
-    "v-special": "V-Series",
-    "f-special": "F-Series",
-    "t-special": "Ti/Di Series",
-    "d-special": "D-Series",
-    "w-special": "W-Series",
-    "symbol": "Simbol"
-};
+function parseData(): KanaMetadata {
+    const result: KanaMetadata = {
+        hiragana: [],
+        katakana: []
+    };
 
-function getGroupTitle(groupId: string): string {
-    if (TITLE_MAP[groupId]) {
-        return TITLE_MAP[groupId];
-    }
-    // Fallback: split by dash and capitalize
-    const parts = groupId.split('-');
-    return parts.map(p => p.charAt(0).toUpperCase() + p.slice(1)).join('-');
-}
+    const categories = ['hiragana', 'katakana'];
 
-function parseKanaData(rawData: any[]): { [section: string]: GroupData[] } {
-    const sections: { [section: string]: { [groupId: string]: GroupData } } = {};
+    categories.forEach(category => {
+        // Filter types by category
+        const catTypes = typesData.filter(t => t.category === category);
+        
+        catTypes.forEach(typeRow => {
+            const typeGroups: GroupData[] = [];
+            let shotestoCount = 1;
 
-    rawData.forEach((item: RawKanaChar) => {
-        // Map types to sections
-        let section = item.type;
-        if (section === 'dakuten-handakuten') section = 'dakuten';
+            typeRow.group_member.forEach((groupId, i) => {
+                // Find group
+                const groupRow = groupsData.find(g => g.id === groupId && g.category === category);
+                if (!groupRow) return;
 
-        if (!sections[section]) sections[section] = {};
+                // Find chars for this group
+                // Note: groupRow.char_member defines order, but we can also just filter charsData
+                // Let's use filter to get all full Char data
+                const groupChars: CharItem[] = [];
+                groupRow.char_member.forEach(charString => {
+                    const charRow = charsData.find(c => c.char === charString && c.category === category);
+                    if (charRow) {
+                        groupChars.push({
+                            k: charRow.char,
+                            r: charRow.romaji
+                        });
+                    }
+                });
 
-        if (!sections[section][item.group]) {
-            sections[section][item.group] = {
-                id: item.group,
-                title: getGroupTitle(item.group),
+                const groupData: GroupData = {
+                    id: groupRow.id,
+                    title: groupRow.display_name,
+                    display_name: groupRow.display_name,
+                    subtitle_kanji: groupRow.subtitle_kanji,
+                    chars: groupChars
+                };
+
+                typeGroups.push(groupData);
+
+                // Inject Shotesto every 3 groups within this type (if not the last one)
+                if ((i + 1) % 3 === 0 && i !== typeRow.group_member.length - 1) {
+                    typeGroups.push({
+                        id: `shotesto-${typeRow.id}-${shotestoCount}`,
+                        title: `小テスト ${shotestoCount}`,
+                        display_name: 'Shōtesuto',
+                        subtitle_kanji: '小テスト',
+                        chars: []
+                    });
+                    shotestoCount++;
+                }
+            });
+
+            // Inject Daishiken at the end of this type
+            typeGroups.push({
+                id: `daishiken-${typeRow.id}`,
+                title: '大試験',
+                display_name: 'Daishiken',
+                subtitle_kanji: '大試験',
                 chars: []
-            };
-        }
+            });
 
-        sections[section][item.group].chars.push({
-            k: item.char,
-            r: item.romaji
+            result[category].push({
+                id: typeRow.id,
+                display_name: typeRow.display_name,
+                subtitle_hiragana: typeRow.subtitle_hiragana,
+                subtitle_katakana: typeRow.subtitle_katakana,
+                subtitle_kanji: typeRow.subtitle_kanji,
+                groups: typeGroups
+            });
+        });
+
+        // Add Final Daishiken section
+        result[category].push({
+            id: 'daishiken',
+            display_name: 'Daishiken',
+            subtitle_hiragana: 'だいしけん',
+            subtitle_katakana: 'ダイシケン',
+            subtitle_kanji: '大試験',
+            groups: [
+                {
+                    id: 'daishiken-final',
+                    title: '大試験',
+                    display_name: 'Daishiken',
+                    subtitle_kanji: '大試験',
+                    chars: []
+                }
+            ]
         });
     });
 
-    const result: { [section: string]: GroupData[] } = {};
-    for (const section in sections) {
-        const groups = Object.values(sections[section]);
-        const finalGroups: GroupData[] = [];
-        let shotestoCount = 1;
-
-        // Inject Shotesto every 3 groups
-        for (let i = 0; i < groups.length; i++) {
-            finalGroups.push(groups[i]);
-            // Every 3 groups, if it's not the last group, insert a shotesto
-            if ((i + 1) % 3 === 0 && i !== groups.length - 1) {
-                finalGroups.push({
-                    id: `shotesto-${section}-${shotestoCount}`,
-                    title: `小テスト ${shotestoCount}`, // Shotesto
-                    chars: [] // Shotesto might not have specific preview chars, or we can take from previous 3 groups
-                });
-                shotestoCount++;
-            }
-        }
-        
-        // Add Daishiken at the end of this subsection
-        finalGroups.push({
-            id: `daishiken-${section}`,
-            title: '大試験',
-            chars: []
-        });
-
-        result[section] = finalGroups;
-    }
-    
-    // Add Daishiken section at the end
-    result['daishiken'] = [
-        {
-            id: 'daishiken-final',
-            title: '大試験',
-            chars: []
-        }
-    ];
-    
     return result;
 }
 
-export const KANA_METADATA: KanaMetadata = {
-    hiragana: parseKanaData(hiraganaData),
-    katakana: parseKanaData(katakanaData)
-};
+export const KANA_METADATA: KanaMetadata = parseData();
+
+// Helper to get raw character data if needed by drills
+export function getCharData(kana: string, category: string): RawChar | undefined {
+    return charsData.find(c => c.char === kana && c.category === category);
+}

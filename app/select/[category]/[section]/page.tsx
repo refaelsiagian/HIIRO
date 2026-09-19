@@ -8,13 +8,7 @@ import { useGameStore } from '../../../store/useGameStore';
 import { Star, Lock } from 'lucide-react';
 import { SubKatakanaPaperSVG } from '../../../components/SubKatakanaPaperSVG';
 import { SubHiraganaPaperSVG } from '../../../components/SubHiraganaPaperSVG';
-const SECTION_DATA: Record<string, { title: string, sub: string }> = {
-    'basic': { title: 'Gojūon', sub: 'ごじゅうおん' },
-    'dakuten': { title: 'Dakuon\nHandakuon', sub: 'だくおん\nはんだくおん' },
-    'yoon': { title: 'Yōon', sub: 'ようおん' },
-    'special': { title: 'Tokushuon', sub: 'とくしゅおん' },
-    'daishiken': { title: 'Daishiken', sub: 'だいしけん' },
-};
+// SECTION_DATA is now removed as data is fetched dynamically
 
 const GroupSelection: React.FC = () => {
     const params = useParams();
@@ -25,12 +19,18 @@ const GroupSelection: React.FC = () => {
     const currentData = KANA_METADATA[category];
     const { getGroupStars } = useGameStore();
 
-    if (!currentData || !currentData[section]) {
+    const currentType = currentData?.find(t => t.id === section);
+
+    if (!currentType) {
         return <div className="min-h-screen flex items-center justify-center font-bold text-slate-400">Bagian tidak ditemukan...</div>;
     }
 
-    const groups = currentData[section];
-    const sectionInfo = SECTION_DATA[section] || { title: section, sub: '' };
+    const groups = currentType.groups;
+    const rawDisplaySub = category === 'katakana' ? currentType.subtitle_katakana : currentType.subtitle_hiragana;
+    
+    // Format header title to use inline separators instead of newlines
+    const headerTitle = currentType.display_name.replace('\n', ' & ');
+    const headerSub = rawDisplaySub.replace('\n', '・');
 
     return (
         <div className="min-h-screen p-6 flex flex-col overflow-hidden">
@@ -47,10 +47,10 @@ const GroupSelection: React.FC = () => {
             {/* HEADER */}
             <header className="text-center mt-12 mb-16">
                 <h1 className="text-5xl text-[#5C3A21] tracking-tight font-arbutus">
-                    {sectionInfo.title}
+                    {headerTitle}
                 </h1>
                 <p className="text-[#5C3A21]/70 mt-2 text-2xl font-akaya">
-                    {sectionInfo.sub}
+                    {headerSub}
                 </p>
             </header>
 
@@ -73,18 +73,14 @@ const GroupSelection: React.FC = () => {
 
                         const earnedStars = getGroupStars(category, section, group.id);
                         
-                        let displayTitle = group.title;
-                        let displaySubTitle = group.id === 'n-final' ? group.chars[0]?.k : `${group.chars[0]?.k}行`;
+                        let displayTitle = group.display_name;
+                        let displaySubTitle = group.subtitle_kanji;
                         let displayChars = group.chars.map(c => c.k).join('');
                         
                         if (isShotesto) {
-                            displayTitle = 'Shōtesuto';
-                            displaySubTitle = '小テスト';
                             displayChars = '小テスト';
                         }
                         if (isDaishiken) {
-                            displayTitle = 'Daishiken';
-                            displaySubTitle = '大試験';
                             displayChars = '大試験';
                         }
 

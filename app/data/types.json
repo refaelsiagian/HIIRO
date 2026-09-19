@@ -1,0 +1,126 @@
+[
+  {
+    "id": "gojuon",
+    "category": "hiragana",
+    "display_name": "Gojūon",
+    "subtitle_hiragana": "ごじゅうおん",
+    "subtitle_katakana": "ゴジュウオン",
+    "subtitle_kanji": "五十音",
+    "group_member": [
+      "a-gyo",
+      "k-gyo",
+      "s-gyo",
+      "t-gyo",
+      "n-gyo",
+      "h-gyo",
+      "m-gyo",
+      "y-gyo",
+      "r-gyo",
+      "w-gyo",
+      "n-final"
+    ]
+  },
+  {
+    "id": "dakuon-handakuon",
+    "category": "hiragana",
+    "display_name": "Dakuon\nHandakuon",
+    "subtitle_hiragana": "だくおん\nはんだくおん",
+    "subtitle_katakana": "ダクオン\nハンダクオン",
+    "subtitle_kanji": "濁音\n・\n半濁音",
+    "group_member": [
+      "g-gyo",
+      "z-gyo",
+      "d-gyo",
+      "b-gyo",
+      "p-gyo"
+    ]
+  },
+  {
+    "id": "yoon",
+    "category": "hiragana",
+    "display_name": "Yōon",
+    "subtitle_hiragana": "ようおん",
+    "subtitle_katakana": "ヨウオン",
+    "subtitle_kanji": "拗音",
+    "group_member": [
+      "k-yoon",
+      "s-yoon",
+      "t-yoon",
+      "n-yoon",
+      "h-yoon",
+      "m-yoon",
+      "r-yoon",
+      "g-yoon",
+      "j-yoon",
+      "b-yoon",
+      "p-yoon"
+    ]
+  },
+  {
+    "id": "gojuon",
+    "category": "katakana",
+    "display_name": "Gojūon",
+    "subtitle_hiragana": "ごじゅうおん",
+    "subtitle_katakana": "ゴジュウオン",
+    "subtitle_kanji": "五十音",
+    "group_member": [
+      "a-gyo",
+      "k-gyo",
+      "s-gyo",
+      "n-gyo",
+      "h-gyo",
+      "m-gyo",
+      "y-gyo",
+      "w-gyo",
+      "r-gyo",
+      "t-gyo",
+      "n-final",
+      "symbol"
+    ]
+  },
+  {
+    "id": "dakuon-handakuon",
+    "category": "katakana",
+    "display_name": "Dakuon\nHandakuon",
+    "subtitle_hiragana": "だくおん\nはんだくおん",
+    "subtitle_katakana": "ダクオン\nハンダクオン",
+    "subtitle_kanji": "濁音\n・\n半濁音",
+    "group_member": [
+      "g-gyo",
+      "z-gyo",
+      "d-gyo",
+      "b-gyo",
+      "p-gyo"
+    ]
+  },
+  {
+    "id": "yoon",
+    "category": "katakana",
+    "display_name": "Yōon",
+    "subtitle_hiragana": "ようおん",
+    "subtitle_katakana": "ヨウオン",
+    "subtitle_kanji": "拗音",
+    "group_member": [
+      "k-yoon",
+      "s-yoon",
+      "t-yoon",
+      "n-yoon",
+      "g-yoon",
+      "j-yoon"
+    ]
+  },
+  {
+    "id": "tokushuon",
+    "category": "katakana",
+    "display_name": "Tokushuon",
+    "subtitle_hiragana": "とくしゅおん",
+    "subtitle_katakana": "トクシュオン",
+    "subtitle_kanji": "特殊音",
+    "group_member": [
+      "v-special",
+      "f-special",
+      "t-special",
+      "w-special"
+    ]
+  }
+]

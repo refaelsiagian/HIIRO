@@ -1,0 +1,2706 @@
+[
+  {
+    "char": "あ",
+    "category": "hiragana",
+    "romaji": "a",
+    "consonant": "",
+    "vowel": "a",
+    "confusable_with": [
+      "お",
+      "め",
+      "ぬ"
+    ],
+    "group": "a-gyo"
+  },
+  {
+    "char": "い",
+    "category": "hiragana",
+    "romaji": "i",
+    "consonant": "",
+    "vowel": "i",
+    "confusable_with": [
+      "り",
+      "こ",
+      "け"
+    ],
+    "group": "a-gyo"
+  },
+  {
+    "char": "う",
+    "category": "hiragana",
+    "romaji": "u",
+    "consonant": "",
+    "vowel": "u",
+    "confusable_with": [
+      "ら",
+      "つ",
+      "ろ"
+    ],
+    "group": "a-gyo"
+  },
+  {
+    "char": "え",
+    "category": "hiragana",
+    "romaji": "e",
+    "consonant": "",
+    "vowel": "e",
+    "confusable_with": [
+      "ん",
+      "そ",
+      "て"
+    ],
+    "group": "a-gyo"
+  },
+  {
+    "char": "お",
+    "category": "hiragana",
+    "romaji": "o",
+    "consonant": "",
+    "vowel": "o",
+    "confusable_with": [
+      "あ",
+      "む",
+      "め"
+    ],
+    "group": "a-gyo"
+  },
+  {
+    "char": "か",
+    "category": "hiragana",
+    "romaji": "ka",
+    "consonant": "k",
+    "vowel": "a",
+    "confusable_with": [
+      "が",
+      "や",
+      "わ"
+    ],
+    "group": "k-gyo"
+  },
+  {
+    "char": "き",
+    "category": "hiragana",
+    "romaji": "ki",
+    "consonant": "k",
+    "vowel": "i",
+    "confusable_with": [
+      "さ",
+      "ぎ",
+      "ま"
+    ],
+    "group": "k-gyo"
+  },
+  {
+    "char": "く",
+    "category": "hiragana",
+    "romaji": "ku",
+    "consonant": "k",
+    "vowel": "u",
+    "confusable_with": [
+      "ぐ",
+      "へ",
+      "て"
+    ],
+    "group": "k-gyo"
+  },
+  {
+    "char": "け",
+    "category": "hiragana",
+    "romaji": "ke",
+    "consonant": "k",
+    "vowel": "e",
+    "confusable_with": [
+      "は",
+      "ほ",
+      "げ"
+    ],
+    "group": "k-gyo"
+  },
+  {
+    "char": "こ",
+    "category": "hiragana",
+    "romaji": "ko",
+    "consonant": "k",
+    "vowel": "o",
+    "confusable_with": [
+      "ご",
+      "に",
+      "い"
+    ],
+    "group": "k-gyo"
+  },
+  {
+    "char": "さ",
+    "category": "hiragana",
+    "romaji": "sa",
+    "consonant": "s",
+    "vowel": "a",
+    "confusable_with": [
+      "き",
+      "ち",
+      "ざ"
+    ],
+    "group": "s-gyo"
+  },
+  {
+    "char": "し",
+    "category": "hiragana",
+    "romaji": "shi",
+    "consonant": "s",
+    "vowel": "i",
+    "confusable_with": [
+      "つ",
+      "ぢ",
+      "も"
+    ],
+    "group": "s-gyo"
+  },
+  {
+    "char": "す",
+    "category": "hiragana",
+    "romaji": "su",
+    "consonant": "s",
+    "vowel": "u",
+    "confusable_with": [
+      "む",
+      "づ",
+      "ぬ"
+    ],
+    "group": "s-gyo"
+  },
+  {
+    "char": "せ",
+    "category": "hiragana",
+    "romaji": "se",
+    "consonant": "s",
+    "vowel": "e",
+    "confusable_with": [
+      "や",
+      "ぜ",
+      "け"
+    ],
+    "group": "s-gyo"
+  },
+  {
+    "char": "そ",
+    "category": "hiragana",
+    "romaji": "so",
+    "consonant": "s",
+    "vowel": "o",
+    "confusable_with": [
+      "え",
+      "ぞ",
+      "ろ"
+    ],
+    "group": "s-gyo"
+  },
+  {
+    "char": "た",
+    "category": "hiragana",
+    "romaji": "ta",
+    "consonant": "t",
+    "vowel": "a",
+    "confusable_with": [
+      "な",
+      "だ",
+      "に"
+    ],
+    "group": "t-gyo"
+  },
+  {
+    "char": "ち",
+    "category": "hiragana",
+    "romaji": "chi",
+    "consonant": "t",
+    "vowel": "i",
+    "confusable_with": [
+      "さ",
+      "ら",
+      "ぢ"
+    ],
+    "group": "t-gyo"
+  },
+  {
+    "char": "つ",
+    "category": "hiragana",
+    "romaji": "tsu",
+    "consonant": "t",
+    "vowel": "u",
+    "confusable_with": [
+      "う",
+      "す",
+      "し"
+    ],
+    "group": "t-gyo"
+  },
+  {
+    "char": "て",
+    "category": "hiragana",
+    "romaji": "te",
+    "consonant": "t",
+    "vowel": "e",
+    "confusable_with": [
+      "で",
+      "そ",
+      "へ"
+    ],
+    "group": "t-gyo"
+  },
+  {
+    "char": "と",
+    "category": "hiragana",
+    "romaji": "to",
+    "consonant": "t",
+    "vowel": "o",
+    "confusable_with": [
+      "ど",
+      "お",
+      "ろ"
+    ],
+    "group": "t-gyo"
+  },
+  {
+    "char": "な",
+    "category": "hiragana",
+    "romaji": "na",
+    "consonant": "n",
+    "vowel": "a",
+    "confusable_with": [
+      "た",
+      "は",
+      "ま"
+    ],
+    "group": "n-gyo"
+  },
+  {
+    "char": "に",
+    "category": "hiragana",
+    "romaji": "ni",
+    "consonant": "n",
+    "vowel": "i",
+    "confusable_with": [
+      "こ",
+      "た",
+      "い"
+    ],
+    "group": "n-gyo"
+  },
+  {
+    "char": "ぬ",
+    "category": "hiragana",
+    "romaji": "nu",
+    "consonant": "n",
+    "vowel": "u",
+    "confusable_with": [
+      "め",
+      "ね",
+      "の"
+    ],
+    "group": "n-gyo"
+  },
+  {
+    "char": "ね",
+    "category": "hiragana",
+    "romaji": "ne",
+    "consonant": "n",
+    "vowel": "e",
+    "confusable_with": [
+      "れ",
+      "わ",
+      "ぬ"
+    ],
+    "group": "n-gyo"
+  },
+  {
+    "char": "の",
+    "category": "hiragana",
+    "romaji": "no",
+    "consonant": "n",
+    "vowel": "o",
+    "confusable_with": [
+      "め",
+      "あ",
+      "お"
+    ],
+    "group": "n-gyo"
+  },
+  {
+    "char": "は",
+    "category": "hiragana",
+    "romaji": "ha",
+    "consonant": "h",
+    "vowel": "a",
+    "confusable_with": [
+      "ほ",
+      "け",
+      "な"
+    ],
+    "group": "h-gyo"
+  },
+  {
+    "char": "ひ",
+    "category": "hiragana",
+    "romaji": "hi",
+    "consonant": "h",
+    "vowel": "i",
+    "confusable_with": [
+      "び",
+      "ぴ",
+      "て"
+    ],
+    "group": "h-gyo"
+  },
+  {
+    "char": "ふ",
+    "category": "hiragana",
+    "romaji": "fu",
+    "consonant": "h",
+    "vowel": "u",
+    "confusable_with": [
+      "ぶ",
+      "ぷ",
+      "う"
+    ],
+    "group": "h-gyo"
+  },
+  {
+    "char": "へ",
+    "category": "hiragana",
+    "romaji": "he",
+    "consonant": "h",
+    "vowel": "e",
+    "confusable_with": [
+      "べ",
+      "ぺ",
+      "く"
+    ],
+    "group": "h-gyo"
+  },
+  {
+    "char": "ほ",
+    "category": "hiragana",
+    "romaji": "ho",
+    "consonant": "h",
+    "vowel": "o",
+    "confusable_with": [
+      "は",
+      "ま",
+      "ぼ"
+    ],
+    "group": "h-gyo"
+  },
+  {
+    "char": "ま",
+    "category": "hiragana",
+    "romaji": "ma",
+    "consonant": "m",
+    "vowel": "a",
+    "confusable_with": [
+      "ほ",
+      "は",
+      "も"
+    ],
+    "group": "m-gyo"
+  },
+  {
+    "char": "み",
+    "category": "hiragana",
+    "romaji": "mi",
+    "consonant": "m",
+    "vowel": "i",
+    "confusable_with": [
+      "ひ",
+      "の",
+      "ま"
+    ],
+    "group": "m-gyo"
+  },
+  {
+    "char": "む",
+    "category": "hiragana",
+    "romaji": "mu",
+    "consonant": "m",
+    "vowel": "u",
+    "confusable_with": [
+      "す",
+      "ま",
+      "お"
+    ],
+    "group": "m-gyo"
+  },
+  {
+    "char": "め",
+    "category": "hiragana",
+    "romaji": "me",
+    "consonant": "m",
+    "vowel": "e",
+    "confusable_with": [
+      "ぬ",
+      "の",
+      "あ"
+    ],
+    "group": "m-gyo"
+  },
+  {
+    "char": "も",
+    "category": "hiragana",
+    "romaji": "mo",
+    "consonant": "m",
+    "vowel": "o",
+    "confusable_with": [
+      "ま",
+      "ほ",
+      "し"
+    ],
+    "group": "m-gyo"
+  },
+  {
+    "char": "や",
+    "category": "hiragana",
+    "romaji": "ya",
+    "consonant": "y",
+    "vowel": "a",
+    "confusable_with": [
+      "せ",
+      "か",
+      "か"
+    ],
+    "group": "y-gyo"
+  },
+  {
+    "char": "ゆ",
+    "category": "hiragana",
+    "romaji": "yu",
+    "consonant": "y",
+    "vowel": "u",
+    "confusable_with": [
+      "よ",
+      "め",
+      "ぬ"
+    ],
+    "group": "y-gyo"
+  },
+  {
+    "char": "よ",
+    "category": "hiragana",
+    "romaji": "yo",
+    "consonant": "y",
+    "vowel": "o",
+    "confusable_with": [
+      "ま",
+      "ほ",
+      "ゆ"
+    ],
+    "group": "y-gyo"
+  },
+  {
+    "char": "ら",
+    "category": "hiragana",
+    "romaji": "ra",
+    "consonant": "r",
+    "vowel": "a",
+    "confusable_with": [
+      "ち",
+      "う",
+      "ふ"
+    ],
+    "group": "r-gyo"
+  },
+  {
+    "char": "り",
+    "category": "hiragana",
+    "romaji": "ri",
+    "consonant": "r",
+    "vowel": "i",
+    "confusable_with": [
+      "い",
+      "か",
+      "け"
+    ],
+    "group": "r-gyo"
+  },
+  {
+    "char": "る",
+    "category": "hiragana",
+    "romaji": "ru",
+    "consonant": "r",
+    "vowel": "u",
+    "confusable_with": [
+      "ろ",
+      "れ",
+      "ぬ"
+    ],
+    "group": "r-gyo"
+  },
+  {
+    "char": "れ",
+    "category": "hiragana",
+    "romaji": "re",
+    "consonant": "r",
+    "vowel": "e",
+    "confusable_with": [
+      "ね",
+      "わ",
+      "め"
+    ],
+    "group": "r-gyo"
+  },
+  {
+    "char": "ろ",
+    "category": "hiragana",
+    "romaji": "ro",
+    "consonant": "r",
+    "vowel": "o",
+    "confusable_with": [
+      "る",
+      "ら",
+      "ろ"
+    ],
+    "group": "r-gyo"
+  },
+  {
+    "char": "わ",
+    "category": "hiragana",
+    "romaji": "wa",
+    "consonant": "w",
+    "vowel": "a",
+    "confusable_with": [
+      "れ",
+      "ね",
+      "め"
+    ],
+    "group": "w-gyo"
+  },
+  {
+    "char": "を",
+    "category": "hiragana",
+    "romaji": "wo",
+    "consonant": "w",
+    "vowel": "o",
+    "confusable_with": [
+      "お",
+      "ち",
+      "と"
+    ],
+    "group": "w-gyo"
+  },
+  {
+    "char": "ん",
+    "category": "hiragana",
+    "romaji": "n",
+    "consonant": "",
+    "vowel": "",
+    "confusable_with": [
+      "そ",
+      "え",
+      "て"
+    ],
+    "group": "n-final"
+  },
+  {
+    "char": "が",
+    "category": "hiragana",
+    "romaji": "ga",
+    "consonant": "g",
+    "vowel": "a",
+    "confusable_with": [
+      "か",
+      "ざ",
+      "だ"
+    ],
+    "group": "g-gyo"
+  },
+  {
+    "char": "ぎ",
+    "category": "hiragana",
+    "romaji": "gi",
+    "consonant": "g",
+    "vowel": "i",
+    "confusable_with": [
+      "き",
+      "zi",
+      "び"
+    ],
+    "group": "g-gyo"
+  },
+  {
+    "char": "ぐ",
+    "category": "hiragana",
+    "romaji": "gu",
+    "consonant": "g",
+    "vowel": "u",
+    "confusable_with": [
+      "く",
+      "づ",
+      "ぶ"
+    ],
+    "group": "g-gyo"
+  },
+  {
+    "char": "げ",
+    "category": "hiragana",
+    "romaji": "ge",
+    "consonant": "g",
+    "vowel": "e",
+    "confusable_with": [
+      "け",
+      "ぜ",
+      "で"
+    ],
+    "group": "g-gyo"
+  },
+  {
+    "char": "ご",
+    "category": "hiragana",
+    "romaji": "go",
+    "consonant": "g",
+    "vowel": "o",
+    "confusable_with": [
+      "こ",
+      "ぞ",
+      "ど"
+    ],
+    "group": "g-gyo"
+  },
+  {
+    "char": "ざ",
+    "category": "hiragana",
+    "romaji": "za",
+    "consonant": "z",
+    "vowel": "a",
+    "confusable_with": [
+      "さ",
+      "が",
+      "だ"
+    ],
+    "group": "z-gyo"
+  },
+  {
+    "char": "じ",
+    "category": "hiragana",
+    "romaji": "ji",
+    "consonant": "z",
+    "vowel": "i",
+    "confusable_with": [
+      "し",
+      "ち",
+      "ぎ"
+    ],
+    "group": "z-gyo"
+  },
+  {
+    "char": "ず",
+    "category": "hiragana",
+    "romaji": "zu",
+    "consonant": "z",
+    "vowel": "u",
+    "confusable_with": [
+      "す",
+      "ぐ",
+      "du"
+    ],
+    "group": "z-gyo"
+  },
+  {
+    "char": "ぜ",
+    "category": "hiragana",
+    "romaji": "ze",
+    "consonant": "z",
+    "vowel": "e",
+    "confusable_with": [
+      "せ",
+      "げ",
+      "で"
+    ],
+    "group": "z-gyo"
+  },
+  {
+    "char": "ぞ",
+    "category": "hiragana",
+    "romaji": "zo",
+    "consonant": "z",
+    "vowel": "o",
+    "confusable_with": [
+      "そ",
+      "ご",
+      "ど"
+    ],
+    "group": "z-gyo"
+  },
+  {
+    "char": "だ",
+    "category": "hiragana",
+    "romaji": "da",
+    "consonant": "d",
+    "vowel": "a",
+    "confusable_with": [
+      "た",
+      "が",
+      "ざ"
+    ],
+    "group": "d-gyo"
+  },
+  {
+    "char": "ぢ",
+    "category": "hiragana",
+    "romaji": "ji",
+    "consonant": "d",
+    "vowel": "i",
+    "confusable_with": [
+      "ち",
+      "ぢ",
+      "し"
+    ],
+    "group": "d-gyo"
+  },
+  {
+    "char": "づ",
+    "category": "hiragana",
+    "romaji": "zu",
+    "consonant": "d",
+    "vowel": "u",
+    "confusable_with": [
+      "つ",
+      "づ",
+      "す"
+    ],
+    "group": "d-gyo"
+  },
+  {
+    "char": "で",
+    "category": "hiragana",
+    "romaji": "de",
+    "consonant": "d",
+    "vowel": "e",
+    "confusable_with": [
+      "て",
+      "げ",
+      "ぜ"
+    ],
+    "group": "d-gyo"
+  },
+  {
+    "char": "ど",
+    "category": "hiragana",
+    "romaji": "do",
+    "consonant": "d",
+    "vowel": "o",
+    "confusable_with": [
+      "と",
+      "ご",
+      "ぞ"
+    ],
+    "group": "d-gyo"
+  },
+  {
+    "char": "ば",
+    "category": "hiragana",
+    "romaji": "ba",
+    "consonant": "b",
+    "vowel": "a",
+    "confusable_with": [
+      "は",
+      "ぱ",
+      "ま"
+    ],
+    "group": "b-gyo"
+  },
+  {
+    "char": "び",
+    "category": "hiragana",
+    "romaji": "bi",
+    "consonant": "b",
+    "vowel": "i",
+    "confusable_with": [
+      "ひ",
+      "ぴ",
+      "み"
+    ],
+    "group": "b-gyo"
+  },
+  {
+    "char": "ぶ",
+    "category": "hiragana",
+    "romaji": "bu",
+    "consonant": "b",
+    "vowel": "u",
+    "confusable_with": [
+      "ふ",
+      "ぷ",
+      "む"
+    ],
+    "group": "b-gyo"
+  },
+  {
+    "char": "べ",
+    "category": "hiragana",
+    "romaji": "be",
+    "consonant": "b",
+    "vowel": "e",
+    "confusable_with": [
+      "へ",
+      "ぺ",
+      "め"
+    ],
+    "group": "b-gyo"
+  },
+  {
+    "char": "ぼ",
+    "category": "hiragana",
+    "romaji": "bo",
+    "consonant": "b",
+    "vowel": "o",
+    "confusable_with": [
+      "ほ",
+      "ぽ",
+      "も"
+    ],
+    "group": "b-gyo"
+  },
+  {
+    "char": "ぱ",
+    "category": "hiragana",
+    "romaji": "pa",
+    "consonant": "p",
+    "vowel": "a",
+    "confusable_with": [
+      "ば",
+      "は",
+      "ま"
+    ],
+    "group": "p-gyo"
+  },
+  {
+    "char": "ぴ",
+    "category": "hiragana",
+    "romaji": "pi",
+    "consonant": "p",
+    "vowel": "i",
+    "confusable_with": [
+      "び",
+      "ひ",
+      "み"
+    ],
+    "group": "p-gyo"
+  },
+  {
+    "char": "ぷ",
+    "category": "hiragana",
+    "romaji": "pu",
+    "consonant": "p",
+    "vowel": "u",
+    "confusable_with": [
+      "ぶ",
+      "ふ",
+      "む"
+    ],
+    "group": "p-gyo"
+  },
+  {
+    "char": "ぺ",
+    "category": "hiragana",
+    "romaji": "pe",
+    "consonant": "p",
+    "vowel": "e",
+    "confusable_with": [
+      "べ",
+      "へ",
+      "め"
+    ],
+    "group": "p-gyo"
+  },
+  {
+    "char": "ぽ",
+    "category": "hiragana",
+    "romaji": "po",
+    "consonant": "p",
+    "vowel": "o",
+    "confusable_with": [
+      "ぼ",
+      "ほ",
+      "も"
+    ],
+    "group": "p-gyo"
+  },
+  {
+    "char": "きゃ",
+    "category": "hiragana",
+    "romaji": "kya",
+    "consonant": "k",
+    "vowel": "a",
+    "confusable_with": [
+      "kiya",
+      "しゃ",
+      "ちゃ"
+    ],
+    "group": "k-yoon"
+  },
+  {
+    "char": "きゅ",
+    "category": "hiragana",
+    "romaji": "kyu",
+    "consonant": "k",
+    "vowel": "u",
+    "confusable_with": [
+      "kiyu",
+      "しゅ",
+      "ちゅ"
+    ],
+    "group": "k-yoon"
+  },
+  {
+    "char": "きょ",
+    "category": "hiragana",
+    "romaji": "kyo",
+    "consonant": "k",
+    "vowel": "o",
+    "confusable_with": [
+      "kiyo",
+      "しょ",
+      "ちょ"
+    ],
+    "group": "k-yoon"
+  },
+  {
+    "char": "しゃ",
+    "category": "hiragana",
+    "romaji": "sha",
+    "consonant": "s",
+    "vowel": "a",
+    "confusable_with": [
+      "shiya",
+      "ちゃ",
+      "きゃ"
+    ],
+    "group": "s-yoon"
+  },
+  {
+    "char": "しゅ",
+    "category": "hiragana",
+    "romaji": "shu",
+    "consonant": "s",
+    "vowel": "u",
+    "confusable_with": [
+      "shiyu",
+      "ちゅ",
+      "きゅ"
+    ],
+    "group": "s-yoon"
+  },
+  {
+    "char": "しょ",
+    "category": "hiragana",
+    "romaji": "sho",
+    "consonant": "s",
+    "vowel": "o",
+    "confusable_with": [
+      "shiyo",
+      "ちょ",
+      "きょ"
+    ],
+    "group": "s-yoon"
+  },
+  {
+    "char": "ちゃ",
+    "category": "hiragana",
+    "romaji": "cha",
+    "consonant": "c",
+    "vowel": "a",
+    "confusable_with": [
+      "chiya",
+      "しゃ",
+      "にゃ"
+    ],
+    "group": "t-yoon"
+  },
+  {
+    "char": "ちゅ",
+    "category": "hiragana",
+    "romaji": "chu",
+    "consonant": "c",
+    "vowel": "u",
+    "confusable_with": [
+      "chiyu",
+      "しゅ",
+      "にゅ"
+    ],
+    "group": "t-yoon"
+  },
+  {
+    "char": "ちょ",
+    "category": "hiragana",
+    "romaji": "cho",
+    "consonant": "c",
+    "vowel": "o",
+    "confusable_with": [
+      "chiyo",
+      "しょ",
+      "にょ"
+    ],
+    "group": "t-yoon"
+  },
+  {
+    "char": "にゃ",
+    "category": "hiragana",
+    "romaji": "nya",
+    "consonant": "n",
+    "vowel": "a",
+    "confusable_with": [
+      "niya",
+      "みゃ",
+      "ひゃ"
+    ],
+    "group": "n-yoon"
+  },
+  {
+    "char": "にゅ",
+    "category": "hiragana",
+    "romaji": "nyu",
+    "consonant": "n",
+    "vowel": "u",
+    "confusable_with": [
+      "niyu",
+      "みゅ",
+      "ひゅ"
+    ],
+    "group": "n-yoon"
+  },
+  {
+    "char": "にょ",
+    "category": "hiragana",
+    "romaji": "nyo",
+    "consonant": "n",
+    "vowel": "o",
+    "confusable_with": [
+      "niyo",
+      "みょ",
+      "ひょ"
+    ],
+    "group": "n-yoon"
+  },
+  {
+    "char": "ひゃ",
+    "category": "hiragana",
+    "romaji": "hya",
+    "consonant": "h",
+    "vowel": "a",
+    "confusable_with": [
+      "hiya",
+      "びゃ",
+      "ぴゃ"
+    ],
+    "group": "h-yoon"
+  },
+  {
+    "char": "ひゅ",
+    "category": "hiragana",
+    "romaji": "hyu",
+    "consonant": "h",
+    "vowel": "u",
+    "confusable_with": [
+      "hiyu",
+      "びゅ",
+      "ぴゅ"
+    ],
+    "group": "h-yoon"
+  },
+  {
+    "char": "ひょ",
+    "category": "hiragana",
+    "romaji": "hyo",
+    "consonant": "h",
+    "vowel": "o",
+    "confusable_with": [
+      "hiyo",
+      "びょ",
+      "ぴょ"
+    ],
+    "group": "h-yoon"
+  },
+  {
+    "char": "みゃ",
+    "category": "hiragana",
+    "romaji": "mya",
+    "consonant": "m",
+    "vowel": "a",
+    "confusable_with": [
+      "miya",
+      "にゃ",
+      "りゃ"
+    ],
+    "group": "m-yoon"
+  },
+  {
+    "char": "みゅ",
+    "category": "hiragana",
+    "romaji": "myu",
+    "consonant": "m",
+    "vowel": "u",
+    "confusable_with": [
+      "miyu",
+      "にゅ",
+      "りゅ"
+    ],
+    "group": "m-yoon"
+  },
+  {
+    "char": "みょ",
+    "category": "hiragana",
+    "romaji": "myo",
+    "consonant": "m",
+    "vowel": "o",
+    "confusable_with": [
+      "miyo",
+      "にょ",
+      "りょ"
+    ],
+    "group": "m-yoon"
+  },
+  {
+    "char": "りゃ",
+    "category": "hiragana",
+    "romaji": "rya",
+    "consonant": "r",
+    "vowel": "a",
+    "confusable_with": [
+      "riya",
+      "みゃ",
+      "じゃ"
+    ],
+    "group": "r-yoon"
+  },
+  {
+    "char": "りゅ",
+    "category": "hiragana",
+    "romaji": "ryu",
+    "consonant": "r",
+    "vowel": "u",
+    "confusable_with": [
+      "riyu",
+      "みゅ",
+      "じゅ"
+    ],
+    "group": "r-yoon"
+  },
+  {
+    "char": "りょ",
+    "category": "hiragana",
+    "romaji": "ryo",
+    "consonant": "r",
+    "vowel": "o",
+    "confusable_with": [
+      "riyo",
+      "みょ",
+      "じょ"
+    ],
+    "group": "r-yoon"
+  },
+  {
+    "char": "ぎゃ",
+    "category": "hiragana",
+    "romaji": "gya",
+    "consonant": "g",
+    "vowel": "a",
+    "confusable_with": [
+      "giya",
+      "きゃ",
+      "じゃ"
+    ],
+    "group": "g-yoon"
+  },
+  {
+    "char": "ぎゅ",
+    "category": "hiragana",
+    "romaji": "gyu",
+    "consonant": "g",
+    "vowel": "u",
+    "confusable_with": [
+      "giyu",
+      "きゅ",
+      "じゅ"
+    ],
+    "group": "g-yoon"
+  },
+  {
+    "char": "ぎょ",
+    "category": "hiragana",
+    "romaji": "gyo",
+    "consonant": "g",
+    "vowel": "o",
+    "confusable_with": [
+      "giyo",
+      "きょ",
+      "じょ"
+    ],
+    "group": "g-yoon"
+  },
+  {
+    "char": "じゃ",
+    "category": "hiragana",
+    "romaji": "ja",
+    "consonant": "j",
+    "vowel": "a",
+    "confusable_with": [
+      "jiya",
+      "zya",
+      "ちゃ"
+    ],
+    "group": "j-yoon"
+  },
+  {
+    "char": "じゅ",
+    "category": "hiragana",
+    "romaji": "ju",
+    "consonant": "j",
+    "vowel": "u",
+    "confusable_with": [
+      "jiyu",
+      "zyu",
+      "ちゅ"
+    ],
+    "group": "j-yoon"
+  },
+  {
+    "char": "じょ",
+    "category": "hiragana",
+    "romaji": "jo",
+    "consonant": "j",
+    "vowel": "o",
+    "confusable_with": [
+      "jiyo",
+      "zyo",
+      "ちょ"
+    ],
+    "group": "j-yoon"
+  },
+  {
+    "char": "びゃ",
+    "category": "hiragana",
+    "romaji": "bya",
+    "consonant": "b",
+    "vowel": "a",
+    "confusable_with": [
+      "biya",
+      "ぴゃ",
+      "ひゃ"
+    ],
+    "group": "b-yoon"
+  },
+  {
+    "char": "びゅ",
+    "category": "hiragana",
+    "romaji": "byu",
+    "consonant": "b",
+    "vowel": "u",
+    "confusable_with": [
+      "biyu",
+      "ぴゅ",
+      "ひゅ"
+    ],
+    "group": "b-yoon"
+  },
+  {
+    "char": "びょ",
+    "category": "hiragana",
+    "romaji": "byo",
+    "consonant": "b",
+    "vowel": "o",
+    "confusable_with": [
+      "biyo",
+      "ぴょ",
+      "ひょ"
+    ],
+    "group": "b-yoon"
+  },
+  {
+    "char": "ぴゃ",
+    "category": "hiragana",
+    "romaji": "pya",
+    "consonant": "p",
+    "vowel": "a",
+    "confusable_with": [
+      "piya",
+      "びゃ",
+      "ひゃ"
+    ],
+    "group": "p-yoon"
+  },
+  {
+    "char": "ぴゅ",
+    "category": "hiragana",
+    "romaji": "pyu",
+    "consonant": "p",
+    "vowel": "u",
+    "confusable_with": [
+      "piyu",
+      "びゅ",
+      "ひゅ"
+    ],
+    "group": "p-yoon"
+  },
+  {
+    "char": "ぴょ",
+    "category": "hiragana",
+    "romaji": "pyo",
+    "consonant": "p",
+    "vowel": "o",
+    "confusable_with": [
+      "piyo",
+      "びょ",
+      "ひょ"
+    ],
+    "group": "p-yoon"
+  },
+  {
+    "char": "ア",
+    "category": "katakana",
+    "romaji": "a",
+    "consonant": "",
+    "vowel": "a",
+    "confusable_with": [
+      "マ",
+      "ム",
+      "ウ"
+    ],
+    "group": "a-gyo"
+  },
+  {
+    "char": "イ",
+    "category": "katakana",
+    "romaji": "i",
+    "consonant": "",
+    "vowel": "i",
+    "confusable_with": [
+      "テ",
+      "ト",
+      "チ"
+    ],
+    "group": "a-gyo"
+  },
+  {
+    "char": "ウ",
+    "category": "katakana",
+    "romaji": "u",
+    "consonant": "",
+    "vowel": "u",
+    "confusable_with": [
+      "ワ",
+      "ラ",
+      "フ"
+    ],
+    "group": "a-gyo"
+  },
+  {
+    "char": "エ",
+    "category": "katakana",
+    "romaji": "e",
+    "consonant": "",
+    "vowel": "e",
+    "confusable_with": [
+      "コ",
+      "ヨ",
+      "イ"
+    ],
+    "group": "a-gyo"
+  },
+  {
+    "char": "オ",
+    "category": "katakana",
+    "romaji": "o",
+    "consonant": "",
+    "vowel": "o",
+    "confusable_with": [
+      "ホ",
+      "ハ",
+      "ム"
+    ],
+    "group": "a-gyo"
+  },
+  {
+    "char": "カ",
+    "category": "katakana",
+    "romaji": "ka",
+    "consonant": "k",
+    "vowel": "a",
+    "confusable_with": [
+      "chikara",
+      "ケ",
+      "ク"
+    ],
+    "group": "k-gyo"
+  },
+  {
+    "char": "キ",
+    "category": "katakana",
+    "romaji": "ki",
+    "consonant": "k",
+    "vowel": "i",
+    "confusable_with": [
+      "サ",
+      "チ",
+      "タ"
+    ],
+    "group": "k-gyo"
+  },
+  {
+    "char": "ク",
+    "category": "katakana",
+    "romaji": "ku",
+    "consonant": "k",
+    "vowel": "u",
+    "confusable_with": [
+      "ケ",
+      "タ",
+      "ワ"
+    ],
+    "group": "k-gyo"
+  },
+  {
+    "char": "ケ",
+    "category": "katakana",
+    "romaji": "ke",
+    "consonant": "k",
+    "vowel": "e",
+    "confusable_with": [
+      "ク",
+      "タ",
+      "カ"
+    ],
+    "group": "k-gyo"
+  },
+  {
+    "char": "コ",
+    "category": "katakana",
+    "romaji": "ko",
+    "consonant": "k",
+    "vowel": "o",
+    "confusable_with": [
+      "ユ",
+      "エ",
+      "ヨ"
+    ],
+    "group": "k-gyo"
+  },
+  {
+    "char": "サ",
+    "category": "katakana",
+    "romaji": "sa",
+    "consonant": "s",
+    "vowel": "a",
+    "confusable_with": [
+      "セ",
+      "キ",
+      "チ"
+    ],
+    "group": "s-gyo"
+  },
+  {
+    "char": "シ",
+    "category": "katakana",
+    "romaji": "shi",
+    "consonant": "s",
+    "vowel": "i",
+    "confusable_with": [
+      "ツ",
+      "ソ",
+      "ン"
+    ],
+    "group": "s-gyo"
+  },
+  {
+    "char": "ス",
+    "category": "katakana",
+    "romaji": "su",
+    "consonant": "s",
+    "vowel": "u",
+    "confusable_with": [
+      "ヌ",
+      "フ",
+      "ワ"
+    ],
+    "group": "s-gyo"
+  },
+  {
+    "char": "セ",
+    "category": "katakana",
+    "romaji": "se",
+    "consonant": "s",
+    "vowel": "e",
+    "confusable_with": [
+      "サ",
+      "ヒ",
+      "ヤ"
+    ],
+    "group": "s-gyo"
+  },
+  {
+    "char": "ソ",
+    "category": "katakana",
+    "romaji": "so",
+    "consonant": "s",
+    "vowel": "o",
+    "confusable_with": [
+      "ン",
+      "シ",
+      "ツ"
+    ],
+    "group": "s-gyo"
+  },
+  {
+    "char": "ナ",
+    "category": "katakana",
+    "romaji": "na",
+    "consonant": "n",
+    "vowel": "a",
+    "confusable_with": [
+      "メ",
+      "タ",
+      "チ"
+    ],
+    "group": "n-gyo"
+  },
+  {
+    "char": "ニ",
+    "category": "katakana",
+    "romaji": "ni",
+    "consonant": "n",
+    "vowel": "i",
+    "confusable_with": [
+      "コ",
+      "エ",
+      "イ"
+    ],
+    "group": "n-gyo"
+  },
+  {
+    "char": "ヌ",
+    "category": "katakana",
+    "romaji": "nu",
+    "consonant": "n",
+    "vowel": "u",
+    "confusable_with": [
+      "フ",
+      "メ",
+      "ス"
+    ],
+    "group": "n-gyo"
+  },
+  {
+    "char": "ネ",
+    "category": "katakana",
+    "romaji": "ne",
+    "consonant": "n",
+    "vowel": "e",
+    "confusable_with": [
+      "ヌ",
+      "ホ",
+      "レ"
+    ],
+    "group": "n-gyo"
+  },
+  {
+    "char": "ノ",
+    "category": "katakana",
+    "romaji": "no",
+    "consonant": "n",
+    "vowel": "o",
+    "confusable_with": [
+      "メ",
+      "ソ",
+      "ン"
+    ],
+    "group": "n-gyo"
+  },
+  {
+    "char": "ハ",
+    "category": "katakana",
+    "romaji": "ha",
+    "consonant": "h",
+    "vowel": "a",
+    "confusable_with": [
+      "バ",
+      "パ",
+      "ヤ"
+    ],
+    "group": "h-gyo"
+  },
+  {
+    "char": "ヒ",
+    "category": "katakana",
+    "romaji": "hi",
+    "consonant": "h",
+    "vowel": "i",
+    "confusable_with": [
+      "ビ",
+      "ピ",
+      "セ"
+    ],
+    "group": "h-gyo"
+  },
+  {
+    "char": "フ",
+    "category": "katakana",
+    "romaji": "fu",
+    "consonant": "h",
+    "vowel": "u",
+    "confusable_with": [
+      "ヌ",
+      "ウ",
+      "ラ"
+    ],
+    "group": "h-gyo"
+  },
+  {
+    "char": "ヘ",
+    "category": "katakana",
+    "romaji": "he",
+    "consonant": "h",
+    "vowel": "e",
+    "confusable_with": [
+      "ベ",
+      "ペ",
+      "ク"
+    ],
+    "group": "h-gyo"
+  },
+  {
+    "char": "ホ",
+    "category": "katakana",
+    "romaji": "ho",
+    "consonant": "h",
+    "vowel": "o",
+    "confusable_with": [
+      "ボ",
+      "ポ",
+      "マ"
+    ],
+    "group": "h-gyo"
+  },
+  {
+    "char": "マ",
+    "category": "katakana",
+    "romaji": "ma",
+    "consonant": "m",
+    "vowel": "a",
+    "confusable_with": [
+      "ア",
+      "ム",
+      "モ"
+    ],
+    "group": "m-gyo"
+  },
+  {
+    "char": "ミ",
+    "category": "katakana",
+    "romaji": "mi",
+    "consonant": "m",
+    "vowel": "i",
+    "confusable_with": [
+      "シ",
+      "ツ",
+      "イ"
+    ],
+    "group": "m-gyo"
+  },
+  {
+    "char": "ム",
+    "category": "katakana",
+    "romaji": "mu",
+    "consonant": "m",
+    "vowel": "u",
+    "confusable_with": [
+      "マ",
+      "ラ",
+      "ス"
+    ],
+    "group": "m-gyo"
+  },
+  {
+    "char": "メ",
+    "category": "katakana",
+    "romaji": "me",
+    "consonant": "m",
+    "vowel": "e",
+    "confusable_with": [
+      "ナ",
+      "ノ",
+      "ヌ"
+    ],
+    "group": "m-gyo"
+  },
+  {
+    "char": "モ",
+    "category": "katakana",
+    "romaji": "mo",
+    "consonant": "m",
+    "vowel": "o",
+    "confusable_with": [
+      "マ",
+      "ホ",
+      "オ"
+    ],
+    "group": "m-gyo"
+  },
+  {
+    "char": "ヤ",
+    "category": "katakana",
+    "romaji": "ya",
+    "consonant": "y",
+    "vowel": "a",
+    "confusable_with": [
+      "セ",
+      "ハ",
+      "マ"
+    ],
+    "group": "y-gyo"
+  },
+  {
+    "char": "ユ",
+    "category": "katakana",
+    "romaji": "yu",
+    "consonant": "y",
+    "vowel": "u",
+    "confusable_with": [
+      "コ",
+      "エ",
+      "ヨ"
+    ],
+    "group": "y-gyo"
+  },
+  {
+    "char": "ヨ",
+    "category": "katakana",
+    "romaji": "yo",
+    "consonant": "y",
+    "vowel": "o",
+    "confusable_with": [
+      "コ",
+      "エ",
+      "ユ"
+    ],
+    "group": "y-gyo"
+  },
+  {
+    "char": "ワ",
+    "category": "katakana",
+    "romaji": "wa",
+    "consonant": "w",
+    "vowel": "a",
+    "confusable_with": [
+      "ウ",
+      "ラ",
+      "フ"
+    ],
+    "group": "w-gyo"
+  },
+  {
+    "char": "ヲ",
+    "category": "katakana",
+    "romaji": "wo",
+    "consonant": "w",
+    "vowel": "o",
+    "confusable_with": [
+      "オ",
+      "ヨ",
+      "フ"
+    ],
+    "group": "w-gyo"
+  },
+  {
+    "char": "ラ",
+    "category": "katakana",
+    "romaji": "ra",
+    "consonant": "r",
+    "vowel": "a",
+    "confusable_with": [
+      "フ",
+      "ウ",
+      "ワ"
+    ],
+    "group": "r-gyo"
+  },
+  {
+    "char": "リ",
+    "category": "katakana",
+    "romaji": "ri",
+    "consonant": "r",
+    "vowel": "i",
+    "confusable_with": [
+      "イ",
+      "ソ",
+      "ン"
+    ],
+    "group": "r-gyo"
+  },
+  {
+    "char": "ル",
+    "category": "katakana",
+    "romaji": "ru",
+    "consonant": "r",
+    "vowel": "u",
+    "confusable_with": [
+      "レ",
+      "ハ",
+      "マ"
+    ],
+    "group": "r-gyo"
+  },
+  {
+    "char": "レ",
+    "category": "katakana",
+    "romaji": "re",
+    "consonant": "r",
+    "vowel": "e",
+    "confusable_with": [
+      "ル",
+      "ワ",
+      "フ"
+    ],
+    "group": "r-gyo"
+  },
+  {
+    "char": "ロ",
+    "category": "katakana",
+    "romaji": "ro",
+    "consonant": "r",
+    "vowel": "o",
+    "confusable_with": [
+      "コ",
+      "エ",
+      "オ"
+    ],
+    "group": "r-gyo"
+  },
+  {
+    "char": "タ",
+    "category": "katakana",
+    "romaji": "ta",
+    "consonant": "t",
+    "vowel": "a",
+    "confusable_with": [
+      "ク",
+      "ケ",
+      "ナ"
+    ],
+    "group": "t-gyo"
+  },
+  {
+    "char": "チ",
+    "category": "katakana",
+    "romaji": "chi",
+    "consonant": "t",
+    "vowel": "i",
+    "confusable_with": [
+      "テ",
+      "サ",
+      "キ"
+    ],
+    "group": "t-gyo"
+  },
+  {
+    "char": "ツ",
+    "category": "katakana",
+    "romaji": "tsu",
+    "consonant": "t",
+    "vowel": "u",
+    "confusable_with": [
+      "シ",
+      "ソ",
+      "ン"
+    ],
+    "group": "t-gyo"
+  },
+  {
+    "char": "テ",
+    "category": "katakana",
+    "romaji": "te",
+    "consonant": "t",
+    "vowel": "e",
+    "confusable_with": [
+      "チ",
+      "イ",
+      "ナ"
+    ],
+    "group": "t-gyo"
+  },
+  {
+    "char": "ト",
+    "category": "katakana",
+    "romaji": "to",
+    "consonant": "t",
+    "vowel": "o",
+    "confusable_with": [
+      "イ",
+      "エ",
+      "ロ"
+    ],
+    "group": "t-gyo"
+  },
+  {
+    "char": "ン",
+    "category": "katakana",
+    "romaji": "n",
+    "consonant": "",
+    "vowel": "",
+    "confusable_with": [
+      "ソ",
+      "シ",
+      "ツ"
+    ],
+    "group": "n-final"
+  },
+  {
+    "char": "ガ",
+    "category": "katakana",
+    "romaji": "ga",
+    "consonant": "g",
+    "vowel": "a",
+    "confusable_with": [
+      "カ",
+      "ザ",
+      "ダ"
+    ],
+    "group": "g-gyo"
+  },
+  {
+    "char": "ギ",
+    "category": "katakana",
+    "romaji": "gi",
+    "consonant": "g",
+    "vowel": "i",
+    "confusable_with": [
+      "キ",
+      "zi",
+      "ビ"
+    ],
+    "group": "g-gyo"
+  },
+  {
+    "char": "グ",
+    "category": "katakana",
+    "romaji": "gu",
+    "consonant": "g",
+    "vowel": "u",
+    "confusable_with": [
+      "ク",
+      "ヅ",
+      "ブ"
+    ],
+    "group": "g-gyo"
+  },
+  {
+    "char": "ゲ",
+    "category": "katakana",
+    "romaji": "ge",
+    "consonant": "g",
+    "vowel": "e",
+    "confusable_with": [
+      "ケ",
+      "ゼ",
+      "デ"
+    ],
+    "group": "g-gyo"
+  },
+  {
+    "char": "ゴ",
+    "category": "katakana",
+    "romaji": "go",
+    "consonant": "g",
+    "vowel": "o",
+    "confusable_with": [
+      "コ",
+      "ゾ",
+      "ド"
+    ],
+    "group": "g-gyo"
+  },
+  {
+    "char": "ザ",
+    "category": "katakana",
+    "romaji": "za",
+    "consonant": "z",
+    "vowel": "a",
+    "confusable_with": [
+      "サ",
+      "ガ",
+      "ダ"
+    ],
+    "group": "z-gyo"
+  },
+  {
+    "char": "ジ",
+    "category": "katakana",
+    "romaji": "ji",
+    "consonant": "z",
+    "vowel": "i",
+    "confusable_with": [
+      "シ",
+      "チ",
+      "ヅ"
+    ],
+    "group": "z-gyo"
+  },
+  {
+    "char": "ズ",
+    "category": "katakana",
+    "romaji": "zu",
+    "consonant": "z",
+    "vowel": "u",
+    "confusable_with": [
+      "ス",
+      "グ",
+      "ヂ"
+    ],
+    "group": "z-gyo"
+  },
+  {
+    "char": "ゼ",
+    "category": "katakana",
+    "romaji": "ze",
+    "consonant": "z",
+    "vowel": "e",
+    "confusable_with": [
+      "セ",
+      "ゲ",
+      "デ"
+    ],
+    "group": "z-gyo"
+  },
+  {
+    "char": "ゾ",
+    "category": "katakana",
+    "romaji": "zo",
+    "consonant": "z",
+    "vowel": "o",
+    "confusable_with": [
+      "ソ",
+      "ゴ",
+      "ド"
+    ],
+    "group": "z-gyo"
+  },
+  {
+    "char": "ダ",
+    "category": "katakana",
+    "romaji": "da",
+    "consonant": "d",
+    "vowel": "a",
+    "confusable_with": [
+      "タ",
+      "ガ",
+      "ザ"
+    ],
+    "group": "d-gyo"
+  },
+  {
+    "char": "ヂ",
+    "category": "katakana",
+    "romaji": "ji",
+    "consonant": "d",
+    "vowel": "i",
+    "confusable_with": [
+      "チ",
+      "ヂ",
+      "デ"
+    ],
+    "group": "d-gyo"
+  },
+  {
+    "char": "ヅ",
+    "category": "katakana",
+    "romaji": "zu",
+    "consonant": "d",
+    "vowel": "u",
+    "confusable_with": [
+      "ツ",
+      "ヅ",
+      "ス"
+    ],
+    "group": "d-gyo"
+  },
+  {
+    "char": "デ",
+    "category": "katakana",
+    "romaji": "de",
+    "consonant": "d",
+    "vowel": "e",
+    "confusable_with": [
+      "テ",
+      "ゲ",
+      "ゼ"
+    ],
+    "group": "d-gyo"
+  },
+  {
+    "char": "ド",
+    "category": "katakana",
+    "romaji": "do",
+    "consonant": "d",
+    "vowel": "o",
+    "confusable_with": [
+      "ト",
+      "ゴ",
+      "ゾ"
+    ],
+    "group": "d-gyo"
+  },
+  {
+    "char": "バ",
+    "category": "katakana",
+    "romaji": "ba",
+    "consonant": "b",
+    "vowel": "a",
+    "confusable_with": [
+      "ハ",
+      "パ",
+      "マ"
+    ],
+    "group": "b-gyo"
+  },
+  {
+    "char": "ビ",
+    "category": "katakana",
+    "romaji": "bi",
+    "consonant": "b",
+    "vowel": "i",
+    "confusable_with": [
+      "ヒ",
+      "ピ",
+      "ミ"
+    ],
+    "group": "b-gyo"
+  },
+  {
+    "char": "ブ",
+    "category": "katakana",
+    "romaji": "bu",
+    "consonant": "b",
+    "vowel": "u",
+    "confusable_with": [
+      "フ",
+      "プ",
+      "ム"
+    ],
+    "group": "b-gyo"
+  },
+  {
+    "char": "ベ",
+    "category": "katakana",
+    "romaji": "be",
+    "consonant": "b",
+    "vowel": "e",
+    "confusable_with": [
+      "ヘ",
+      "ペ",
+      "メ"
+    ],
+    "group": "b-gyo"
+  },
+  {
+    "char": "ボ",
+    "category": "katakana",
+    "romaji": "bo",
+    "consonant": "b",
+    "vowel": "o",
+    "confusable_with": [
+      "ホ",
+      "ポ",
+      "モ"
+    ],
+    "group": "b-gyo"
+  },
+  {
+    "char": "パ",
+    "category": "katakana",
+    "romaji": "pa",
+    "consonant": "p",
+    "vowel": "a",
+    "confusable_with": [
+      "バ",
+      "ハ",
+      "マ"
+    ],
+    "group": "p-gyo"
+  },
+  {
+    "char": "ピ",
+    "category": "katakana",
+    "romaji": "pi",
+    "consonant": "p",
+    "vowel": "i",
+    "confusable_with": [
+      "ビ",
+      "ヒ",
+      "ミ"
+    ],
+    "group": "p-gyo"
+  },
+  {
+    "char": "プ",
+    "category": "katakana",
+    "romaji": "pu",
+    "consonant": "p",
+    "vowel": "u",
+    "confusable_with": [
+      "ブ",
+      "フ",
+      "ム"
+    ],
+    "group": "p-gyo"
+  },
+  {
+    "char": "ペ",
+    "category": "katakana",
+    "romaji": "pe",
+    "consonant": "p",
+    "vowel": "e",
+    "confusable_with": [
+      "ベ",
+      "ヘ",
+      "メ"
+    ],
+    "group": "p-gyo"
+  },
+  {
+    "char": "ポ",
+    "category": "katakana",
+    "romaji": "po",
+    "consonant": "p",
+    "vowel": "o",
+    "confusable_with": [
+      "ボ",
+      "ホ",
+      "モ"
+    ],
+    "group": "p-gyo"
+  },
+  {
+    "char": "キャ",
+    "category": "katakana",
+    "romaji": "kya",
+    "consonant": "k",
+    "vowel": "a",
+    "confusable_with": [
+      "kiya",
+      "シャ",
+      "チャ"
+    ],
+    "group": "k-yoon"
+  },
+  {
+    "char": "キュ",
+    "category": "katakana",
+    "romaji": "kyu",
+    "consonant": "k",
+    "vowel": "u",
+    "confusable_with": [
+      "kiyu",
+      "シュ",
+      "チュ"
+    ],
+    "group": "k-yoon"
+  },
+  {
+    "char": "キョ",
+    "category": "katakana",
+    "romaji": "kyo",
+    "consonant": "k",
+    "vowel": "o",
+    "confusable_with": [
+      "kiyo",
+      "ショ",
+      "チョ"
+    ],
+    "group": "k-yoon"
+  },
+  {
+    "char": "シャ",
+    "category": "katakana",
+    "romaji": "sha",
+    "consonant": "s",
+    "vowel": "a",
+    "confusable_with": [
+      "shiya",
+      "チャ",
+      "キャ"
+    ],
+    "group": "s-yoon"
+  },
+  {
+    "char": "シュ",
+    "category": "katakana",
+    "romaji": "shu",
+    "consonant": "s",
+    "vowel": "u",
+    "confusable_with": [
+      "shiyu",
+      "チュ",
+      "キュ"
+    ],
+    "group": "s-yoon"
+  },
+  {
+    "char": "ショ",
+    "category": "katakana",
+    "romaji": "sho",
+    "consonant": "s",
+    "vowel": "o",
+    "confusable_with": [
+      "shiyo",
+      "チョ",
+      "キョ"
+    ],
+    "group": "s-yoon"
+  },
+  {
+    "char": "チャ",
+    "category": "katakana",
+    "romaji": "cha",
+    "consonant": "c",
+    "vowel": "a",
+    "confusable_with": [
+      "chiya",
+      "シャ",
+      "ニャ"
+    ],
+    "group": "t-yoon"
+  },
+  {
+    "char": "チュ",
+    "category": "katakana",
+    "romaji": "chu",
+    "consonant": "c",
+    "vowel": "u",
+    "confusable_with": [
+      "chiyu",
+      "シュ",
+      "ニュ"
+    ],
+    "group": "t-yoon"
+  },
+  {
+    "char": "チョ",
+    "category": "katakana",
+    "romaji": "cho",
+    "consonant": "c",
+    "vowel": "o",
+    "confusable_with": [
+      "chiyo",
+      "ショ",
+      "ニョ"
+    ],
+    "group": "t-yoon"
+  },
+  {
+    "char": "ニャ",
+    "category": "katakana",
+    "romaji": "nya",
+    "consonant": "n",
+    "vowel": "a",
+    "confusable_with": [
+      "niya",
+      "mya",
+      "hya"
+    ],
+    "group": "n-yoon"
+  },
+  {
+    "char": "ニュ",
+    "category": "katakana",
+    "romaji": "nyu",
+    "consonant": "n",
+    "vowel": "u",
+    "confusable_with": [
+      "niyu",
+      "myu",
+      "hyu"
+    ],
+    "group": "n-yoon"
+  },
+  {
+    "char": "ニョ",
+    "category": "katakana",
+    "romaji": "nyo",
+    "consonant": "n",
+    "vowel": "o",
+    "confusable_with": [
+      "niyo",
+      "myo",
+      "hyo"
+    ],
+    "group": "n-yoon"
+  },
+  {
+    "char": "ギャ",
+    "category": "katakana",
+    "romaji": "gya",
+    "consonant": "g",
+    "vowel": "a",
+    "confusable_with": [
+      "giya",
+      "キャ",
+      "ジャ"
+    ],
+    "group": "g-yoon"
+  },
+  {
+    "char": "ギュ",
+    "category": "katakana",
+    "romaji": "gyu",
+    "consonant": "g",
+    "vowel": "u",
+    "confusable_with": [
+      "giyu",
+      "キュ",
+      "ジュ"
+    ],
+    "group": "g-yoon"
+  },
+  {
+    "char": "ギョ",
+    "category": "katakana",
+    "romaji": "gyo",
+    "consonant": "g",
+    "vowel": "o",
+    "confusable_with": [
+      "giyo",
+      "キョ",
+      "ジョ"
+    ],
+    "group": "g-yoon"
+  },
+  {
+    "char": "ジャ",
+    "category": "katakana",
+    "romaji": "ja",
+    "consonant": "j",
+    "vowel": "a",
+    "confusable_with": [
+      "jiya",
+      "zya",
+      "チャ"
+    ],
+    "group": "j-yoon"
+  },
+  {
+    "char": "ジュ",
+    "category": "katakana",
+    "romaji": "ju",
+    "consonant": "j",
+    "vowel": "u",
+    "confusable_with": [
+      "jiyu",
+      "zyu",
+      "チュ"
+    ],
+    "group": "j-yoon"
+  },
+  {
+    "char": "ジョ",
+    "category": "katakana",
+    "romaji": "jo",
+    "consonant": "j",
+    "vowel": "o",
+    "confusable_with": [
+      "jiyo",
+      "zyo",
+      "チョ"
+    ],
+    "group": "j-yoon"
+  },
+  {
+    "char": "ヴァ",
+    "category": "katakana",
+    "romaji": "va",
+    "consonant": "v",
+    "vowel": "a",
+    "confusable_with": [
+      "バ",
+      "ハ",
+      "ua"
+    ],
+    "group": "v-special"
+  },
+  {
+    "char": "ヴィ",
+    "category": "katakana",
+    "romaji": "vi",
+    "consonant": "v",
+    "vowel": "i",
+    "confusable_with": [
+      "ビ",
+      "ヒ",
+      "ui"
+    ],
+    "group": "v-special"
+  },
+  {
+    "char": "ヴ",
+    "category": "katakana",
+    "romaji": "vu",
+    "consonant": "v",
+    "vowel": "u",
+    "confusable_with": [
+      "ウ",
+      "ブ",
+      "フ"
+    ],
+    "group": "v-special"
+  },
+  {
+    "char": "ヴェ",
+    "category": "katakana",
+    "romaji": "ve",
+    "consonant": "v",
+    "vowel": "e",
+    "confusable_with": [
+      "ベ",
+      "ヘ",
+      "ue"
+    ],
+    "group": "v-special"
+  },
+  {
+    "char": "ヴォ",
+    "category": "katakana",
+    "romaji": "vo",
+    "consonant": "v",
+    "vowel": "o",
+    "confusable_with": [
+      "ボ",
+      "ホ",
+      "uo"
+    ],
+    "group": "v-special"
+  },
+  {
+    "char": "ファ",
+    "category": "katakana",
+    "romaji": "fa",
+    "consonant": "f",
+    "vowel": "a",
+    "confusable_with": [
+      "ハ",
+      "パ",
+      "fua"
+    ],
+    "group": "f-special"
+  },
+  {
+    "char": "フィ",
+    "category": "katakana",
+    "romaji": "fi",
+    "consonant": "f",
+    "vowel": "i",
+    "confusable_with": [
+      "ヒ",
+      "ピ",
+      "fui"
+    ],
+    "group": "f-special"
+  },
+  {
+    "char": "フェ",
+    "category": "katakana",
+    "romaji": "fe",
+    "consonant": "f",
+    "vowel": "e",
+    "confusable_with": [
+      "ヘ",
+      "ペ",
+      "fue"
+    ],
+    "group": "f-special"
+  },
+  {
+    "char": "フォ",
+    "category": "katakana",
+    "romaji": "fo",
+    "consonant": "f",
+    "vowel": "o",
+    "confusable_with": [
+      "ホ",
+      "ポ",
+      "fuo"
+    ],
+    "group": "f-special"
+  },
+  {
+    "char": "ティ",
+    "category": "katakana",
+    "romaji": "ti",
+    "consonant": "t",
+    "vowel": "i",
+    "confusable_with": [
+      "チ",
+      "テ",
+      "ディ"
+    ],
+    "group": "t-special"
+  },
+  {
+    "char": "ディ",
+    "category": "katakana",
+    "romaji": "di",
+    "consonant": "d",
+    "vowel": "i",
+    "confusable_with": [
+      "ヂ",
+      "デ",
+      "ティ"
+    ],
+    "group": "t-special"
+  },
+  {
+    "char": "ウィ",
+    "category": "katakana",
+    "romaji": "wi",
+    "consonant": "w",
+    "vowel": "i",
+    "confusable_with": [
+      "ui",
+      "イ",
+      "フィ"
+    ],
+    "group": "w-special"
+  },
+  {
+    "char": "ウェ",
+    "category": "katakana",
+    "romaji": "we",
+    "consonant": "w",
+    "vowel": "e",
+    "confusable_with": [
+      "ue",
+      "エ",
+      "フェ"
+    ],
+    "group": "w-special"
+  },
+  {
+    "char": "ー",
+    "category": "katakana",
+    "romaji": "-",
+    "consonant": "",
+    "vowel": "",
+    "confusable_with": [
+      "ichi",
+      "ヘ",
+      "ニ"
+    ],
+    "group": "symbol"
+  },
+  {
+    "char": "ウォ",
+    "category": "katakana",
+    "romaji": "who",
+    "consonant": "w",
+    "vowel": "o",
+    "confusable_with": [
+      "uo",
+      "オ",
+      "フォ"
+    ],
+    "group": "w-special"
+  }
+]

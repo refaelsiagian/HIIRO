@@ -1,0 +1,696 @@
+[
+  {
+    "id": "a-gyo",
+    "category": "hiragana",
+    "display_name": "A-Gyō",
+    "subtitle_kanji": "あ行",
+    "char_member": [
+      "あ",
+      "い",
+      "う",
+      "え",
+      "お"
+    ],
+    "type": "gojuon"
+  },
+  {
+    "id": "k-gyo",
+    "category": "hiragana",
+    "display_name": "Ka-Gyō",
+    "subtitle_kanji": "か行",
+    "char_member": [
+      "か",
+      "き",
+      "く",
+      "け",
+      "こ"
+    ],
+    "type": "gojuon"
+  },
+  {
+    "id": "s-gyo",
+    "category": "hiragana",
+    "display_name": "Sa-Gyō",
+    "subtitle_kanji": "さ行",
+    "char_member": [
+      "さ",
+      "し",
+      "す",
+      "せ",
+      "そ"
+    ],
+    "type": "gojuon"
+  },
+  {
+    "id": "t-gyo",
+    "category": "hiragana",
+    "display_name": "Ta-Gyō",
+    "subtitle_kanji": "た行",
+    "char_member": [
+      "た",
+      "ち",
+      "つ",
+      "て",
+      "と"
+    ],
+    "type": "gojuon"
+  },
+  {
+    "id": "n-gyo",
+    "category": "hiragana",
+    "display_name": "Na-Gyō",
+    "subtitle_kanji": "な行",
+    "char_member": [
+      "な",
+      "に",
+      "ぬ",
+      "ね",
+      "の"
+    ],
+    "type": "gojuon"
+  },
+  {
+    "id": "h-gyo",
+    "category": "hiragana",
+    "display_name": "Ha-Gyō",
+    "subtitle_kanji": "は行",
+    "char_member": [
+      "は",
+      "ひ",
+      "ふ",
+      "へ",
+      "ほ"
+    ],
+    "type": "gojuon"
+  },
+  {
+    "id": "m-gyo",
+    "category": "hiragana",
+    "display_name": "Ma-Gyō",
+    "subtitle_kanji": "ま行",
+    "char_member": [
+      "ま",
+      "み",
+      "む",
+      "め",
+      "も"
+    ],
+    "type": "gojuon"
+  },
+  {
+    "id": "y-gyo",
+    "category": "hiragana",
+    "display_name": "Ya-Gyō",
+    "subtitle_kanji": "や行",
+    "char_member": [
+      "や",
+      "ゆ",
+      "よ"
+    ],
+    "type": "gojuon"
+  },
+  {
+    "id": "r-gyo",
+    "category": "hiragana",
+    "display_name": "Ra-Gyō",
+    "subtitle_kanji": "ら行",
+    "char_member": [
+      "ら",
+      "り",
+      "る",
+      "れ",
+      "ろ"
+    ],
+    "type": "gojuon"
+  },
+  {
+    "id": "w-gyo",
+    "category": "hiragana",
+    "display_name": "Wa-Gyō",
+    "subtitle_kanji": "わ行",
+    "char_member": [
+      "わ",
+      "を"
+    ],
+    "type": "gojuon"
+  },
+  {
+    "id": "n-final",
+    "category": "hiragana",
+    "display_name": "N Akhiran",
+    "subtitle_kanji": "ん",
+    "char_member": [
+      "ん"
+    ],
+    "type": "gojuon"
+  },
+  {
+    "id": "g-gyo",
+    "category": "hiragana",
+    "display_name": "Ga-Gyō",
+    "subtitle_kanji": "が行",
+    "char_member": [
+      "が",
+      "ぎ",
+      "ぐ",
+      "げ",
+      "ご"
+    ],
+    "type": "dakuon"
+  },
+  {
+    "id": "z-gyo",
+    "category": "hiragana",
+    "display_name": "Za-Gyō",
+    "subtitle_kanji": "ざ行",
+    "char_member": [
+      "ざ",
+      "じ",
+      "ず",
+      "ぜ",
+      "ぞ"
+    ],
+    "type": "dakuon"
+  },
+  {
+    "id": "d-gyo",
+    "category": "hiragana",
+    "display_name": "Da-Gyō",
+    "subtitle_kanji": "だ行",
+    "char_member": [
+      "だ",
+      "ぢ",
+      "づ",
+      "で",
+      "ど"
+    ],
+    "type": "dakuon"
+  },
+  {
+    "id": "b-gyo",
+    "category": "hiragana",
+    "display_name": "Ba-Gyō",
+    "subtitle_kanji": "ば行",
+    "char_member": [
+      "ば",
+      "び",
+      "ぶ",
+      "べ",
+      "ぼ"
+    ],
+    "type": "dakuon"
+  },
+  {
+    "id": "p-gyo",
+    "category": "hiragana",
+    "display_name": "Pa-Gyō",
+    "subtitle_kanji": "ぱ行",
+    "char_member": [
+      "ぱ",
+      "ぴ",
+      "ぷ",
+      "ぺ",
+      "ぽ"
+    ],
+    "type": "handakuon"
+  },
+  {
+    "id": "k-yoon",
+    "category": "hiragana",
+    "display_name": "K-Yōon",
+    "subtitle_kanji": "か行の拗音",
+    "char_member": [
+      "きゃ",
+      "きゅ",
+      "きょ"
+    ],
+    "type": "yoon"
+  },
+  {
+    "id": "s-yoon",
+    "category": "hiragana",
+    "display_name": "S-Yōon",
+    "subtitle_kanji": "さ行の拗音",
+    "char_member": [
+      "しゃ",
+      "しゅ",
+      "しょ"
+    ],
+    "type": "yoon"
+  },
+  {
+    "id": "t-yoon",
+    "category": "hiragana",
+    "display_name": "T-Yōon",
+    "subtitle_kanji": "た行の拗音",
+    "char_member": [
+      "ちゃ",
+      "ちゅ",
+      "ちょ"
+    ],
+    "type": "yoon"
+  },
+  {
+    "id": "n-yoon",
+    "category": "hiragana",
+    "display_name": "N-Yōon",
+    "subtitle_kanji": "な行の拗音",
+    "char_member": [
+      "にゃ",
+      "にゅ",
+      "にょ"
+    ],
+    "type": "yoon"
+  },
+  {
+    "id": "h-yoon",
+    "category": "hiragana",
+    "display_name": "H-Yōon",
+    "subtitle_kanji": "は行の拗音",
+    "char_member": [
+      "ひゃ",
+      "ひゅ",
+      "ひょ"
+    ],
+    "type": "yoon"
+  },
+  {
+    "id": "m-yoon",
+    "category": "hiragana",
+    "display_name": "M-Yōon",
+    "subtitle_kanji": "ま行の拗音",
+    "char_member": [
+      "みゃ",
+      "みゅ",
+      "みょ"
+    ],
+    "type": "yoon"
+  },
+  {
+    "id": "r-yoon",
+    "category": "hiragana",
+    "display_name": "R-Yōon",
+    "subtitle_kanji": "ら行の拗音",
+    "char_member": [
+      "りゃ",
+      "りゅ",
+      "りょ"
+    ],
+    "type": "yoon"
+  },
+  {
+    "id": "g-yoon",
+    "category": "hiragana",
+    "display_name": "G-Yōon",
+    "subtitle_kanji": "が行の拗音",
+    "char_member": [
+      "ぎゃ",
+      "ぎゅ",
+      "ぎょ"
+    ],
+    "type": "yoon"
+  },
+  {
+    "id": "j-yoon",
+    "category": "hiragana",
+    "display_name": "J-Yōon",
+    "subtitle_kanji": "ざ行の拗音",
+    "char_member": [
+      "じゃ",
+      "じゅ",
+      "じょ"
+    ],
+    "type": "yoon"
+  },
+  {
+    "id": "b-yoon",
+    "category": "hiragana",
+    "display_name": "B-Yōon",
+    "subtitle_kanji": "ば行の拗音",
+    "char_member": [
+      "びゃ",
+      "びゅ",
+      "びょ"
+    ],
+    "type": "yoon"
+  },
+  {
+    "id": "p-yoon",
+    "category": "hiragana",
+    "display_name": "P-Yōon",
+    "subtitle_kanji": "ぱ行の拗音",
+    "char_member": [
+      "ぴゃ",
+      "ぴゅ",
+      "ぴょ"
+    ],
+    "type": "yoon"
+  },
+  {
+    "id": "a-gyo",
+    "category": "katakana",
+    "display_name": "A-Gyō",
+    "subtitle_kanji": "ア行",
+    "char_member": [
+      "ア",
+      "イ",
+      "ウ",
+      "エ",
+      "オ"
+    ],
+    "type": "gojuon"
+  },
+  {
+    "id": "k-gyo",
+    "category": "katakana",
+    "display_name": "Ka-Gyō",
+    "subtitle_kanji": "カ行",
+    "char_member": [
+      "カ",
+      "キ",
+      "ク",
+      "ケ",
+      "コ"
+    ],
+    "type": "gojuon"
+  },
+  {
+    "id": "s-gyo",
+    "category": "katakana",
+    "display_name": "Sa-Gyō",
+    "subtitle_kanji": "サ行",
+    "char_member": [
+      "サ",
+      "シ",
+      "ス",
+      "セ",
+      "ソ"
+    ],
+    "type": "gojuon"
+  },
+  {
+    "id": "n-gyo",
+    "category": "katakana",
+    "display_name": "Na-Gyō",
+    "subtitle_kanji": "ナ行",
+    "char_member": [
+      "ナ",
+      "ニ",
+      "ヌ",
+      "ネ",
+      "ノ"
+    ],
+    "type": "gojuon"
+  },
+  {
+    "id": "h-gyo",
+    "category": "katakana",
+    "display_name": "Ha-Gyō",
+    "subtitle_kanji": "ハ行",
+    "char_member": [
+      "ハ",
+      "ヒ",
+      "フ",
+      "ヘ",
+      "ホ"
+    ],
+    "type": "gojuon"
+  },
+  {
+    "id": "m-gyo",
+    "category": "katakana",
+    "display_name": "Ma-Gyō",
+    "subtitle_kanji": "マ行",
+    "char_member": [
+      "マ",
+      "ミ",
+      "ム",
+      "メ",
+      "モ"
+    ],
+    "type": "gojuon"
+  },
+  {
+    "id": "y-gyo",
+    "category": "katakana",
+    "display_name": "Ya-Gyō",
+    "subtitle_kanji": "ヤ行",
+    "char_member": [
+      "ヤ",
+      "ユ",
+      "ヨ"
+    ],
+    "type": "gojuon"
+  },
+  {
+    "id": "w-gyo",
+    "category": "katakana",
+    "display_name": "Wa-Gyō",
+    "subtitle_kanji": "ワ行",
+    "char_member": [
+      "ワ",
+      "ヲ"
+    ],
+    "type": "gojuon"
+  },
+  {
+    "id": "r-gyo",
+    "category": "katakana",
+    "display_name": "Ra-Gyō",
+    "subtitle_kanji": "ラ行",
+    "char_member": [
+      "ラ",
+      "リ",
+      "ル",
+      "レ",
+      "ロ"
+    ],
+    "type": "gojuon"
+  },
+  {
+    "id": "t-gyo",
+    "category": "katakana",
+    "display_name": "Ta-Gyō",
+    "subtitle_kanji": "タ行",
+    "char_member": [
+      "タ",
+      "チ",
+      "ツ",
+      "テ",
+      "ト"
+    ],
+    "type": "gojuon"
+  },
+  {
+    "id": "n-final",
+    "category": "katakana",
+    "display_name": "N Akhiran",
+    "subtitle_kanji": "ン",
+    "char_member": [
+      "ン"
+    ],
+    "type": "gojuon"
+  },
+  {
+    "id": "g-gyo",
+    "category": "katakana",
+    "display_name": "Ga-Gyō",
+    "subtitle_kanji": "ガ行",
+    "char_member": [
+      "ガ",
+      "ギ",
+      "グ",
+      "ゲ",
+      "ゴ"
+    ],
+    "type": "dakuon"
+  },
+  {
+    "id": "z-gyo",
+    "category": "katakana",
+    "display_name": "Za-Gyō",
+    "subtitle_kanji": "ザ行",
+    "char_member": [
+      "ザ",
+      "ジ",
+      "ズ",
+      "ゼ",
+      "ゾ"
+    ],
+    "type": "dakuon"
+  },
+  {
+    "id": "d-gyo",
+    "category": "katakana",
+    "display_name": "Da-Gyō",
+    "subtitle_kanji": "ダ行",
+    "char_member": [
+      "ダ",
+      "ヂ",
+      "ヅ",
+      "デ",
+      "ド"
+    ],
+    "type": "dakuon"
+  },
+  {
+    "id": "b-gyo",
+    "category": "katakana",
+    "display_name": "Ba-Gyō",
+    "subtitle_kanji": "バ行",
+    "char_member": [
+      "バ",
+      "ビ",
+      "ブ",
+      "ベ",
+      "ボ"
+    ],
+    "type": "dakuon"
+  },
+  {
+    "id": "p-gyo",
+    "category": "katakana",
+    "display_name": "Pa-Gyō",
+    "subtitle_kanji": "パ行",
+    "char_member": [
+      "パ",
+      "ピ",
+      "プ",
+      "ペ",
+      "ポ"
+    ],
+    "type": "handakuon"
+  },
+  {
+    "id": "k-yoon",
+    "category": "katakana",
+    "display_name": "K-Yōon",
+    "subtitle_kanji": "カ行の拗音",
+    "char_member": [
+      "キャ",
+      "キュ",
+      "キョ"
+    ],
+    "type": "yoon"
+  },
+  {
+    "id": "s-yoon",
+    "category": "katakana",
+    "display_name": "S-Yōon",
+    "subtitle_kanji": "サ行の拗音",
+    "char_member": [
+      "シャ",
+      "シュ",
+      "ショ"
+    ],
+    "type": "yoon"
+  },
+  {
+    "id": "t-yoon",
+    "category": "katakana",
+    "display_name": "T-Yōon",
+    "subtitle_kanji": "タ行の拗音",
+    "char_member": [
+      "チャ",
+      "チュ",
+      "チョ"
+    ],
+    "type": "yoon"
+  },
+  {
+    "id": "n-yoon",
+    "category": "katakana",
+    "display_name": "N-Yōon",
+    "subtitle_kanji": "ナ行の拗音",
+    "char_member": [
+      "ニャ",
+      "ニュ",
+      "ニョ"
+    ],
+    "type": "yoon"
+  },
+  {
+    "id": "g-yoon",
+    "category": "katakana",
+    "display_name": "G-Yōon",
+    "subtitle_kanji": "ガ行の拗音",
+    "char_member": [
+      "ギャ",
+      "ギュ",
+      "ギョ"
+    ],
+    "type": "yoon"
+  },
+  {
+    "id": "j-yoon",
+    "category": "katakana",
+    "display_name": "J-Yōon",
+    "subtitle_kanji": "ザ行の拗音",
+    "char_member": [
+      "ジャ",
+      "ジュ",
+      "ジョ"
+    ],
+    "type": "yoon"
+  },
+  {
+    "id": "v-special",
+    "category": "katakana",
+    "display_name": "V-Series",
+    "subtitle_kanji": "ヴ",
+    "char_member": [
+      "ヴァ",
+      "ヴィ",
+      "ヴ",
+      "ヴェ",
+      "ヴォ"
+    ],
+    "type": "tokushuon"
+  },
+  {
+    "id": "f-special",
+    "category": "katakana",
+    "display_name": "F-Series",
+    "subtitle_kanji": "ファ行",
+    "char_member": [
+      "ファ",
+      "フィ",
+      "フェ",
+      "フォ"
+    ],
+    "type": "tokushuon"
+  },
+  {
+    "id": "t-special",
+    "category": "katakana",
+    "display_name": "Di/Ti",
+    "subtitle_kanji": "ディ・ティ",
+    "char_member": [
+      "ティ",
+      "ディ"
+    ],
+    "type": "tokushuon"
+  },
+  {
+    "id": "w-special",
+    "category": "katakana",
+    "display_name": "Wi/We/Wo",
+    "subtitle_kanji": "ウィ・ウェ・ウォ",
+    "char_member": [
+      "ウィ",
+      "ウェ",
+      "ウォ"
+    ],
+    "type": "tokushuon"
+  },
+  {
+    "id": "symbol",
+    "category": "katakana",
+    "display_name": "Simbol",
+    "subtitle_kanji": "記号",
+    "char_member": [
+      "ー"
+    ],
+    "type": "gojuon"
+  }
+]

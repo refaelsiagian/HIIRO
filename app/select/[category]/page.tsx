@@ -7,13 +7,7 @@ import { ArrowLeft } from 'lucide-react';
 import { useGameStore } from '../../store/useGameStore';
 import { Star } from 'lucide-react';
 
-const SECTION_DATA: Record<string, { title: string, subHiragana: string, subKatakana: string, kanji: string }> = {
-    'basic': { title: 'Gojūon', subHiragana: 'ごじゅうおん', subKatakana: 'ゴジュウオン', kanji: '五十音' },
-    'dakuten': { title: 'Dakuon\nHandakuon', subHiragana: 'だくおん\nはんだくおん', subKatakana: 'ダクオン\nハンダクオン', kanji: '濁音\n・\n半濁音' },
-    'yoon': { title: 'Yōon', subHiragana: 'ようおん', subKatakana: 'ヨウオン', kanji: '拗音' },
-    'special': { title: 'Tokushuon', subHiragana: 'とくしゅおん', subKatakana: 'トクシュオン', kanji: '特殊音' },
-    'daishiken': { title: 'Daishiken', subHiragana: 'だいしけん', subKatakana: 'ダイシケン', kanji: '大試験' },
-};
+// SECTION_DATA is now removed as data is fetched dynamically from types.json
 
 const SectionSelection: React.FC = () => {
     const params = useParams();
@@ -26,21 +20,6 @@ const SectionSelection: React.FC = () => {
     if (!currentData) {
         return <div className="min-h-screen flex items-center justify-center font-bold text-slate-400">Kategori tidak ditemukan...</div>;
     }
-
-    const sections = Object.keys(currentData);
-
-    const getSectionStars = (section: string) => {
-        let earned = 0;
-        let total = 0;
-        currentData[section].forEach(group => {
-            const isShotesto = group.id.startsWith('shotesto');
-            const isDaishiken = group.id.startsWith('daishiken');
-            const stgs = (isShotesto || isDaishiken) ? 1 : 5;
-            total += stgs * 3;
-            earned += getGroupStars(category, section, group.id);
-        });
-        return { earned, total };
-    };
 
     return (
         <div className="min-h-screen p-6 flex flex-col overflow-hidden">
@@ -67,11 +46,22 @@ const SectionSelection: React.FC = () => {
             {/* HORIZONTAL CAROUSEL */}
             <main className="flex-1 w-full flex items-center overflow-x-auto pb-12 snap-x snap-mandatory hide-scrollbar">
                 <div className="flex space-x-[64px] px-12 md:px-32 w-max mx-auto h-[520px]">
-                    {sections.map((sectionKey) => {
-                        const sData = SECTION_DATA[sectionKey] || { title: sectionKey, subHiragana: '', subKatakana: '', kanji: '' };
-                        const displaySub = category === 'katakana' ? sData.subKatakana : sData.subHiragana;
-                        const stars = getSectionStars(sectionKey);
-                        const totalHuruf = currentData[sectionKey].reduce((acc, curr) => acc + curr.chars.length, 0);
+                    {currentData.map((typeData) => {
+                        const sectionKey = typeData.id;
+                        const displaySub = category === 'katakana' ? typeData.subtitle_katakana : typeData.subtitle_hiragana;
+                        
+                        let earned = 0;
+                        let total = 0;
+                        typeData.groups.forEach(group => {
+                            const isShotesto = group.id.startsWith('shotesto');
+                            const isDaishiken = group.id.startsWith('daishiken');
+                            const stgs = (isShotesto || isDaishiken) ? 1 : 5;
+                            total += stgs * 3;
+                            earned += getGroupStars(category, sectionKey, group.id);
+                        });
+                        const stars = { earned, total };
+                        
+                        const totalHuruf = typeData.groups.reduce((acc, curr) => acc + curr.chars.length, 0);
 
                         const isDaishiken = sectionKey === 'daishiken';
 
@@ -116,19 +106,19 @@ const SectionSelection: React.FC = () => {
                                     className={`absolute top-[36px] left-[30px] ${kanjiOpacity} text-[48px] font-serif leading-[60px] font-normal tracking-[12px]`}
                                     style={{ writingMode: 'vertical-rl' }}
                                 >
-                                    {sData.kanji.replace(/\s/g, '').substring(0, 6)}
+                                    {typeData.subtitle_kanji.replace(/\s/g, '').substring(0, 6)}
                                 </div>
                                 
                                 <div className="absolute top-[56px] right-[28px] flex flex-col items-end z-10 text-right">
                                     <h2 className="text-[36px] font-arbutus font-normal whitespace-pre-line leading-[1.2] mb-2">
-                                        {sData.title}
+                                        {typeData.display_name}
                                     </h2>
                                     <p className="text-[20px] font-serif font-normal opacity-80 mb-3 whitespace-pre-line">
                                         {displaySub}
                                     </p>
                                     <div className="flex items-center justify-end text-[16px] font-outfit font-normal opacity-90">
                                         <Star className={`w-[20px] h-[20px] mr-2 ${starColor}`} />
-                                        {stars.earned}/{stars.total}
+                                        <span>{stars.earned}/{stars.total}</span>
                                     </div>
                                 </div>
 

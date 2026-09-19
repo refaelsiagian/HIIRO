@@ -22,19 +22,23 @@ export default function DrillPage() {
     const mode = searchParams.get('mode') || 'sequence';
 
     const groupData = useMemo(() => {
-        const sections = KANA_METADATA[category];
-        if (!sections) return null;
-        const allGroups = Object.values(sections).flat() as GroupData[];
-        return allGroups.find(g => g.id === groupId) || null;
+        const typesData = KANA_METADATA[category];
+        if (!typesData) return null;
+
+        for (const typeData of typesData) {
+            const foundGroup = typeData.groups.find(g => g.id === groupId);
+            if (foundGroup) return foundGroup;
+        }
+        return null;
     }, [groupId, category]);
 
     const section = useMemo(() => {
-        const sections = KANA_METADATA[category];
-        if (!sections) return 'basic';
-        for (const sec in sections) {
-            if (sections[sec].find(g => g.id === groupId)) return sec;
+        const typesData = KANA_METADATA[category];
+        if (!typesData) return 'gojuon';
+        for (const typeData of typesData) {
+            if (typeData.groups.find(g => g.id === groupId)) return typeData.id;
         }
-        return 'basic';
+        return 'gojuon';
     }, [groupId, category]);
 
     if (!groupData) {
