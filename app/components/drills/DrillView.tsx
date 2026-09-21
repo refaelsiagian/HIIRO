@@ -14,9 +14,11 @@ interface DrillViewProps {
     stageId: string;
     mode: string;
     onClose: () => void;
+    isSansSerif: boolean;
+    onToggleSansSerif: () => void;
 }
 
-export default function DrillView({ category, groupId, stageId, mode, onClose }: DrillViewProps) {
+export default function DrillView({ category, groupId, stageId, mode, onClose, isSansSerif, onToggleSansSerif }: DrillViewProps) {
     const groupData = useMemo(() => {
         const typesData = KANA_METADATA[category];
         if (!typesData) return null;
@@ -69,12 +71,16 @@ export default function DrillView({ category, groupId, stageId, mode, onClose }:
             maxLives={3}
             targetScore={targetScore}
             onClose={onClose}
+            isSansSerif={isSansSerif}
+            onToggleSansSerif={onToggleSansSerif}
         >
-            {({ onCorrect, onWrong }) => (
+            {({ onCorrect, onWrong, isSansSerif, onToggleSansSerif }) => (
                 <GameComponent 
                     groupChars={groupData.chars} 
                     onCorrect={onCorrect} 
                     onWrong={onWrong} 
+                    isSansSerif={isSansSerif}
+                    onToggleSansSerif={onToggleSansSerif}
                 />
             )}
         </DrillEngine>

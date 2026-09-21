@@ -61,6 +61,8 @@ const StageSelection: React.FC = () => {
                 stageId={activeDrill.stageId} 
                 mode={activeDrill.mode} 
                 onClose={() => setActiveDrill(null)} 
+                isSansSerif={isSansSerif}
+                onToggleSansSerif={() => setIsSansSerif(!isSansSerif)}
             />
         );
     }

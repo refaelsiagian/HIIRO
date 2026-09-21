@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useGameStore } from '../../store/useGameStore';
-import { Star, Clock, Heart, ArrowLeft } from 'lucide-react';
+import { Star, Pause, Heart, ArrowLeft } from 'lucide-react';
 
 interface DrillEngineProps {
     category: string;
@@ -16,8 +16,12 @@ interface DrillEngineProps {
     children: (props: {
         onCorrect: () => void;
         onWrong: () => void;
+        isSansSerif: boolean;
+        onToggleSansSerif: () => void;
     }) => React.ReactNode;
     onClose: () => void;
+    isSansSerif: boolean;
+    onToggleSansSerif: () => void;
 }
 
 const DrillEngine: React.FC<DrillEngineProps> = ({
@@ -29,7 +33,9 @@ const DrillEngine: React.FC<DrillEngineProps> = ({
     maxLives,
     targetScore,
     children,
-    onClose
+    onClose,
+    isSansSerif,
+    onToggleSansSerif
 }) => {
     const { completeStage, failStage } = useGameStore();
 
@@ -38,6 +44,7 @@ const DrillEngine: React.FC<DrillEngineProps> = ({
     const [score, setScore] = useState(0);
     const [isFinished, setIsFinished] = useState(false);
     const [starsEarned, setStarsEarned] = useState(0);
+    const [isPaused, setIsPaused] = useState(false);
 
     const isFinal = groupId.startsWith('daishiken') || groupId.startsWith('shotesto');
 
@@ -56,7 +63,7 @@ const DrillEngine: React.FC<DrillEngineProps> = ({
     }
 
     useEffect(() => {
-        if (isFinished) return;
+        if (isFinished || isPaused) return;
 
         const timer = setInterval(() => {
             setTimeLeft(prev => {
@@ -70,7 +77,7 @@ const DrillEngine: React.FC<DrillEngineProps> = ({
         }, 1000);
 
         return () => clearInterval(timer);
-    }, [isFinished]);
+    }, [isFinished, isPaused]);
 
     const handleCorrect = () => {
         if (isFinished) return;
@@ -156,37 +163,62 @@ const DrillEngine: React.FC<DrillEngineProps> = ({
     }
 
     return (
-        <div className={`min-h-screen ${mainBg} p-6 font-sans flex flex-col items-center ${fontColor}`}>
-            {/* HUD */}
-            <div className={`w-full max-w-4xl flex justify-between items-center mb-8 ${panelBg} p-4 rounded-2xl shadow-sm border-2 ${borderColor}`}>
-                <div className="flex items-center space-x-4">
-                    <button onClick={onClose} className={`font-bold font-outfit text-lg hover:opacity-70 transition-opacity flex items-center`}>
-                        <ArrowLeft size={24} strokeWidth={2} className="mr-2" />
-                        Kembali
-                    </button>
-                    <div className={`h-6 w-px ${borderColor} border-l-2`}></div>
-                    <div className={`flex items-center font-bold font-outfit text-xl`}>
-                        <Clock className="w-6 h-6 mr-2" />
-                        {timeLeft}s
-                    </div>
+        <div className={`min-h-screen ${mainBg} p-6 font-sans flex flex-col items-center justify-between relative overflow-hidden ${fontColor}`}>
+            
+            {/* TOP HUD */}
+            <div className="w-full relative flex flex-col items-center pt-8">
+                {/* Pause Button */}
+                <button 
+                    onClick={() => setIsPaused(true)}
+                    className={`absolute top-8 right-8 md:right-12 hover:opacity-70 transition-opacity ${fontColor}`}
+                >
+                    <Pause size={36} fill="currentColor" strokeWidth={0} />
+                </button>
+                
+                {/* Hearts */}
+                <div className="flex space-x-2 mb-2">
+                    {[...Array(maxLives)].map((_, i) => (
+                        <Heart 
+                            key={i} 
+                            className={`w-8 h-8 ${i < lives ? 'fill-red-600 text-red-600' : 'text-red-200/50'}`} 
+                        />
+                    ))}
                 </div>
                 
-                <div className="flex items-center space-x-6">
-                    <div className="flex space-x-1">
-                        {[...Array(maxLives)].map((_, i) => (
-                            <Heart key={i} className={`w-6 h-6 ${i < lives ? 'fill-red-500 text-red-500' : 'text-slate-200/50'}`} />
-                        ))}
-                    </div>
-                    <div className={`font-black font-outfit text-xl filter brightness-90 px-4 py-1 rounded-full border ${borderColor}`}>
-                        {score} / {targetScore}
-                    </div>
+                {/* Timer */}
+                <div className={`font-outfit text-[44px] leading-none ${fontColor}`}>
+                    {timeLeft}
                 </div>
             </div>
 
             {/* Game Content */}
-            <div className="w-full max-w-4xl flex-1 flex flex-col justify-center relative">
-                {children({ onCorrect: handleCorrect, onWrong: handleWrong })}
+            <div className="w-full max-w-4xl flex-1 flex flex-col items-center justify-center relative">
+                {children({ onCorrect: handleCorrect, onWrong: handleWrong, isSansSerif, onToggleSansSerif })}
             </div>
+
+            {/* PAUSE MODAL */}
+            {isPaused && (
+                <div className="absolute inset-0 z-50 flex items-center justify-center bg-white/60 backdrop-blur-sm">
+                    <div className={`${panelBg} p-12 rounded-[2rem] shadow-xl text-center border-4 ${borderColor} max-w-sm w-full mx-4`}>
+                        <h2 className={`text-3xl mb-8 ${fontColor} font-arbutus`}>Dijeda</h2>
+                        
+                        <div className="space-y-4">
+                            <button
+                                onClick={() => setIsPaused(false)}
+                                className={`w-full ${panelBg} filter brightness-95 ${fontColor} px-6 py-4 rounded-xl font-bold font-outfit text-lg border-2 ${borderColor} hover:brightness-90 transition-all`}
+                            >
+                                Lanjutkan
+                            </button>
+                            <button
+                                onClick={onClose}
+                                className={`w-full bg-white ${fontColor} px-6 py-4 rounded-xl font-bold font-outfit text-lg border-2 ${borderColor} hover:bg-slate-50 transition-all`}
+                            >
+                                Kembali
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     );
 };

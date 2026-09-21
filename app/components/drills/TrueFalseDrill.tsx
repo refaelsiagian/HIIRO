@@ -8,21 +8,35 @@ interface TrueFalseProps {
     groupChars: CharItem[];
     onCorrect: () => void;
     onWrong: () => void;
+    isSansSerif?: boolean;
+    onToggleSansSerif?: () => void;
 }
 
-const TrueFalseDrill: React.FC<TrueFalseProps> = ({ groupChars, onCorrect, onWrong }) => {
-    const generateQuestion = useCallback(() => {
+const TrueFalseDrill: React.FC<TrueFalseProps> = ({ groupChars, onCorrect, onWrong, isSansSerif, onToggleSansSerif }) => {
+    const generateQuestion = useCallback((prevKana?: string, prevRomaji?: string) => {
         if (!groupChars || groupChars.length === 0) return { kana: '?', romaji: '?', isTrue: true };
+        
+        let possibleItems = groupChars;
+        if (groupChars.length > 1 && prevKana) {
+            possibleItems = groupChars.filter(c => c.k !== prevKana);
+        }
+
+        const correctItem = possibleItems[Math.floor(Math.random() * possibleItems.length)];
         
         // 50% chance to be true
         const isTrue = Math.random() > 0.5;
-        
-        const correctItem = groupChars[Math.floor(Math.random() * groupChars.length)];
         let shownRomaji = correctItem.r;
 
         if (!isTrue) {
             // Pick a different romaji from the group
             let otherItems = groupChars.filter(c => c.r !== correctItem.r);
+            // Also avoid prevRomaji if possible
+            if (otherItems.length > 1 && prevRomaji) {
+                const filtered = otherItems.filter(c => c.r !== prevRomaji);
+                if (filtered.length > 0) {
+                    otherItems = filtered;
+                }
+            }
             if (otherItems.length === 0) otherItems = groupChars; // Fallback if only 1 char
             shownRomaji = otherItems[Math.floor(Math.random() * otherItems.length)].r;
         }
@@ -35,7 +49,7 @@ const TrueFalseDrill: React.FC<TrueFalseProps> = ({ groupChars, onCorrect, onWro
     const handleAnswer = (answer: boolean) => {
         if (answer === question.isTrue) {
             onCorrect();
-            setQuestion(generateQuestion());
+            setQuestion(generateQuestion(question.kana, question.romaji));
         } else {
             onWrong();
             // Don't change question on wrong, let them try again or engine handles game over
@@ -43,28 +57,42 @@ const TrueFalseDrill: React.FC<TrueFalseProps> = ({ groupChars, onCorrect, onWro
     };
 
     return (
-        <div className="bg-white p-8 md:p-12 rounded-[2rem] shadow-xl text-center border border-slate-100 flex flex-col items-center w-full max-w-lg mx-auto">
-            <h2 className="text-xl font-bold mb-12 text-[#5C3A21]">Apakah pasangan ini benar?</h2>
-            
-            <div className="flex flex-col items-center justify-center mb-16">
-                <span className="text-[8rem] leading-none text-[#5C3A21] font-serif mb-4">{question.kana}</span>
-                <span className="text-5xl font-black text-[#D97D61] uppercase tracking-widest">{question.romaji}</span>
+        <div className="flex flex-col items-center justify-between h-full w-full max-w-lg mx-auto py-12">
+            <div className="flex-1 flex flex-col items-center justify-center">
+                <span className={`text-[180px] leading-none text-[#5C3A21] mb-8 ${!isSansSerif ? 'font-serif' : 'font-sans'}`}>
+                    {question.kana}
+                </span>
+                <span className="text-4xl text-[#5C3A21] font-arbutus tracking-wider">
+                    {question.romaji}
+                </span>
             </div>
 
-            <div className="flex w-full space-x-6">
-                <button
-                    onClick={() => handleAnswer(false)}
-                    className="flex-1 bg-red-100 hover:bg-red-200 text-red-600 border-4 border-red-200 py-6 rounded-2xl font-black text-2xl uppercase transition-all flex items-center justify-center shadow-sm active:scale-95"
-                >
-                    <X className="w-8 h-8 mr-2" strokeWidth={4} /> Salah
-                </button>
+            <div className="flex w-full justify-center space-x-24 mt-8">
                 <button
                     onClick={() => handleAnswer(true)}
-                    className="flex-1 bg-green-100 hover:bg-green-200 text-green-600 border-4 border-green-200 py-6 rounded-2xl font-black text-2xl uppercase transition-all flex items-center justify-center shadow-sm active:scale-95"
+                    className="text-green-600 hover:text-green-500 hover:scale-120 font-outfit font-black text-[80px] transition-all active:scale-95 leading-none w-48 h-48 flex items-center justify-center rounded-3xl"
                 >
-                    <Check className="w-8 h-8 mr-2" strokeWidth={4} /> Benar
+                    O
+                </button>
+                <button
+                    onClick={() => handleAnswer(false)}
+                    className="text-red-600 hover:text-red-500 hover:scale-120 font-outfit font-black text-[80px] transition-all active:scale-95 leading-none w-48 h-48 flex items-center justify-center rounded-3xl"
+                >
+                    X
                 </button>
             </div>
+
+            {onToggleSansSerif && (
+                <button 
+                    onClick={onToggleSansSerif}
+                    className="flex items-center text-[#5C3A21] opacity-60 hover:opacity-100 transition-opacity font-outfit text-md"
+                >
+                    <div className="w-4 h-4 rounded-full border border-[#5C3A21] mr-2 flex items-center justify-center">
+                        {isSansSerif && <div className="w-2 h-2 rounded-full bg-[#5C3A21]" />}
+                    </div>
+                    Ganti ke sans-serif
+                </button>
+            )}
         </div>
     );
 };
