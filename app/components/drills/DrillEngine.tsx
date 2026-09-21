@@ -17,6 +17,7 @@ interface DrillEngineProps {
         onCorrect: () => void;
         onWrong: () => void;
     }) => React.ReactNode;
+    onClose: () => void;
 }
 
 const DrillEngine: React.FC<DrillEngineProps> = ({
@@ -27,9 +28,9 @@ const DrillEngine: React.FC<DrillEngineProps> = ({
     maxTime,
     maxLives,
     targetScore,
-    children
+    children,
+    onClose
 }) => {
-    const router = useRouter();
     const { completeStage, failStage } = useGameStore();
 
     const [timeLeft, setTimeLeft] = useState(maxTime);
@@ -143,7 +144,7 @@ const DrillEngine: React.FC<DrillEngineProps> = ({
                             Ulangi Stage
                         </button>
                         <button
-                            onClick={() => router.push(`/stage/${category}/${groupId}`)}
+                            onClick={onClose}
                             className={`w-full bg-white ${fontColor} px-6 py-4 rounded-xl font-bold font-outfit text-lg border-2 ${borderColor} hover:bg-slate-50 transition-all`}
                         >
                             Kembali ke Menu
@@ -159,7 +160,7 @@ const DrillEngine: React.FC<DrillEngineProps> = ({
             {/* HUD */}
             <div className={`w-full max-w-4xl flex justify-between items-center mb-8 ${panelBg} p-4 rounded-2xl shadow-sm border-2 ${borderColor}`}>
                 <div className="flex items-center space-x-4">
-                    <button onClick={() => router.push(`/stage/${category}/${groupId}`)} className={`font-bold font-outfit text-lg hover:opacity-70 transition-opacity flex items-center`}>
+                    <button onClick={onClose} className={`font-bold font-outfit text-lg hover:opacity-70 transition-opacity flex items-center`}>
                         <ArrowLeft size={24} strokeWidth={2} className="mr-2" />
                         Kembali
                     </button>

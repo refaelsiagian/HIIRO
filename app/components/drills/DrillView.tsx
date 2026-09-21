@@ -1,26 +1,22 @@
 "use client";
 
 import React, { useMemo } from 'react';
-import { useParams, useSearchParams } from 'next/navigation';
 import SequenceDrill from './SequenceDrill';
 import DrillEngine from './DrillEngine';
-// We will create these shortly
-// import TrueFalseDrill from './TrueFalseDrill';
-// import FindFillDrill from './FindFillDrill';
 import TrueFalseDrill from './TrueFalseDrill';
 import FindFillDrill from './FindFillDrill';
 import { GroupData } from '../../types/kana';
 import { KANA_METADATA } from '../../utils/kanaData';
 
-export default function DrillPage() {
-    const params = useParams();
-    const searchParams = useSearchParams();
+interface DrillViewProps {
+    category: 'hiragana' | 'katakana';
+    groupId: string;
+    stageId: string;
+    mode: string;
+    onClose: () => void;
+}
 
-    const category = (searchParams.get('cat') as 'hiragana' | 'katakana') || 'hiragana';
-    const groupId = params.id as string;
-    const stageId = searchParams.get('stageId') || 'unknown';
-    const mode = searchParams.get('mode') || 'sequence';
-
+export default function DrillView({ category, groupId, stageId, mode, onClose }: DrillViewProps) {
     const groupData = useMemo(() => {
         const typesData = KANA_METADATA[category];
         if (!typesData) return null;
@@ -72,6 +68,7 @@ export default function DrillPage() {
             maxTime={maxTime}
             maxLives={3}
             targetScore={targetScore}
+            onClose={onClose}
         >
             {({ onCorrect, onWrong }) => (
                 <GameComponent 

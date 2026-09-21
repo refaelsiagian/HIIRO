@@ -8,6 +8,7 @@ import { useGameStore } from '../../../store/useGameStore';
 import { Star, Lock, ArrowLeft } from 'lucide-react';
 import { QuizBackgroundSVG } from '../../../components/QuizBackgroundSVG';
 import { PetalSVG } from '../../../components/PetalSVG';
+import DrillView from '../../../components/drills/DrillView';
 
 const STAGES = [
     { id: 'true-false-1', title: 'True or False', mode: 'true-false' },
@@ -26,6 +27,7 @@ const StageSelection: React.FC = () => {
 
     const [isSansSerif, setIsSansSerif] = useState(false);
     const [selectedCharIndex, setSelectedCharIndex] = useState(0);
+    const [activeDrill, setActiveDrill] = useState<{stageId: string, mode: string} | null>(null);
 
     const groupData = useMemo(() => {
         const typesData = KANA_METADATA[category];
@@ -49,6 +51,18 @@ const StageSelection: React.FC = () => {
 
     if (!groupData) {
         return <div className="min-h-screen flex items-center justify-center font-bold text-slate-400">Grup tidak ditemukan...</div>;
+    }
+
+    if (activeDrill) {
+        return (
+            <DrillView 
+                category={category} 
+                groupId={groupId} 
+                stageId={activeDrill.stageId} 
+                mode={activeDrill.mode} 
+                onClose={() => setActiveDrill(null)} 
+            />
+        );
     }
 
     const isShotesto = groupId.startsWith('shotesto');
@@ -219,7 +233,7 @@ const StageSelection: React.FC = () => {
                             <button
                                 key={stage.id}
                                 disabled={!isUnlocked}
-                                onClick={() => isUnlocked && router.push(`/drill/${groupId}?cat=${category}&stageId=${stage.id}&mode=${stage.mode}`)}
+                                onClick={() => isUnlocked && setActiveDrill({stageId: stage.id, mode: stage.mode})}
                                 className={`relative w-[707px] max-w-full h-auto aspect-[707/194] flex items-center justify-between transition-all duration-300 group ${!isUnlocked ? 'opacity-60 grayscale cursor-not-allowed' : 'cursor-pointer'}`}
                             >
                                 {/* SVG QUIZ BACKGROUND */}
