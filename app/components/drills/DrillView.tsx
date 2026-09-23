@@ -51,10 +51,17 @@ export default function DrillView({ category, groupId, stageId, mode, onClose, i
     let targetScore = 5; // e.g. 5 rounds for sequence
     let maxTime = 60;
 
+    let isMulti = false;
+
     if (mode === 'true-false') {
         GameComponent = TrueFalseDrill;
         targetScore = 10;
         maxTime = 45;
+    } else if (mode === 'true-false-multi') {
+        GameComponent = TrueFalseDrill;
+        targetScore = 10;
+        maxTime = 45;
+        isMulti = true;
     } else if (mode === 'find-fill') {
         GameComponent = FindFillDrill;
         targetScore = 5;
@@ -75,12 +82,14 @@ export default function DrillView({ category, groupId, stageId, mode, onClose, i
             onToggleSansSerif={onToggleSansSerif}
         >
             {({ onCorrect, onWrong, isSansSerif, onToggleSansSerif }) => (
+                // @ts-ignore - isMulti is only used by TrueFalseDrill
                 <GameComponent 
                     groupChars={groupData.chars} 
                     onCorrect={onCorrect} 
                     onWrong={onWrong} 
                     isSansSerif={isSansSerif}
                     onToggleSansSerif={onToggleSansSerif}
+                    isMulti={isMulti}
                 />
             )}
         </DrillEngine>

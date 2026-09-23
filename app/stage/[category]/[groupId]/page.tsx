@@ -12,7 +12,7 @@ import DrillView from '../../../components/drills/DrillView';
 
 const STAGES = [
     { id: 'true-false-1', title: 'True or False', mode: 'true-false' },
-    { id: 'true-false-2', title: 'True or False', mode: 'true-false' },
+    { id: 'true-false-2', title: 'True or False', mode: 'true-false-multi' },
     { id: 'sequence-1', title: 'Sequence Drill', mode: 'sequence' },
     { id: 'sequence-2', title: 'Sequence Drill', mode: 'sequence' },
     { id: 'find-fill-1', title: 'Find & Fill', mode: 'find-fill' },
