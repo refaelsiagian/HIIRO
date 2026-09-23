@@ -13,7 +13,7 @@ interface DrillViewProps {
     groupId: string;
     stageId: string;
     mode: string;
-    onClose: () => void;
+    onClose: (data?: any) => void;
     isSansSerif: boolean;
     onToggleSansSerif: () => void;
 }
@@ -74,6 +74,7 @@ export default function DrillView({ category, groupId, stageId, mode, onClose, i
             section={section}
             groupId={groupId}
             stageId={stageId}
+            mode={mode}
             maxTime={maxTime}
             maxLives={3}
             targetScore={targetScore}

@@ -5,10 +5,13 @@ import { useParams, useRouter } from 'next/navigation';
 import { KANA_METADATA } from '../../../utils/kanaData';
 import { GroupData } from '../../../types/kana';
 import { useGameStore } from '../../../store/useGameStore';
-import { Star, Lock, ArrowLeft } from 'lucide-react';
+import { Star, Lock, ArrowLeft, X } from 'lucide-react';
 import { QuizBackgroundSVG } from '../../../components/QuizBackgroundSVG';
 import { PetalSVG } from '../../../components/PetalSVG';
 import DrillView from '../../../components/drills/DrillView';
+import { PreGameOverlay } from '../../../components/drills/overlays/PreGameOverlay';
+import { PostGameOverlay } from '../../../components/drills/overlays/PostGameOverlay';
+import { PauseOverlay } from '../../../components/drills/overlays/PauseOverlay';
 
 const STAGES = [
     { id: 'true-false-1', title: 'True or False', mode: 'true-false' },
@@ -28,6 +31,25 @@ const StageSelection: React.FC = () => {
     const [isSansSerif, setIsSansSerif] = useState(false);
     const [selectedCharIndex, setSelectedCharIndex] = useState(0);
     const [activeDrill, setActiveDrill] = useState<{stageId: string, mode: string} | null>(null);
+    const [infoOverlayData, setInfoOverlayData] = useState<{stageId: string, mode: string, maxTime: number} | null>(null);
+    const [isClosingInfo, setIsClosingInfo] = useState(false);
+    const [postGameOverlayData, setPostGameOverlayData] = useState<any>(null);
+    const [closingPauseOverlay, setClosingPauseOverlay] = useState(false);
+
+    const closeInfoOverlay = () => {
+        setIsClosingInfo(true);
+        setTimeout(() => {
+            setInfoOverlayData(null);
+            setIsClosingInfo(false);
+        }, 400);
+    };
+
+    const handleStartDrill = () => {
+        if (!infoOverlayData) return;
+        // Instantly mount the drill and its Bersiap overlay without disappearing animation
+        setActiveDrill({stageId: infoOverlayData.stageId, mode: infoOverlayData.mode});
+        setInfoOverlayData(null);
+    };
 
     const groupData = useMemo(() => {
         const typesData = KANA_METADATA[category];
@@ -60,7 +82,20 @@ const StageSelection: React.FC = () => {
                 groupId={groupId} 
                 stageId={activeDrill.stageId} 
                 mode={activeDrill.mode} 
-                onClose={() => setActiveDrill(null)} 
+                onClose={(data) => {
+                    setActiveDrill(null);
+                    if (data && data.isPauseClose) {
+                        setClosingPauseOverlay(true);
+                        setTimeout(() => {
+                            setClosingPauseOverlay(false);
+                        }, 400);
+                    } else if (data) {
+                        setPostGameOverlayData(data);
+                        setTimeout(() => {
+                            setPostGameOverlayData(null);
+                        }, 400);
+                    }
+                }}
                 isSansSerif={isSansSerif}
                 onToggleSansSerif={() => setIsSansSerif(!isSansSerif)}
             />
@@ -235,7 +270,16 @@ const StageSelection: React.FC = () => {
                             <button
                                 key={stage.id}
                                 disabled={!isUnlocked}
-                                onClick={() => isUnlocked && setActiveDrill({stageId: stage.id, mode: stage.mode})}
+                                onClick={() => {
+                                    if (isUnlocked) {
+                                        // Determine maxTime to show in rules
+                                        let maxTime = 60;
+                                        if (stage.mode === 'true-false' || stage.mode === 'true-false-multi') maxTime = 45;
+                                        else if (stage.mode === 'find-fill') maxTime = 90;
+                                        
+                                        setInfoOverlayData({stageId: stage.id, mode: stage.mode, maxTime});
+                                    }
+                                }}
                                 className={`relative w-[707px] max-w-full h-auto aspect-[707/194] flex items-center justify-between transition-all duration-300 group ${!isUnlocked ? 'opacity-60 grayscale cursor-not-allowed' : 'cursor-pointer'}`}
                             >
                                 {/* SVG QUIZ BACKGROUND */}
@@ -281,8 +325,54 @@ const StageSelection: React.FC = () => {
                         );
                     })}
                 </div>
+                </div>
             </div>
-            </div>
+
+            {/* INFO OVERLAY */}
+            {infoOverlayData && (
+                <PreGameOverlay
+                    stageId={infoOverlayData.stageId}
+                    subtitle={
+                        infoOverlayData.mode === 'sequence' ? 'Urutan' :
+                        infoOverlayData.mode === 'find-fill' ? 'Cari & Isi' :
+                        'Truth or False'
+                    }
+                    description={
+                        infoOverlayData.mode === 'sequence' ? 'Pilih karakter yang tepat sesuai dengan urutan' :
+                        infoOverlayData.mode === 'find-fill' ? 'Temukan dan isi bagian yang kosong dengan benar' :
+                        'Tentukan apakah pasangan huruf hiragana dan romajinya benar atau salah'
+                    }
+                    maxTime={infoOverlayData.maxTime}
+                    isClosing={isClosingInfo}
+                    onClose={closeInfoOverlay}
+                    onStart={handleStartDrill}
+                />
+            )}
+            
+            {/* POST GAME OVERLAY (Closing Animation) */}
+            {postGameOverlayData && (
+                <PostGameOverlay
+                    score={postGameOverlayData.score}
+                    targetScore={postGameOverlayData.targetScore}
+                    lives={postGameOverlayData.lives}
+                    maxLives={postGameOverlayData.maxLives}
+                    timeLeft={postGameOverlayData.timeLeft}
+                    maxTime={postGameOverlayData.maxTime}
+                    currentPetals={postGameOverlayData.currentPetals}
+                    isClosing={true}
+                    onClose={() => {}}
+                    onReload={() => {}}
+                />
+            )}
+            
+            {/* PAUSE OVERLAY (Closing Animation) */}
+            {closingPauseOverlay && (
+                <PauseOverlay 
+                    onContinue={() => {}}
+                    onReturnToMenu={() => {}}
+                    isClosing={true}
+                />
+            )}
             
             <style jsx global>{`
                 .hide-scrollbar::-webkit-scrollbar {

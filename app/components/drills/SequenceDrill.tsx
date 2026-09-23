@@ -7,6 +7,9 @@ interface SequenceDrillProps {
     groupChars: CharItem[];
     onCorrect: () => void;
     onWrong: () => void;
+    isSansSerif?: boolean;
+    onToggleSansSerif?: () => void;
+    isMulti?: boolean;
 }
 
 const SequenceDrill: React.FC<SequenceDrillProps> = ({ groupChars, onCorrect, onWrong }) => {

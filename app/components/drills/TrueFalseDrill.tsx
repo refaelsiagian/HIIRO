@@ -14,18 +14,25 @@ interface TrueFalseProps {
 }
 
 const TrueFalseDrill: React.FC<TrueFalseProps> = ({ groupChars, onCorrect, onWrong, isSansSerif, onToggleSansSerif, isMulti = false }) => {
-    const generateQuestion = useCallback((prevKanas: string[] = []) => {
+    const generateQuestion = useCallback((prevItemsList: {kana: string, romaji: string}[] = []) => {
         if (!groupChars || groupChars.length === 0) return { items: [{ kana: '?', romaji: '?' }], isTrue: true };
         
+        const prevKanas = prevItemsList.map(i => i.kana);
+        const prevRomajis = prevItemsList.map(i => i.romaji);
+
         const count = isMulti ? (Math.random() > 0.5 ? 2 : 3) : 1;
         const isTrue = Math.random() > 0.5;
 
         // Separate items into new (not used in prev question) and prev
-        const newItems = groupChars.filter(c => !prevKanas.includes(c.k));
-        const prevItems = groupChars.filter(c => prevKanas.includes(c.k));
+        let newItems = groupChars.filter(c => !prevKanas.includes(c.k) && !prevRomajis.includes(c.r));
+        if (newItems.length < count) {
+            // Fallback if too strict
+            newItems = groupChars.filter(c => !prevKanas.includes(c.k));
+        }
+        const usedPrevItems = groupChars.filter(c => !newItems.includes(c));
 
         const shuffledNew = [...newItems].sort(() => 0.5 - Math.random());
-        const shuffledPrev = [...prevItems].sort(() => 0.5 - Math.random());
+        const shuffledPrev = [...usedPrevItems].sort(() => 0.5 - Math.random());
 
         let selectedChars = [];
         if (count === 1) {
@@ -59,9 +66,16 @@ const TrueFalseDrill: React.FC<TrueFalseProps> = ({ groupChars, onCorrect, onWro
                 // Collect romajis already present in the question to prevent duplicates
                 const currentDisplayedRomaji = items.map((it, i) => i === idx ? null : it.romaji).filter(Boolean);
 
-                // Find wrong romaji that isn't the correct answer AND isn't already displayed
-                let otherItems = groupChars.filter(c => c.r !== char.romaji && !currentDisplayedRomaji.includes(c.r));
+                // Find wrong romaji that isn't the correct answer AND isn't already displayed AND isn't from previous question
+                let otherItems = groupChars.filter(c => 
+                    c.r !== char.romaji && 
+                    !currentDisplayedRomaji.includes(c.r) &&
+                    !prevRomajis.includes(c.r)
+                );
                 
+                if (otherItems.length === 0) {
+                    otherItems = groupChars.filter(c => c.r !== char.romaji && !currentDisplayedRomaji.includes(c.r));
+                }
                 if (otherItems.length === 0) {
                     otherItems = groupChars.filter(c => c.r !== char.romaji); // Fallback: just don't be the correct answer
                 }
@@ -81,7 +95,7 @@ const TrueFalseDrill: React.FC<TrueFalseProps> = ({ groupChars, onCorrect, onWro
     const handleAnswer = (answer: boolean) => {
         if (answer === question.isTrue) {
             onCorrect();
-            setQuestion(generateQuestion(question.items.map(i => i.kana)));
+            setQuestion(generateQuestion(question.items));
         } else {
             onWrong();
         }

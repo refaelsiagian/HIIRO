@@ -7,6 +7,9 @@ interface FindFillProps {
     groupChars: CharItem[];
     onCorrect: () => void;
     onWrong: () => void;
+    isSansSerif?: boolean;
+    onToggleSansSerif?: () => void;
+    isMulti?: boolean;
 }
 
 const FindFillDrill: React.FC<FindFillProps> = ({ groupChars, onCorrect, onWrong }) => {

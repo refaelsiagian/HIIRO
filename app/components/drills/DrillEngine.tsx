@@ -3,13 +3,17 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useGameStore } from '../../store/useGameStore';
-import { Star, Pause, Heart, ArrowLeft } from 'lucide-react';
+import { Pause, Heart, ArrowLeft, Ban } from 'lucide-react';
+import { CountdownOverlay } from './overlays/CountdownOverlay';
+import { PostGameOverlay } from './overlays/PostGameOverlay';
+import { PauseOverlay } from './overlays/PauseOverlay';
 
 interface DrillEngineProps {
     category: string;
     section: string;
     groupId: string;
     stageId: string;
+    mode?: string;
     maxTime: number; // e.g. 60
     maxLives: number; // e.g. 3
     targetScore: number; // How many correct answers to win
@@ -19,7 +23,7 @@ interface DrillEngineProps {
         isSansSerif: boolean;
         onToggleSansSerif: () => void;
     }) => React.ReactNode;
-    onClose: () => void;
+    onClose: (postGameData?: any) => void;
     isSansSerif: boolean;
     onToggleSansSerif: () => void;
 }
@@ -29,6 +33,7 @@ const DrillEngine: React.FC<DrillEngineProps> = ({
     section,
     groupId,
     stageId,
+    mode,
     maxTime,
     maxLives,
     targetScore,
@@ -37,14 +42,18 @@ const DrillEngine: React.FC<DrillEngineProps> = ({
     isSansSerif,
     onToggleSansSerif
 }) => {
-    const { completeStage, failStage } = useGameStore();
+    const { completeStage, failStage, petals } = useGameStore();
+    const currentPetals = petals[category]?.[section] || 0;
 
     const [timeLeft, setTimeLeft] = useState(maxTime);
     const [lives, setLives] = useState(maxLives);
     const [score, setScore] = useState(0);
-    const [isFinished, setIsFinished] = useState(false);
+    const [gameState, setGameState] = useState<'ready' | 'playing' | 'finished'>('ready');
     const [starsEarned, setStarsEarned] = useState(0);
     const [isPaused, setIsPaused] = useState(false);
+    const [hasPaused, setHasPaused] = useState(false);
+    const [isClosingOverlay, setIsClosingOverlay] = useState(false);
+    const [resetKey, setResetKey] = useState(0);
 
     const isFinal = groupId.startsWith('daishiken') || groupId.startsWith('shotesto');
 
@@ -63,7 +72,18 @@ const DrillEngine: React.FC<DrillEngineProps> = ({
     }
 
     useEffect(() => {
-        if (isFinished || isPaused) return;
+        if (gameState === 'ready') {
+            const t1 = setTimeout(() => {
+                setIsClosingOverlay(true);
+            }, 1100);
+            const t2 = setTimeout(() => {
+                setGameState('playing');
+                setIsClosingOverlay(false);
+            }, 1500);
+            return () => { clearTimeout(t1); clearTimeout(t2); };
+        }
+
+        if (gameState !== 'playing' || isPaused) return;
 
         const timer = setInterval(() => {
             setTimeLeft(prev => {
@@ -77,10 +97,10 @@ const DrillEngine: React.FC<DrillEngineProps> = ({
         }, 1000);
 
         return () => clearInterval(timer);
-    }, [isFinished, isPaused]);
+    }, [gameState, isPaused]);
 
     const handleCorrect = () => {
-        if (isFinished) return;
+        if (gameState !== 'playing') return;
         setScore(prev => {
             const newScore = prev + 1;
             if (newScore >= targetScore) {
@@ -91,7 +111,7 @@ const DrillEngine: React.FC<DrillEngineProps> = ({
     };
 
     const handleWrong = () => {
-        if (isFinished) return;
+        if (gameState !== 'playing') return;
         setLives(prev => {
             const newLives = prev - 1;
             if (newLives <= 0) {
@@ -102,65 +122,49 @@ const DrillEngine: React.FC<DrillEngineProps> = ({
     };
 
     const handleGameOver = (success: boolean) => {
-        setIsFinished(true);
+        setGameState('finished');
 
         if (!success) {
             failStage(category, section);
             setStarsEarned(0);
         } else {
             let stars = 0;
-            // 1. Finish within time limit
-            if (timeLeft > 0) stars += 1;
-            // 2. Finish without consuming lives
+            if (success) stars += 1;
             if (lives === maxLives) stars += 1;
-            // 3. Finish with amount of seconds left (e.g. > 50% time)
-            if (timeLeft >= maxTime / 2) stars += 1;
+            if (timeLeft >= 15) stars += 1;
 
             setStarsEarned(stars);
             completeStage(category, section, groupId, stageId, stars, score);
         }
     };
 
-    if (isFinished) {
-        return (
-            <div className={`min-h-screen ${mainBg} p-6 font-sans flex flex-col items-center justify-center`}>
-                <div className={`${panelBg} p-12 rounded-[2rem] shadow-xl text-center border-4 ${borderColor} max-w-md w-full`}>
-                    {starsEarned > 0 ? (
-                        <>
-                            <div className="flex justify-center space-x-2 mb-6">
-                                {[1, 2, 3].map(star => (
-                                    <Star key={star} className={`w-12 h-12 ${star <= starsEarned ? starColor : 'text-slate-200/50'}`} />
-                                ))}
-                            </div>
-                            <h2 className={`text-4xl mb-4 ${fontColor} font-arbutus`}>Selesai!</h2>
-                            <p className={`${fontColor} opacity-80 mb-8 font-medium font-outfit text-xl`}>Kamu mendapatkan {starsEarned} bintang!</p>
-                        </>
-                    ) : (
-                        <>
-                            <div className="text-6xl mb-6">💀</div>
-                            <h2 className={`text-4xl mb-4 ${fontColor} font-arbutus`}>Gagal</h2>
-                            <p className={`${fontColor} opacity-80 mb-8 font-medium font-outfit text-xl`}>Jangan menyerah! Coba lagi.</p>
-                        </>
-                    )}
+    const handleFinishedClose = () => {
+        // Instantly return to menu and pass data so parent can render the closing animation over the menu
+        onClose({
+            score,
+            targetScore,
+            lives,
+            maxLives,
+            timeLeft,
+            maxTime: maxTime,
+            currentPetals
+        });
+    };
 
-                    <div className="space-y-3">
-                        <button
-                            onClick={() => window.location.reload()}
-                            className={`w-full ${panelBg} filter brightness-95 ${fontColor} px-6 py-4 rounded-xl font-bold font-outfit text-lg border-2 ${borderColor} hover:brightness-90 transition-all`}
-                        >
-                            Ulangi Stage
-                        </button>
-                        <button
-                            onClick={onClose}
-                            className={`w-full bg-white ${fontColor} px-6 py-4 rounded-xl font-bold font-outfit text-lg border-2 ${borderColor} hover:bg-slate-50 transition-all`}
-                        >
-                            Kembali ke Menu
-                        </button>
-                    </div>
-                </div>
-            </div>
-        );
-    }
+    const handleFinishedReload = () => {
+        // Reset all state instantly
+        setTimeLeft(maxTime);
+        setLives(maxLives);
+        setScore(0);
+        setStarsEarned(0);
+        setIsPaused(false);
+        setHasPaused(false);
+        setGameState('ready');
+        setIsClosingOverlay(false);
+        setResetKey(prev => prev + 1);
+    };
+
+
 
     return (
         <div className={`min-h-screen ${mainBg} p-6 font-sans flex flex-col items-center justify-between relative overflow-hidden ${fontColor}`}>
@@ -169,10 +173,19 @@ const DrillEngine: React.FC<DrillEngineProps> = ({
             <div className="w-full relative flex flex-col items-center pt-8">
                 {/* Pause Button */}
                 <button 
-                    onClick={() => setIsPaused(true)}
-                    className={`absolute top-8 right-8 md:right-12 hover:opacity-70 transition-opacity ${fontColor}`}
+                    onClick={() => {
+                        if (!hasPaused) {
+                            setIsPaused(true);
+                            setHasPaused(true);
+                        }
+                    }}
+                    disabled={hasPaused}
+                    className={`absolute top-8 right-8 md:right-12 transition-opacity flex items-center justify-center w-12 h-12 ${fontColor} ${hasPaused ? 'opacity-50 cursor-not-allowed' : 'hover:opacity-70'}`}
                 >
                     <Pause size={36} fill="currentColor" strokeWidth={0} />
+                    {hasPaused && (
+                        <Ban size={44} className="absolute text-red-500" strokeWidth={4} />
+                    )}
                 </button>
                 
                 {/* Hearts */}
@@ -192,32 +205,38 @@ const DrillEngine: React.FC<DrillEngineProps> = ({
             </div>
 
             {/* Game Content */}
-            <div className="w-full max-w-4xl flex-1 flex flex-col items-center justify-center relative">
+            <div key={resetKey} className="w-full max-w-4xl flex-1 flex flex-col items-center justify-center relative">
                 {children({ onCorrect: handleCorrect, onWrong: handleWrong, isSansSerif, onToggleSansSerif })}
             </div>
 
             {/* PAUSE MODAL */}
             {isPaused && (
-                <div className="absolute inset-0 z-50 flex items-center justify-center bg-white/60 backdrop-blur-sm">
-                    <div className={`${panelBg} p-12 rounded-[2rem] shadow-xl text-center border-4 ${borderColor} max-w-sm w-full mx-4`}>
-                        <h2 className={`text-3xl mb-8 ${fontColor} font-arbutus`}>Dijeda</h2>
-                        
-                        <div className="space-y-4">
-                            <button
-                                onClick={() => setIsPaused(false)}
-                                className={`w-full ${panelBg} filter brightness-95 ${fontColor} px-6 py-4 rounded-xl font-bold font-outfit text-lg border-2 ${borderColor} hover:brightness-90 transition-all`}
-                            >
-                                Lanjutkan
-                            </button>
-                            <button
-                                onClick={onClose}
-                                className={`w-full bg-white ${fontColor} px-6 py-4 rounded-xl font-bold font-outfit text-lg border-2 ${borderColor} hover:bg-slate-50 transition-all`}
-                            >
-                                Kembali
-                            </button>
-                        </div>
-                    </div>
-                </div>
+                <PauseOverlay 
+                    onContinue={() => setIsPaused(false)}
+                    onReturnToMenu={() => {
+                        // Instantly return to menu with isPauseClose flag
+                        onClose({ isPauseClose: true });
+                    }}
+                />
+            )}
+
+            {/* OVERLAYS */}
+            {gameState === 'ready' && (
+                <CountdownOverlay isClosing={isClosingOverlay} />
+            )}
+
+            {gameState === 'finished' && (
+                <PostGameOverlay
+                    score={score}
+                    targetScore={targetScore}
+                    lives={lives}
+                    maxLives={maxLives}
+                    timeLeft={timeLeft}
+                    currentPetals={currentPetals}
+                    isClosing={isClosingOverlay}
+                    onClose={handleFinishedClose}
+                    onReload={handleFinishedReload}
+                />
             )}
         </div>
     );
