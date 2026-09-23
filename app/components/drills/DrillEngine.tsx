@@ -232,6 +232,7 @@ const DrillEngine: React.FC<DrillEngineProps> = ({
                     lives={lives}
                     maxLives={maxLives}
                     timeLeft={timeLeft}
+                    maxTime={maxTime}
                     currentPetals={currentPetals}
                     isClosing={isClosingOverlay}
                     onClose={handleFinishedClose}
