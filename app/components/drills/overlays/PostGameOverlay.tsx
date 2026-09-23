@@ -8,6 +8,7 @@ interface PostGameOverlayProps {
     lives: number;
     maxLives: number;
     timeLeft: number;
+    maxTime: number;
     currentPetals: number;
     isClosing: boolean;
     onClose: () => void;
@@ -20,11 +21,14 @@ export const PostGameOverlay: React.FC<PostGameOverlayProps> = ({
     lives,
     maxLives,
     timeLeft,
+    maxTime,
     currentPetals,
     isClosing,
     onClose,
     onReload
 }) => {
+    const timeThreshold = maxTime >= 30 ? 15 : maxTime / 2;
+
     return (
         <div className={`absolute inset-0 z-40 flex items-center justify-center bg-black/40 backdrop-blur-sm p-4 ${isClosing ? 'animate-fadeout' : 'animate-fadein'}`}>
             <div className={`relative w-full max-w-5xl aspect-[1.8/1] max-h-[90vh] flex items-center justify-center text-[#5A301E] ${isClosing ? 'animate-popdown' : 'animate-popup'}`}>
@@ -47,8 +51,8 @@ export const PostGameOverlay: React.FC<PostGameOverlayProps> = ({
                                 <span className={`text-xl ${score >= targetScore && lives === maxLives ? '' : 'opacity-50'}`}>Nyawa tidak berkurang</span>
                             </div>
                             <div className="flex items-center space-x-4">
-                                <Star className={`w-8 h-8 ${score >= targetScore && timeLeft >= 15 ? 'fill-[#C15A3D] text-[#C15A3D]' : 'text-[#C15A3D] opacity-30'}`} />
-                                <span className={`text-xl ${score >= targetScore && timeLeft >= 15 ? '' : 'opacity-50'}`}>Waktu tersisa tidak kurang dari 15 detik</span>
+                                <Star className={`w-8 h-8 ${score >= targetScore && timeLeft >= timeThreshold ? 'fill-[#C15A3D] text-[#C15A3D]' : 'text-[#C15A3D] opacity-30'}`} />
+                                <span className={`text-xl ${score >= targetScore && timeLeft >= timeThreshold ? '' : 'opacity-50'}`}>Waktu tersisa tidak kurang dari {timeThreshold} detik</span>
                             </div>
                         </div>
 
