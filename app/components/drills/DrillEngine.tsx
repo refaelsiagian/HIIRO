@@ -207,6 +207,7 @@ const DrillEngine: React.FC<DrillEngineProps> = ({
             {isPaused && (
                 <PauseOverlay 
                     onContinue={() => setIsPaused(false)}
+                    onRestart={handleFinishedReload}
                     onReturnToMenu={() => {
                         // Instantly return to menu with isPauseClose flag
                         onClose({ isPauseClose: true });

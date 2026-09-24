@@ -3,10 +3,11 @@ import React, { useState } from 'react';
 interface PauseOverlayProps {
     onContinue: () => void;
     onReturnToMenu: () => void;
+    onRestart: () => void;
     isClosing?: boolean;
 }
 
-export const PauseOverlay: React.FC<PauseOverlayProps> = ({ onContinue, onReturnToMenu, isClosing: externalIsClosing }) => {
+export const PauseOverlay: React.FC<PauseOverlayProps> = ({ onContinue, onReturnToMenu, onRestart, isClosing: externalIsClosing }) => {
     const [internalIsClosing, setInternalIsClosing] = useState(false);
     const isClosing = externalIsClosing !== undefined ? externalIsClosing : internalIsClosing;
     
@@ -19,6 +20,13 @@ export const PauseOverlay: React.FC<PauseOverlayProps> = ({ onContinue, onReturn
 
     const handleReturn = () => {
         onReturnToMenu();
+    };
+
+    const handleRestart = () => {
+        setInternalIsClosing(true);
+        setTimeout(() => {
+            onRestart();
+        }, 400);
     };
 
     return (
@@ -35,6 +43,9 @@ export const PauseOverlay: React.FC<PauseOverlayProps> = ({ onContinue, onReturn
                     <div className="flex w-full justify-around items-end mt-auto mb-[8%] px-16 font-outfit text-2xl font-bold">
                         <button onClick={handleReturn} className="hover:text-[#C15A3D] transition-colors">
                             Kembali ke menu
+                        </button>
+                        <button onClick={handleRestart} className="hover:text-[#C15A3D] transition-colors">
+                            Ulang
                         </button>
                         <button onClick={handleContinue} className="hover:text-[#C15A3D] transition-colors">
                             Lanjutkan
