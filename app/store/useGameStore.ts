@@ -10,12 +10,12 @@ interface GameState {
     // category -> section -> group -> stage -> score
     progress: Record<string, Record<string, Record<string, Record<string, StageScore>>>>;
     
-    // category -> section -> petals (perfect streak count)
-    petals: Record<string, Record<string, number>>;
+    // category -> section -> group -> stage -> petals (perfect streak count)
+    petals: Record<string, Record<string, Record<string, Record<string, number>>>>;
     
     // Actions
     completeStage: (category: string, section: string, group: string, stage: string, stars: number, score: number) => void;
-    failStage: (category: string, section: string) => void; // Resets petals
+    failStage: (category: string, section: string, group: string, stage: string) => void; // Resets petals
     getGroupStars: (category: string, section: string, group: string) => number;
     resetProgress: () => void;
 }
@@ -28,9 +28,9 @@ export const useGameStore = create<GameState>()(
             
             completeStage: (category, section, group, stage, stars, score) => set((state) => {
                 const newProgress = { ...state.progress };
-                if (!newProgress[category]) newProgress[category] = {};
-                if (!newProgress[category][section]) newProgress[category][section] = {};
-                if (!newProgress[category][section][group]) newProgress[category][section][group] = {};
+                newProgress[category] = { ...(newProgress[category] || {}) };
+                newProgress[category][section] = { ...(newProgress[category][section] || {}) };
+                newProgress[category][section][group] = { ...(newProgress[category][section][group] || {}) };
                 
                 // Only save if it's a new high score for stars
                 const currentStars = newProgress[category][section][group][stage]?.stars || 0;
@@ -40,25 +40,29 @@ export const useGameStore = create<GameState>()(
                 }
 
                 const newPetals = { ...state.petals };
-                if (!newPetals[category]) newPetals[category] = {};
+                newPetals[category] = { ...(newPetals[category] || {}) };
+                newPetals[category][section] = { ...(typeof newPetals[category][section] === 'object' ? newPetals[category][section] : {}) };
+                newPetals[category][section][group] = { ...(newPetals[category][section][group] || {}) };
                 
                 // If it's a perfect 3-star finish, increment petals streak
                 if (stars === 3) {
-                    const currentPetals = newPetals[category][section] || 0;
+                    const currentPetals = newPetals[category][section][group][stage] || 0;
                     // Max petals logic can be handled in UI, or we can cap it here. We'll let UI handle it.
-                    newPetals[category][section] = currentPetals + 1;
+                    newPetals[category][section][group][stage] = currentPetals + 1;
                 } else {
                     // "if you fail getting 3 star... petals reset"
-                    newPetals[category][section] = 0;
+                    newPetals[category][section][group][stage] = 0;
                 }
 
                 return { progress: newProgress, petals: newPetals };
             }),
             
-            failStage: (category, section) => set((state) => {
+            failStage: (category, section, group, stage) => set((state) => {
                 const newPetals = { ...state.petals };
-                if (!newPetals[category]) newPetals[category] = {};
-                newPetals[category][section] = 0; // Reset streak
+                newPetals[category] = { ...(newPetals[category] || {}) };
+                newPetals[category][section] = { ...(typeof newPetals[category][section] === 'object' ? newPetals[category][section] : {}) };
+                newPetals[category][section][group] = { ...(newPetals[category][section][group] || {}) };
+                newPetals[category][section][group][stage] = 0; // Reset streak
                 return { petals: newPetals };
             }),
 

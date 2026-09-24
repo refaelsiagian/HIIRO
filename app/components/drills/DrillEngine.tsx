@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import { useGameStore } from '../../store/useGameStore';
 import { Pause, Heart, ArrowLeft, Ban } from 'lucide-react';
@@ -43,7 +43,7 @@ const DrillEngine: React.FC<DrillEngineProps> = ({
     onToggleSansSerif
 }) => {
     const { completeStage, failStage, petals } = useGameStore();
-    const currentPetals = petals[category]?.[section] || 0;
+    const currentPetals = petals[category]?.[section]?.[groupId]?.[stageId] || 0;
 
     const [timeLeft, setTimeLeft] = useState(maxTime);
     const [lives, setLives] = useState(maxLives);
@@ -86,57 +86,51 @@ const DrillEngine: React.FC<DrillEngineProps> = ({
         if (gameState !== 'playing' || isPaused) return;
 
         const timer = setInterval(() => {
-            setTimeLeft(prev => {
-                if (prev <= 1) {
-                    clearInterval(timer);
-                    handleGameOver(false);
-                    return 0;
-                }
-                return prev - 1;
-            });
+            setTimeLeft(prev => Math.max(0, prev - 1));
         }, 1000);
 
         return () => clearInterval(timer);
     }, [gameState, isPaused]);
 
-    const handleCorrect = () => {
-        if (gameState !== 'playing') return;
-        setScore(prev => {
-            const newScore = prev + 1;
-            if (newScore >= targetScore) {
-                handleGameOver(true);
-            }
-            return newScore;
-        });
-    };
-
-    const handleWrong = () => {
-        if (gameState !== 'playing') return;
-        setLives(prev => {
-            const newLives = prev - 1;
-            if (newLives <= 0) {
-                handleGameOver(false);
-            }
-            return newLives;
-        });
-    };
-
-    const handleGameOver = (success: boolean) => {
+    const handleGameOver = useCallback((success: boolean) => {
         setGameState('finished');
 
         if (!success) {
-            failStage(category, section);
+            failStage(category, section, groupId, stageId);
             setStarsEarned(0);
         } else {
             let stars = 0;
+            const timeThreshold = maxTime >= 30 ? 15 : maxTime / 2;
+            
             if (success) stars += 1;
             if (lives === maxLives) stars += 1;
-            if (timeLeft >= 15) stars += 1;
+            if (timeLeft >= timeThreshold) stars += 1;
 
             setStarsEarned(stars);
             completeStage(category, section, groupId, stageId, stars, score);
         }
+    }, [category, section, groupId, stageId, maxLives, maxTime, score, lives, timeLeft, failStage, completeStage]);
+
+    useEffect(() => {
+        if (gameState !== 'playing') return;
+
+        if (score >= targetScore) {
+            handleGameOver(true);
+        } else if (lives <= 0 || timeLeft <= 0) {
+            handleGameOver(false);
+        }
+    }, [score, lives, timeLeft, targetScore, gameState, handleGameOver]);
+
+    const handleCorrect = () => {
+        if (gameState !== 'playing') return;
+        setScore(prev => prev + 1);
     };
+
+    const handleWrong = () => {
+        if (gameState !== 'playing') return;
+        setLives(prev => prev - 1);
+    };
+
 
     const handleFinishedClose = () => {
         // Instantly return to menu and pass data so parent can render the closing animation over the menu

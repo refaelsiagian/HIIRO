@@ -111,7 +111,6 @@ const StageSelection: React.FC = () => {
     const groupProgress = progress[category]?.[section]?.[groupId] || {};
     const earnedStars = Object.values(groupProgress).reduce((acc, curr) => acc + curr.stars, 0);
     const totalStars = isFinal ? 1 * 3 : STAGES.length * 3;
-    const currentPetals = petals[category]?.[section] || 0;
     const maxPetals = section === 'daishiken' ? 10 : 5;
 
     // COLORS LOGIC based on layout desc.txt
@@ -119,20 +118,20 @@ const StageSelection: React.FC = () => {
     let panelBg = "bg-[#FFE8E0]";
     let borderColor = "bg-[#E89A81]";
     let fontColor = "text-[#6F3E28]";
-    let starColor = "fill-[#CC6E34] text-[#CC6E34]";
-    let starColorEmpty = "text-[#CC6E34] border-[#CC6E34]";
+    let starColor = "text-[#CC6E34]";
+    let starColorEmpty = "text-[#CC6E34]";
     let petalBg = "bg-[#CC6E34]";
 
     if (isFinal) {
         panelBg = "bg-[#ECC5FF]";
         borderColor = "bg-[#C681E8]";
         fontColor = "text-[#4A286F]";
-        starColor = "fill-[#8F34CC] text-[#8F34CC]";
-        starColorEmpty = "text-[#8F34CC] border-[#8F34CC]";
+        starColor = "text-[#8F34CC]";
+        starColorEmpty = "text-[#8F34CC]";
         petalBg = "bg-[#8F34CC]";
     }
 
-    const renderFlower = (stageIndex: number, isUnlocked: boolean, customColor?: string) => {
+    const renderFlower = (stageIndex: number, isUnlocked: boolean, stagePetals: number, customColor?: string) => {
         // Final stage has 10 petals, normal has 5
         const maxPetals = isFinal ? 10 : 5;
         const angleStep = 360 / maxPetals;
@@ -142,7 +141,7 @@ const StageSelection: React.FC = () => {
             <div className={`relative w-[120px] h-[120px] ${!isUnlocked ? 'opacity-30 grayscale' : ''} ${colorToUse}`}>
                 {[...Array(maxPetals)].map((_, i) => {
                     const rotation = i * angleStep;
-                    const isActive = currentPetals > i;
+                    const isActive = stagePetals > i;
                     
                     return (
                         <div 
@@ -265,6 +264,9 @@ const StageSelection: React.FC = () => {
                         const plateBorder = isLastStage ? "#C681E8" : "#E89A81";
                         const plateFontColor = isLastStage ? "text-[#4A286F]" : fontColor;
                         const plateStarColor = isLastStage ? "text-[#8F34CC]" : starColor;
+                        const plateStarColorEmpty = isLastStage ? "text-[#8F34CC]" : starColorEmpty;
+                        
+                        const stagePetals = petals[category]?.[section]?.[groupId]?.[stage.id] || 0;
 
                         return (
                             <button
@@ -308,7 +310,7 @@ const StageSelection: React.FC = () => {
                                             {[1, 2, 3].map(starNum => (
                                                 <Star 
                                                     key={starNum} 
-                                                    className={`w-[40px] h-[40px] ${plateStarColor}`} 
+                                                    className={`w-[40px] h-[40px] ${starNum <= stageStars ? plateStarColor : plateStarColorEmpty} transition-all duration-300`} 
                                                     fill={starNum <= stageStars ? "currentColor" : "none"}
                                                     strokeWidth={1.5}
                                                 />
@@ -318,7 +320,7 @@ const StageSelection: React.FC = () => {
 
                                     {/* Flower (Petals) */}
                                     <div className="flex-shrink-0 flex items-center justify-center pr-[12px]">
-                                        {renderFlower(index, isUnlocked, plateStarColor)}
+                                        {renderFlower(index, isUnlocked, stagePetals, plateStarColor)}
                                     </div>
                                 </div>
                             </button>
