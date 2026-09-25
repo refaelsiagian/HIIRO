@@ -62,12 +62,14 @@ const DrillEngine: React.FC<DrillEngineProps> = ({
     let panelBg = "bg-[#FFE8E0]";
     let borderColor = "border-[#E89A81]";
     let fontColor = "text-[#6F3E28]";
+    let barBg = "bg-[#6F3E28]";
     let starColor = "fill-[#CC6E34] text-[#CC6E34]";
 
     if (isFinal) {
         panelBg = "bg-[#ECC5FF]";
         borderColor = "border-[#C681E8]";
         fontColor = "text-[#4A286F]";
+        barBg = "bg-[#4A286F]";
         starColor = "fill-[#8F34CC] text-[#8F34CC]";
     }
 
@@ -195,6 +197,14 @@ const DrillEngine: React.FC<DrillEngineProps> = ({
                 {/* Timer */}
                 <div className={`font-outfit text-[44px] leading-none ${fontColor}`}>
                     {timeLeft}
+                </div>
+                
+                {/* Progress Bar */}
+                <div className="w-full max-w-[400px] h-3 bg-black/10 rounded-full mt-4 overflow-hidden relative">
+                    <div 
+                        className={`h-full ${barBg} transition-all duration-300 ease-out`}
+                        style={{ width: `${Math.min(100, (score / targetScore) * 100)}%` }}
+                    />
                 </div>
             </div>
 
