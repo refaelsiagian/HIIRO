@@ -64,8 +64,8 @@ export default function DrillView({ category, groupId, stageId, mode, onClose, i
         isMulti = true;
     } else if (mode === 'find-fill') {
         GameComponent = FindFillDrill;
-        targetScore = 5;
-        maxTime = 90;
+        targetScore = 10;
+        maxTime = 120;
     }
 
     return (
