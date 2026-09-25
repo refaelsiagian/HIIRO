@@ -22,6 +22,7 @@ interface DrillEngineProps {
         onWrong: () => void;
         isSansSerif: boolean;
         onToggleSansSerif: () => void;
+        isActive?: boolean;
     }) => React.ReactNode;
     onClose: (postGameData?: any) => void;
     isSansSerif: boolean;
@@ -209,8 +210,14 @@ const DrillEngine: React.FC<DrillEngineProps> = ({
             </div>
 
             {/* Game Content */}
-            <div key={resetKey} className="w-full max-w-4xl flex-1 flex flex-col items-center justify-center relative">
-                {children({ onCorrect: handleCorrect, onWrong: handleWrong, isSansSerif, onToggleSansSerif })}
+            <div key={resetKey} className="w-full max-w-4xl flex-1 flex flex-col items-center justify-center relative pb-24">
+                {children({ 
+                    onCorrect: handleCorrect, 
+                    onWrong: handleWrong, 
+                    isSansSerif, 
+                    onToggleSansSerif,
+                    isActive: gameState === 'playing' && !isPaused
+                })}
             </div>
 
             {/* PAUSE MODAL */}

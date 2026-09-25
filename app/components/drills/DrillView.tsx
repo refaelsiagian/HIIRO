@@ -82,7 +82,7 @@ export default function DrillView({ category, groupId, stageId, mode, onClose, i
             isSansSerif={isSansSerif}
             onToggleSansSerif={onToggleSansSerif}
         >
-            {({ onCorrect, onWrong, isSansSerif, onToggleSansSerif }) => (
+            {({ onCorrect, onWrong, isSansSerif, onToggleSansSerif, isActive }) => (
                 // @ts-ignore - isMulti is only used by TrueFalseDrill
                 <GameComponent 
                     groupChars={groupData.chars} 
@@ -91,6 +91,7 @@ export default function DrillView({ category, groupId, stageId, mode, onClose, i
                     isSansSerif={isSansSerif}
                     onToggleSansSerif={onToggleSansSerif}
                     isMulti={isMulti}
+                    isActive={isActive}
                 />
             )}
         </DrillEngine>

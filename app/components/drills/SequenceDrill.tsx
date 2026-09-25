@@ -10,14 +10,14 @@ interface SequenceDrillProps {
     isSansSerif?: boolean;
     onToggleSansSerif?: () => void;
     isMulti?: boolean;
+    isActive?: boolean;
 }
 
-const SequenceDrill: React.FC<SequenceDrillProps> = ({ groupChars, onCorrect, onWrong }) => {
+const SequenceDrill: React.FC<SequenceDrillProps> = ({ groupChars, onCorrect, onWrong, isSansSerif, isActive }) => {
     const createNewQuestionData = useCallback((chars: CharItem[]) => {
-        // Fallback for empty groups (like Daishiken placeholder)
+        // Fallback for empty groups
         if (!chars || chars.length === 0) return { newSequence: [], newOptions: [] };
         
-        // Ensure we have at least 3 chars for the drill (repeat if needed)
         let pool = [...chars];
         while (pool.length < 3) {
             pool = [...pool, ...chars];
@@ -25,7 +25,15 @@ const SequenceDrill: React.FC<SequenceDrillProps> = ({ groupChars, onCorrect, on
 
         const shuffled = pool.sort(() => 0.5 - Math.random());
         const seq = shuffled.slice(0, 3);
-        const options = [...seq].sort(() => 0.5 - Math.random()); // Options just the 3 correct ones shuffled
+        
+        // Options are ALL chars from the group, shuffled
+        let optionsPool = [...chars];
+        // If the group is small, we duplicate to have at least 3 options
+        while (optionsPool.length < 3) {
+            optionsPool = [...optionsPool, ...chars];
+        }
+        
+        const options = optionsPool.sort(() => 0.5 - Math.random());
         return {
             newSequence: seq,
             newOptions: options,
@@ -38,7 +46,7 @@ const SequenceDrill: React.FC<SequenceDrillProps> = ({ groupChars, onCorrect, on
     const [displayIndex, setDisplayIndex] = useState<number>(0);
     const [isDisplaying, setIsDisplaying] = useState<boolean>(true);
     const [userInput, setUserInput] = useState<string[]>([]);
-    const [message, setMessage] = useState<string>("Hafalkan urutannya...");
+    const [message, setMessage] = useState<string>("Hapalkan urutannya");
 
     const startNextQuestion = useCallback(() => {
         const { newSequence, newOptions } = createNewQuestionData(groupChars);
@@ -47,11 +55,11 @@ const SequenceDrill: React.FC<SequenceDrillProps> = ({ groupChars, onCorrect, on
         setUserInput([]);
         setIsDisplaying(true);
         setDisplayIndex(0);
-        setMessage("Hafalkan...");
+        setMessage("Hapalkan urutannya");
     }, [groupChars, createNewQuestionData]);
 
     useEffect(() => {
-        if (!isDisplaying) return;
+        if (!isDisplaying || !isActive) return;
         if (sequence.length === 0) return;
 
         const timer = setTimeout(() => {
@@ -59,13 +67,13 @@ const SequenceDrill: React.FC<SequenceDrillProps> = ({ groupChars, onCorrect, on
                 setDisplayIndex(prev => prev + 1);
             } else {
                 setIsDisplaying(false);
-                setMessage("Pilih sesuai urutan!");
+                setMessage("Pilih sesuai urutan");
                 setDisplayIndex(3);
             }
         }, 1200);
 
         return () => clearTimeout(timer);
-    }, [displayIndex, isDisplaying, sequence.length]);
+    }, [displayIndex, isDisplaying, sequence.length, isActive]);
 
     const handleChoice = (romaji: string) => {
         if (isDisplaying) return;
@@ -77,7 +85,7 @@ const SequenceDrill: React.FC<SequenceDrillProps> = ({ groupChars, onCorrect, on
             setUserInput([]);
             setIsDisplaying(true);
             setDisplayIndex(0);
-            setMessage("Salah! Coba lagi hafalkan...");
+            setMessage("Salah, hapalkan ulang");
             return;
         }
 
@@ -94,54 +102,79 @@ const SequenceDrill: React.FC<SequenceDrillProps> = ({ groupChars, onCorrect, on
     if (sequence.length === 0) return <div>No data</div>;
 
     return (
-        <div className="bg-white p-8 rounded-[2rem] shadow-xl text-center border border-slate-100">
-            <h2 className="text-xl font-bold mb-8 text-[#5C3A21]">{message}</h2>
-            
-            <div className="flex justify-center space-x-4 mb-12 h-32">
-                {sequence.map((item, index) => {
-                    const isRevealed = isDisplaying && index <= displayIndex;
-                    const isAnswered = !isDisplaying && index < userInput.length;
-                    
-                    let content = "?";
-                    let charToShow = item;
-                    
-                    if (isRevealed) content = item.k;
-                    if (isAnswered) {
-                        const answeredItem = sequence.find(s => s.r === userInput[index]);
-                        content = answeredItem ? answeredItem.k : "?";
-                    }
-
-                    return (
-                        <div 
-                            key={index} 
-                            className={`w-24 h-32 flex items-center justify-center rounded-2xl border-4 transition-all duration-300
-                                ${isRevealed ? 'bg-[#FDF0EB] border-[#ECA68D] text-slate-800' : 
-                                 isAnswered ? 'bg-[#FBE4D8] border-[#D97D61] text-slate-800' : 
-                                 'bg-slate-50 border-slate-200 text-slate-300'}`}
-                        >
-                            <span className="text-5xl font-serif">{content}</span>
-                        </div>
-                    );
-                })}
+        <div className="flex flex-col items-center justify-center w-full h-full text-[#5C3A21] relative">
+            {/* Absolute positioning keeps the message stuck in place */}
+            <div className="absolute top-0 md:-top-8 w-full flex justify-center">
+                <h2 className="text-xl font-bold font-sans">{message}</h2>
             </div>
+            
+            <div className="flex flex-col items-center justify-center min-h-[350px] w-full mt-12">
+                {isDisplaying ? (
+                    <div className="flex items-center justify-center h-48">
+                        {displayIndex < 3 && (
+                            <span className={`text-[240px] leading-none ${!isSansSerif ? 'font-serif' : 'font-sans'}`}>
+                                {sequence[displayIndex].k}
+                            </span>
+                        )}
+                    </div>
+                ) : (
+                    <>
+                        {/* Blanks for answers */}
+                        <div className="flex justify-center space-x-8 mb-16 h-24 items-end">
+                            {sequence.map((item, index) => {
+                                const isAnswered = index < userInput.length;
+                                const answeredRomaji = userInput[index];
+                                const answeredItem = sequence.find(s => s.r === answeredRomaji);
+                                
+                                return (
+                                    <div 
+                                        key={index} 
+                                        className={`w-20 flex items-end justify-center pb-2 h-20 ${!isAnswered ? 'border-b-4 border-[#C15A3D]' : ''}`}
+                                    >
+                                        {isAnswered && answeredItem && (
+                                            <span className={`text-6xl ${!isSansSerif ? 'font-serif' : 'font-sans'}`}>{answeredItem.k}</span>
+                                        )}
+                                    </div>
+                                );
+                            })}
+                        </div>
 
-            <div className="grid grid-cols-3 gap-4">
-                {options.map((opt, index) => {
-                    const isUsed = userInput.includes(opt.r);
-                    return (
-                        <button
-                            key={index}
-                            onClick={() => handleChoice(opt.r)}
-                            disabled={isDisplaying || isUsed}
-                            className={`py-6 rounded-2xl font-black text-2xl uppercase transition-all
-                                ${isDisplaying || isUsed 
-                                    ? 'bg-slate-100 text-slate-300 cursor-not-allowed' 
-                                    : 'bg-[#FDF0EB] text-[#5C3A21] hover:bg-[#FBE4D8] hover:-translate-y-1 active:translate-y-0 shadow-md'}`}
-                        >
-                            {opt.r}
-                        </button>
-                    );
-                })}
+                        {/* Shuriken Options */}
+                        <div className="flex flex-wrap justify-center gap-6 max-w-3xl">
+                            {options.map((opt, index) => {
+                                const isUsed = userInput.includes(opt.r);
+                                return (
+                                    <button
+                                        key={index}
+                                        onClick={() => handleChoice(opt.r)}
+                                        disabled={isUsed}
+                                        className={`relative w-24 h-24 flex items-center justify-center transition-all
+                                            ${isUsed ? 'opacity-0 pointer-events-none scale-95' : 'hover:scale-105 active:scale-95 cursor-pointer drop-shadow-xl'}`}
+                                    >
+                                        {/* Shuriken Background Mask */}
+                                        <div 
+                                            className="absolute inset-0 w-full h-full bg-[#FFB7A3]"
+                                            style={{ 
+                                                maskImage: 'url(/icons/shuriken.svg)', 
+                                                WebkitMaskImage: 'url(/icons/shuriken.svg)', 
+                                                maskSize: 'contain', 
+                                                WebkitMaskSize: 'contain',
+                                                maskPosition: 'center',
+                                                WebkitMaskPosition: 'center',
+                                                maskRepeat: 'no-repeat',
+                                                WebkitMaskRepeat: 'no-repeat'
+                                            }}
+                                        />
+                                        {/* Text on top */}
+                                        <span className="relative z-10 text-3xl font-arbutus text-[#5C3A21] mt-1">
+                                            {opt.r}
+                                        </span>
+                                    </button>
+                                );
+                            })}
+                        </div>
+                    </>
+                )}
             </div>
         </div>
     );
