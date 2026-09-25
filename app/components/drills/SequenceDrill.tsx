@@ -11,20 +11,28 @@ interface SequenceDrillProps {
     onToggleSansSerif?: () => void;
     isMulti?: boolean;
     isActive?: boolean;
+    level?: number;
 }
 
-const SequenceDrill: React.FC<SequenceDrillProps> = ({ groupChars, onCorrect, onWrong, isSansSerif, isActive }) => {
+const SequenceDrill: React.FC<SequenceDrillProps> = ({ groupChars, onCorrect, onWrong, isSansSerif, isActive, level }) => {
+    const sequenceLength = level === 2 ? 5 : 3;
+    const displayTime = level === 2 ? 800 : 1200;
+
     const createNewQuestionData = useCallback((chars: CharItem[]) => {
         // Fallback for empty groups
         if (!chars || chars.length === 0) return { newSequence: [], newOptions: [] };
         
         let pool = [...chars];
-        while (pool.length < 3) {
-            pool = [...pool, ...chars];
+        let seq: CharItem[] = [];
+        let lastChar = null;
+        for (let i = 0; i < sequenceLength; i++) {
+            let available = pool.filter(c => c.r !== lastChar);
+            if (available.length === 0) available = pool; // fallback
+            
+            const chosen = available[Math.floor(Math.random() * available.length)];
+            seq.push(chosen);
+            lastChar = chosen.r;
         }
-
-        const shuffled = pool.sort(() => 0.5 - Math.random());
-        const seq = shuffled.slice(0, 3);
         
         // Options are ALL chars from the group, shuffled
         let optionsPool = [...chars];
@@ -38,7 +46,7 @@ const SequenceDrill: React.FC<SequenceDrillProps> = ({ groupChars, onCorrect, on
             newSequence: seq,
             newOptions: options,
         };
-    }, []);
+    }, [sequenceLength]);
 
     const [initialData] = useState(() => createNewQuestionData(groupChars));
     const [sequence, setSequence] = useState<CharItem[]>(initialData.newSequence);
@@ -63,17 +71,17 @@ const SequenceDrill: React.FC<SequenceDrillProps> = ({ groupChars, onCorrect, on
         if (sequence.length === 0) return;
 
         const timer = setTimeout(() => {
-            if (displayIndex < 2) {
+            if (displayIndex < sequenceLength - 1) {
                 setDisplayIndex(prev => prev + 1);
             } else {
                 setIsDisplaying(false);
                 setMessage("Pilih sesuai urutan");
-                setDisplayIndex(3);
+                setDisplayIndex(sequenceLength);
             }
-        }, 1200);
+        }, displayTime);
 
         return () => clearTimeout(timer);
-    }, [displayIndex, isDisplaying, sequence.length, isActive]);
+    }, [displayIndex, isDisplaying, sequence.length, isActive, sequenceLength, displayTime]);
 
     const handleChoice = (romaji: string) => {
         if (isDisplaying) return;
@@ -92,7 +100,7 @@ const SequenceDrill: React.FC<SequenceDrillProps> = ({ groupChars, onCorrect, on
         const nextInput = [...userInput, romaji];
         setUserInput(nextInput);
 
-        if (nextInput.length === 3) {
+        if (nextInput.length === sequenceLength) {
             onCorrect();
             setMessage("Benar!");
             setTimeout(startNextQuestion, 600);
@@ -111,7 +119,7 @@ const SequenceDrill: React.FC<SequenceDrillProps> = ({ groupChars, onCorrect, on
             <div className="flex flex-col items-center justify-center min-h-[350px] w-full mt-12">
                 {isDisplaying ? (
                     <div className="flex items-center justify-center h-48">
-                        {displayIndex < 3 && (
+                        {displayIndex < sequenceLength && (
                             <span className={`text-[240px] leading-none ${!isSansSerif ? 'font-serif' : 'font-sans'}`}>
                                 {sequence[displayIndex].k}
                             </span>
@@ -142,7 +150,7 @@ const SequenceDrill: React.FC<SequenceDrillProps> = ({ groupChars, onCorrect, on
                         {/* Shuriken Options */}
                         <div className="flex flex-wrap justify-center gap-6 max-w-3xl">
                             {options.map((opt, index) => {
-                                const isUsed = userInput.includes(opt.r);
+                                const isUsed = level === 2 ? false : userInput.includes(opt.r);
                                 return (
                                     <button
                                         key={index}

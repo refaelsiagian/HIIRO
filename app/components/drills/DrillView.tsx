@@ -57,6 +57,10 @@ export default function DrillView({ category, groupId, stageId, mode, onClose, i
         GameComponent = TrueFalseDrill;
         targetScore = 10;
         maxTime = 45;
+    } else if (mode === 'sequence-2') {
+        GameComponent = SequenceDrill;
+        targetScore = 7;
+        maxTime = 90;
     } else if (mode === 'true-false-multi') {
         GameComponent = TrueFalseDrill;
         targetScore = 10;
@@ -92,6 +96,7 @@ export default function DrillView({ category, groupId, stageId, mode, onClose, i
                     onToggleSansSerif={onToggleSansSerif}
                     isMulti={isMulti}
                     isActive={isActive}
+                    {...(mode === 'sequence-2' ? { level: 2 } : {})}
                 />
             )}
         </DrillEngine>
