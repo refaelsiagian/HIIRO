@@ -1,0 +1,58 @@
+1 Check the truth
+
+similar to truth or false
+there will be 6 pairs of kana and romaji
+and also 1 statement
+player have to check if the statement is true o or false x
+the statement will be a number of pair that is true or false
+
+example
+Satu pasangan salah
+Semua pasangan benar
+5 pasangan salah
+tidak ada pasangan yang benar
+semua pasangan salah
+
+false statement should have the number miss 1 from the truth
+if the truth is 2 wrong
+then false statement should be 1 wrong or 3 wrong
+
+2 Fill the trace
+
+similar to old sequence drill
+there will be 7 spots of underscore
+the memory phase is the kana one by one appears
+from left to right in a certain interval
+but on the 5th spot, the 1st kana disappear
+and on the 6th spot, the 2nd kana disappear
+and on the 7th spot, the 3rd kana disappear
+so on until the 7th kana disappear
+
+after that one spot will randomly highlighted
+and the whole 15 letters from previous lesson will be there in randomly
+they have to fill the highlighted spot with the correct kana
+based on the trace they remember
+
+3 Flip it!
+
+typical memory game
+there will be 30 squares, 15 kana 15 romaji
+randomly shuffled in the grid
+they'll have to click the square to flip
+the objective is to find the matching pairs
+if the kana and the romaji match, they have to click a button "match"
+only then the pairs will be removed and get a point
+lose a live if actually mismatch
+once the third square is flipped, the previous two square will be flipped back
+
+4 Quick Glance
+
+there will be 60 pairs of kana and romaji that will formed in 4x15 grid
+there will be another bar that is red and full in 7 seconds
+the objective is to find a match every 7 seconds or before the bar full
+there will be 6 pairs that will be match
+and every correct answer will randomly change 10 pairs
+including the selected one into a new pair
+while keep the composition of 6 pairs that match
+so the other true answer can also be changed
+but there has to be another correct answer somewhere else

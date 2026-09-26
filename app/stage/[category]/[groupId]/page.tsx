@@ -13,13 +13,32 @@ import { PreGameOverlay } from '../../../components/drills/overlays/PreGameOverl
 import { PostGameOverlay } from '../../../components/drills/overlays/PostGameOverlay';
 import { PauseOverlay } from '../../../components/drills/overlays/PauseOverlay';
 
-const STAGES = [
+const NORMAL_STAGES = [
     { id: 'true-false-1', title: 'True or False', mode: 'true-false' },
     { id: 'true-false-2', title: 'True or False', mode: 'true-false-multi' },
     { id: 'sequence-1', title: 'Sequence Drill', mode: 'sequence' },
     { id: 'sequence-2', title: 'Sequence Drill', mode: 'sequence-2' },
     { id: 'find-fill-1', title: 'Find & Fill', mode: 'find-fill' },
 ];
+
+const SHOTESTO_STAGES = [
+    { id: 'check-truth-1', title: 'Check the Truth', mode: 'check-truth' },
+    { id: 'fill-trace-1', title: 'Fill the Trace', mode: 'fill-trace' },
+    { id: 'flip-it-1', title: 'Flip It!', mode: 'flip-it' },
+    { id: 'quick-glance-1', title: 'Quick Glance', mode: 'quick-glance' },
+];
+
+const DrillTargetScores: Record<string, number> = {
+    'true-false': 10,
+    'true-false-multi': 10,
+    'sequence': 5,
+    'sequence-2': 7,
+    'find-fill': 10,
+    'check-truth': 10,
+    'fill-trace': 10,
+    'flip-it': 10,
+    'quick-glance': 20
+};
 
 const StageSelection: React.FC = () => {
     const params = useParams();
@@ -105,12 +124,14 @@ const StageSelection: React.FC = () => {
     const isShotesto = groupId.startsWith('shotesto');
     const isDaishiken = groupId.startsWith('daishiken');
     const isFinal = isShotesto || isDaishiken;
+    
+    const activeStages = isShotesto ? SHOTESTO_STAGES : NORMAL_STAGES;
 
     const displayChars = groupData.chars.length > 0 ? groupData.chars : [{ k: '?', r: 'test' }];
 
     const groupProgress = progress[category]?.[section]?.[groupId] || {};
     const earnedStars = Object.values(groupProgress).reduce((acc, curr) => acc + curr.stars, 0);
-    const totalStars = isFinal ? 1 * 3 : STAGES.length * 3;
+    const totalStars = isFinal ? 1 * 3 : activeStages.length * 3;
     const maxPetals = section === 'daishiken' ? 10 : 5;
 
     // COLORS LOGIC based on layout desc.txt
@@ -249,13 +270,13 @@ const StageSelection: React.FC = () => {
             <div className="w-full md:w-7/12 relative h-full flex justify-center items-start">
                 <div className="absolute inset-y-[120px] left-0 right-0 overflow-y-auto hide-scrollbar flex justify-center px-8 md:px-12">
                     <div className="w-full max-w-2xl space-y-8 pb-8">
-                    {(isFinal ? [STAGES[0]] : STAGES).map((stage, index) => {
+                    {(isDaishiken ? [activeStages[0]] : activeStages).map((stage, index) => {
                         const stageStars = groupProgress[stage.id]?.stars || 0;
-                        const isLastStage = isFinal || index === STAGES.length - 1;
+                        const isLastStage = isDaishiken || index === activeStages.length - 1;
                         
                         let isUnlocked = true;
                         if (index > 0) {
-                            const prevStage = STAGES[index - 1];
+                            const prevStage = activeStages[index - 1];
                             const prevStars = groupProgress[prevStage.id]?.stars || 0;
                             isUnlocked = prevStars >= 1;
                         }
@@ -277,7 +298,8 @@ const StageSelection: React.FC = () => {
                                         // Determine maxTime to show in rules
                                         let maxTime = 60;
                                         if (stage.mode === 'true-false' || stage.mode === 'true-false-multi') maxTime = 45;
-                                        else if (stage.mode === 'find-fill') maxTime = 90;
+                                        else if (stage.mode === 'find-fill') maxTime = 120;
+                                        else if (stage.mode === 'sequence-2') maxTime = 90;
                                         
                                         setInfoOverlayData({stageId: stage.id, mode: stage.mode, maxTime});
                                     }
@@ -335,16 +357,19 @@ const StageSelection: React.FC = () => {
                 <PreGameOverlay
                     stageId={infoOverlayData.stageId}
                     subtitle={
-                        infoOverlayData.mode === 'sequence' ? 'Urutan' :
+                        infoOverlayData.mode === 'sequence' || infoOverlayData.mode === 'sequence-2' ? 'Urutan' :
                         infoOverlayData.mode === 'find-fill' ? 'Cari & Isi' :
+                        infoOverlayData.mode === 'check-truth' ? 'Check Truth' :
                         'Truth or False'
                     }
                     description={
-                        infoOverlayData.mode === 'sequence' ? 'Pilih karakter yang tepat sesuai dengan urutan' :
+                        infoOverlayData.mode === 'sequence' || infoOverlayData.mode === 'sequence-2' ? 'Pilih karakter yang tepat sesuai dengan urutan' :
                         infoOverlayData.mode === 'find-fill' ? 'Temukan dan isi bagian yang kosong dengan benar' :
+                        infoOverlayData.mode === 'check-truth' ? 'Periksa pernyataan dan tentukan benar atau salah' :
                         'Tentukan apakah pasangan huruf hiragana dan romajinya benar atau salah'
                     }
                     maxTime={infoOverlayData.maxTime}
+                    targetScore={DrillTargetScores[infoOverlayData.mode] || 5}
                     isClosing={isClosingInfo}
                     onClose={closeInfoOverlay}
                     onStart={handleStartDrill}

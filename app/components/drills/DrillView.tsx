@@ -5,6 +5,10 @@ import SequenceDrill from './SequenceDrill';
 import DrillEngine from './DrillEngine';
 import TrueFalseDrill from './TrueFalseDrill';
 import FindFillDrill from './FindFillDrill';
+import CheckTruthDrill from './CheckTruthDrill';
+import FillTraceDrill from './FillTraceDrill';
+import FlipItDrill from './FlipItDrill';
+import QuickGlanceDrill from './QuickGlanceDrill';
 import { GroupData } from '../../types/kana';
 import { KANA_METADATA } from '../../utils/kanaData';
 
@@ -61,6 +65,22 @@ export default function DrillView({ category, groupId, stageId, mode, onClose, i
         GameComponent = SequenceDrill;
         targetScore = 7;
         maxTime = 90;
+    } else if (mode === 'check-truth') {
+        GameComponent = CheckTruthDrill;
+        targetScore = 10;
+        maxTime = 90;
+    } else if (mode === 'fill-trace') {
+        GameComponent = FillTraceDrill;
+        targetScore = 5;
+        maxTime = 150;
+    } else if (mode === 'flip-it') {
+        GameComponent = FlipItDrill;
+        targetScore = 15;
+        maxTime = 180;
+    } else if (mode === 'quick-glance') {
+        GameComponent = QuickGlanceDrill;
+        targetScore = 20;
+        maxTime = 150;
     } else if (mode === 'true-false-multi') {
         GameComponent = TrueFalseDrill;
         targetScore = 10;

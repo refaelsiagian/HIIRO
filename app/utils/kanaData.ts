@@ -60,26 +60,32 @@ function parseData(): KanaMetadata {
 
                 typeGroups.push(groupData);
 
-                // Inject Shotesto every 3 groups within this type (if not the last one)
                 if ((i + 1) % 3 === 0 && i !== typeRow.group_member.length - 1) {
+                    // Collect chars from the last 3 groups
+                    const last3Groups = typeGroups.slice(-3);
+                    const shotestoChars = last3Groups.flatMap(g => g.chars);
+                    
                     typeGroups.push({
                         id: `shotesto-${typeRow.id}-${shotestoCount}`,
                         title: `小テスト ${shotestoCount}`,
                         display_name: 'Shōtesuto',
                         subtitle_kanji: '小テスト',
-                        chars: []
+                        chars: shotestoChars
                     });
                     shotestoCount++;
                 }
             });
 
             // Inject Daishiken at the end of this type
+            // Collect all chars in this type
+            const allTypeChars = typeGroups.filter(g => !g.id.startsWith('shotesto')).flatMap(g => g.chars);
+            
             typeGroups.push({
                 id: `daishiken-${typeRow.id}`,
                 title: '大試験',
                 display_name: 'Daishiken',
                 subtitle_kanji: '大試験',
-                chars: []
+                chars: allTypeChars
             });
 
             result[category].push({
@@ -93,6 +99,11 @@ function parseData(): KanaMetadata {
         });
 
         // Add Final Daishiken section
+        // Collect all chars from all types in this category
+        const allCategoryChars = result[category].flatMap(t => 
+            t.groups.filter(g => !g.id.startsWith('shotesto') && !g.id.startsWith('daishiken')).flatMap(g => g.chars)
+        );
+        
         result[category].push({
             id: 'daishiken',
             display_name: 'Daishiken',
@@ -105,7 +116,7 @@ function parseData(): KanaMetadata {
                     title: '大試験',
                     display_name: 'Daishiken',
                     subtitle_kanji: '大試験',
-                    chars: []
+                    chars: allCategoryChars
                 }
             ]
         });
