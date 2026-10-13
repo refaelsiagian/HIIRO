@@ -1,23 +1,34 @@
 "use client";
 
-import React from 'react';
+import React, { useMemo } from 'react';
 import { useParams, useRouter } from 'next/navigation';
-import { KANA_METADATA } from '../../utils/kanaData';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft, Star } from 'lucide-react';
 import { useGameStore } from '../../store/useGameStore';
-import { Star } from 'lucide-react';
-
-// SECTION_DATA is now removed as data is fetched dynamically from types.json
+import typesDataRaw from '../../data/types.json';
+import { SECTIONS_CONFIG } from '../../data/levels/index';
+import { resolveSection } from '../../utils/levelResolver';
 
 const SectionSelection: React.FC = () => {
     const params = useParams();
     const router = useRouter();
     const category = params.category as 'hiragana' | 'katakana';
-
-    const currentData = KANA_METADATA[category];
     const { getGroupStars } = useGameStore();
 
-    if (!currentData) {
+    const catTypes = useMemo(() => {
+        const types = (typesDataRaw as any[]).filter(t => t.category === category);
+        return [
+            ...types,
+            {
+                id: 'daishiken',
+                display_name: 'Daishiken',
+                subtitle_hiragana: 'だいしけん',
+                subtitle_katakana: 'ダイシケン',
+                subtitle_kanji: '大試験',
+            }
+        ];
+    }, [category]);
+
+    if (!catTypes || catTypes.length === 0) {
         return <div className="min-h-screen flex items-center justify-center font-bold text-slate-400">Kategori tidak ditemukan...</div>;
     }
 
@@ -46,23 +57,28 @@ const SectionSelection: React.FC = () => {
             {/* HORIZONTAL CAROUSEL */}
             <main className="flex-1 w-full flex items-center overflow-x-auto pb-12 snap-x snap-mandatory hide-scrollbar">
                 <div className="flex space-x-[64px] px-12 md:px-32 w-max mx-auto h-[520px]">
-                    {currentData.map((typeData) => {
+                    {catTypes.map((typeData) => {
                         const sectionKey = typeData.id;
                         const displaySub = category === 'katakana' ? typeData.subtitle_katakana : typeData.subtitle_hiragana;
                         
+                        const sectionDef = SECTIONS_CONFIG[sectionKey];
+                        const resolvedSection = sectionDef ? resolveSection(sectionDef, category) : null;
+
                         let earned = 0;
                         let total = 0;
-                        typeData.groups.forEach(group => {
-                            const isShotesto = group.id.startsWith('shotesto');
-                            const isDaishiken = group.id.startsWith('daishiken');
-                            const stgs = (isShotesto || isDaishiken) ? 1 : 5;
-                            total += stgs * 3;
-                            earned += getGroupStars(category, sectionKey, group.id);
-                        });
-                        const stars = { earned, total };
-                        
-                        const totalHuruf = typeData.groups.reduce((acc, curr) => acc + curr.chars.length, 0);
+                        let totalHuruf = 0;
 
+                        if (resolvedSection) {
+                            resolvedSection.groups.forEach(group => {
+                                earned += getGroupStars(category, sectionKey, group.id);
+                                total += group.gameModes.length * 3;
+                                if (!group.id.includes('shotesto') && !group.id.includes('daishiken')) {
+                                    totalHuruf += group.chars.length;
+                                }
+                            });
+                        }
+
+                        const stars = { earned, total };
                         const isDaishiken = sectionKey === 'daishiken';
 
                         // COLOR LOGIC based on layout desc.txt

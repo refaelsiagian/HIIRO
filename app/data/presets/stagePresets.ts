@@ -78,8 +78,8 @@ export const SHOTESTO_STAGES_PRESET: StageConfig[] = [
     displayName: 'Fill the Trace',
     subtitle: 'Fill the Trace',
     instruction: 'Ingat urutan kana yang muncul lalu isi posisi yang ditandai',
-    timer: 150,
-    scoreGoal: 10,
+    timer: 180,
+    scoreGoal: 7,
     filepath: 'app/components/drills/FillTraceDrill.tsx',
     drillType: 'fill-trace',
     options: {
@@ -109,7 +109,7 @@ export const SHOTESTO_STAGES_PRESET: StageConfig[] = [
     filepath: 'app/components/drills/QuickGlanceDrill.tsx',
     drillType: 'quick-glance',
     options: {
-      totalPairs: 60,
+      totalPairs: 40,
       matchCount: 6,
       barIntervalSeconds: 10,
     },

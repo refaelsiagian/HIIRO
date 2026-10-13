@@ -1,35 +1,42 @@
 "use client";
 
-import React from 'react';
+import React, { useMemo } from 'react';
 import { useParams, useRouter } from 'next/navigation';
-import { KANA_METADATA } from '../../../utils/kanaData';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft, Star, Lock } from 'lucide-react';
 import { useGameStore } from '../../../store/useGameStore';
-import { Star, Lock } from 'lucide-react';
 import { SubKatakanaPaperSVG } from '../../../components/SubKatakanaPaperSVG';
 import { SubHiraganaPaperSVG } from '../../../components/SubHiraganaPaperSVG';
-// SECTION_DATA is now removed as data is fetched dynamically
+import { SECTIONS_CONFIG } from '../../../data/levels/index';
+import { resolveSection } from '../../../utils/levelResolver';
+import typesDataRaw from '../../../data/types.json';
 
 const GroupSelection: React.FC = () => {
     const params = useParams();
     const router = useRouter();
     const category = params.category as 'hiragana' | 'katakana';
     const section = params.section as string;
-
-    const currentData = KANA_METADATA[category];
     const { getGroupStars } = useGameStore();
 
-    const currentType = currentData?.find(t => t.id === section);
+    const sectionDef = SECTIONS_CONFIG[section];
+    const resolvedSection = useMemo(() => {
+        if (!sectionDef) return null;
+        return resolveSection(sectionDef, category);
+    }, [sectionDef, category]);
 
-    if (!currentType) {
+    // Subtitle from types.json for kana typography
+    const typeMeta = (typesDataRaw as any[]).find(t => t.id === section && t.category === category);
+
+    if (!resolvedSection) {
         return <div className="min-h-screen flex items-center justify-center font-bold text-slate-400">Bagian tidak ditemukan...</div>;
     }
 
-    const groups = currentType.groups;
-    const rawDisplaySub = category === 'katakana' ? currentType.subtitle_katakana : currentType.subtitle_hiragana;
+    const groups = resolvedSection.groups;
+    const rawDisplaySub = category === 'katakana' 
+        ? (typeMeta?.subtitle_katakana || resolvedSection.subtitleKanji) 
+        : (typeMeta?.subtitle_hiragana || resolvedSection.subtitleKanji);
     
     // Format header title to use inline separators instead of newlines
-    const headerTitle = currentType.display_name.replace('\n', ' & ');
+    const headerTitle = resolvedSection.displayName.replace('\n', ' & ');
     const headerSub = rawDisplaySub.replace('\n', '・');
 
     return (
@@ -72,9 +79,10 @@ const GroupSelection: React.FC = () => {
                         }
 
                         const earnedStars = getGroupStars(category, section, group.id);
+                        const maxStars = group.gameModes.length * 3;
                         
-                        let displayTitle = group.display_name;
-                        let displaySubTitle = group.subtitle_kanji;
+                        let displayTitle = group.displayName;
+                        let displaySubTitle = group.subtitleKanji;
                         let displayChars = group.chars.map(c => c.k).join('');
                         
                         if (isShotesto) {
@@ -94,7 +102,7 @@ const GroupSelection: React.FC = () => {
                         if (category === 'katakana') {
                             if (isDaishiken) {
                                 bgColor = "bg-[#F5E0FF]";
-                                borderColor = "bg-[#8656AC]"; // We use bg for mask-color
+                                borderColor = "bg-[#8656AC]";
                                 fontColor = "text-[#4F286F]";
                                 starColor = "fill-[#8656AC] text-[#8656AC]";
                             } else if (isShotesto) {
@@ -175,7 +183,7 @@ const GroupSelection: React.FC = () => {
                                         </p>
                                         <div className="flex items-center text-[16px] font-outfit font-normal opacity-90 text-left">
                                             <Star className={`w-[20px] h-[20px] mr-2 ${starColor}`} />
-                                            {isShotesto || isDaishiken ? `${earnedStars}/3` : `${earnedStars}/15`}
+                                            {`${earnedStars}/${maxStars}`}
                                         </div>
                                     </div>
 

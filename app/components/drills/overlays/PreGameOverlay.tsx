@@ -2,8 +2,10 @@ import React from 'react';
 import { Star, X } from 'lucide-react';
 
 interface PreGameOverlayProps {
-    stageId: string;
-    subtitle: string;
+    stageNumber?: number | string;
+    stageId?: string;
+    title?: string;
+    subtitle?: string;
     description: string;
     maxTime: number;
     isClosing: boolean;
@@ -12,7 +14,9 @@ interface PreGameOverlayProps {
 }
 
 export const PreGameOverlay: React.FC<PreGameOverlayProps> = ({
+    stageNumber,
     stageId,
+    title,
     subtitle,
     description,
     maxTime,
@@ -20,6 +24,9 @@ export const PreGameOverlay: React.FC<PreGameOverlayProps> = ({
     onClose,
     onStart
 }) => {
+    const displayStageNumber = stageNumber !== undefined ? stageNumber : stageId;
+    const displayTitle = title || subtitle;
+
     return (
         <div 
             className={`absolute inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm p-4 ${isClosing ? 'animate-fadeout' : 'animate-fadein'}`}
@@ -41,8 +48,8 @@ export const PreGameOverlay: React.FC<PreGameOverlayProps> = ({
 
                 <div className="relative z-10 w-full h-full p-4 flex flex-col justify-between pt-[8%] pb-[10%] pl-[10%] pr-[10%]">
                     <div>
-                        <p className="text-xl font-medium opacity-80 mb-2 font-outfit">Tahap {stageId}</p>
-                        <h2 className="text-5xl font-arbutus font-bold mb-4">{subtitle}</h2>
+                        <p className="text-xl font-medium opacity-80 mb-2 font-outfit">Tahap {displayStageNumber}</p>
+                        <h2 className="text-5xl font-arbutus font-bold mb-4">{displayTitle}</h2>
                         <p className="text-xl opacity-90 max-w-2xl font-outfit">{description}</p>
                     </div>
 

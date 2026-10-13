@@ -2,43 +2,17 @@
 
 import React, { useMemo, useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
-import { KANA_METADATA } from '../../../utils/kanaData';
-import { GroupData } from '../../../types/kana';
 import { useGameStore } from '../../../store/useGameStore';
-import { Star, Lock, ArrowLeft, X } from 'lucide-react';
+import { Star, Lock, ArrowLeft } from 'lucide-react';
 import { QuizBackgroundSVG } from '../../../components/QuizBackgroundSVG';
 import { PetalSVG } from '../../../components/PetalSVG';
 import DrillView from '../../../components/drills/DrillView';
 import { PreGameOverlay } from '../../../components/drills/overlays/PreGameOverlay';
 import { PostGameOverlay } from '../../../components/drills/overlays/PostGameOverlay';
 import { PauseOverlay } from '../../../components/drills/overlays/PauseOverlay';
-
-const NORMAL_STAGES = [
-    { id: 'true-false-1', title: 'True or False', mode: 'true-false' },
-    { id: 'true-false-2', title: 'True or False', mode: 'true-false-multi' },
-    { id: 'sequence-1', title: 'Sequence Drill', mode: 'sequence' },
-    { id: 'sequence-2', title: 'Sequence Drill', mode: 'sequence-2' },
-    { id: 'find-fill-1', title: 'Find & Fill', mode: 'find-fill' },
-];
-
-const SHOTESTO_STAGES = [
-    { id: 'check-truth-1', title: 'Check the Truth', mode: 'check-truth' },
-    { id: 'fill-trace-1', title: 'Fill the Trace', mode: 'fill-trace' },
-    { id: 'flip-it-1', title: 'Flip It!', mode: 'flip-it' },
-    { id: 'quick-glance-1', title: 'Quick Glance', mode: 'quick-glance' },
-];
-
-const DrillTargetScores: Record<string, number> = {
-    'true-false': 10,
-    'true-false-multi': 10,
-    'sequence': 5,
-    'sequence-2': 7,
-    'find-fill': 10,
-    'check-truth': 10,
-    'fill-trace': 10,
-    'flip-it': 10,
-    'quick-glance': 20
-};
+import { getResolvedLevelById } from '../../../utils/levelResolver';
+import { SECTIONS_CONFIG } from '../../../data/levels/index';
+import { StageConfig } from '../../../types/levels';
 
 const StageSelection: React.FC = () => {
     const params = useParams();
@@ -50,7 +24,7 @@ const StageSelection: React.FC = () => {
     const [isSansSerif, setIsSansSerif] = useState(false);
     const [selectedCharIndex, setSelectedCharIndex] = useState(0);
     const [activeDrill, setActiveDrill] = useState<{stageId: string, mode: string} | null>(null);
-    const [infoOverlayData, setInfoOverlayData] = useState<{stageId: string, mode: string, maxTime: number} | null>(null);
+    const [infoOverlayData, setInfoOverlayData] = useState<{ stage: StageConfig; stageNumber: number } | null>(null);
     const [isClosingInfo, setIsClosingInfo] = useState(false);
     const [postGameOverlayData, setPostGameOverlayData] = useState<any>(null);
     const [closingPauseOverlay, setClosingPauseOverlay] = useState(false);
@@ -65,32 +39,22 @@ const StageSelection: React.FC = () => {
 
     const handleStartDrill = () => {
         if (!infoOverlayData) return;
-        // Instantly mount the drill and its Bersiap overlay without disappearing animation
-        setActiveDrill({stageId: infoOverlayData.stageId, mode: infoOverlayData.mode});
+        setActiveDrill({stageId: infoOverlayData.stage.id, mode: infoOverlayData.stage.drillType});
         setInfoOverlayData(null);
     };
 
-    const groupData = useMemo(() => {
-        const typesData = KANA_METADATA[category];
-        if (!typesData) return null;
-
-        for (const typeData of typesData) {
-            const foundGroup = typeData.groups.find(g => g.id === groupId);
-            if (foundGroup) return foundGroup;
-        }
-        return null;
+    const level = useMemo(() => {
+        return getResolvedLevelById(groupId, category);
     }, [groupId, category]);
 
     const section = useMemo(() => {
-        const typesData = KANA_METADATA[category];
-        if (!typesData) return 'gojuon';
-        for (const typeData of typesData) {
-            if (typeData.groups.find(g => g.id === groupId)) return typeData.id;
+        for (const [secKey, secDef] of Object.entries(SECTIONS_CONFIG)) {
+            if (secDef.groups.some(g => g.id === groupId)) return secKey;
         }
         return 'gojuon';
-    }, [groupId, category]);
+    }, [groupId]);
 
-    if (!groupData) {
+    if (!level) {
         return <div className="min-h-screen flex items-center justify-center font-bold text-slate-400">Grup tidak ditemukan...</div>;
     }
 
@@ -125,31 +89,23 @@ const StageSelection: React.FC = () => {
     const isDaishiken = groupId.startsWith('daishiken');
     const isFinal = isShotesto || isDaishiken;
     
-    const activeStages = isShotesto ? SHOTESTO_STAGES : NORMAL_STAGES;
-
-    const displayChars = groupData.chars.length > 0 ? groupData.chars : [{ k: '?', r: 'test' }];
+    const activeStages = level.gameModes;
+    const displayChars = level.chars.length > 0 ? level.chars : [{ k: '?', r: 'test' }];
 
     const groupProgress = progress[category]?.[section]?.[groupId] || {};
     const earnedStars = Object.values(groupProgress).reduce((acc, curr) => acc + curr.stars, 0);
-    const totalStars = isFinal ? 1 * 3 : activeStages.length * 3;
-    const maxPetals = section === 'daishiken' ? 10 : 5;
+    const totalStars = activeStages.length * 3;
 
     // COLORS LOGIC based on layout desc.txt
     let mainBg = "bg-app-bg";
-    let panelBg = "bg-[#FFE8E0]";
-    let borderColor = "bg-[#E89A81]";
     let fontColor = "text-[#6F3E28]";
     let starColor = "text-[#CC6E34]";
     let starColorEmpty = "text-[#CC6E34]";
-    let petalBg = "bg-[#CC6E34]";
 
     if (isFinal) {
-        panelBg = "bg-[#ECC5FF]";
-        borderColor = "bg-[#C681E8]";
         fontColor = "text-[#4A286F]";
         starColor = "text-[#8F34CC]";
         starColorEmpty = "text-[#8F34CC]";
-        petalBg = "bg-[#8F34CC]";
     }
 
     const renderFlower = (stageIndex: number, isUnlocked: boolean, stagePetals: number, customColor?: string) => {
@@ -205,9 +161,11 @@ const StageSelection: React.FC = () => {
                         {/* Title Row */}
                         <div className="flex items-baseline mb-4">
                             <h1 className={`text-[48px] leading-none font-arbutus tracking-tight mr-4 ${fontColor}`}>
-                                {groupData?.title}
+                                {level.displayName}
                             </h1>
-                            <p className={`text-xl opacity-70 font-sans ${fontColor}`}>{displayChars[0].k} 行</p>
+                            <p className={`text-xl opacity-70 font-sans ${fontColor}`}>
+                                {level.subtitleKanji}
+                            </p>
                         </div>
                         
                         {/* Star Counter */}
@@ -222,12 +180,12 @@ const StageSelection: React.FC = () => {
                         <div className="flex flex-col items-center flex-1 w-full pt-4">
                             
                             {/* Character Grid - Horizontal */}
-                            <div className="flex space-x-4 mb-16">
+                            <div className="flex space-x-4 mb-16 max-w-full overflow-x-auto hide-scrollbar px-2">
                                 {displayChars.map((char, index) => (
                                     <button 
                                         key={index}
                                         onClick={() => setSelectedCharIndex(index)}
-                                        className={`flex flex-col items-center justify-center w-[80px] h-[134px] transition-all duration-300 border-b-[2px] ${
+                                        className={`flex flex-col items-center justify-center min-w-[80px] w-[80px] h-[134px] transition-all duration-300 border-b-[2px] flex-shrink-0 ${
                                             selectedCharIndex === index 
                                                 ? (isFinal 
                                                     ? 'bg-gradient-to-b from-[#F3E0FF]/0 to-[#ECC5FF] border-[#C681E8]' 
@@ -244,7 +202,7 @@ const StageSelection: React.FC = () => {
                             {/* Large Character Preview */}
                             <div className="flex flex-col items-center justify-center mb-16">
                                 <span className={`text-[280px] leading-none ${fontColor} ${!isSansSerif ? 'font-serif' : 'font-sans'}`}>
-                                    {displayChars[selectedCharIndex].k}
+                                    {displayChars[selectedCharIndex]?.k || '?'}
                                 </span>
                             </div>
 
@@ -270,7 +228,7 @@ const StageSelection: React.FC = () => {
             <div className="w-full md:w-7/12 relative h-full flex justify-center items-start">
                 <div className="absolute inset-y-[120px] left-0 right-0 overflow-y-auto hide-scrollbar flex justify-center px-8 md:px-12">
                     <div className="w-full max-w-2xl space-y-8 pb-8">
-                    {(isDaishiken ? [activeStages[0]] : activeStages).map((stage, index) => {
+                    {activeStages.map((stage, index) => {
                         const stageStars = groupProgress[stage.id]?.stars || 0;
                         const isLastStage = isDaishiken || index === activeStages.length - 1;
                         
@@ -295,13 +253,7 @@ const StageSelection: React.FC = () => {
                                 disabled={!isUnlocked}
                                 onClick={() => {
                                     if (isUnlocked) {
-                                        // Determine maxTime to show in rules
-                                        let maxTime = 60;
-                                        if (stage.mode === 'true-false' || stage.mode === 'true-false-multi') maxTime = 45;
-                                        else if (stage.mode === 'find-fill') maxTime = 120;
-                                        else if (stage.mode === 'sequence-2') maxTime = 90;
-                                        
-                                        setInfoOverlayData({stageId: stage.id, mode: stage.mode, maxTime});
+                                        setInfoOverlayData({ stage, stageNumber: index + 1 });
                                     }
                                 }}
                                 className={`relative w-[707px] max-w-full h-auto aspect-[707/194] flex items-center justify-between transition-all duration-300 group ${!isUnlocked ? 'opacity-60 grayscale cursor-not-allowed' : 'cursor-pointer'}`}
@@ -311,6 +263,7 @@ const StageSelection: React.FC = () => {
                                     className="absolute inset-0 w-full h-full transition-all duration-300 group-hover:brightness-[0.95] group-active:brightness-90" 
                                     bgColor={plateBg} 
                                     borderColor={plateBorder} 
+                                
                                 />
 
                                 {/* INNER CONTENT LAYER */}
@@ -322,7 +275,7 @@ const StageSelection: React.FC = () => {
                                                 Tahap {index + 1}
                                             </span>
                                             <h3 className={`text-[32px] font-arbutus flex items-center leading-none ${plateFontColor}`}>
-                                                {stage.title}
+                                                {stage.displayName}
                                                 {!isUnlocked && <Lock className={`w-5 h-5 ml-3 opacity-60 ${plateFontColor}`} />}
                                             </h3>
                                         </div>
@@ -355,21 +308,10 @@ const StageSelection: React.FC = () => {
             {/* INFO OVERLAY */}
             {infoOverlayData && (
                 <PreGameOverlay
-                    stageId={infoOverlayData.stageId}
-                    subtitle={
-                        infoOverlayData.mode === 'sequence' || infoOverlayData.mode === 'sequence-2' ? 'Urutan' :
-                        infoOverlayData.mode === 'find-fill' ? 'Cari & Isi' :
-                        infoOverlayData.mode === 'check-truth' ? 'Check Truth' :
-                        'Truth or False'
-                    }
-                    description={
-                        infoOverlayData.mode === 'sequence' || infoOverlayData.mode === 'sequence-2' ? 'Pilih karakter yang tepat sesuai dengan urutan' :
-                        infoOverlayData.mode === 'find-fill' ? 'Temukan dan isi bagian yang kosong dengan benar' :
-                        infoOverlayData.mode === 'check-truth' ? 'Periksa pernyataan dan tentukan benar atau salah' :
-                        'Tentukan apakah pasangan huruf hiragana dan romajinya benar atau salah'
-                    }
-                    maxTime={infoOverlayData.maxTime}
-                    targetScore={DrillTargetScores[infoOverlayData.mode] || 5}
+                    stageNumber={infoOverlayData.stageNumber}
+                    title={infoOverlayData.stage.displayName}
+                    description={infoOverlayData.stage.instruction}
+                    maxTime={infoOverlayData.stage.timer}
                     isClosing={isClosingInfo}
                     onClose={closeInfoOverlay}
                     onStart={handleStartDrill}
@@ -397,6 +339,7 @@ const StageSelection: React.FC = () => {
                 <PauseOverlay 
                     onContinue={() => {}}
                     onReturnToMenu={() => {}}
+                    onRestart={() => {}}
                     isClosing={true}
                 />
             )}

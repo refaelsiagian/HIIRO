@@ -73,6 +73,16 @@ export function resolveLevel(
     }
   }
 
+  // 4. Category-wide final exam (daishiken-final)
+  if (definition.id === 'daishiken-final') {
+    const catGroups = groupsData.filter((g) => g.category === category);
+    catGroups.forEach((g) => {
+      charStrings.push(...g.char_member);
+    });
+    if (!displayName) displayName = 'Daishiken';
+    if (!subtitleKanji) subtitleKanji = '大試験';
+  }
+
   // Map each kana character string to full character data from chars.json
   const resolvedChars: ResolvedChar[] = [];
   const romajiList: string[] = [];

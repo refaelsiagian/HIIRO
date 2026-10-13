@@ -9,8 +9,8 @@ import CheckTruthDrill from './CheckTruthDrill';
 import FillTraceDrill from './FillTraceDrill';
 import FlipItDrill from './FlipItDrill';
 import QuickGlanceDrill from './QuickGlanceDrill';
-import { GroupData } from '../../types/kana';
-import { KANA_METADATA } from '../../utils/kanaData';
+import { getResolvedLevelById } from '../../utils/levelResolver';
+import { SECTIONS_CONFIG } from '../../data/levels/index';
 
 interface DrillViewProps {
     category: 'hiragana' | 'katakana';
@@ -22,28 +22,35 @@ interface DrillViewProps {
     onToggleSansSerif: () => void;
 }
 
-export default function DrillView({ category, groupId, stageId, mode, onClose, isSansSerif, onToggleSansSerif }: DrillViewProps) {
-    const groupData = useMemo(() => {
-        const typesData = KANA_METADATA[category];
-        if (!typesData) return null;
+const DRILL_REGISTRY: Record<string, React.ComponentType<any>> = {
+    'true-false': TrueFalseDrill,
+    'true-false-multi': TrueFalseDrill,
+    'sequence': SequenceDrill,
+    'sequence-2': SequenceDrill,
+    'find-fill': FindFillDrill,
+    'check-truth': CheckTruthDrill,
+    'fill-trace': FillTraceDrill,
+    'flip-it': FlipItDrill,
+    'quick-glance': QuickGlanceDrill,
+};
 
-        for (const typeData of typesData) {
-            const foundGroup = typeData.groups.find(g => g.id === groupId);
-            if (foundGroup) return foundGroup;
-        }
-        return null;
+export default function DrillView({ category, groupId, stageId, mode, onClose, isSansSerif, onToggleSansSerif }: DrillViewProps) {
+    const level = useMemo(() => {
+        return getResolvedLevelById(groupId, category);
     }, [groupId, category]);
+
+    const stageConfig = useMemo(() => {
+        return level?.gameModes.find(s => s.id === stageId);
+    }, [level, stageId]);
 
     const section = useMemo(() => {
-        const typesData = KANA_METADATA[category];
-        if (!typesData) return 'gojuon';
-        for (const typeData of typesData) {
-            if (typeData.groups.find(g => g.id === groupId)) return typeData.id;
+        for (const [secKey, secDef] of Object.entries(SECTIONS_CONFIG)) {
+            if (secDef.groups.some(g => g.id === groupId)) return secKey;
         }
         return 'gojuon';
-    }, [groupId, category]);
+    }, [groupId]);
 
-    if (!groupData) {
+    if (!level) {
         return (
             <div className="min-h-screen flex items-center justify-center bg-[#FDF0EB]">
                 <p className="font-bold text-[#5C3A21]">Grup tidak ditemukan...</p>
@@ -51,46 +58,11 @@ export default function DrillView({ category, groupId, stageId, mode, onClose, i
         );
     }
 
-    let GameComponent = SequenceDrill;
-    let targetScore = 5; // e.g. 5 rounds for sequence
-    let maxTime = 60;
-
-    let isMulti = false;
-
-    if (mode === 'true-false') {
-        GameComponent = TrueFalseDrill;
-        targetScore = 10;
-        maxTime = 45;
-    } else if (mode === 'sequence-2') {
-        GameComponent = SequenceDrill;
-        targetScore = 7;
-        maxTime = 90;
-    } else if (mode === 'check-truth') {
-        GameComponent = CheckTruthDrill;
-        targetScore = 10;
-        maxTime = 90;
-    } else if (mode === 'fill-trace') {
-        GameComponent = FillTraceDrill;
-        targetScore = 5;
-        maxTime = 150;
-    } else if (mode === 'flip-it') {
-        GameComponent = FlipItDrill;
-        targetScore = 15;
-        maxTime = 180;
-    } else if (mode === 'quick-glance') {
-        GameComponent = QuickGlanceDrill;
-        targetScore = 20;
-        maxTime = 150;
-    } else if (mode === 'true-false-multi') {
-        GameComponent = TrueFalseDrill;
-        targetScore = 10;
-        maxTime = 45;
-        isMulti = true;
-    } else if (mode === 'find-fill') {
-        GameComponent = FindFillDrill;
-        targetScore = 10;
-        maxTime = 120;
-    }
+    const GameComponent = DRILL_REGISTRY[mode] || SequenceDrill;
+    const targetScore = stageConfig?.scoreGoal ?? (mode === 'quick-glance' ? 20 : 10);
+    const maxTime = stageConfig?.timer ?? 60;
+    const drillOptions = stageConfig?.options || {};
+    const isMulti = drillOptions.isMulti || mode === 'true-false-multi';
 
     return (
         <DrillEngine
@@ -107,16 +79,15 @@ export default function DrillView({ category, groupId, stageId, mode, onClose, i
             onToggleSansSerif={onToggleSansSerif}
         >
             {({ onCorrect, onWrong, isSansSerif, onToggleSansSerif, isActive }) => (
-                // @ts-ignore - isMulti is only used by TrueFalseDrill
                 <GameComponent 
-                    groupChars={groupData.chars} 
+                    groupChars={level.chars} 
                     onCorrect={onCorrect} 
                     onWrong={onWrong} 
                     isSansSerif={isSansSerif}
                     onToggleSansSerif={onToggleSansSerif}
                     isMulti={isMulti}
                     isActive={isActive}
-                    {...(mode === 'sequence-2' ? { level: 2 } : {})}
+                    {...drillOptions}
                 />
             )}
         </DrillEngine>
