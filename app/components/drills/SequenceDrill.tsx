@@ -14,7 +14,7 @@ interface SequenceDrillProps {
     level?: number;
 }
 
-const SequenceDrill: React.FC<SequenceDrillProps> = ({ groupChars, onCorrect, onWrong, isSansSerif, isActive, level }) => {
+const SequenceDrill: React.FC<SequenceDrillProps> = ({ groupChars, onCorrect, onWrong, isSansSerif, isActive, level = 1 }) => {
     const sequenceLength = level === 2 ? 5 : 3;
     const displayTime = level === 2 ? 800 : 1200;
 
@@ -22,16 +22,35 @@ const SequenceDrill: React.FC<SequenceDrillProps> = ({ groupChars, onCorrect, on
         // Fallback for empty groups
         if (!chars || chars.length === 0) return { newSequence: [], newOptions: [] };
         
-        let pool = [...chars];
         let seq: CharItem[] = [];
-        let lastChar = null;
-        for (let i = 0; i < sequenceLength; i++) {
-            let available = pool.filter(c => c.r !== lastChar);
-            if (available.length === 0) available = pool; // fallback
-            
-            const chosen = available[Math.floor(Math.random() * available.length)];
-            seq.push(chosen);
-            lastChar = chosen.r;
+
+        if (level === 2) {
+            // Level 2: Characters may repeat in the sequence, but not immediately adjacent
+            let lastChar: string | null = null;
+            for (let i = 0; i < sequenceLength; i++) {
+                let available = chars.filter(c => c.r !== lastChar);
+                if (available.length === 0) available = chars;
+                
+                const chosen = available[Math.floor(Math.random() * available.length)];
+                seq.push(chosen);
+                lastChar = chosen.r;
+            }
+        } else {
+            // Level 1: Characters DO NOT repeat in the sequence (must be unique)
+            let availablePool = [...chars];
+            for (let i = 0; i < sequenceLength; i++) {
+                if (availablePool.length === 0) {
+                    // Fallback only if the group itself has fewer characters than sequenceLength (e.g. Wa-gyo with 2 chars)
+                    const lastChosen = seq[seq.length - 1]?.r;
+                    availablePool = chars.filter(c => c.r !== lastChosen);
+                    if (availablePool.length === 0) availablePool = [...chars];
+                }
+                
+                const randIndex = Math.floor(Math.random() * availablePool.length);
+                const chosen = availablePool[randIndex];
+                seq.push(chosen);
+                availablePool.splice(randIndex, 1);
+            }
         }
         
         // Options are ALL chars from the group, shuffled
@@ -46,7 +65,7 @@ const SequenceDrill: React.FC<SequenceDrillProps> = ({ groupChars, onCorrect, on
             newSequence: seq,
             newOptions: options,
         };
-    }, [sequenceLength]);
+    }, [level, sequenceLength]);
 
     const [initialData] = useState(() => createNewQuestionData(groupChars));
     const [sequence, setSequence] = useState<CharItem[]>(initialData.newSequence);

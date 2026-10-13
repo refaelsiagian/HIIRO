@@ -36,6 +36,9 @@ export const NORMAL_STAGES_PRESET: StageConfig[] = [
     scoreGoal: 5,
     filepath: 'app/components/drills/SequenceDrill.tsx',
     drillType: 'sequence',
+    options: {
+      level: 1,
+    },
   },
   {
     id: 'sequence-2',
@@ -46,6 +49,9 @@ export const NORMAL_STAGES_PRESET: StageConfig[] = [
     scoreGoal: 7,
     filepath: 'app/components/drills/SequenceDrill.tsx',
     drillType: 'sequence-2',
+    options: {
+      level: 2,
+    },
   },
   {
     id: 'find-fill-1',
