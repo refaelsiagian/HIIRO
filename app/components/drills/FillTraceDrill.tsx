@@ -16,26 +16,26 @@ const FillTraceDrill: React.FC<FillTraceDrillProps> = ({ groupChars, onCorrect, 
     const displayTime = 1000; // 1s interval
 
     const createNewQuestionData = useCallback((chars: CharItem[]) => {
-        if (!chars || chars.length === 0) return { newSequence: [], newTargetIndex: 0, newOptions: [] };
+        if (!chars || chars.length === 0) return { newSequence: [], newFillOrder: [], newOptions: [] };
         
         let pool = [...chars];
         let seq: CharItem[] = [];
-        let lastChar = null;
+        let lastKana: string | null = null;
         
         for (let i = 0; i < sequenceLength; i++) {
-            let available = pool.filter(c => c.r !== lastChar);
+            let available = pool.filter(c => c.k !== lastKana);
             if (available.length === 0) available = pool; // fallback
             
             const chosen = available[Math.floor(Math.random() * available.length)];
             seq.push(chosen);
-            lastChar = chosen.r;
+            lastKana = chosen.k;
         }
 
         // Random order of spots to guess
         const order = Array.from({length: sequenceLength}, (_, i) => i).sort(() => 0.5 - Math.random());
         
         // Options are all chars, grouped by original order into 3 chunks, then we shuffle the chunks.
-        let uniqueChars = [...chars].filter((v, i, a) => a.findIndex(t => (t.r === v.r)) === i);
+        let uniqueChars = [...chars].filter((v, i, a) => a.findIndex(t => (t.k === v.k)) === i);
         let rows: CharItem[][] = [];
         const chunkSize = Math.ceil(uniqueChars.length / 3);
         
@@ -95,12 +95,12 @@ const FillTraceDrill: React.FC<FillTraceDrillProps> = ({ groupChars, onCorrect, 
         return () => clearTimeout(timer);
     }, [tick, phase, sequence.length, isActive]);
 
-    const handleChoice = (romaji: string) => {
+    const handleChoice = (kana: string) => {
         if (phase === 'memory' || !isActive) return;
 
         const targetIndex = fillOrder[currentStep];
 
-        if (romaji !== sequence[targetIndex].r) {
+        if (kana !== sequence[targetIndex].k) {
             onWrong();
             setPhase('memory');
             setTick(0);
@@ -188,7 +188,7 @@ const FillTraceDrill: React.FC<FillTraceDrillProps> = ({ groupChars, onCorrect, 
                             {row.map((opt, index) => (
                                 <button
                                     key={index}
-                                    onClick={() => handleChoice(opt.r)}
+                                    onClick={() => handleChoice(opt.k)}
                                     disabled={phase !== 'answer'}
                                     className="relative w-16 h-16 md:w-20 md:h-20 flex items-center justify-center hover:scale-105 active:scale-95 cursor-pointer drop-shadow-md transition-transform"
                                 >

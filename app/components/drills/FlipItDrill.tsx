@@ -24,7 +24,7 @@ type CardData = {
 const FlipItDrill: React.FC<FlipItDrillProps> = ({ groupChars, onCorrect, onWrong, isSansSerif, isActive }) => {
     
     const initializeCards = useCallback(() => {
-        let uniqueChars = [...groupChars].filter((v, i, a) => a.findIndex(t => (t.r === v.r)) === i);
+        let uniqueChars = [...groupChars].filter((v, i, a) => a.findIndex(t => (t.k === v.k)) === i);
         
         let initialCards: CardData[] = [];
         uniqueChars.forEach((char, idx) => {

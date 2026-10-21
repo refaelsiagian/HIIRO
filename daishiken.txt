@@ -1,0 +1,67 @@
+DAISHIKEN QUIZES
+
+1. The Other One
+
+There will be 5 slots of letters, and 2 types of question.
+This 5 letters will resemble a group of the same -gyo or the same -dan.
+
+Type 1 is where you have to choose which letter isn't belong in the group.
+Ex:
+Ka Ki Du Ke Ko
+
+Answer: Du
+
+Or
+
+Ra Da Ta Tu Pa
+
+Answer: Tu
+
+Type 2 is where the will be an empty spot in the group.
+You have to choose a letter that fit the group.
+
+Ex:
+Ka Ki __ Ke Ko
+
+Answer: Ku
+
+Or
+
+Pa Da Na _ Sa
+
+Answer: Ma
+
+2. Wordbuilder
+
+There will be like maybe 100 or more letters presented in a grid.
+There will be a goal word that you have to build using the letters provided.
+Romaji is provided as the hint. The meaning of the word is also provided.
+Letter that has been chosen can't be used anymore and disappear.
+The goal is making the grid empty.
+
+3. Under Guidance
+
+There will be four short sentences that shares the same structure in kana.
+Some words in the sentences is shared on the same location between sentences.
+The meaning of each sentences is provided.
+Then there will be a sentence but only the meaning.
+This sentence will also share the same structure and take words from previous 4 sentences.
+Choose between 4 options which sentence fits the meaning.
+
+Ex (in kana):
+Dog under a chair
+Dog on a chair
+Bird under a table
+Bird on a chair
+
+Question
+Dog on a table
+
+Options in kana
+
+4. Textbuilder
+
+There will be a short text, but all of them is blank. Romaji is provided as a hint.
+The text will approximately contains 8 sentences. The meaning of the whole text is provided.
+There will be 4 options of sentences for each sentences in kana.
+The sentences is answered in order, one by one.
