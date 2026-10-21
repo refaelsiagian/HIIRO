@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useMemo } from 'react';
+import React, { useMemo, useState, useEffect } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { ArrowLeft, Star, Lock } from 'lucide-react';
 import { useGameStore } from '../../../store/useGameStore';
@@ -17,6 +17,11 @@ const GroupSelection: React.FC = () => {
     const category = params.category as 'hiragana' | 'katakana';
     const section = params.section as string;
     const { getGroupStars } = useGameStore();
+    const [isMounted, setIsMounted] = useState(false);
+
+    useEffect(() => {
+        setIsMounted(true);
+    }, []);
 
     const sectionDef = SECTIONS_CONFIG[section];
     const resolvedSection = useMemo(() => {
@@ -71,14 +76,18 @@ const GroupSelection: React.FC = () => {
                         
                         let isUnlocked = true;
                         if (index > 0) {
-                            const prevGroup = groups[index - 1];
-                            const prevStars = getGroupStars(category, section, prevGroup.id);
-                            if (prevStars < 1) {
+                            if (!isMounted) {
                                 isUnlocked = false;
+                            } else {
+                                const prevGroup = groups[index - 1];
+                                const prevStars = getGroupStars(category, section, prevGroup.id);
+                                if (prevStars < 1) {
+                                    isUnlocked = false;
+                                }
                             }
                         }
 
-                        const earnedStars = getGroupStars(category, section, group.id);
+                        const earnedStars = isMounted ? getGroupStars(category, section, group.id) : 0;
                         const maxStars = group.gameModes.length * 3;
                         
                         const displayTitle = group.displayName;

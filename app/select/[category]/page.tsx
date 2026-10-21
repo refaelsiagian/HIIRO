@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useMemo } from 'react';
+import React, { useMemo, useState, useEffect } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { ArrowLeft, Star } from 'lucide-react';
 import { useGameStore } from '../../store/useGameStore';
@@ -13,6 +13,11 @@ const SectionSelection: React.FC = () => {
     const router = useRouter();
     const category = params.category as 'hiragana' | 'katakana';
     const { getGroupStars } = useGameStore();
+    const [isMounted, setIsMounted] = useState(false);
+
+    useEffect(() => {
+        setIsMounted(true);
+    }, []);
 
     const catTypes = useMemo(() => {
         const types = (typesDataRaw as any[]).filter(t => t.category === category);
@@ -70,7 +75,7 @@ const SectionSelection: React.FC = () => {
 
                         if (resolvedSection) {
                             resolvedSection.groups.forEach(group => {
-                                earned += getGroupStars(category, sectionKey, group.id);
+                                earned += isMounted ? getGroupStars(category, sectionKey, group.id) : 0;
                                 total += group.gameModes.length * 3;
                                 if (group.tier === 'regular') {
                                     totalHuruf += group.chars.length;

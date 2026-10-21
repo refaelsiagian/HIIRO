@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useMemo, useState } from 'react';
+import React, { useMemo, useState, useEffect } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { useGameStore } from '../../../store/useGameStore';
 import { Star, Lock, ArrowLeft } from 'lucide-react';
@@ -21,6 +21,11 @@ const StageSelection: React.FC = () => {
     const category = params.category as 'hiragana' | 'katakana';
     const groupId = params.groupId as string;
     const { progress, petals } = useGameStore();
+    const [isMounted, setIsMounted] = useState(false);
+
+    useEffect(() => {
+        setIsMounted(true);
+    }, []);
 
     const [isSansSerif, setIsSansSerif] = useState(false);
     const [selectedCharIndex, setSelectedCharIndex] = useState(0);
@@ -92,7 +97,7 @@ const StageSelection: React.FC = () => {
     const activeStages = level.gameModes;
     const displayChars = level.chars.length > 0 ? level.chars : [{ k: '?', r: 'test' }];
 
-    const groupProgress = progress[category]?.[section]?.[groupId] || {};
+    const groupProgress = isMounted ? (progress[category]?.[section]?.[groupId] || {}) : {};
     const earnedStars = Object.values(groupProgress).reduce((acc, curr) => acc + curr.stars, 0);
     const totalStars = activeStages.length * 3;
 
