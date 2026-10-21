@@ -26,6 +26,12 @@ const FlipItDrill: React.FC<FlipItDrillProps> = ({ groupChars, onCorrect, onWron
     const initializeCards = useCallback(() => {
         let uniqueChars = [...groupChars].filter((v, i, a) => a.findIndex(t => (t.k === v.k)) === i);
         
+        // If pool is larger than 15 (e.g. cumulative Shiken), pick 15 random characters
+        // so the board remains exactly 30 cards (15 pairs) matching scoreGoal: 15 and the 5x6 grid.
+        if (uniqueChars.length > 15) {
+            uniqueChars = uniqueChars.sort(() => 0.5 - Math.random()).slice(0, 15);
+        }
+        
         let initialCards: CardData[] = [];
         uniqueChars.forEach((char, idx) => {
             initialCards.push({

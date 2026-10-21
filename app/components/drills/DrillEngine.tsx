@@ -7,6 +7,7 @@ import { Pause, Heart, ArrowLeft, Ban } from 'lucide-react';
 import { CountdownOverlay } from './overlays/CountdownOverlay';
 import { PostGameOverlay } from './overlays/PostGameOverlay';
 import { PauseOverlay } from './overlays/PauseOverlay';
+import { getTierTheme } from '../../data/theme/tierThemes';
 
 interface DrillEngineProps {
     category: string;
@@ -56,23 +57,17 @@ const DrillEngine: React.FC<DrillEngineProps> = ({
     const [isClosingOverlay, setIsClosingOverlay] = useState(false);
     const [resetKey, setResetKey] = useState(0);
 
-    const isFinal = groupId.startsWith('daishiken') || groupId.startsWith('shotesto');
+    const cat = (category === 'katakana' ? 'katakana' : 'hiragana') as 'hiragana' | 'katakana';
+    const theme = getTierTheme(cat, groupId);
+    const room = theme.room;
+    const isFinal = groupId.startsWith('daishiken');
+    const finalRoom = getTierTheme(cat, 'daishiken').room;
 
-    // COLORS LOGIC based on layout desc.txt
-    let mainBg = "bg-app-bg";
-    let panelBg = "bg-[#FFE8E0]";
-    let borderColor = "border-[#E89A81]";
-    let fontColor = "text-[#6F3E28]";
-    let barBg = "bg-[#6F3E28]";
-    let starColor = "fill-[#CC6E34] text-[#CC6E34]";
-
-    if (isFinal) {
-        panelBg = "bg-[#ECC5FF]";
-        borderColor = "border-[#C681E8]";
-        fontColor = "text-[#4A286F]";
-        barBg = "bg-[#4A286F]";
-        starColor = "fill-[#8F34CC] text-[#8F34CC]";
-    }
+    let panelBg = isFinal ? `bg-[${finalRoom.plateBg}]` : `bg-[${room.plateBg}]`;
+    let borderColor = isFinal ? `border-[${finalRoom.plateBorder}]` : `border-[${room.plateBorder}]`;
+    let fontColor = isFinal ? `text-[${finalRoom.fontColor}]` : `text-[${room.fontColor}]`;
+    let barBg = isFinal ? `bg-[${finalRoom.fontColor}]` : `bg-[${room.fontColor}]`;
+    let starColor = isFinal ? `fill-[${finalRoom.starColor}] text-[${finalRoom.starColor}]` : `fill-[${room.starColor}] text-[${room.starColor}]`;
 
     useEffect(() => {
         if (gameState === 'ready') {
@@ -164,7 +159,17 @@ const DrillEngine: React.FC<DrillEngineProps> = ({
 
 
     return (
-        <div className={`min-h-screen ${mainBg} p-6 font-sans flex flex-col items-center justify-between relative overflow-hidden ${fontColor}`}>
+        <div 
+            className={`min-h-screen p-6 font-sans flex flex-col items-center justify-between relative overflow-hidden ${fontColor}`}
+            style={{
+                background: room.pageBgGradient,
+                '--theme-plate-bg': isFinal ? finalRoom.plateBg : room.plateBg,
+                '--theme-plate-border': isFinal ? finalRoom.plateBorder : room.plateBorder,
+                '--theme-font-color': room.fontColor,
+                '--theme-star-color': room.starColor,
+                '--theme-petal-bg': room.petalBg,
+            } as React.CSSProperties}
+        >
             
             {/* TOP HUD */}
             <div className="w-full relative flex flex-col items-center pt-8">

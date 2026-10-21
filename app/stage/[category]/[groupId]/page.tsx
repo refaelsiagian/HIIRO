@@ -13,6 +13,7 @@ import { PauseOverlay } from '../../../components/drills/overlays/PauseOverlay';
 import { getResolvedLevelById } from '../../../utils/levelResolver';
 import { SECTIONS_CONFIG } from '../../../data/levels/index';
 import { StageConfig } from '../../../types/levels';
+import { getTierTheme } from '../../../data/theme/tierThemes';
 
 const StageSelection: React.FC = () => {
     const params = useParams();
@@ -85,9 +86,8 @@ const StageSelection: React.FC = () => {
         );
     }
 
-    const isShotesto = groupId.startsWith('shotesto');
-    const isDaishiken = groupId.startsWith('daishiken');
-    const isFinal = isShotesto || isDaishiken;
+    const tier = level.tier;
+    const isExam = tier !== 'regular';
     
     const activeStages = level.gameModes;
     const displayChars = level.chars.length > 0 ? level.chars : [{ k: '?', r: 'test' }];
@@ -96,17 +96,13 @@ const StageSelection: React.FC = () => {
     const earnedStars = Object.values(groupProgress).reduce((acc, curr) => acc + curr.stars, 0);
     const totalStars = activeStages.length * 3;
 
-    // COLORS LOGIC based on layout desc.txt
-    let mainBg = "bg-app-bg";
-    let fontColor = "text-[#6F3E28]";
-    let starColor = "text-[#CC6E34]";
-    let starColorEmpty = "text-[#CC6E34]";
+    // THEME FROM CONFIG (Declarative based on level.tier)
+    const theme = getTierTheme(category, tier);
+    const room = theme.room;
 
-    if (isFinal) {
-        fontColor = "text-[#4A286F]";
-        starColor = "text-[#8F34CC]";
-        starColorEmpty = "text-[#8F34CC]";
-    }
+    let fontColor = `text-[${room.fontColor}]`;
+    let starColor = `text-[${room.starColor}]`;
+    let starColorEmpty = `text-[${room.starColor}]`;
 
     const renderFlower = (stageIndex: number, isUnlocked: boolean, stagePetals: number, customColor?: string) => {
         const maxPetals = 5;
@@ -140,7 +136,17 @@ const StageSelection: React.FC = () => {
     };
 
     return (
-        <div className={`h-screen ${mainBg} font-sans text-slate-800 flex flex-col md:flex-row overflow-hidden`}>
+        <div 
+            className="h-screen font-sans text-slate-800 flex flex-col md:flex-row overflow-hidden"
+            style={{ 
+                background: room.pageBgGradient,
+                '--theme-plate-bg': room.plateBg,
+                '--theme-plate-border': room.plateBorder,
+                '--theme-font-color': room.fontColor,
+                '--theme-star-color': room.starColor,
+                '--theme-petal-bg': room.petalBg,
+            } as React.CSSProperties}
+        >
             {/* LEFT PANEL */}
             <div className="w-full md:w-5/12 flex flex-col h-full overflow-y-auto hide-scrollbar relative">
                 
@@ -186,7 +192,7 @@ const StageSelection: React.FC = () => {
                                         onClick={() => setSelectedCharIndex(index)}
                                         className={`flex flex-col items-center justify-center min-w-[80px] w-[80px] h-[134px] transition-all duration-300 border-b-[2px] flex-shrink-0 ${
                                             selectedCharIndex === index 
-                                                ? (isFinal 
+                                                ? (isExam 
                                                     ? 'bg-gradient-to-b from-[#F3E0FF]/0 to-[#ECC5FF] border-[#C681E8]' 
                                                     : 'bg-gradient-to-b from-[#FFE0CD]/0 to-[#FFB49F] border-[#A55B38]')
                                                 : 'border-transparent hover:bg-black/5'
@@ -229,8 +235,6 @@ const StageSelection: React.FC = () => {
                     <div className="w-full max-w-2xl space-y-8 pb-8">
                     {activeStages.map((stage, index) => {
                         const stageStars = groupProgress[stage.id]?.stars || 0;
-                        const isLastStage = isDaishiken || index === activeStages.length - 1;
-                        
                         let isUnlocked = true;
                         if (index > 0) {
                             const prevStage = activeStages[index - 1];
@@ -238,11 +242,11 @@ const StageSelection: React.FC = () => {
                             isUnlocked = prevStars >= 1;
                         }
 
-                        const plateBg = isLastStage ? "#ECC5FF" : "#FFE8E0";
-                        const plateBorder = isLastStage ? "#C681E8" : "#E89A81";
-                        const plateFontColor = isLastStage ? "text-[#4A286F]" : fontColor;
-                        const plateStarColor = isLastStage ? "text-[#8F34CC]" : starColor;
-                        const plateStarColorEmpty = isLastStage ? "text-[#8F34CC]" : starColorEmpty;
+                        const plateBg = room.plateBg;
+                        const plateBorder = room.plateBorder;
+                        const plateFontColor = fontColor;
+                        const plateStarColor = starColor;
+                        const plateStarColorEmpty = starColorEmpty;
                         
                         const stagePetals = petals[category]?.[section]?.[groupId]?.[stage.id] || 0;
 

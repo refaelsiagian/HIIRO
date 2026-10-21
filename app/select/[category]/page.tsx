@@ -72,7 +72,7 @@ const SectionSelection: React.FC = () => {
                             resolvedSection.groups.forEach(group => {
                                 earned += getGroupStars(category, sectionKey, group.id);
                                 total += group.gameModes.length * 3;
-                                if (!group.id.includes('shotesto') && !group.id.includes('daishiken')) {
+                                if (group.tier === 'regular') {
                                     totalHuruf += group.chars.length;
                                 }
                             });

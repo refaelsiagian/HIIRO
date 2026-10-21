@@ -62,10 +62,10 @@ export const TIER_THEMES: Record<'hiragana' | 'katakana', Record<CardTier, TierT
     },
     shotesto: {
       paper: {
-        bg: '#EC8080',
-        border: '#B84444',
-        fontColor: '#6F3E28',
-        starColor: '#B84444',
+        bg: '#8BAA88',
+        border: '#55624D',
+        fontColor: '#353C35',
+        starColor: '#55624D',
         letterOpacity: 'opacity-40',
       },
       room: {
@@ -77,13 +77,13 @@ export const TIER_THEMES: Record<'hiragana' | 'katakana', Record<CardTier, TierT
         petalBg: '#FFB7A3',
       },
     },
-    // Shiken (Section Exam) - initialized with default basic colors as requested
+    // Shiken (Section Exam) 
     shiken: {
       paper: {
-        bg: '#E89A81',
-        border: '#915946',
+        bg: '#EC8080',
+        border: '#B53E3E',
         fontColor: '#6F3E28',
-        starColor: '#CC6E34',
+        starColor: '#B53E3E',
         letterOpacity: 'opacity-40',
       },
       room: {
@@ -116,7 +116,7 @@ export const TIER_THEMES: Record<'hiragana' | 'katakana', Record<CardTier, TierT
   katakana: {
     regular: {
       paper: {
-        bg: '#FFE8E0',
+        bg: '#FAD7CC',
         border: '#CC6E34',
         fontColor: '#6F3E28',
         starColor: '#CC6E34',
@@ -133,10 +133,10 @@ export const TIER_THEMES: Record<'hiragana' | 'katakana', Record<CardTier, TierT
     },
     shotesto: {
       paper: {
-        bg: '#FFD4D4',
-        border: '#CE6262',
-        fontColor: '#6F3E28',
-        starColor: '#CE6262',
+        bg: '#D3E5D3',
+        border: '#5B995E',
+        fontColor: '#22341E',
+        starColor: '#5B995E',
         letterOpacity: 'opacity-40',
       },
       room: {
@@ -148,13 +148,13 @@ export const TIER_THEMES: Record<'hiragana' | 'katakana', Record<CardTier, TierT
         petalBg: '#FFB7A3',
       },
     },
-    // Shiken (Section Exam) - initialized with default basic colors as requested
+    // Shiken (Section Exam) 
     shiken: {
       paper: {
-        bg: '#FFE8E0',
-        border: '#CC6E34',
+        bg: '#FFD4D4',
+        border: '#CE6262',
         fontColor: '#6F3E28',
-        starColor: '#CC6E34',
+        starColor: '#CE6262',
         letterOpacity: 'opacity-40',
       },
       room: {

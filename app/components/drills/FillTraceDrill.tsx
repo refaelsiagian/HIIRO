@@ -36,6 +36,17 @@ const FillTraceDrill: React.FC<FillTraceDrillProps> = ({ groupChars, onCorrect, 
         
         // Options are all chars, grouped by original order into 3 chunks, then we shuffle the chunks.
         let uniqueChars = [...chars].filter((v, i, a) => a.findIndex(t => (t.k === v.k)) === i);
+
+        // When pool is larger than 15 (e.g. cumulative Shiken), cap options to 15 (3 rows of 5)
+        // while guaranteeing all sequence characters are included as options.
+        if (uniqueChars.length > 15) {
+            const seqKanas = new Set(seq.map(s => s.k));
+            const seqChars = uniqueChars.filter(c => seqKanas.has(c.k));
+            const distractors = uniqueChars.filter(c => !seqKanas.has(c.k)).sort(() => 0.5 - Math.random());
+            const neededDistractors = 15 - seqChars.length;
+            uniqueChars = [...seqChars, ...distractors.slice(0, neededDistractors)].sort(() => 0.5 - Math.random());
+        }
+
         let rows: CharItem[][] = [];
         const chunkSize = Math.ceil(uniqueChars.length / 3);
         
@@ -195,6 +206,7 @@ const FillTraceDrill: React.FC<FillTraceDrillProps> = ({ groupChars, onCorrect, 
                                     <div 
                                         className="absolute inset-0 w-full h-full bg-[#FFB7A3]"
                                         style={{ 
+                                            backgroundColor: 'var(--theme-petal-bg, #FFB7A3)',
                                             maskImage: 'url(/icons/shuriken.svg)', 
                                             WebkitMaskImage: 'url(/icons/shuriken.svg)', 
                                             maskSize: 'contain', 

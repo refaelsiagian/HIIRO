@@ -182,6 +182,7 @@ const SequenceDrill: React.FC<SequenceDrillProps> = ({ groupChars, onCorrect, on
                                         <div 
                                             className="absolute inset-0 w-full h-full bg-[#FFB7A3]"
                                             style={{ 
+                                                backgroundColor: 'var(--theme-petal-bg, #FFB7A3)',
                                                 maskImage: 'url(/icons/shuriken.svg)', 
                                                 WebkitMaskImage: 'url(/icons/shuriken.svg)', 
                                                 maskSize: 'contain', 

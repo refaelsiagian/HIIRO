@@ -21,11 +21,15 @@ export interface StageConfig {
   options?: Record<string, any>;
 }
 
+export type GroupTier = 'regular' | 'shotesto' | 'shiken' | 'daishiken';
+
 export interface GroupLevelDefinition {
   id: string;
+  tier?: GroupTier;             // Explicit tier classification ('regular' | 'shotesto' | 'shiken' | 'daishiken')
   groupId?: string;             // References a single group id from groups.json (e.g. 'a-gyo')
   includeGroups?: string[];     // References multiple group ids (for review / Shotesto)
   includeSection?: string;      // References a whole section id from types.json (for Daishiken)
+  includeSections?: string[];   // References multiple section ids from types.json (for cumulative Shiken exams)
   displayName?: string;         // Optional override; defaults to groups.json display_name
   subtitleKanji?: string;       // Optional override; defaults to groups.json subtitle_kanji
   gameModes: StageConfig[];
@@ -50,6 +54,7 @@ export interface ResolvedChar {
 
 export interface ResolvedGroupLevel {
   id: string;
+  tier: GroupTier;
   displayName: string;
   subtitleKanji: string;
   chars: ResolvedChar[];        // Full character objects with metadata

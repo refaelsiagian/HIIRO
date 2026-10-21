@@ -8,6 +8,7 @@ import { SubKatakanaPaperSVG } from '../../../components/SubKatakanaPaperSVG';
 import { SubHiraganaPaperSVG } from '../../../components/SubHiraganaPaperSVG';
 import { SECTIONS_CONFIG } from '../../../data/levels/index';
 import { resolveSection } from '../../../utils/levelResolver';
+import { getTierTheme } from '../../../data/theme/tierThemes';
 import typesDataRaw from '../../../data/types.json';
 
 const GroupSelection: React.FC = () => {
@@ -65,9 +66,8 @@ const GroupSelection: React.FC = () => {
             <main className="flex-1 w-full flex items-center overflow-x-auto pb-12 snap-x snap-mandatory hide-scrollbar">
                 <div className="flex space-x-12 px-12 md:px-32 w-max mx-auto h-[480px] items-center">
                     {groups.map((group, index) => {
-                        // LOGIC UNTUK SHOTESTO & DAISHIKEN
-                        const isShotesto = group.id.includes('shotesto');
-                        const isDaishiken = group.id.includes('daishiken');
+                        const tier = group.tier;
+                        const isExam = tier !== 'regular';
                         
                         let isUnlocked = true;
                         if (index > 0) {
@@ -81,62 +81,15 @@ const GroupSelection: React.FC = () => {
                         const earnedStars = getGroupStars(category, section, group.id);
                         const maxStars = group.gameModes.length * 3;
                         
-                        let displayTitle = group.displayName;
-                        let displaySubTitle = group.subtitleKanji;
-                        let displayChars = group.chars.map(c => c.k).join('');
-                        
-                        if (isShotesto) {
-                            displayChars = '小テスト';
-                        }
-                        if (isDaishiken) {
-                            displayChars = '大試験';
-                        }
+                        const displayTitle = group.displayName;
+                        const displaySubTitle = group.subtitleKanji;
+                        const displayChars = isExam
+                            ? group.subtitleKanji.replace(/\s*\d+/, '')
+                            : group.chars.map(c => c.k).join('').replace(/\s/g, '').substring(0, 6);
 
-                        // COLORS LOGIC based on layout desc.txt
-                        let bgColor = "";
-                        let borderColor = "";
-                        let fontColor = "";
-                        let starColor = "";
-                        let letterOpacity = "opacity-40";
-
-                        if (category === 'katakana') {
-                            if (isDaishiken) {
-                                bgColor = "bg-[#F5E0FF]";
-                                borderColor = "bg-[#8656AC]";
-                                fontColor = "text-[#4F286F]";
-                                starColor = "fill-[#8656AC] text-[#8656AC]";
-                            } else if (isShotesto) {
-                                bgColor = "bg-[#FFD4D4]";
-                                borderColor = "bg-[#CE6262]";
-                                fontColor = "text-[#6F3E28]";
-                                starColor = "fill-[#CE6262] text-[#CE6262]";
-                            } else {
-                                bgColor = "bg-[#FFE8E0]";
-                                borderColor = "bg-[#CC6E34]";
-                                fontColor = "text-[#6F3E28]";
-                                starColor = "fill-[#CC6E34] text-[#CC6E34]";
-                            }
-                        } else {
-                            if (isDaishiken) {
-                                bgColor = "bg-[#B576E7]";
-                                borderColor = "bg-[#794D9B]";
-                                fontColor = "text-[#4F286F]";
-                                starColor = "fill-[#794D9B] text-[#794D9B]";
-                            } else if (isShotesto) {
-                                bgColor = "bg-[#EC8080]";
-                                borderColor = "bg-[#B84444]";
-                                fontColor = "text-[#6F3E28]";
-                                starColor = "fill-[#B84444] text-[#B84444]";
-                            } else {
-                                bgColor = "bg-[#E89A81]";
-                                borderColor = "bg-[#915946]";
-                                fontColor = "text-[#6F3E28]";
-                                starColor = "fill-[#CC6E34] text-[#CC6E34]";
-                            }
-                        }
-
-                        const hexBg = bgColor.match(/\[(.*?)\]/)?.[1] || "transparent";
-                        const hexBorder = borderColor.match(/\[(.*?)\]/)?.[1] || "transparent";
+                        // Unified theme from config
+                        const theme = getTierTheme(category, tier);
+                        const paper = theme.paper;
 
                         return (
                             <button
@@ -148,14 +101,14 @@ const GroupSelection: React.FC = () => {
                                 {/* SVG BACKGROUND */}
                                 <div className={`absolute inset-0 z-0 ${!isUnlocked ? 'opacity-50' : 'group-hover:drop-shadow-xl'} transition-all duration-300`}>
                                     {category === 'katakana' ? (
-                                        <SubKatakanaPaperSVG bgColor={hexBg} borderColor={hexBorder} className="w-full h-full drop-shadow-sm" />
+                                        <SubKatakanaPaperSVG bgColor={paper.bg} borderColor={paper.border} className="w-full h-full drop-shadow-sm" />
                                     ) : (
-                                        <SubHiraganaPaperSVG bgColor={hexBg} borderColor={hexBorder} className="w-full h-full drop-shadow-sm" />
+                                        <SubHiraganaPaperSVG bgColor={paper.bg} borderColor={paper.border} className="w-full h-full drop-shadow-sm" />
                                     )}
                                 </div>
 
-                                {/* INNER CARD CONTENT (transparent) */}
-                                <div className={`absolute inset-0 z-10 ${fontColor}`}>
+                                {/* INNER CARD CONTENT */}
+                                <div className="absolute inset-0 z-10" style={{ color: paper.fontColor }}>
                                     {!isUnlocked && (
                                         <div className="absolute inset-0 z-20 flex items-center justify-center bg-black/10">
                                             <div className="bg-white/80 p-4 rounded-full shadow-lg">
@@ -165,12 +118,10 @@ const GroupSelection: React.FC = () => {
                                     )}
                                     
                                     <div 
-                                        className={`absolute top-[36px] left-[30px] ${letterOpacity} text-[48px] font-serif leading-[60px] font-normal tracking-[12px]`}
+                                        className={`absolute top-[36px] left-[30px] ${paper.letterOpacity} text-[48px] font-serif leading-[60px] font-normal tracking-[12px]`}
                                         style={{ writingMode: 'vertical-rl' }}
                                     >
-                                        {isDaishiken || isShotesto 
-                                            ? displayChars 
-                                            : displayChars.replace(/\s/g, '').substring(0, 6)}
+                                        {displayChars}
                                     </div>
                                     
                                     <div className="absolute top-[92px] left-[152px] right-0 pr-[42px] flex flex-col items-start z-10">
@@ -182,19 +133,24 @@ const GroupSelection: React.FC = () => {
                                             {displaySubTitle}
                                         </p>
                                         <div className="flex items-center text-[16px] font-outfit font-normal opacity-90 text-left">
-                                            <Star className={`w-[20px] h-[20px] mr-2 ${starColor}`} />
+                                            <Star 
+                                                className="w-[20px] h-[20px] mr-2" 
+                                                style={{ fill: paper.starColor, color: paper.starColor }}
+                                            />
                                             {`${earnedStars}/${maxStars}`}
                                         </div>
                                     </div>
 
-                                    <div className={`absolute bottom-[42px] right-[42px] z-10 text-right ${fontColor}`}>
-                                        {isDaishiken ? (
-                                            <p className="text-[16px] font-outfit font-normal">Ujian akhir</p>
-                                        ) : isShotesto ? (
-                                            <p className="text-[16px] font-outfit font-normal">Ujian antara</p>
-                                        ) : (
-                                            <p className="text-[16px] font-outfit font-normal">{group.chars.length} huruf</p>
-                                        )}
+                                    <div className="absolute bottom-[42px] right-[42px] z-10 text-right" style={{ color: paper.fontColor }}>
+                                        <p className="text-[16px] font-outfit font-normal">
+                                            {tier === 'regular'
+                                                ? `${group.chars.length} huruf`
+                                                : tier === 'shotesto'
+                                                ? 'Ujian antara'
+                                                : tier === 'shiken'
+                                                ? 'Ujian bagian'
+                                                : 'Ujian akhir'}
+                                        </p>
                                     </div>
                                 </div>
                             </button>

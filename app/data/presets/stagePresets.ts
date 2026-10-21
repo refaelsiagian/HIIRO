@@ -123,6 +123,64 @@ export const SHOTESTO_STAGES_PRESET: StageConfig[] = [
 ];
 
 /**
+ * 4-stage comprehensive section exam preset used across Shiken stages.
+ * Evaluates all letters learned up to and including the current section.
+ */
+export const SHIKEN_STAGES_PRESET: StageConfig[] = [
+  {
+    id: 'check-truth-1',
+    displayName: 'Check the Truth',
+    subtitle: 'Check Truth',
+    instruction: 'Periksa pernyataan dan tentukan benar atau salah',
+    timer: 90,
+    scoreGoal: 10,
+    filepath: 'app/components/drills/CheckTruthDrill.tsx',
+    drillType: 'check-truth',
+  },
+  {
+    id: 'fill-trace-1',
+    displayName: 'Fill the Trace',
+    subtitle: 'Fill the Trace',
+    instruction: 'Ingat urutan kana yang muncul lalu isi posisi yang ditandai',
+    timer: 180,
+    scoreGoal: 7,
+    filepath: 'app/components/drills/FillTraceDrill.tsx',
+    drillType: 'fill-trace',
+    options: {
+      traceSpots: 7,
+    },
+  },
+  {
+    id: 'flip-it-1',
+    displayName: 'Flip It!',
+    subtitle: 'Flip It!',
+    instruction: 'Buka kartu dan cocokkan pasangan kana dengan romaji yang tepat',
+    timer: 180,
+    scoreGoal: 15,
+    filepath: 'app/components/drills/FlipItDrill.tsx',
+    drillType: 'flip-it',
+    options: {
+      totalCards: 30,
+    },
+  },
+  {
+    id: 'quick-glance-1',
+    displayName: 'Quick Glance',
+    subtitle: 'Quick Glance',
+    instruction: 'Temukan pasangan yang cocok di antara grid sebelum bar merah habis',
+    timer: 150,
+    scoreGoal: 20,
+    filepath: 'app/components/drills/QuickGlanceDrill.tsx',
+    drillType: 'quick-glance',
+    options: {
+      totalPairs: 40,
+      matchCount: 6,
+      barIntervalSeconds: 10,
+    },
+  },
+];
+
+/**
  * Comprehensive final exam preset used for Daishiken stages.
  * Note: Can be refined once final Daishiken drill modes are decided.
  */

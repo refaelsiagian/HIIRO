@@ -8,6 +8,7 @@ export const DAISHIKEN_SECTION_DEFINITION: SectionLevelDefinition = {
   groups: [
     {
       id: 'daishiken-final',
+      tier: 'daishiken',
       displayName: 'Daishiken',
       subtitleKanji: '大試験',
       gameModes: DAISHIKEN_STAGES_PRESET,

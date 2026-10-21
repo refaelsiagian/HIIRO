@@ -8,7 +8,9 @@ import {
   ResolvedChar,
   ResolvedGroupLevel,
   ResolvedSectionLevel,
+  GroupTier,
 } from '../types/levels';
+import { getTierFromGroupId } from '../data/theme/tierThemes';
 import { SECTIONS_CONFIG } from '../data/levels/index';
 
 const charsData = charsDataRaw as RawChar[];
@@ -50,27 +52,32 @@ export function resolveLevel(
         charStrings.push(...groupRow.char_member);
       }
     });
-    if (!displayName) displayName = 'Shōtesuto';
-    if (!subtitleKanji) subtitleKanji = '小テスト';
   }
 
-  // 3. Entire section review (e.g. Daishiken)
-  if (definition.includeSection) {
-    const typeRow = typesData.find(
-      (t) => t.id === definition.includeSection && t.category === category
-    );
-    if (typeRow) {
-      typeRow.group_member.forEach((gId) => {
-        const groupRow = groupsData.find(
-          (g) => g.id === gId && g.category === category
-        );
-        if (groupRow) {
-          charStrings.push(...groupRow.char_member);
-        }
-      });
-      if (!displayName) displayName = 'Daishiken';
-      if (!subtitleKanji) subtitleKanji = '大試験';
-    }
+  // 3. Section review (single or cumulative multiple sections, e.g. Shiken & Daishiken)
+  const sectionsToInclude: string[] = [];
+  if (definition.includeSections) {
+    sectionsToInclude.push(...definition.includeSections);
+  } else if (definition.includeSection) {
+    sectionsToInclude.push(definition.includeSection);
+  }
+
+  if (sectionsToInclude.length > 0) {
+    sectionsToInclude.forEach((secId) => {
+      const typeRow = typesData.find(
+        (t) => t.id === secId && t.category === category
+      );
+      if (typeRow) {
+        typeRow.group_member.forEach((gId) => {
+          const groupRow = groupsData.find(
+            (g) => g.id === gId && g.category === category
+          );
+          if (groupRow) {
+            charStrings.push(...groupRow.char_member);
+          }
+        });
+      }
+    });
   }
 
   // 4. Category-wide final exam (daishiken-final)
@@ -79,8 +86,6 @@ export function resolveLevel(
     catGroups.forEach((g) => {
       charStrings.push(...g.char_member);
     });
-    if (!displayName) displayName = 'Daishiken';
-    if (!subtitleKanji) subtitleKanji = '大試験';
   }
 
   // Map each kana character string to full character data from chars.json
@@ -105,8 +110,11 @@ export function resolveLevel(
     }
   });
 
+  const tier: GroupTier = definition.tier || getTierFromGroupId(definition.id);
+
   return {
     id: definition.id,
+    tier,
     displayName,
     subtitleKanji,
     chars: resolvedChars,
