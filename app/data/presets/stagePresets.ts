@@ -85,7 +85,7 @@ export const SHOTESTO_STAGES_PRESET: StageConfig[] = [
     subtitle: 'Fill the Trace',
     instruction: 'Ingat urutan kana yang muncul lalu isi posisi yang ditandai',
     timer: 180,
-    scoreGoal: 7,
+    scoreGoal: 5,
     filepath: 'app/components/drills/FillTraceDrill.tsx',
     drillType: 'fill-trace',
     options: {
@@ -98,11 +98,12 @@ export const SHOTESTO_STAGES_PRESET: StageConfig[] = [
     subtitle: 'Flip It!',
     instruction: 'Buka kartu dan cocokkan pasangan kana dengan romaji yang tepat',
     timer: 180,
-    scoreGoal: 15,
+    scoreGoal: 16,
     filepath: 'app/components/drills/FlipItDrill.tsx',
     drillType: 'flip-it',
     options: {
-      totalCards: 30,
+      pairsPerWave: 8,
+      waveCount: 2,
     },
   },
   {
@@ -143,7 +144,7 @@ export const SHIKEN_STAGES_PRESET: StageConfig[] = [
     subtitle: 'Fill the Trace',
     instruction: 'Ingat urutan kana yang muncul lalu isi posisi yang ditandai',
     timer: 180,
-    scoreGoal: 7,
+    scoreGoal: 1,
     filepath: 'app/components/drills/FillTraceDrill.tsx',
     drillType: 'fill-trace',
     options: {
@@ -156,11 +157,12 @@ export const SHIKEN_STAGES_PRESET: StageConfig[] = [
     subtitle: 'Flip It!',
     instruction: 'Buka kartu dan cocokkan pasangan kana dengan romaji yang tepat',
     timer: 180,
-    scoreGoal: 15,
+    scoreGoal: 24,
     filepath: 'app/components/drills/FlipItDrill.tsx',
     drillType: 'flip-it',
     options: {
-      totalCards: 30,
+      pairsPerWave: 12,
+      waveCount: 2,
     },
   },
   {
