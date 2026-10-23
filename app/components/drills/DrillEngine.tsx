@@ -62,12 +62,7 @@ const DrillEngine: React.FC<DrillEngineProps> = ({
     const room = theme.room;
     const isFinal = groupId.startsWith('daishiken');
     const finalRoom = getTierTheme(cat, 'daishiken').room;
-
-    let panelBg = isFinal ? `bg-[${finalRoom.plateBg}]` : `bg-[${room.plateBg}]`;
-    let borderColor = isFinal ? `border-[${finalRoom.plateBorder}]` : `border-[${room.plateBorder}]`;
-    let fontColor = isFinal ? `text-[${finalRoom.fontColor}]` : `text-[${room.fontColor}]`;
-    let barBg = isFinal ? `bg-[${finalRoom.fontColor}]` : `bg-[${room.fontColor}]`;
-    let starColor = isFinal ? `fill-[${finalRoom.starColor}] text-[${finalRoom.starColor}]` : `fill-[${room.starColor}] text-[${room.starColor}]`;
+    const activeRoom = isFinal ? finalRoom : room;
 
     useEffect(() => {
         if (gameState === 'ready') {
@@ -160,14 +155,15 @@ const DrillEngine: React.FC<DrillEngineProps> = ({
 
     return (
         <div 
-            className={`min-h-screen p-6 font-sans flex flex-col items-center justify-between relative overflow-hidden ${fontColor}`}
+            className="min-h-screen p-6 font-sans flex flex-col items-center justify-between relative overflow-hidden"
             style={{
-                background: room.pageBgGradient,
-                '--theme-plate-bg': isFinal ? finalRoom.plateBg : room.plateBg,
-                '--theme-plate-border': isFinal ? finalRoom.plateBorder : room.plateBorder,
-                '--theme-font-color': room.fontColor,
-                '--theme-star-color': room.starColor,
-                '--theme-petal-bg': room.petalBg,
+                background: activeRoom.pageBgGradient,
+                color: activeRoom.fontColor,
+                '--theme-plate-bg': activeRoom.plateBg,
+                '--theme-plate-border': activeRoom.plateBorder,
+                '--theme-font-color': activeRoom.fontColor,
+                '--theme-star-color': activeRoom.starColor,
+                '--theme-petal-bg': activeRoom.petalBg,
             } as React.CSSProperties}
         >
             
@@ -182,7 +178,8 @@ const DrillEngine: React.FC<DrillEngineProps> = ({
                         }
                     }}
                     disabled={hasPaused}
-                    className={`absolute top-8 right-8 md:right-12 transition-opacity flex items-center justify-center w-12 h-12 ${fontColor} ${hasPaused ? 'opacity-50 cursor-not-allowed' : 'hover:opacity-70'}`}
+                    className={`absolute top-8 right-8 md:right-12 transition-opacity flex items-center justify-center w-12 h-12 ${hasPaused ? 'opacity-50 cursor-not-allowed' : 'hover:opacity-70'}`}
+                    style={{ color: activeRoom.fontColor }}
                 >
                     <Pause size={36} fill="currentColor" strokeWidth={0} />
                     {hasPaused && (
@@ -201,15 +198,21 @@ const DrillEngine: React.FC<DrillEngineProps> = ({
                 </div>
                 
                 {/* Timer */}
-                <div className={`font-outfit text-[44px] leading-none ${fontColor}`}>
+                <div 
+                    className="font-outfit text-[44px] leading-none"
+                    style={{ color: activeRoom.fontColor }}
+                >
                     {timeLeft}
                 </div>
                 
                 {/* Progress Bar */}
                 <div className="w-full max-w-[400px] h-3 bg-black/10 rounded-full mt-4 overflow-hidden relative">
                     <div 
-                        className={`h-full ${barBg} transition-all duration-300 ease-out`}
-                        style={{ width: `${Math.min(100, (score / targetScore) * 100)}%` }}
+                        className="h-full transition-all duration-300 ease-out rounded-full"
+                        style={{ 
+                            width: `${Math.min(100, (score / targetScore) * 100)}%`,
+                            backgroundColor: activeRoom.fontColor,
+                        }}
                     />
                 </div>
             </div>
