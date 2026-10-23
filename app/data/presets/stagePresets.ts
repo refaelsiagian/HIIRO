@@ -176,8 +176,8 @@ export const SHIKEN_STAGES_PRESET: StageConfig[] = [
     drillType: 'quick-glance',
     options: {
       totalPairs: 40,
-      matchCount: 6,
-      barIntervalSeconds: 10,
+      matchCount: 8,
+      barIntervalSeconds: 5,
     },
   },
 ];

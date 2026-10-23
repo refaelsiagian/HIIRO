@@ -9,6 +9,9 @@ interface QuickGlanceDrillProps {
     onWrong: () => void;
     isSansSerif?: boolean;
     isActive?: boolean;
+    totalPairs?: number;
+    matchCount?: number;
+    barIntervalSeconds?: number;
 }
 
 type PairData = {
@@ -18,11 +21,23 @@ type PairData = {
     isMatch: boolean;
 };
 
-const TOTAL_PAIRS = 60;
-const MATCH_COUNT = 6;
-const TIME_LIMIT_MS = 10000;
+const DEFAULT_TOTAL_PAIRS = 60;
+const DEFAULT_MATCH_COUNT = 6;
+const DEFAULT_TIME_LIMIT_MS = 10000;
 
-const QuickGlanceDrill: React.FC<QuickGlanceDrillProps> = ({ groupChars, onCorrect, onWrong, isSansSerif, isActive }) => {
+const QuickGlanceDrill: React.FC<QuickGlanceDrillProps> = ({ 
+    groupChars, 
+    onCorrect, 
+    onWrong, 
+    isSansSerif, 
+    isActive,
+    totalPairs: propTotalPairs,
+    matchCount: propMatchCount,
+    barIntervalSeconds,
+}) => {
+    const totalPairs = propTotalPairs ?? DEFAULT_TOTAL_PAIRS;
+    const matchCount = propMatchCount ?? DEFAULT_MATCH_COUNT;
+    const timeLimitMs = barIntervalSeconds ? barIntervalSeconds * 1000 : DEFAULT_TIME_LIMIT_MS;
     
     // Generate a mismatch pair
     const generateMismatch = useCallback(() => {
@@ -45,21 +60,21 @@ const QuickGlanceDrill: React.FC<QuickGlanceDrillProps> = ({ groupChars, onCorre
         let matchIndices = new Set<number>();
         let attempts = 0;
         
-        while(matchIndices.size < MATCH_COUNT && attempts < 1000) {
+        while(matchIndices.size < matchCount && attempts < 1000) {
             attempts++;
-            const idx = Math.floor(Math.random() * TOTAL_PAIRS);
+            const idx = Math.floor(Math.random() * totalPairs);
             // Enforce no adjacent matches
             if (!matchIndices.has(idx) && !matchIndices.has(idx - 1) && !matchIndices.has(idx + 1)) {
                 matchIndices.add(idx);
             }
         }
         // Fallback in case of extremely bad RNG
-        while (matchIndices.size < MATCH_COUNT) {
-            const idx = Math.floor(Math.random() * TOTAL_PAIRS);
+        while (matchIndices.size < matchCount) {
+            const idx = Math.floor(Math.random() * totalPairs);
             matchIndices.add(idx);
         }
 
-        for (let i = 0; i < TOTAL_PAIRS; i++) {
+        for (let i = 0; i < totalPairs; i++) {
             if (matchIndices.has(i)) {
                 initialPairs.push({ id: i, ...generateMatch() });
             } else {
@@ -67,24 +82,24 @@ const QuickGlanceDrill: React.FC<QuickGlanceDrillProps> = ({ groupChars, onCorre
             }
         }
         return initialPairs;
-    }, [generateMatch, generateMismatch]);
+    }, [generateMatch, generateMismatch, matchCount, totalPairs]);
 
     const [pairs, setPairs] = useState<PairData[]>([]);
-    const [timeLeft, setTimeLeft] = useState(TIME_LIMIT_MS);
+    const [timeLeft, setTimeLeft] = useState(timeLimitMs);
     
     // Timer ref
     const timerRef = useRef<NodeJS.Timeout | null>(null);
     const lastTickRef = useRef<number>(Date.now());
-    const timeLeftRef = useRef<number>(TIME_LIMIT_MS);
+    const timeLeftRef = useRef<number>(timeLimitMs);
 
     useEffect(() => {
         if (isActive && pairs.length === 0) {
             setPairs(initializeBoard());
-            setTimeLeft(TIME_LIMIT_MS);
-            timeLeftRef.current = TIME_LIMIT_MS;
+            setTimeLeft(timeLimitMs);
+            timeLeftRef.current = timeLimitMs;
             lastTickRef.current = Date.now();
         }
-    }, [isActive, pairs.length, initializeBoard]);
+    }, [isActive, pairs.length, initializeBoard, timeLimitMs]);
 
     useEffect(() => {
         if (!isActive || pairs.length === 0) {
@@ -104,7 +119,7 @@ const QuickGlanceDrill: React.FC<QuickGlanceDrillProps> = ({ groupChars, onCorre
                 // Time out!
                 onWrong();
                 // Reset timer
-                timeLeftRef.current = TIME_LIMIT_MS;
+                timeLeftRef.current = timeLimitMs;
                 lastTickRef.current = Date.now();
             }
 
@@ -114,7 +129,7 @@ const QuickGlanceDrill: React.FC<QuickGlanceDrillProps> = ({ groupChars, onCorre
         return () => {
             if (timerRef.current) clearInterval(timerRef.current);
         };
-    }, [isActive, pairs.length, onWrong]);
+    }, [isActive, pairs.length, onWrong, timeLimitMs]);
 
     const handlePairClick = (index: number) => {
         if (!isActive) return;
@@ -123,16 +138,16 @@ const QuickGlanceDrill: React.FC<QuickGlanceDrillProps> = ({ groupChars, onCorre
         if (!clickedPair.isMatch) {
             // Clicked a mismatch!
             onWrong();
-            setTimeLeft(TIME_LIMIT_MS);
-            timeLeftRef.current = TIME_LIMIT_MS;
+            setTimeLeft(timeLimitMs);
+            timeLeftRef.current = timeLimitMs;
             lastTickRef.current = Date.now();
             return;
         }
 
         // Correct!
         onCorrect();
-        setTimeLeft(TIME_LIMIT_MS);
-        timeLeftRef.current = TIME_LIMIT_MS;
+        setTimeLeft(timeLimitMs);
+        timeLeftRef.current = timeLimitMs;
         lastTickRef.current = Date.now();
 
         setPairs(prev => {
@@ -140,7 +155,7 @@ const QuickGlanceDrill: React.FC<QuickGlanceDrillProps> = ({ groupChars, onCorre
             
             // 1. Find all existing matches EXCEPT the one we just clicked
             const existingMatches = new Set<number>();
-            for (let i = 0; i < TOTAL_PAIRS; i++) {
+            for (let i = 0; i < totalPairs; i++) {
                 if (i !== index && newPairs[i].isMatch) {
                     existingMatches.add(i);
                 }
@@ -148,7 +163,7 @@ const QuickGlanceDrill: React.FC<QuickGlanceDrillProps> = ({ groupChars, onCorre
 
             // 2. Find valid slots for 1 new match that are NOT adjacent to any existing match
             const validNewMatchSlots = [];
-            for (let i = 0; i < TOTAL_PAIRS; i++) {
+            for (let i = 0; i < totalPairs; i++) {
                 if (i === index) continue; // The clicked spot must become a mismatch
                 if (existingMatches.has(i)) continue;
                 if (existingMatches.has(i - 1) || existingMatches.has(i + 1)) continue;
@@ -160,10 +175,10 @@ const QuickGlanceDrill: React.FC<QuickGlanceDrillProps> = ({ groupChars, onCorre
                 newMatchIdx = validNewMatchSlots[Math.floor(Math.random() * validNewMatchSlots.length)];
             } else {
                 // Fallback (extremely unlikely)
-                newMatchIdx = (index + 2) % TOTAL_PAIRS;
+                newMatchIdx = (index + 2) % totalPairs;
             }
 
-            // Apply the status changes so we maintain exactly MATCH_COUNT matches
+            // Apply the status changes so we maintain exactly matchCount matches
             newPairs[index] = { ...newPairs[index], isMatch: false };
             newPairs[newMatchIdx] = { ...newPairs[newMatchIdx], isMatch: true };
 
@@ -172,11 +187,12 @@ const QuickGlanceDrill: React.FC<QuickGlanceDrillProps> = ({ groupChars, onCorre
             changeIndices.add(index);
             changeIndices.add(newMatchIdx);
 
-            while(changeIndices.size < 10) {
-                changeIndices.add(Math.floor(Math.random() * TOTAL_PAIRS));
+            const sampleSize = Math.min(10, totalPairs);
+            while(changeIndices.size < sampleSize) {
+                changeIndices.add(Math.floor(Math.random() * totalPairs));
             }
 
-            // 4. Regenerate characters for those 10 indices based on their current isMatch status
+            // 4. Regenerate characters for those indices based on their current isMatch status
             for (const i of changeIndices) {
                 if (newPairs[i].isMatch) {
                     newPairs[i] = { id: i, ...generateMatch() };
@@ -192,7 +208,7 @@ const QuickGlanceDrill: React.FC<QuickGlanceDrillProps> = ({ groupChars, onCorre
     if (pairs.length === 0) return <div>Loading...</div>;
 
     // Calculate percentage for progress bar (grows to full red)
-    const progressPercent = ((TIME_LIMIT_MS - Math.max(0, timeLeft)) / TIME_LIMIT_MS) * 100;
+    const progressPercent = ((timeLimitMs - Math.max(0, timeLeft)) / timeLimitMs) * 100;
 
     return (
         <div className="flex flex-col items-center justify-center w-full h-full text-[#5C3A21] relative pb-12">
@@ -208,11 +224,13 @@ const QuickGlanceDrill: React.FC<QuickGlanceDrillProps> = ({ groupChars, onCorre
                 </div>
             </div>
 
-            {/* Grid 4x15 = 60 items */}
-            {/* We can use grid-cols-5 md:grid-cols-10 or 15 */}
-            {/* Let's use 5 columns on mobile (12 rows), and 10 on desktop (6 rows) */}
+            {/* Grid */}
             <div className="mt-16 md:mt-24 w-full max-w-6xl px-2 overflow-y-auto hide-scrollbar flex justify-center">
-                <div className="grid grid-cols-5 sm:grid-cols-6 md:grid-cols-10 lg:grid-cols-15 gap-1.5 md:gap-2">
+                <div className={`grid gap-1.5 md:gap-2 ${
+                    totalPairs <= 40 
+                        ? 'grid-cols-5 sm:grid-cols-8 md:grid-cols-10' 
+                        : 'grid-cols-5 sm:grid-cols-6 md:grid-cols-10 lg:grid-cols-15'
+                }`}>
                     {pairs.map((pair, index) => (
                         <button
                             key={pair.id}
