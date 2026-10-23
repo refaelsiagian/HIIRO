@@ -80,7 +80,9 @@ function buildWaves(groupChars: CharItem[], pairsPerWave: number, waveCount: num
 function createCardsForWave(chars: CharItem[], waveIndex: number): CardData[] {
     const cards: CardData[] = [];
     chars.forEach((char, idx) => {
-        const pairId = `${char.k}_${char.r}_${idx}`;
+        // Use romaji as pairId so homophones like ぢ & じ ('ji') or づ & ず ('zu')
+        // can match any valid corresponding romaji card on the board
+        const pairId = char.r.toLowerCase();
         cards.push({
             id: `w${waveIndex}-kana-${char.k}-${idx}`,
             pairId,

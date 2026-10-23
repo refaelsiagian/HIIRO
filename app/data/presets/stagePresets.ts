@@ -98,7 +98,7 @@ export const SHOTESTO_STAGES_PRESET: StageConfig[] = [
     subtitle: 'Flip It!',
     instruction: 'Buka kartu dan cocokkan pasangan kana dengan romaji yang tepat',
     timer: 180,
-    scoreGoal: 16,
+    scoreGoal: 16, // Make sure the score to match the pairs times wave counts
     filepath: 'app/components/drills/FlipItDrill.tsx',
     drillType: 'flip-it',
     options: {
@@ -156,8 +156,8 @@ export const SHIKEN_STAGES_PRESET: StageConfig[] = [
     displayName: 'Flip It!',
     subtitle: 'Flip It!',
     instruction: 'Buka kartu dan cocokkan pasangan kana dengan romaji yang tepat',
-    timer: 180,
-    scoreGoal: 24,
+    timer: 210,
+    scoreGoal: 24, // Make sure the score to match the pairs times wave counts
     filepath: 'app/components/drills/FlipItDrill.tsx',
     drillType: 'flip-it',
     options: {
