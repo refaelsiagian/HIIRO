@@ -9,6 +9,10 @@ import CheckTruthDrill from './CheckTruthDrill';
 import FillTraceDrill from './FillTraceDrill';
 import FlipItDrill from './FlipItDrill';
 import QuickGlanceDrill from './QuickGlanceDrill';
+import TheOtherOneDrill from './TheOtherOneDrill';
+import WordbuilderDrill from './WordbuilderDrill';
+import UnderGuidanceDrill from './UnderGuidanceDrill';
+import TextbuilderDrill from './TextbuilderDrill';
 import { getResolvedLevelById } from '../../utils/levelResolver';
 import { SECTIONS_CONFIG } from '../../data/levels/index';
 
@@ -32,6 +36,10 @@ const DRILL_REGISTRY: Record<string, React.ComponentType<any>> = {
     'fill-trace': FillTraceDrill,
     'flip-it': FlipItDrill,
     'quick-glance': QuickGlanceDrill,
+    'the-other-one': TheOtherOneDrill,
+    'wordbuilder': WordbuilderDrill,
+    'under-guidance': UnderGuidanceDrill,
+    'textbuilder': TextbuilderDrill,
 };
 
 export default function DrillView({ category, groupId, stageId, mode, onClose, isSansSerif, onToggleSansSerif }: DrillViewProps) {
@@ -72,7 +80,7 @@ export default function DrillView({ category, groupId, stageId, mode, onClose, i
             stageId={stageId}
             mode={mode}
             maxTime={maxTime}
-            maxLives={3}
+            maxLives={drillOptions?.maxLives ?? 3}
             targetScore={targetScore}
             onClose={onClose}
             isSansSerif={isSansSerif}
@@ -81,6 +89,7 @@ export default function DrillView({ category, groupId, stageId, mode, onClose, i
             {({ onCorrect, onWrong, isSansSerif, onToggleSansSerif, isActive }) => (
                 <GameComponent 
                     groupChars={level.chars} 
+                    targetScore={targetScore}
                     onCorrect={onCorrect} 
                     onWrong={onWrong} 
                     isSansSerif={isSansSerif}

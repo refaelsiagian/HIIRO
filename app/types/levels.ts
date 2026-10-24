@@ -7,7 +7,11 @@ export type DrillType =
   | 'check-truth'
   | 'fill-trace'
   | 'flip-it'
-  | 'quick-glance';
+  | 'quick-glance'
+  | 'the-other-one'
+  | 'wordbuilder'
+  | 'under-guidance'
+  | 'textbuilder';
 
 export interface StageConfig {
   id: string;

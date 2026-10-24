@@ -1,0 +1,1376 @@
+[
+  {
+    "id": "kt-001",
+    "word": "パン",
+    "katakana": [
+      "パ",
+      "ン"
+    ],
+    "origin": "Bread (Pão)",
+    "meaning": "Roti",
+    "category": "noun"
+  },
+  {
+    "id": "kt-002",
+    "word": "コーヒー",
+    "katakana": [
+      "コ",
+      "ー",
+      "ヒ",
+      "ー"
+    ],
+    "origin": "Coffee",
+    "meaning": "Kopi",
+    "category": "noun"
+  },
+  {
+    "id": "kt-003",
+    "word": "クラス",
+    "katakana": [
+      "ク",
+      "ラ",
+      "ス"
+    ],
+    "origin": "Class",
+    "meaning": "Kelas",
+    "category": "noun"
+  },
+  {
+    "id": "kt-004",
+    "word": "テスト",
+    "katakana": [
+      "テ",
+      "ス",
+      "ト"
+    ],
+    "origin": "Test",
+    "meaning": "Ujian",
+    "category": "noun"
+  },
+  {
+    "id": "kt-005",
+    "word": "ノート",
+    "katakana": [
+      "ノ",
+      "ー",
+      "ト"
+    ],
+    "origin": "Notebook",
+    "meaning": "Buku catatan",
+    "category": "noun"
+  },
+  {
+    "id": "kt-006",
+    "word": "ボールペン",
+    "katakana": [
+      "ボ",
+      "ー",
+      "ル",
+      "ペ",
+      "ン"
+    ],
+    "origin": "Ballpoint pen",
+    "meaning": "Pulpen",
+    "category": "noun"
+  },
+  {
+    "id": "kt-007",
+    "word": "ベッド",
+    "katakana": [
+      "ベ",
+      "ッ",
+      "ド"
+    ],
+    "origin": "Bed",
+    "meaning": "Tempat tidur",
+    "category": "noun"
+  },
+  {
+    "id": "kt-008",
+    "word": "テレビ",
+    "katakana": [
+      "テ",
+      "レ",
+      "ビ"
+    ],
+    "origin": "Television",
+    "meaning": "Televisi",
+    "category": "noun"
+  },
+  {
+    "id": "kt-009",
+    "word": "ラジオ",
+    "katakana": [
+      "ラ",
+      "ジ",
+      "オ"
+    ],
+    "origin": "Radio",
+    "meaning": "Radio",
+    "category": "noun"
+  },
+  {
+    "id": "kt-010",
+    "word": "カメラ",
+    "katakana": [
+      "カ",
+      "メ",
+      "ラ"
+    ],
+    "origin": "Camera",
+    "meaning": "Kamera",
+    "category": "noun"
+  },
+  {
+    "id": "kt-011",
+    "word": "パソコン",
+    "katakana": [
+      "パ",
+      "ソ",
+      "コ",
+      "ン"
+    ],
+    "origin": "Personal computer",
+    "meaning": "Komputer laptop",
+    "category": "noun"
+  },
+  {
+    "id": "kt-012",
+    "word": "ホテル",
+    "katakana": [
+      "ホ",
+      "テ",
+      "ル"
+    ],
+    "origin": "Hotel",
+    "meaning": "Hotel",
+    "category": "noun"
+  },
+  {
+    "id": "kt-013",
+    "word": "アパート",
+    "katakana": [
+      "ア",
+      "パ",
+      "ー",
+      "ト"
+    ],
+    "origin": "Apartment",
+    "meaning": "Apartemen",
+    "category": "noun"
+  },
+  {
+    "id": "kt-014",
+    "word": "レストラン",
+    "katakana": [
+      "レ",
+      "ス",
+      "ト",
+      "ラ",
+      "ン"
+    ],
+    "origin": "Restaurant",
+    "meaning": "Restoran",
+    "category": "noun"
+  },
+  {
+    "id": "kt-015",
+    "word": "エレベーター",
+    "katakana": [
+      "エ",
+      "レ",
+      "ベ",
+      "ー",
+      "タ",
+      "ー"
+    ],
+    "origin": "Elevator",
+    "meaning": "Lift",
+    "category": "noun"
+  },
+  {
+    "id": "kt-016",
+    "word": "エスカレーター",
+    "katakana": [
+      "エ",
+      "ス",
+      "カ",
+      "レ",
+      "ー",
+      "タ",
+      "ー"
+    ],
+    "origin": "Escalator",
+    "meaning": "Tangga berjalan",
+    "category": "noun"
+  },
+  {
+    "id": "kt-017",
+    "word": "バス",
+    "katakana": [
+      "バ",
+      "ス"
+    ],
+    "origin": "Bus",
+    "meaning": "Bus",
+    "category": "noun"
+  },
+  {
+    "id": "kt-018",
+    "word": "タクシー",
+    "katakana": [
+      "タ",
+      "ク",
+      "シ",
+      "ー"
+    ],
+    "origin": "Taxi",
+    "meaning": "Taksi",
+    "category": "noun"
+  },
+  {
+    "id": "kt-019",
+    "word": "トイレ",
+    "katakana": [
+      "ト",
+      "イ",
+      "レ"
+    ],
+    "origin": "Toilet",
+    "meaning": "Toilet",
+    "category": "noun"
+  },
+  {
+    "id": "kt-020",
+    "word": "ドア",
+    "katakana": [
+      "ド",
+      "ア"
+    ],
+    "origin": "Door",
+    "meaning": "Pintu",
+    "category": "noun"
+  },
+  {
+    "id": "kt-021",
+    "word": "テーブル",
+    "katakana": [
+      "テ",
+      "ー",
+      "ブ",
+      "ル"
+    ],
+    "origin": "Table",
+    "meaning": "Meja makan",
+    "category": "noun"
+  },
+  {
+    "id": "kt-022",
+    "word": "ニュース",
+    "katakana": [
+      "ニュ",
+      "ー",
+      "ス"
+    ],
+    "origin": "News",
+    "meaning": "Berita",
+    "category": "noun"
+  },
+  {
+    "id": "kt-023",
+    "word": "フィルム",
+    "katakana": [
+      "フィ",
+      "ル",
+      "ム"
+    ],
+    "origin": "Film",
+    "meaning": "Film rol",
+    "category": "noun"
+  },
+  {
+    "id": "kt-024",
+    "word": "マッチ",
+    "katakana": [
+      "マ",
+      "ッ",
+      "チ"
+    ],
+    "origin": "Match",
+    "meaning": "Korek api",
+    "category": "noun"
+  },
+  {
+    "id": "kt-025",
+    "word": "ポスト",
+    "katakana": [
+      "ポ",
+      "ス",
+      "ト"
+    ],
+    "origin": "Postbox",
+    "meaning": "Kotak pos",
+    "category": "noun"
+  },
+  {
+    "id": "kt-026",
+    "word": "ページ",
+    "katakana": [
+      "ペ",
+      "ー",
+      "ジ"
+    ],
+    "origin": "Page",
+    "meaning": "Halaman",
+    "category": "noun"
+  },
+  {
+    "id": "kt-027",
+    "word": "シャツ",
+    "katakana": [
+      "シャ",
+      "ツ"
+    ],
+    "origin": "Shirt",
+    "meaning": "Kemeja",
+    "category": "noun"
+  },
+  {
+    "id": "kt-028",
+    "word": "スカート",
+    "katakana": [
+      "ス",
+      "カ",
+      "ー",
+      "ト"
+    ],
+    "origin": "Skirt",
+    "meaning": "Rok",
+    "category": "noun"
+  },
+  {
+    "id": "kt-029",
+    "word": "ズボン",
+    "katakana": [
+      "ズ",
+      "ボ",
+      "ン"
+    ],
+    "origin": "Trousers (Jupon)",
+    "meaning": "Celana panjang",
+    "category": "noun"
+  },
+  {
+    "id": "kt-030",
+    "word": "コート",
+    "katakana": [
+      "コ",
+      "ー",
+      "ト"
+    ],
+    "origin": "Coat",
+    "meaning": "Mantel",
+    "category": "noun"
+  },
+  {
+    "id": "kt-031",
+    "word": "セーター",
+    "katakana": [
+      "セ",
+      "ー",
+      "タ",
+      "ー"
+    ],
+    "origin": "Sweater",
+    "meaning": "Baju hangat",
+    "category": "noun"
+  },
+  {
+    "id": "kt-032",
+    "word": "ネクタイ",
+    "katakana": [
+      "ネ",
+      "ク",
+      "タ",
+      "イ"
+    ],
+    "origin": "Necktie",
+    "meaning": "Dasi",
+    "category": "noun"
+  },
+  {
+    "id": "kt-033",
+    "word": "スポーツ",
+    "katakana": [
+      "ス",
+      "ポ",
+      "ー",
+      "ツ"
+    ],
+    "origin": "Sports",
+    "meaning": "Olahraga",
+    "category": "noun"
+  },
+  {
+    "id": "kt-034",
+    "word": "テニス",
+    "katakana": [
+      "テ",
+      "ニ",
+      "ス"
+    ],
+    "origin": "Tennis",
+    "meaning": "Tenis",
+    "category": "noun"
+  },
+  {
+    "id": "kt-035",
+    "word": "サッカー",
+    "katakana": [
+      "サ",
+      "ッ",
+      "カ",
+      "ー"
+    ],
+    "origin": "Soccer",
+    "meaning": "Sepak bola",
+    "category": "noun"
+  },
+  {
+    "id": "kt-036",
+    "word": "ギター",
+    "katakana": [
+      "ギ",
+      "タ",
+      "ー"
+    ],
+    "origin": "Guitar",
+    "meaning": "Gitar",
+    "category": "noun"
+  },
+  {
+    "id": "kt-037",
+    "word": "ピアノ",
+    "katakana": [
+      "ピ",
+      "ア",
+      "ノ"
+    ],
+    "origin": "Piano",
+    "meaning": "Piano",
+    "category": "noun"
+  },
+  {
+    "id": "kt-038",
+    "word": "レコード",
+    "katakana": [
+      "レ",
+      "コ",
+      "ー",
+      "ド"
+    ],
+    "origin": "Record",
+    "meaning": "Piringan hitam",
+    "category": "noun"
+  },
+  {
+    "id": "kt-039",
+    "word": "キロ",
+    "katakana": [
+      "キ",
+      "ロ"
+    ],
+    "origin": "Kilo",
+    "meaning": "Kilogram / Kilometer",
+    "category": "noun"
+  },
+  {
+    "id": "kt-040",
+    "word": "グラム",
+    "katakana": [
+      "グ",
+      "ラ",
+      "ム"
+    ],
+    "origin": "Gram",
+    "meaning": "Gram",
+    "category": "noun"
+  },
+  {
+    "id": "kt-041",
+    "word": "メートル",
+    "katakana": [
+      "メ",
+      "ー",
+      "ト",
+      "ル"
+    ],
+    "origin": "Meter",
+    "meaning": "Meter",
+    "category": "noun"
+  },
+  {
+    "id": "kt-042",
+    "word": "パーティー",
+    "katakana": [
+      "パ",
+      "ー",
+      "ティ",
+      "ー"
+    ],
+    "origin": "Party",
+    "meaning": "Pesta",
+    "category": "noun"
+  },
+  {
+    "id": "kt-043",
+    "word": "ゼロ",
+    "katakana": [
+      "ゼ",
+      "ロ"
+    ],
+    "origin": "Zero",
+    "meaning": "Nol",
+    "category": "noun"
+  },
+  {
+    "id": "kt-044",
+    "word": "コップ",
+    "katakana": [
+      "コ",
+      "ッ",
+      "プ"
+    ],
+    "origin": "Cup (Kop)",
+    "meaning": "Gelas",
+    "category": "noun"
+  },
+  {
+    "id": "kt-045",
+    "word": "スプーン",
+    "katakana": [
+      "ス",
+      "プ",
+      "ー",
+      "ン"
+    ],
+    "origin": "Spoon",
+    "meaning": "Sendok",
+    "category": "noun"
+  },
+  {
+    "id": "kt-046",
+    "word": "フォーク",
+    "katakana": [
+      "フォ",
+      "ー",
+      "ク"
+    ],
+    "origin": "Fork",
+    "meaning": "Garpu",
+    "category": "noun"
+  },
+  {
+    "id": "kt-047",
+    "word": "ナイフ",
+    "katakana": [
+      "ナ",
+      "イ",
+      "フ"
+    ],
+    "origin": "Knife",
+    "meaning": "Pisau",
+    "category": "noun"
+  },
+  {
+    "id": "kt-048",
+    "word": "タオル",
+    "katakana": [
+      "タ",
+      "オ",
+      "ル"
+    ],
+    "origin": "Towel",
+    "meaning": "Handuk",
+    "category": "noun"
+  },
+  {
+    "id": "kt-049",
+    "word": "カレンダー",
+    "katakana": [
+      "カ",
+      "レ",
+      "ン",
+      "ダ",
+      "ー"
+    ],
+    "origin": "Calendar",
+    "meaning": "Kalender",
+    "category": "noun"
+  },
+  {
+    "id": "kt-050",
+    "word": "ビル",
+    "katakana": [
+      "ビ",
+      "ル"
+    ],
+    "origin": "Building",
+    "meaning": "Gedung bertingkat",
+    "category": "noun"
+  },
+  {
+    "id": "kt-051",
+    "word": "プール",
+    "katakana": [
+      "プ",
+      "ー",
+      "ル"
+    ],
+    "origin": "Pool",
+    "meaning": "Kolam renang",
+    "category": "noun"
+  },
+  {
+    "id": "kt-052",
+    "word": "バター",
+    "katakana": [
+      "バ",
+      "タ",
+      "ー"
+    ],
+    "origin": "Butter",
+    "meaning": "Mentega",
+    "category": "noun"
+  },
+  {
+    "id": "kt-053",
+    "word": "ジャム",
+    "katakana": [
+      "ジャ",
+      "ム"
+    ],
+    "origin": "Jam",
+    "meaning": "Selai",
+    "category": "noun"
+  },
+  {
+    "id": "kt-054",
+    "word": "チーズ",
+    "katakana": [
+      "チ",
+      "ー",
+      "ズ"
+    ],
+    "origin": "Cheese",
+    "meaning": "Keju",
+    "category": "noun"
+  },
+  {
+    "id": "kt-055",
+    "word": "アイスクリーム",
+    "katakana": [
+      "ア",
+      "イ",
+      "ス",
+      "ク",
+      "リ",
+      "ー",
+      "ム"
+    ],
+    "origin": "Ice cream",
+    "meaning": "Es krim",
+    "category": "noun"
+  },
+  {
+    "id": "kt-056",
+    "word": "ケーキ",
+    "katakana": [
+      "ケ",
+      "ー",
+      "キ"
+    ],
+    "origin": "Cake",
+    "meaning": "Kue",
+    "category": "noun"
+  },
+  {
+    "id": "kt-057",
+    "word": "カレー",
+    "katakana": [
+      "カ",
+      "レ",
+      "ー"
+    ],
+    "origin": "Curry",
+    "meaning": "Kari",
+    "category": "noun"
+  },
+  {
+    "id": "kt-058",
+    "word": "ジュース",
+    "katakana": [
+      "ジュ",
+      "ー",
+      "ス"
+    ],
+    "origin": "Juice",
+    "meaning": "Jus",
+    "category": "noun"
+  },
+  {
+    "id": "kt-059",
+    "word": "サンドイッチ",
+    "katakana": [
+      "サ",
+      "ン",
+      "ド",
+      "イ",
+      "ッ",
+      "チ"
+    ],
+    "origin": "Sandwich",
+    "meaning": "Roti lapis",
+    "category": "noun"
+  },
+  {
+    "id": "kt-060",
+    "word": "シャワー",
+    "katakana": [
+      "シャ",
+      "ワ",
+      "ー"
+    ],
+    "origin": "Shower",
+    "meaning": "Pancuran air mandi",
+    "category": "noun"
+  },
+  {
+    "id": "kt-061",
+    "word": "スーパー",
+    "katakana": [
+      "ス",
+      "ー",
+      "パ",
+      "ー"
+    ],
+    "origin": "Supermarket",
+    "meaning": "Supermarket",
+    "category": "noun"
+  },
+  {
+    "id": "kt-062",
+    "word": "デパート",
+    "katakana": [
+      "デ",
+      "パ",
+      "ー",
+      "ト"
+    ],
+    "origin": "Department store",
+    "meaning": "Toserba",
+    "category": "noun"
+  },
+  {
+    "id": "kt-063",
+    "word": "コンビニ",
+    "katakana": [
+      "コ",
+      "ン",
+      "ビ",
+      "ニ"
+    ],
+    "origin": "Convenience store",
+    "meaning": "Minimarket",
+    "category": "noun"
+  },
+  {
+    "id": "kt-064",
+    "word": "ハンカチ",
+    "katakana": [
+      "ハ",
+      "ン",
+      "カ",
+      "チ"
+    ],
+    "origin": "Handkerchief",
+    "meaning": "Sapu tangan",
+    "category": "noun"
+  },
+  {
+    "id": "kt-065",
+    "word": "ポケット",
+    "katakana": [
+      "ポ",
+      "ケ",
+      "ッ",
+      "ト"
+    ],
+    "origin": "Pocket",
+    "meaning": "Kantong saku",
+    "category": "noun"
+  },
+  {
+    "id": "kt-066",
+    "word": "スリッパ",
+    "katakana": [
+      "ス",
+      "リ",
+      "ッ",
+      "パ"
+    ],
+    "origin": "Slippers",
+    "meaning": "Sandal rumah",
+    "category": "noun"
+  },
+  {
+    "id": "kt-067",
+    "word": "スイッチ",
+    "katakana": [
+      "ス",
+      "イ",
+      "ッ",
+      "チ"
+    ],
+    "origin": "Switch",
+    "meaning": "Saklar",
+    "category": "noun"
+  },
+  {
+    "id": "kt-068",
+    "word": "ステレオ",
+    "katakana": [
+      "ス",
+      "テ",
+      "レ",
+      "オ"
+    ],
+    "origin": "Stereo",
+    "meaning": "Stereo",
+    "category": "noun"
+  },
+  {
+    "id": "kt-069",
+    "word": "ビデオ",
+    "katakana": [
+      "ビ",
+      "デ",
+      "オ"
+    ],
+    "origin": "Video",
+    "meaning": "Video",
+    "category": "noun"
+  },
+  {
+    "id": "kt-070",
+    "word": "グラス",
+    "katakana": [
+      "グ",
+      "ラ",
+      "ス"
+    ],
+    "origin": "Glass",
+    "meaning": "Gelas kaca",
+    "category": "noun"
+  },
+  {
+    "id": "kt-071",
+    "word": "カップ",
+    "katakana": [
+      "カ",
+      "ッ",
+      "プ"
+    ],
+    "origin": "Cup",
+    "meaning": "Cangkir",
+    "category": "noun"
+  },
+  {
+    "id": "kt-072",
+    "word": "ワイン",
+    "katakana": [
+      "ワ",
+      "イ",
+      "ン"
+    ],
+    "origin": "Wine",
+    "meaning": "Anggur (minuman)",
+    "category": "noun"
+  },
+  {
+    "id": "kt-073",
+    "word": "ビール",
+    "katakana": [
+      "ビ",
+      "ー",
+      "ル"
+    ],
+    "origin": "Beer (Bier)",
+    "meaning": "Bir",
+    "category": "noun"
+  },
+  {
+    "id": "kt-074",
+    "word": "ミルク",
+    "katakana": [
+      "ミ",
+      "ル",
+      "ク"
+    ],
+    "origin": "Milk",
+    "meaning": "Susu sapi",
+    "category": "noun"
+  },
+  {
+    "id": "kt-075",
+    "word": "サラダ",
+    "katakana": [
+      "サ",
+      "ラ",
+      "ダ"
+    ],
+    "origin": "Salad",
+    "meaning": "Salad sayur",
+    "category": "noun"
+  },
+  {
+    "id": "kt-076",
+    "word": "スープ",
+    "katakana": [
+      "ス",
+      "ー",
+      "プ"
+    ],
+    "origin": "Soup",
+    "meaning": "Sup",
+    "category": "noun"
+  },
+  {
+    "id": "kt-077",
+    "word": "チョコレート",
+    "katakana": [
+      "チョ",
+      "コ",
+      "レ",
+      "ー",
+      "ト"
+    ],
+    "origin": "Chocolate",
+    "meaning": "Cokelat",
+    "category": "noun"
+  },
+  {
+    "id": "kt-078",
+    "word": "ピザ",
+    "katakana": [
+      "ピ",
+      "ザ"
+    ],
+    "origin": "Pizza",
+    "meaning": "Piza",
+    "category": "noun"
+  },
+  {
+    "id": "kt-079",
+    "word": "バナナ",
+    "katakana": [
+      "バ",
+      "ナ",
+      "ナ"
+    ],
+    "origin": "Banana",
+    "meaning": "Pisang",
+    "category": "noun"
+  },
+  {
+    "id": "kt-080",
+    "word": "トマト",
+    "katakana": [
+      "ト",
+      "マ",
+      "ト"
+    ],
+    "origin": "Tomato",
+    "meaning": "Tomat",
+    "category": "noun"
+  },
+  {
+    "id": "kt-081",
+    "word": "オレンジ",
+    "katakana": [
+      "オ",
+      "レ",
+      "ン",
+      "ジ"
+    ],
+    "origin": "Orange",
+    "meaning": "Jeruk",
+    "category": "noun"
+  },
+  {
+    "id": "kt-082",
+    "word": "レモン",
+    "katakana": [
+      "レ",
+      "モ",
+      "ン"
+    ],
+    "origin": "Lemon",
+    "meaning": "Lemon",
+    "category": "noun"
+  },
+  {
+    "id": "kt-083",
+    "word": "チケット",
+    "katakana": [
+      "チ",
+      "ケ",
+      "ッ",
+      "ト"
+    ],
+    "origin": "Ticket",
+    "meaning": "Tiket karcis",
+    "category": "noun"
+  },
+  {
+    "id": "kt-084",
+    "word": "パスポート",
+    "katakana": [
+      "パ",
+      "ス",
+      "ポ",
+      "ー",
+      "ト"
+    ],
+    "origin": "Passport",
+    "meaning": "Paspor",
+    "category": "noun"
+  },
+  {
+    "id": "kt-085",
+    "word": "プレゼント",
+    "katakana": [
+      "プ",
+      "レ",
+      "ゼ",
+      "ン",
+      "ト"
+    ],
+    "origin": "Present",
+    "meaning": "Kado hadiah",
+    "category": "noun"
+  },
+  {
+    "id": "kt-086",
+    "word": "クリスマス",
+    "katakana": [
+      "ク",
+      "リ",
+      "ス",
+      "マ",
+      "ス"
+    ],
+    "origin": "Christmas",
+    "meaning": "Hari Natal",
+    "category": "noun"
+  },
+  {
+    "id": "kt-087",
+    "word": "スキー",
+    "katakana": [
+      "ス",
+      "キ",
+      "ー"
+    ],
+    "origin": "Ski",
+    "meaning": "Olahraga ski",
+    "category": "noun"
+  },
+  {
+    "id": "kt-088",
+    "word": "スケート",
+    "katakana": [
+      "ス",
+      "ケ",
+      "ー",
+      "ト"
+    ],
+    "origin": "Skate",
+    "meaning": "Sepatu roda / es",
+    "category": "noun"
+  },
+  {
+    "id": "kt-089",
+    "word": "ダンス",
+    "katakana": [
+      "ダ",
+      "ン",
+      "ス"
+    ],
+    "origin": "Dance",
+    "meaning": "Tarian",
+    "category": "noun"
+  },
+  {
+    "id": "kt-090",
+    "word": "コンサート",
+    "katakana": [
+      "コ",
+      "ン",
+      "サ",
+      "ー",
+      "ト"
+    ],
+    "origin": "Concert",
+    "meaning": "Konser musik",
+    "category": "noun"
+  },
+  {
+    "id": "kt-091",
+    "word": "カラオケ",
+    "katakana": [
+      "カ",
+      "ラ",
+      "オ",
+      "ケ"
+    ],
+    "origin": "Karaoke",
+    "meaning": "Karaoke",
+    "category": "noun"
+  },
+  {
+    "id": "kt-092",
+    "word": "ゲーム",
+    "katakana": [
+      "ゲ",
+      "ー",
+      "ム"
+    ],
+    "origin": "Game",
+    "meaning": "Permainan / game",
+    "category": "noun"
+  },
+  {
+    "id": "kt-093",
+    "word": "スマホ",
+    "katakana": [
+      "ス",
+      "マ",
+      "ホ"
+    ],
+    "origin": "Smartphone",
+    "meaning": "Ponsel pintar",
+    "category": "noun"
+  },
+  {
+    "id": "kt-094",
+    "word": "インターネット",
+    "katakana": [
+      "イ",
+      "ン",
+      "タ",
+      "ー",
+      "ネ",
+      "ッ",
+      "ト"
+    ],
+    "origin": "Internet",
+    "meaning": "Internet",
+    "category": "noun"
+  },
+  {
+    "id": "kt-095",
+    "word": "メール",
+    "katakana": [
+      "メ",
+      "ー",
+      "ル"
+    ],
+    "origin": "Mail",
+    "meaning": "Email / surat elektronik",
+    "category": "noun"
+  },
+  {
+    "id": "kt-096",
+    "word": "コピー",
+    "katakana": [
+      "コ",
+      "ピ",
+      "ー"
+    ],
+    "origin": "Copy",
+    "meaning": "Salinan fotokopi",
+    "category": "noun"
+  },
+  {
+    "id": "kt-097",
+    "word": "メモ",
+    "katakana": [
+      "メ",
+      "モ"
+    ],
+    "origin": "Memo",
+    "meaning": "Catatan kecil",
+    "category": "noun"
+  },
+  {
+    "id": "kt-098",
+    "word": "ペン",
+    "katakana": [
+      "ペ",
+      "ン"
+    ],
+    "origin": "Pen",
+    "meaning": "Pena / bolpoin",
+    "category": "noun"
+  },
+  {
+    "id": "kt-099",
+    "word": "ソファ",
+    "katakana": [
+      "ソ",
+      "ファ"
+    ],
+    "origin": "Sofa",
+    "meaning": "Sofa kursi empuk",
+    "category": "noun"
+  },
+  {
+    "id": "kt-100",
+    "word": "カーテン",
+    "katakana": [
+      "カ",
+      "ー",
+      "テ",
+      "ン"
+    ],
+    "origin": "Curtain",
+    "meaning": "Gorden jendela",
+    "category": "noun"
+  },
+  {
+    "id": "kt-101",
+    "word": "エアコン",
+    "katakana": [
+      "エ",
+      "ア",
+      "コ",
+      "ン"
+    ],
+    "origin": "Air conditioner",
+    "meaning": "Pendingin ruangan / AC",
+    "category": "noun"
+  },
+  {
+    "id": "kt-102",
+    "word": "トラック",
+    "katakana": [
+      "ト",
+      "ラ",
+      "ッ",
+      "ク"
+    ],
+    "origin": "Truck",
+    "meaning": "Truk",
+    "category": "noun"
+  },
+  {
+    "id": "kt-103",
+    "word": "バイク",
+    "katakana": [
+      "バ",
+      "イ",
+      "ク"
+    ],
+    "origin": "Bike / Motorcycle",
+    "meaning": "Sepeda motor",
+    "category": "noun"
+  },
+  {
+    "id": "kt-104",
+    "word": "ジャケット",
+    "katakana": [
+      "ジャ",
+      "ケ",
+      "ッ",
+      "ト"
+    ],
+    "origin": "Jacket",
+    "meaning": "Jaket luar",
+    "category": "noun"
+  },
+  {
+    "id": "kt-105",
+    "word": "スーツ",
+    "katakana": [
+      "ス",
+      "ー",
+      "ツ"
+    ],
+    "origin": "Suit",
+    "meaning": "Setelan jas",
+    "category": "noun"
+  },
+  {
+    "id": "kt-106",
+    "word": "ジーンズ",
+    "katakana": [
+      "ジ",
+      "ー",
+      "ン",
+      "ズ"
+    ],
+    "origin": "Jeans",
+    "meaning": "Celana jins",
+    "category": "noun"
+  },
+  {
+    "id": "kt-107",
+    "word": "ベルト",
+    "katakana": [
+      "ベ",
+      "ル",
+      "ト"
+    ],
+    "origin": "Belt",
+    "meaning": "Ikat pinggang",
+    "category": "noun"
+  },
+  {
+    "id": "kt-108",
+    "word": "ブーツ",
+    "katakana": [
+      "ブ",
+      "ー",
+      "ツ"
+    ],
+    "origin": "Boots",
+    "meaning": "Sepatu bot",
+    "category": "noun"
+  },
+  {
+    "id": "kt-109",
+    "word": "サンダル",
+    "katakana": [
+      "サ",
+      "ン",
+      "ダ",
+      "ル"
+    ],
+    "origin": "Sandals",
+    "meaning": "Sandal",
+    "category": "noun"
+  },
+  {
+    "id": "kt-110",
+    "word": "ティッシュ",
+    "katakana": [
+      "ティ",
+      "ッ",
+      "シュ"
+    ],
+    "origin": "Tissue",
+    "meaning": "Tisu",
+    "category": "noun"
+  }
+]

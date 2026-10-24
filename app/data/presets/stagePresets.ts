@@ -184,22 +184,61 @@ export const SHIKEN_STAGES_PRESET: StageConfig[] = [
 
 /**
  * Comprehensive final exam preset used for Daishiken stages.
- * Note: Can be refined once final Daishiken drill modes are decided.
+ * Consists of 4 distinct high-level quizzes based on daishiken.txt:
+ * 1. The Other One (Odd-one-out or missing slot in a 5-letter group)
+ * 2. Wordbuilder (Building vocabulary until the letter grid is empty)
+ * 3. Under Guidance (Deducing sentence patterns from 4 references)
+ * 4. Textbuilder (Completing an 8-sentence passage in sequential order)
  */
 export const DAISHIKEN_STAGES_PRESET: StageConfig[] = [
   {
-    id: 'daishiken-exam-1',
-    displayName: 'Daishiken Final Exam',
-    subtitle: 'Ujian Komprehensif',
-    instruction: 'Ujian komprehensif menguji seluruh huruf dalam bagian ini',
-    timer: 180,
-    scoreGoal: 25,
-    filepath: 'app/components/drills/QuickGlanceDrill.tsx',
-    drillType: 'quick-glance',
+    id: 'the-other-one-1',
+    displayName: 'The Other One',
+    subtitle: 'The Other One',
+    instruction: 'Pilih huruf yang tidak termasuk dalam kelompok atau lengkapi posisi yang kosong',
+    timer: 120,
+    scoreGoal: 10,
+    filepath: 'app/components/drills/TheOtherOneDrill.tsx',
+    drillType: 'the-other-one',
     options: {
-      totalPairs: 60,
-      matchCount: 6,
-      barIntervalSeconds: 10,
+      totalSlots: 5,
+    },
+  },
+  {
+    id: 'wordbuilder-1',
+    displayName: 'Wordbuilder',
+    subtitle: 'Wordbuilder',
+    instruction: 'Susun kata dari huruf yang tersedia di papan hingga seluruh grid kosong',
+    timer: 300,
+    scoreGoal: 50,
+    filepath: 'app/components/drills/WordbuilderDrill.tsx',
+    drillType: 'wordbuilder',
+    options: {
+      maxLives: 5,
+    },
+  },
+  {
+    id: 'under-guidance-1',
+    displayName: 'Under Guidance',
+    subtitle: 'Under Guidance',
+    instruction: 'Amati pola struktur 4 kalimat contoh dan pilih kalimat kana yang sesuai arti',
+    timer: 180,
+    scoreGoal: 8,
+    filepath: 'app/components/drills/UnderGuidanceDrill.tsx',
+    drillType: 'under-guidance',
+  },
+  {
+    id: 'textbuilder-1',
+    displayName: 'Textbuilder',
+    subtitle: 'Textbuilder',
+    instruction: 'Lengkapi seluruh kalimat rumpang pada teks bacaan secara berurutan',
+    timer: 210,
+    scoreGoal: 8,
+    filepath: 'app/components/drills/TextbuilderDrill.tsx',
+    drillType: 'textbuilder',
+    options: {
+      sentenceCount: 8,
     },
   },
 ];
+

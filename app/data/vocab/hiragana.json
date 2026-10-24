@@ -1,0 +1,6624 @@
+[
+  {
+    "id": "n5-001",
+    "kanji": [
+      "食",
+      "べる"
+    ],
+    "hiragana": [
+      "た",
+      "べる"
+    ],
+    "meaning": "Makan",
+    "category": "verb"
+  },
+  {
+    "id": "n5-002",
+    "kanji": [
+      "飲",
+      "む"
+    ],
+    "hiragana": [
+      "の",
+      "む"
+    ],
+    "meaning": "Minum",
+    "category": "verb"
+  },
+  {
+    "id": "n5-003",
+    "kanji": [
+      "行",
+      "く"
+    ],
+    "hiragana": [
+      "い",
+      "く"
+    ],
+    "meaning": "Pergi",
+    "category": "verb"
+  },
+  {
+    "id": "n5-004",
+    "kanji": [
+      "来",
+      "る"
+    ],
+    "hiragana": [
+      "く",
+      "る"
+    ],
+    "meaning": "Datang",
+    "category": "verb"
+  },
+  {
+    "id": "n5-005",
+    "kanji": [
+      "見",
+      "る"
+    ],
+    "hiragana": [
+      "み",
+      "る"
+    ],
+    "meaning": "Melihat",
+    "category": "verb"
+  },
+  {
+    "id": "n5-006",
+    "kanji": [
+      "聞",
+      "く"
+    ],
+    "hiragana": [
+      "き",
+      "く"
+    ],
+    "meaning": "Mendengar",
+    "category": "verb"
+  },
+  {
+    "id": "n5-007",
+    "kanji": [
+      "読",
+      "む"
+    ],
+    "hiragana": [
+      "よ",
+      "む"
+    ],
+    "meaning": "Membaca",
+    "category": "verb"
+  },
+  {
+    "id": "n5-008",
+    "kanji": [
+      "書",
+      "く"
+    ],
+    "hiragana": [
+      "か",
+      "く"
+    ],
+    "meaning": "Menulis",
+    "category": "verb"
+  },
+  {
+    "id": "n5-009",
+    "kanji": [
+      "話",
+      "す"
+    ],
+    "hiragana": [
+      "はな",
+      "す"
+    ],
+    "meaning": "Berbicara",
+    "category": "verb"
+  },
+  {
+    "id": "n5-010",
+    "kanji": [
+      "買",
+      "う"
+    ],
+    "hiragana": [
+      "か",
+      "う"
+    ],
+    "meaning": "Membeli",
+    "category": "verb"
+  },
+  {
+    "id": "n5-011",
+    "kanji": [
+      "休",
+      "む"
+    ],
+    "hiragana": [
+      "やす",
+      "む"
+    ],
+    "meaning": "Beristirahat",
+    "category": "verb"
+  },
+  {
+    "id": "n5-012",
+    "kanji": [
+      "起",
+      "きる"
+    ],
+    "hiragana": [
+      "お",
+      "きる"
+    ],
+    "meaning": "Bangun",
+    "category": "verb"
+  },
+  {
+    "id": "n5-013",
+    "kanji": [
+      "寝",
+      "る"
+    ],
+    "hiragana": [
+      "ね",
+      "る"
+    ],
+    "meaning": "Tidur",
+    "category": "verb"
+  },
+  {
+    "id": "n5-014",
+    "kanji": [
+      "会",
+      "う"
+    ],
+    "hiragana": [
+      "あ",
+      "う"
+    ],
+    "meaning": "Bertemu",
+    "category": "verb"
+  },
+  {
+    "id": "n5-015",
+    "kanji": [
+      "帰",
+      "る"
+    ],
+    "hiragana": [
+      "かえ",
+      "る"
+    ],
+    "meaning": "Pulang",
+    "category": "verb"
+  },
+  {
+    "id": "n5-016",
+    "kanji": [
+      "出",
+      "る"
+    ],
+    "hiragana": [
+      "で",
+      "る"
+    ],
+    "meaning": "Keluar",
+    "category": "verb"
+  },
+  {
+    "id": "n5-017",
+    "kanji": [
+      "入",
+      "る"
+    ],
+    "hiragana": [
+      "はい",
+      "る"
+    ],
+    "meaning": "Masuk",
+    "category": "verb"
+  },
+  {
+    "id": "n5-018",
+    "kanji": [
+      "立",
+      "つ"
+    ],
+    "hiragana": [
+      "た",
+      "つ"
+    ],
+    "meaning": "Berdiri",
+    "category": "verb"
+  },
+  {
+    "id": "n5-019",
+    "kanji": [
+      "座",
+      "る"
+    ],
+    "hiragana": [
+      "すわ",
+      "る"
+    ],
+    "meaning": "Duduk",
+    "category": "verb"
+  },
+  {
+    "id": "n5-020",
+    "kanji": [
+      "乗",
+      "る"
+    ],
+    "hiragana": [
+      "の",
+      "る"
+    ],
+    "meaning": "Naik (kendaraan)",
+    "category": "verb"
+  },
+  {
+    "id": "n5-021",
+    "kanji": [
+      "降",
+      "りる"
+    ],
+    "hiragana": [
+      "お",
+      "りる"
+    ],
+    "meaning": "Turun (kendaraan)",
+    "category": "verb"
+  },
+  {
+    "id": "n5-022",
+    "kanji": [
+      "作",
+      "る"
+    ],
+    "hiragana": [
+      "つく",
+      "る"
+    ],
+    "meaning": "Membuat",
+    "category": "verb"
+  },
+  {
+    "id": "n5-023",
+    "kanji": [
+      "使",
+      "う"
+    ],
+    "hiragana": [
+      "つか",
+      "う"
+    ],
+    "meaning": "Menggunakan",
+    "category": "verb"
+  },
+  {
+    "id": "n5-024",
+    "kanji": [
+      "分",
+      "かる"
+    ],
+    "hiragana": [
+      "わ",
+      "かる"
+    ],
+    "meaning": "Mengerti",
+    "category": "verb"
+  },
+  {
+    "id": "n5-025",
+    "kanji": [
+      "泳",
+      "ぐ"
+    ],
+    "hiragana": [
+      "およ",
+      "ぐ"
+    ],
+    "meaning": "Berenang",
+    "category": "verb"
+  },
+  {
+    "id": "n5-026",
+    "kanji": [
+      "走",
+      "る"
+    ],
+    "hiragana": [
+      "はし",
+      "る"
+    ],
+    "meaning": "Berlari",
+    "category": "verb"
+  },
+  {
+    "id": "n5-027",
+    "kanji": [
+      "飛",
+      "ぶ"
+    ],
+    "hiragana": [
+      "と",
+      "ぶ"
+    ],
+    "meaning": "Terbang",
+    "category": "verb"
+  },
+  {
+    "id": "n5-028",
+    "kanji": [
+      "遊",
+      "ぶ"
+    ],
+    "hiragana": [
+      "あそ",
+      "ぶ"
+    ],
+    "meaning": "Bermain",
+    "category": "verb"
+  },
+  {
+    "id": "n5-029",
+    "kanji": [
+      "歌",
+      "う"
+    ],
+    "hiragana": [
+      "うた",
+      "う"
+    ],
+    "meaning": "Bernyanyi",
+    "category": "verb"
+  },
+  {
+    "id": "n5-030",
+    "kanji": [
+      "待",
+      "つ"
+    ],
+    "hiragana": [
+      "ま",
+      "つ"
+    ],
+    "meaning": "Menunggu",
+    "category": "verb"
+  },
+  {
+    "id": "n5-031",
+    "kanji": [
+      "持",
+      "つ"
+    ],
+    "hiragana": [
+      "も",
+      "つ"
+    ],
+    "meaning": "Membawa / Memegang",
+    "category": "verb"
+  },
+  {
+    "id": "n5-032",
+    "kanji": [
+      "洗",
+      "う"
+    ],
+    "hiragana": [
+      "あら",
+      "う"
+    ],
+    "meaning": "Mencuci",
+    "category": "verb"
+  },
+  {
+    "id": "n5-033",
+    "kanji": [
+      "働",
+      "く"
+    ],
+    "hiragana": [
+      "はたら",
+      "く"
+    ],
+    "meaning": "Bekerja",
+    "category": "verb"
+  },
+  {
+    "id": "n5-034",
+    "kanji": [
+      "習",
+      "う"
+    ],
+    "hiragana": [
+      "なら",
+      "う"
+    ],
+    "meaning": "Belajar",
+    "category": "verb"
+  },
+  {
+    "id": "n5-035",
+    "kanji": [
+      "終",
+      "わる"
+    ],
+    "hiragana": [
+      "お",
+      "わる"
+    ],
+    "meaning": "Selesai",
+    "category": "verb"
+  },
+  {
+    "id": "n5-036",
+    "kanji": [
+      "始",
+      "まる"
+    ],
+    "hiragana": [
+      "はじ",
+      "まる"
+    ],
+    "meaning": "Mulai",
+    "category": "verb"
+  },
+  {
+    "id": "n5-037",
+    "kanji": [
+      "教",
+      "える"
+    ],
+    "hiragana": [
+      "おし",
+      "える"
+    ],
+    "meaning": "Mengajar",
+    "category": "verb"
+  },
+  {
+    "id": "n5-038",
+    "kanji": [
+      "覚",
+      "える"
+    ],
+    "hiragana": [
+      "おぼ",
+      "える"
+    ],
+    "meaning": "Mengingat / Menghafal",
+    "category": "verb"
+  },
+  {
+    "id": "n5-039",
+    "kanji": [
+      "忘",
+      "れる"
+    ],
+    "hiragana": [
+      "わす",
+      "れる"
+    ],
+    "meaning": "Lupa",
+    "category": "verb"
+  },
+  {
+    "id": "n5-040",
+    "kanji": [
+      "開",
+      "ける"
+    ],
+    "hiragana": [
+      "あ",
+      "ける"
+    ],
+    "meaning": "Membuka",
+    "category": "verb"
+  },
+  {
+    "id": "n5-041",
+    "kanji": [
+      "閉",
+      "める"
+    ],
+    "hiragana": [
+      "し",
+      "める"
+    ],
+    "meaning": "Menutup",
+    "category": "verb"
+  },
+  {
+    "id": "n5-042",
+    "kanji": [
+      "点",
+      "ける"
+    ],
+    "hiragana": [
+      "つ",
+      "ける"
+    ],
+    "meaning": "Menyalakan",
+    "category": "verb"
+  },
+  {
+    "id": "n5-043",
+    "kanji": [
+      "消",
+      "す"
+    ],
+    "hiragana": [
+      "け",
+      "す"
+    ],
+    "meaning": "Mematikan / Menghapus",
+    "category": "verb"
+  },
+  {
+    "id": "n5-044",
+    "kanji": [
+      "脱",
+      "ぐ"
+    ],
+    "hiragana": [
+      "ぬ",
+      "ぐ"
+    ],
+    "meaning": "Melepas (pakaian)",
+    "category": "verb"
+  },
+  {
+    "id": "n5-045",
+    "kanji": [
+      "疲",
+      "れる"
+    ],
+    "hiragana": [
+      "つか",
+      "れる"
+    ],
+    "meaning": "Lelah",
+    "category": "verb"
+  },
+  {
+    "id": "n5-046",
+    "kanji": [
+      "大",
+      "きい"
+    ],
+    "hiragana": [
+      "おお",
+      "きい"
+    ],
+    "meaning": "Besar",
+    "category": "adjective"
+  },
+  {
+    "id": "n5-047",
+    "kanji": [
+      "小",
+      "さい"
+    ],
+    "hiragana": [
+      "ちい",
+      "さい"
+    ],
+    "meaning": "Kecil",
+    "category": "adjective"
+  },
+  {
+    "id": "n5-048",
+    "kanji": [
+      "高",
+      "い"
+    ],
+    "hiragana": [
+      "たか",
+      "い"
+    ],
+    "meaning": "Tinggi / Mahal",
+    "category": "adjective"
+  },
+  {
+    "id": "n5-049",
+    "kanji": [
+      "安",
+      "い"
+    ],
+    "hiragana": [
+      "やす",
+      "い"
+    ],
+    "meaning": "Murah",
+    "category": "adjective"
+  },
+  {
+    "id": "n5-050",
+    "kanji": [
+      "新",
+      "しい"
+    ],
+    "hiragana": [
+      "あたら",
+      "しい"
+    ],
+    "meaning": "Baru",
+    "category": "adjective"
+  },
+  {
+    "id": "n5-051",
+    "kanji": [
+      "古",
+      "い"
+    ],
+    "hiragana": [
+      "ふる",
+      "い"
+    ],
+    "meaning": "Lama / Kuno",
+    "category": "adjective"
+  },
+  {
+    "id": "n5-052",
+    "kanji": [
+      "長",
+      "い"
+    ],
+    "hiragana": [
+      "なが",
+      "い"
+    ],
+    "meaning": "Panjang",
+    "category": "adjective"
+  },
+  {
+    "id": "n5-053",
+    "kanji": [
+      "短",
+      "い"
+    ],
+    "hiragana": [
+      "みじか",
+      "い"
+    ],
+    "meaning": "Pendek",
+    "category": "adjective"
+  },
+  {
+    "id": "n5-054",
+    "kanji": [
+      "多",
+      "い"
+    ],
+    "hiragana": [
+      "おお",
+      "い"
+    ],
+    "meaning": "Banyak",
+    "category": "adjective"
+  },
+  {
+    "id": "n5-055",
+    "kanji": [
+      "少",
+      "ない"
+    ],
+    "hiragana": [
+      "すく",
+      "ない"
+    ],
+    "meaning": "Sedikit",
+    "category": "adjective"
+  },
+  {
+    "id": "n5-056",
+    "kanji": [
+      "広",
+      "い"
+    ],
+    "hiragana": [
+      "ひろ",
+      "い"
+    ],
+    "meaning": "Luas",
+    "category": "adjective"
+  },
+  {
+    "id": "n5-057",
+    "kanji": [
+      "狭",
+      "い"
+    ],
+    "hiragana": [
+      "せま",
+      "い"
+    ],
+    "meaning": "Sempit",
+    "category": "adjective"
+  },
+  {
+    "id": "n5-058",
+    "kanji": [
+      "早",
+      "い"
+    ],
+    "hiragana": [
+      "はや",
+      "い"
+    ],
+    "meaning": "Cepat / Pagi (waktu)",
+    "category": "adjective"
+  },
+  {
+    "id": "n5-059",
+    "kanji": [
+      "速",
+      "い"
+    ],
+    "hiragana": [
+      "はや",
+      "い"
+    ],
+    "meaning": "Cepat (kecepatan)",
+    "category": "adjective"
+  },
+  {
+    "id": "n5-060",
+    "kanji": [
+      "遅",
+      "い"
+    ],
+    "hiragana": [
+      "おそ",
+      "い"
+    ],
+    "meaning": "Lambat / Terlambat",
+    "category": "adjective"
+  },
+  {
+    "id": "n5-061",
+    "kanji": [
+      "遠",
+      "い"
+    ],
+    "hiragana": [
+      "とお",
+      "い"
+    ],
+    "meaning": "Jauh",
+    "category": "adjective"
+  },
+  {
+    "id": "n5-062",
+    "kanji": [
+      "近",
+      "い"
+    ],
+    "hiragana": [
+      "ちか",
+      "い"
+    ],
+    "meaning": "Dekat",
+    "category": "adjective"
+  },
+  {
+    "id": "n5-063",
+    "kanji": [
+      "暑",
+      "い"
+    ],
+    "hiragana": [
+      "あつ",
+      "い"
+    ],
+    "meaning": "Panas (cuaca)",
+    "category": "adjective"
+  },
+  {
+    "id": "n5-064",
+    "kanji": [
+      "熱",
+      "い"
+    ],
+    "hiragana": [
+      "あつ",
+      "い"
+    ],
+    "meaning": "Panas (benda)",
+    "category": "adjective"
+  },
+  {
+    "id": "n5-065",
+    "kanji": [
+      "寒",
+      "い"
+    ],
+    "hiragana": [
+      "さむ",
+      "い"
+    ],
+    "meaning": "Dingin (cuaca)",
+    "category": "adjective"
+  },
+  {
+    "id": "n5-066",
+    "kanji": [
+      "冷",
+      "たい"
+    ],
+    "hiragana": [
+      "つめ",
+      "たい"
+    ],
+    "meaning": "Dingin (benda)",
+    "category": "adjective"
+  },
+  {
+    "id": "n5-067",
+    "kanji": [
+      "暖",
+      "かい"
+    ],
+    "hiragana": [
+      "あたた",
+      "かい"
+    ],
+    "meaning": "Hangat (cuaca)",
+    "category": "adjective"
+  },
+  {
+    "id": "n5-068",
+    "kanji": [
+      "温",
+      "かい"
+    ],
+    "hiragana": [
+      "あたた",
+      "かい"
+    ],
+    "meaning": "Hangat (benda)",
+    "category": "adjective"
+  },
+  {
+    "id": "n5-069",
+    "kanji": [
+      "涼",
+      "しい"
+    ],
+    "hiragana": [
+      "すず",
+      "しい"
+    ],
+    "meaning": "Sejuk",
+    "category": "adjective"
+  },
+  {
+    "id": "n5-070",
+    "kanji": [
+      "重",
+      "い"
+    ],
+    "hiragana": [
+      "おも",
+      "い"
+    ],
+    "meaning": "Berat",
+    "category": "adjective"
+  },
+  {
+    "id": "n5-071",
+    "kanji": [
+      "軽",
+      "い"
+    ],
+    "hiragana": [
+      "かる",
+      "い"
+    ],
+    "meaning": "Ringan",
+    "category": "adjective"
+  },
+  {
+    "id": "n5-072",
+    "kanji": [
+      "良",
+      "い"
+    ],
+    "hiragana": [
+      "よ",
+      "い"
+    ],
+    "meaning": "Bagus / Baik",
+    "category": "adjective"
+  },
+  {
+    "id": "n5-073",
+    "kanji": [
+      "悪",
+      "い"
+    ],
+    "hiragana": [
+      "わる",
+      "い"
+    ],
+    "meaning": "Buruk / Jahat",
+    "category": "adjective"
+  },
+  {
+    "id": "n5-074",
+    "kanji": [
+      "白",
+      "い"
+    ],
+    "hiragana": [
+      "しろ",
+      "い"
+    ],
+    "meaning": "Putih",
+    "category": "adjective"
+  },
+  {
+    "id": "n5-075",
+    "kanji": [
+      "黒",
+      "い"
+    ],
+    "hiragana": [
+      "くろ",
+      "い"
+    ],
+    "meaning": "Hitam",
+    "category": "adjective"
+  },
+  {
+    "id": "n5-076",
+    "kanji": [
+      "赤",
+      "い"
+    ],
+    "hiragana": [
+      "あか",
+      "い"
+    ],
+    "meaning": "Merah",
+    "category": "adjective"
+  },
+  {
+    "id": "n5-077",
+    "kanji": [
+      "青",
+      "い"
+    ],
+    "hiragana": [
+      "あお",
+      "い"
+    ],
+    "meaning": "Biru",
+    "category": "adjective"
+  },
+  {
+    "id": "n5-078",
+    "kanji": [
+      "甘",
+      "い"
+    ],
+    "hiragana": [
+      "あま",
+      "い"
+    ],
+    "meaning": "Manis",
+    "category": "adjective"
+  },
+  {
+    "id": "n5-079",
+    "kanji": [
+      "辛",
+      "い"
+    ],
+    "hiragana": [
+      "から",
+      "い"
+    ],
+    "meaning": "Pedas",
+    "category": "adjective"
+  },
+  {
+    "id": "n5-080",
+    "kanji": [
+      "痛",
+      "い"
+    ],
+    "hiragana": [
+      "いた",
+      "い"
+    ],
+    "meaning": "Sakit",
+    "category": "adjective"
+  },
+  {
+    "id": "n5-081",
+    "kanji": [
+      "楽",
+      "しい"
+    ],
+    "hiragana": [
+      "たの",
+      "しい"
+    ],
+    "meaning": "Menyenangkan",
+    "category": "adjective"
+  },
+  {
+    "id": "n5-082",
+    "kanji": [
+      "忙",
+      "しい"
+    ],
+    "hiragana": [
+      "いそが",
+      "しい"
+    ],
+    "meaning": "Sibuk",
+    "category": "adjective"
+  },
+  {
+    "id": "n5-083",
+    "kanji": [
+      "美味",
+      "しい"
+    ],
+    "hiragana": [
+      "おい",
+      "しい"
+    ],
+    "meaning": "Enak / Lezat",
+    "category": "adjective"
+  },
+  {
+    "id": "n5-084",
+    "kanji": [
+      "好",
+      "き"
+    ],
+    "hiragana": [
+      "す",
+      "き"
+    ],
+    "meaning": "Suka",
+    "category": "adjective"
+  },
+  {
+    "id": "n5-085",
+    "kanji": [
+      "嫌",
+      "い"
+    ],
+    "hiragana": [
+      "きら",
+      "い"
+    ],
+    "meaning": "Benci / Tidak suka",
+    "category": "adjective"
+  },
+  {
+    "id": "n5-086",
+    "kanji": [
+      "元",
+      "気"
+    ],
+    "hiragana": [
+      "げん",
+      "き"
+    ],
+    "meaning": "Sehat / Bersemangat",
+    "category": "adjective"
+  },
+  {
+    "id": "n5-087",
+    "kanji": [
+      "静",
+      "か"
+    ],
+    "hiragana": [
+      "しず",
+      "か"
+    ],
+    "meaning": "Tenang / Sunyi",
+    "category": "adjective"
+  },
+  {
+    "id": "n5-088",
+    "kanji": [
+      "賑",
+      "やか"
+    ],
+    "hiragana": [
+      "にぎ",
+      "やか"
+    ],
+    "meaning": "Ramai",
+    "category": "adjective"
+  },
+  {
+    "id": "n5-089",
+    "kanji": [
+      "暇"
+    ],
+    "hiragana": [
+      "ひま"
+    ],
+    "meaning": "Senggang",
+    "category": "adjective"
+  },
+  {
+    "id": "n5-090",
+    "kanji": [
+      "有",
+      "名"
+    ],
+    "hiragana": [
+      "ゆう",
+      "めい"
+    ],
+    "meaning": "Terkenal",
+    "category": "adjective"
+  },
+  {
+    "id": "n5-091",
+    "kanji": [
+      "大",
+      "切"
+    ],
+    "hiragana": [
+      "たい",
+      "せつ"
+    ],
+    "meaning": "Penting / Berharga",
+    "category": "adjective"
+  },
+  {
+    "id": "n5-092",
+    "kanji": [
+      "親",
+      "切"
+    ],
+    "hiragana": [
+      "しん",
+      "せつ"
+    ],
+    "meaning": "Ramah",
+    "category": "adjective"
+  },
+  {
+    "id": "n5-093",
+    "kanji": [
+      "私"
+    ],
+    "hiragana": [
+      "わたし"
+    ],
+    "meaning": "Saya",
+    "category": "noun"
+  },
+  {
+    "id": "n5-094",
+    "kanji": [
+      "人"
+    ],
+    "hiragana": [
+      "ひと"
+    ],
+    "meaning": "Orang",
+    "category": "noun"
+  },
+  {
+    "id": "n5-095",
+    "kanji": [
+      "男"
+    ],
+    "hiragana": [
+      "おとこ"
+    ],
+    "meaning": "Laki-laki",
+    "category": "noun"
+  },
+  {
+    "id": "n5-096",
+    "kanji": [
+      "女"
+    ],
+    "hiragana": [
+      "おんな"
+    ],
+    "meaning": "Perempuan",
+    "category": "noun"
+  },
+  {
+    "id": "n5-097",
+    "kanji": [
+      "男",
+      "の",
+      "子"
+    ],
+    "hiragana": [
+      "おとこ",
+      "の",
+      "こ"
+    ],
+    "meaning": "Anak laki-laki",
+    "category": "noun"
+  },
+  {
+    "id": "n5-098",
+    "kanji": [
+      "女",
+      "の",
+      "子"
+    ],
+    "hiragana": [
+      "おんな",
+      "の",
+      "こ"
+    ],
+    "meaning": "Anak perempuan",
+    "category": "noun"
+  },
+  {
+    "id": "n5-099",
+    "kanji": [
+      "男",
+      "の",
+      "人"
+    ],
+    "hiragana": [
+      "おとこ",
+      "の",
+      "ひと"
+    ],
+    "meaning": "Pria",
+    "category": "noun"
+  },
+  {
+    "id": "n5-100",
+    "kanji": [
+      "女",
+      "の",
+      "人"
+    ],
+    "hiragana": [
+      "おんな",
+      "の",
+      "ひと"
+    ],
+    "meaning": "Wanita",
+    "category": "noun"
+  },
+  {
+    "id": "n5-101",
+    "kanji": [
+      "父"
+    ],
+    "hiragana": [
+      "ちち"
+    ],
+    "meaning": "Ayah (sendiri)",
+    "category": "noun"
+  },
+  {
+    "id": "n5-102",
+    "kanji": [
+      "母"
+    ],
+    "hiragana": [
+      "はは"
+    ],
+    "meaning": "Ibu (sendiri)",
+    "category": "noun"
+  },
+  {
+    "id": "n5-103",
+    "kanji": [
+      "お",
+      "父",
+      "さん"
+    ],
+    "hiragana": [
+      "お",
+      "とう",
+      "さん"
+    ],
+    "meaning": "Ayah",
+    "category": "noun"
+  },
+  {
+    "id": "n5-104",
+    "kanji": [
+      "お",
+      "母",
+      "さん"
+    ],
+    "hiragana": [
+      "お",
+      "かあ",
+      "さん"
+    ],
+    "meaning": "Ibu",
+    "category": "noun"
+  },
+  {
+    "id": "n5-105",
+    "kanji": [
+      "兄"
+    ],
+    "hiragana": [
+      "あに"
+    ],
+    "meaning": "Kakak laki-laki (sendiri)",
+    "category": "noun"
+  },
+  {
+    "id": "n5-106",
+    "kanji": [
+      "お",
+      "兄",
+      "さん"
+    ],
+    "hiragana": [
+      "お",
+      "にい",
+      "さん"
+    ],
+    "meaning": "Kakak laki-laki",
+    "category": "noun"
+  },
+  {
+    "id": "n5-107",
+    "kanji": [
+      "姉"
+    ],
+    "hiragana": [
+      "あね"
+    ],
+    "meaning": "Kakak perempuan (sendiri)",
+    "category": "noun"
+  },
+  {
+    "id": "n5-108",
+    "kanji": [
+      "お",
+      "姉",
+      "さん"
+    ],
+    "hiragana": [
+      "お",
+      "ねえ",
+      "さん"
+    ],
+    "meaning": "Kakak perempuan",
+    "category": "noun"
+  },
+  {
+    "id": "n5-109",
+    "kanji": [
+      "弟"
+    ],
+    "hiragana": [
+      "おとうと"
+    ],
+    "meaning": "Adik laki-laki",
+    "category": "noun"
+  },
+  {
+    "id": "n5-110",
+    "kanji": [
+      "妹"
+    ],
+    "hiragana": [
+      "いもうと"
+    ],
+    "meaning": "Adik perempuan",
+    "category": "noun"
+  },
+  {
+    "id": "n5-111",
+    "kanji": [
+      "兄",
+      "弟"
+    ],
+    "hiragana": [
+      "きょう",
+      "だい"
+    ],
+    "meaning": "Saudara kandung",
+    "category": "noun"
+  },
+  {
+    "id": "n5-112",
+    "kanji": [
+      "家",
+      "族"
+    ],
+    "hiragana": [
+      "か",
+      "ぞく"
+    ],
+    "meaning": "Keluarga",
+    "category": "noun"
+  },
+  {
+    "id": "n5-113",
+    "kanji": [
+      "先",
+      "生"
+    ],
+    "hiragana": [
+      "せん",
+      "せい"
+    ],
+    "meaning": "Guru / Dokter",
+    "category": "noun"
+  },
+  {
+    "id": "n5-114",
+    "kanji": [
+      "学",
+      "生"
+    ],
+    "hiragana": [
+      "がく",
+      "せい"
+    ],
+    "meaning": "Murid / Siswa",
+    "category": "noun"
+  },
+  {
+    "id": "n5-115",
+    "kanji": [
+      "留",
+      "学",
+      "生"
+    ],
+    "hiragana": [
+      "りゅう",
+      "がく",
+      "せい"
+    ],
+    "meaning": "Mahasiswa asing",
+    "category": "noun"
+  },
+  {
+    "id": "n5-116",
+    "kanji": [
+      "友",
+      "達"
+    ],
+    "hiragana": [
+      "とも",
+      "だち"
+    ],
+    "meaning": "Teman",
+    "category": "noun"
+  },
+  {
+    "id": "n5-117",
+    "kanji": [
+      "外",
+      "国",
+      "人"
+    ],
+    "hiragana": [
+      "がい",
+      "こく",
+      "じん"
+    ],
+    "meaning": "Orang asing",
+    "category": "noun"
+  },
+  {
+    "id": "n5-118",
+    "kanji": [
+      "今"
+    ],
+    "hiragana": [
+      "いま"
+    ],
+    "meaning": "Sekarang",
+    "category": "noun"
+  },
+  {
+    "id": "n5-119",
+    "kanji": [
+      "今日"
+    ],
+    "hiragana": [
+      "きょう"
+    ],
+    "meaning": "Hari ini",
+    "category": "noun"
+  },
+  {
+    "id": "n5-120",
+    "kanji": [
+      "明日"
+    ],
+    "hiragana": [
+      "あした"
+    ],
+    "meaning": "Besok",
+    "category": "noun"
+  },
+  {
+    "id": "n5-121",
+    "kanji": [
+      "昨日"
+    ],
+    "hiragana": [
+      "きのう"
+    ],
+    "meaning": "Kemarin",
+    "category": "noun"
+  },
+  {
+    "id": "n5-122",
+    "kanji": [
+      "毎",
+      "日"
+    ],
+    "hiragana": [
+      "まい",
+      "にち"
+    ],
+    "meaning": "Setiap hari",
+    "category": "noun"
+  },
+  {
+    "id": "n5-123",
+    "kanji": [
+      "毎",
+      "週"
+    ],
+    "hiragana": [
+      "まい",
+      "しゅう"
+    ],
+    "meaning": "Setiap minggu",
+    "category": "noun"
+  },
+  {
+    "id": "n5-124",
+    "kanji": [
+      "毎",
+      "月"
+    ],
+    "hiragana": [
+      "まい",
+      "つき"
+    ],
+    "meaning": "Setiap bulan",
+    "category": "noun"
+  },
+  {
+    "id": "n5-125",
+    "kanji": [
+      "毎",
+      "年"
+    ],
+    "hiragana": [
+      "まい",
+      "とし"
+    ],
+    "meaning": "Setiap tahun",
+    "category": "noun"
+  },
+  {
+    "id": "n5-126",
+    "kanji": [
+      "先",
+      "週"
+    ],
+    "hiragana": [
+      "せん",
+      "しゅう"
+    ],
+    "meaning": "Minggu lalu",
+    "category": "noun"
+  },
+  {
+    "id": "n5-127",
+    "kanji": [
+      "今",
+      "週"
+    ],
+    "hiragana": [
+      "こん",
+      "しゅう"
+    ],
+    "meaning": "Minggu ini",
+    "category": "noun"
+  },
+  {
+    "id": "n5-128",
+    "kanji": [
+      "来",
+      "週"
+    ],
+    "hiragana": [
+      "らい",
+      "しゅう"
+    ],
+    "meaning": "Minggu depan",
+    "category": "noun"
+  },
+  {
+    "id": "n5-129",
+    "kanji": [
+      "先",
+      "月"
+    ],
+    "hiragana": [
+      "せん",
+      "げつ"
+    ],
+    "meaning": "Bulan lalu",
+    "category": "noun"
+  },
+  {
+    "id": "n5-130",
+    "kanji": [
+      "今",
+      "月"
+    ],
+    "hiragana": [
+      "こん",
+      "げつ"
+    ],
+    "meaning": "Bulan ini",
+    "category": "noun"
+  },
+  {
+    "id": "n5-131",
+    "kanji": [
+      "来",
+      "月"
+    ],
+    "hiragana": [
+      "らい",
+      "げつ"
+    ],
+    "meaning": "Bulan depan",
+    "category": "noun"
+  },
+  {
+    "id": "n5-132",
+    "kanji": [
+      "去",
+      "年"
+    ],
+    "hiragana": [
+      "きょ",
+      "ねん"
+    ],
+    "meaning": "Tahun lalu",
+    "category": "noun"
+  },
+  {
+    "id": "n5-133",
+    "kanji": [
+      "今",
+      "年"
+    ],
+    "hiragana": [
+      "こ",
+      "とし"
+    ],
+    "meaning": "Tahun ini",
+    "category": "noun"
+  },
+  {
+    "id": "n5-134",
+    "kanji": [
+      "来",
+      "年"
+    ],
+    "hiragana": [
+      "らい",
+      "ねん"
+    ],
+    "meaning": "Tahun depan",
+    "category": "noun"
+  },
+  {
+    "id": "n5-135",
+    "kanji": [
+      "時",
+      "間"
+    ],
+    "hiragana": [
+      "じ",
+      "かん"
+    ],
+    "meaning": "Waktu / Jam",
+    "category": "noun"
+  },
+  {
+    "id": "n5-136",
+    "kanji": [
+      "時",
+      "計"
+    ],
+    "hiragana": [
+      "と",
+      "けい"
+    ],
+    "meaning": "Jam dinding / Jam tangan",
+    "category": "noun"
+  },
+  {
+    "id": "n5-137",
+    "kanji": [
+      "午",
+      "前"
+    ],
+    "hiragana": [
+      "ご",
+      "ぜん"
+    ],
+    "meaning": "Pagi (AM)",
+    "category": "noun"
+  },
+  {
+    "id": "n5-138",
+    "kanji": [
+      "午",
+      "後"
+    ],
+    "hiragana": [
+      "ご",
+      "ご"
+    ],
+    "meaning": "Sore/Malam (PM)",
+    "category": "noun"
+  },
+  {
+    "id": "n5-139",
+    "kanji": [
+      "朝"
+    ],
+    "hiragana": [
+      "あさ"
+    ],
+    "meaning": "Pagi",
+    "category": "noun"
+  },
+  {
+    "id": "n5-140",
+    "kanji": [
+      "昼"
+    ],
+    "hiragana": [
+      "ひる"
+    ],
+    "meaning": "Siang",
+    "category": "noun"
+  },
+  {
+    "id": "n5-141",
+    "kanji": [
+      "夕",
+      "方"
+    ],
+    "hiragana": [
+      "ゆう",
+      "がた"
+    ],
+    "meaning": "Sore menjelang malam",
+    "category": "noun"
+  },
+  {
+    "id": "n5-142",
+    "kanji": [
+      "晩"
+    ],
+    "hiragana": [
+      "ばん"
+    ],
+    "meaning": "Malam",
+    "category": "noun"
+  },
+  {
+    "id": "n5-143",
+    "kanji": [
+      "夜"
+    ],
+    "hiragana": [
+      "よる"
+    ],
+    "meaning": "Malam hari",
+    "category": "noun"
+  },
+  {
+    "id": "n5-144",
+    "kanji": [
+      "一昨日"
+    ],
+    "hiragana": [
+      "おととい"
+    ],
+    "meaning": "Kemarin lusa",
+    "category": "noun"
+  },
+  {
+    "id": "n5-145",
+    "kanji": [
+      "明後日"
+    ],
+    "hiragana": [
+      "あさって"
+    ],
+    "meaning": "Besok lusa",
+    "category": "noun"
+  },
+  {
+    "id": "n5-146",
+    "kanji": [
+      "春"
+    ],
+    "hiragana": [
+      "はる"
+    ],
+    "meaning": "Musim semi",
+    "category": "noun"
+  },
+  {
+    "id": "n5-147",
+    "kanji": [
+      "夏"
+    ],
+    "hiragana": [
+      "なつ"
+    ],
+    "meaning": "Musim panas",
+    "category": "noun"
+  },
+  {
+    "id": "n5-148",
+    "kanji": [
+      "秋"
+    ],
+    "hiragana": [
+      "あき"
+    ],
+    "meaning": "Musim gugur",
+    "category": "noun"
+  },
+  {
+    "id": "n5-149",
+    "kanji": [
+      "冬"
+    ],
+    "hiragana": [
+      "ふゆ"
+    ],
+    "meaning": "Musim dingin",
+    "category": "noun"
+  },
+  {
+    "id": "n5-150",
+    "kanji": [
+      "年"
+    ],
+    "hiragana": [
+      "とし"
+    ],
+    "meaning": "Tahun",
+    "category": "noun"
+  },
+  {
+    "id": "n5-151",
+    "kanji": [
+      "月"
+    ],
+    "hiragana": [
+      "つき"
+    ],
+    "meaning": "Bulan",
+    "category": "noun"
+  },
+  {
+    "id": "n5-152",
+    "kanji": [
+      "日"
+    ],
+    "hiragana": [
+      "ひ"
+    ],
+    "meaning": "Hari / Matahari",
+    "category": "noun"
+  },
+  {
+    "id": "n5-153",
+    "kanji": [
+      "時"
+    ],
+    "hiragana": [
+      "じ"
+    ],
+    "meaning": "Pukul / Jam",
+    "category": "noun"
+  },
+  {
+    "id": "n5-154",
+    "kanji": [
+      "分"
+    ],
+    "hiragana": [
+      "ふん"
+    ],
+    "meaning": "Menit",
+    "category": "noun"
+  },
+  {
+    "id": "n5-155",
+    "kanji": [
+      "半"
+    ],
+    "hiragana": [
+      "はん"
+    ],
+    "meaning": "Setengah (jam)",
+    "category": "noun"
+  },
+  {
+    "id": "n5-156",
+    "kanji": [
+      "学",
+      "校"
+    ],
+    "hiragana": [
+      "がっ",
+      "こう"
+    ],
+    "meaning": "Sekolah",
+    "category": "noun"
+  },
+  {
+    "id": "n5-157",
+    "kanji": [
+      "会",
+      "社"
+    ],
+    "hiragana": [
+      "かい",
+      "しゃ"
+    ],
+    "meaning": "Perusahaan / Kantor",
+    "category": "noun"
+  },
+  {
+    "id": "n5-158",
+    "kanji": [
+      "駅"
+    ],
+    "hiragana": [
+      "えき"
+    ],
+    "meaning": "Stasiun",
+    "category": "noun"
+  },
+  {
+    "id": "n5-159",
+    "kanji": [
+      "銀",
+      "行"
+    ],
+    "hiragana": [
+      "ぎん",
+      "こう"
+    ],
+    "meaning": "Bank",
+    "category": "noun"
+  },
+  {
+    "id": "n5-160",
+    "kanji": [
+      "病",
+      "院"
+    ],
+    "hiragana": [
+      "びょう",
+      "いん"
+    ],
+    "meaning": "Rumah sakit",
+    "category": "noun"
+  },
+  {
+    "id": "n5-161",
+    "kanji": [
+      "郵",
+      "便",
+      "局"
+    ],
+    "hiragana": [
+      "ゆう",
+      "びん",
+      "きょく"
+    ],
+    "meaning": "Kantor pos",
+    "category": "noun"
+  },
+  {
+    "id": "n5-162",
+    "kanji": [
+      "映",
+      "画",
+      "館"
+    ],
+    "hiragana": [
+      "えい",
+      "が",
+      "かん"
+    ],
+    "meaning": "Bioskop",
+    "category": "noun"
+  },
+  {
+    "id": "n5-163",
+    "kanji": [
+      "図",
+      "書",
+      "館"
+    ],
+    "hiragana": [
+      "と",
+      "しょ",
+      "かん"
+    ],
+    "meaning": "Perpustakaan",
+    "category": "noun"
+  },
+  {
+    "id": "n5-164",
+    "kanji": [
+      "公",
+      "園"
+    ],
+    "hiragana": [
+      "こう",
+      "えん"
+    ],
+    "meaning": "Taman",
+    "category": "noun"
+  },
+  {
+    "id": "n5-165",
+    "kanji": [
+      "店"
+    ],
+    "hiragana": [
+      "みせ"
+    ],
+    "meaning": "Toko",
+    "category": "noun"
+  },
+  {
+    "id": "n5-166",
+    "kanji": [
+      "部",
+      "屋"
+    ],
+    "hiragana": [
+      "へ",
+      "や"
+    ],
+    "meaning": "Kamar / Ruangan",
+    "category": "noun"
+  },
+  {
+    "id": "n5-167",
+    "kanji": [
+      "家"
+    ],
+    "hiragana": [
+      "いえ"
+    ],
+    "meaning": "Rumah",
+    "category": "noun"
+  },
+  {
+    "id": "n5-168",
+    "kanji": [
+      "山"
+    ],
+    "hiragana": [
+      "やま"
+    ],
+    "meaning": "Gunung",
+    "category": "noun"
+  },
+  {
+    "id": "n5-169",
+    "kanji": [
+      "川"
+    ],
+    "hiragana": [
+      "かわ"
+    ],
+    "meaning": "Sungai",
+    "category": "noun"
+  },
+  {
+    "id": "n5-170",
+    "kanji": [
+      "海"
+    ],
+    "hiragana": [
+      "うみ"
+    ],
+    "meaning": "Laut",
+    "category": "noun"
+  },
+  {
+    "id": "n5-171",
+    "kanji": [
+      "空"
+    ],
+    "hiragana": [
+      "そら"
+    ],
+    "meaning": "Langit",
+    "category": "noun"
+  },
+  {
+    "id": "n5-172",
+    "kanji": [
+      "天",
+      "気"
+    ],
+    "hiragana": [
+      "てん",
+      "き"
+    ],
+    "meaning": "Cuaca",
+    "category": "noun"
+  },
+  {
+    "id": "n5-173",
+    "kanji": [
+      "雨"
+    ],
+    "hiragana": [
+      "あめ"
+    ],
+    "meaning": "Hujan",
+    "category": "noun"
+  },
+  {
+    "id": "n5-174",
+    "kanji": [
+      "雪"
+    ],
+    "hiragana": [
+      "ゆき"
+    ],
+    "meaning": "Salju",
+    "category": "noun"
+  },
+  {
+    "id": "n5-175",
+    "kanji": [
+      "花"
+    ],
+    "hiragana": [
+      "はな"
+    ],
+    "meaning": "Bunga",
+    "category": "noun"
+  },
+  {
+    "id": "n5-176",
+    "kanji": [
+      "木"
+    ],
+    "hiragana": [
+      "き"
+    ],
+    "meaning": "Pohon",
+    "category": "noun"
+  },
+  {
+    "id": "n5-177",
+    "kanji": [
+      "水"
+    ],
+    "hiragana": [
+      "みず"
+    ],
+    "meaning": "Air",
+    "category": "noun"
+  },
+  {
+    "id": "n5-178",
+    "kanji": [
+      "お",
+      "金"
+    ],
+    "hiragana": [
+      "お",
+      "かね"
+    ],
+    "meaning": "Uang",
+    "category": "noun"
+  },
+  {
+    "id": "n5-179",
+    "kanji": [
+      "車"
+    ],
+    "hiragana": [
+      "くるま"
+    ],
+    "meaning": "Mobil",
+    "category": "noun"
+  },
+  {
+    "id": "n5-180",
+    "kanji": [
+      "電",
+      "車"
+    ],
+    "hiragana": [
+      "でん",
+      "しゃ"
+    ],
+    "meaning": "Kereta api listrik",
+    "category": "noun"
+  },
+  {
+    "id": "n5-181",
+    "kanji": [
+      "自",
+      "転",
+      "車"
+    ],
+    "hiragana": [
+      "じ",
+      "てん",
+      "しゃ"
+    ],
+    "meaning": "Sepeda",
+    "category": "noun"
+  },
+  {
+    "id": "n5-182",
+    "kanji": [
+      "飛",
+      "行",
+      "機"
+    ],
+    "hiragana": [
+      "ひ",
+      "こう",
+      "き"
+    ],
+    "meaning": "Pesawat terbang",
+    "category": "noun"
+  },
+  {
+    "id": "n5-183",
+    "kanji": [
+      "辞",
+      "書"
+    ],
+    "hiragana": [
+      "じ",
+      "しょ"
+    ],
+    "meaning": "Kamus",
+    "category": "noun"
+  },
+  {
+    "id": "n5-184",
+    "kanji": [
+      "本"
+    ],
+    "hiragana": [
+      "ほん"
+    ],
+    "meaning": "Buku",
+    "category": "noun"
+  },
+  {
+    "id": "n5-185",
+    "kanji": [
+      "手",
+      "紙"
+    ],
+    "hiragana": [
+      "て",
+      "がみ"
+    ],
+    "meaning": "Surat",
+    "category": "noun"
+  },
+  {
+    "id": "n5-186",
+    "kanji": [
+      "雑",
+      "誌"
+    ],
+    "hiragana": [
+      "ざっ",
+      "し"
+    ],
+    "meaning": "Majalah",
+    "category": "noun"
+  },
+  {
+    "id": "n5-187",
+    "kanji": [
+      "新",
+      "聞"
+    ],
+    "hiragana": [
+      "しん",
+      "ぶん"
+    ],
+    "meaning": "Koran",
+    "category": "noun"
+  },
+  {
+    "id": "n5-188",
+    "kanji": [
+      "写",
+      "真"
+    ],
+    "hiragana": [
+      "しゃ",
+      "しん"
+    ],
+    "meaning": "Foto",
+    "category": "noun"
+  },
+  {
+    "id": "n5-189",
+    "kanji": [
+      "薬"
+    ],
+    "hiragana": [
+      "くすり"
+    ],
+    "meaning": "Obat",
+    "category": "noun"
+  },
+  {
+    "id": "n5-190",
+    "kanji": [
+      "鞄"
+    ],
+    "hiragana": [
+      "かばん"
+    ],
+    "meaning": "Tas",
+    "category": "noun"
+  },
+  {
+    "id": "n5-191",
+    "kanji": [
+      "靴"
+    ],
+    "hiragana": [
+      "くつ"
+    ],
+    "meaning": "Sepatu",
+    "category": "noun"
+  },
+  {
+    "id": "n5-192",
+    "kanji": [
+      "洋",
+      "服"
+    ],
+    "hiragana": [
+      "よう",
+      "ふく"
+    ],
+    "meaning": "Pakaian barat",
+    "category": "noun"
+  },
+  {
+    "id": "n5-193",
+    "kanji": [
+      "眼",
+      "鏡"
+    ],
+    "hiragana": [
+      "め",
+      "がね"
+    ],
+    "meaning": "Kacamata",
+    "category": "noun"
+  },
+  {
+    "id": "n5-194",
+    "kanji": [
+      "上"
+    ],
+    "hiragana": [
+      "うえ"
+    ],
+    "meaning": "Atas",
+    "category": "noun"
+  },
+  {
+    "id": "n5-195",
+    "kanji": [
+      "下"
+    ],
+    "hiragana": [
+      "した"
+    ],
+    "meaning": "Bawah",
+    "category": "noun"
+  },
+  {
+    "id": "n5-196",
+    "kanji": [
+      "前"
+    ],
+    "hiragana": [
+      "まえ"
+    ],
+    "meaning": "Depan",
+    "category": "noun"
+  },
+  {
+    "id": "n5-197",
+    "kanji": [
+      "後",
+      "ろ"
+    ],
+    "hiragana": [
+      "うし",
+      "ろ"
+    ],
+    "meaning": "Belakang",
+    "category": "noun"
+  },
+  {
+    "id": "n5-198",
+    "kanji": [
+      "右"
+    ],
+    "hiragana": [
+      "みぎ"
+    ],
+    "meaning": "Kanan",
+    "category": "noun"
+  },
+  {
+    "id": "n5-199",
+    "kanji": [
+      "左"
+    ],
+    "hiragana": [
+      "ひだり"
+    ],
+    "meaning": "Kiri",
+    "category": "noun"
+  },
+  {
+    "id": "n5-200",
+    "kanji": [
+      "中"
+    ],
+    "hiragana": [
+      "なか"
+    ],
+    "meaning": "Dalam / Tengah",
+    "category": "noun"
+  },
+  {
+    "id": "n5-201",
+    "kanji": [
+      "外"
+    ],
+    "hiragana": [
+      "そと"
+    ],
+    "meaning": "Luar",
+    "category": "noun"
+  },
+  {
+    "id": "n5-202",
+    "kanji": [
+      "隣"
+    ],
+    "hiragana": [
+      "となり"
+    ],
+    "meaning": "Sebelah / Tetangga",
+    "category": "noun"
+  },
+  {
+    "id": "n5-203",
+    "kanji": [
+      "近",
+      "く"
+    ],
+    "hiragana": [
+      "ちか",
+      "く"
+    ],
+    "meaning": "Dekat / Sekitar",
+    "category": "noun"
+  },
+  {
+    "id": "n5-204",
+    "kanji": [
+      "東"
+    ],
+    "hiragana": [
+      "ひがし"
+    ],
+    "meaning": "Timur",
+    "category": "noun"
+  },
+  {
+    "id": "n5-205",
+    "kanji": [
+      "西"
+    ],
+    "hiragana": [
+      "にし"
+    ],
+    "meaning": "Barat",
+    "category": "noun"
+  },
+  {
+    "id": "n5-206",
+    "kanji": [
+      "南"
+    ],
+    "hiragana": [
+      "みなみ"
+    ],
+    "meaning": "Selatan",
+    "category": "noun"
+  },
+  {
+    "id": "n5-207",
+    "kanji": [
+      "北"
+    ],
+    "hiragana": [
+      "きた"
+    ],
+    "meaning": "Utara",
+    "category": "noun"
+  },
+  {
+    "id": "n5-208",
+    "kanji": [
+      "これ"
+    ],
+    "hiragana": [
+      "これ"
+    ],
+    "meaning": "Ini (dekat pembicara)",
+    "category": "noun"
+  },
+  {
+    "id": "n5-209",
+    "kanji": [
+      "それ"
+    ],
+    "hiragana": [
+      "それ"
+    ],
+    "meaning": "Itu (dekat lawan bicara)",
+    "category": "noun"
+  },
+  {
+    "id": "n5-210",
+    "kanji": [
+      "あれ"
+    ],
+    "hiragana": [
+      "あれ"
+    ],
+    "meaning": "Itu (jauh dari keduanya)",
+    "category": "noun"
+  },
+  {
+    "id": "n5-211",
+    "kanji": [
+      "どれ"
+    ],
+    "hiragana": [
+      "どれ"
+    ],
+    "meaning": "Yang mana",
+    "category": "noun"
+  },
+  {
+    "id": "n5-212",
+    "kanji": [
+      "この"
+    ],
+    "hiragana": [
+      "この"
+    ],
+    "meaning": "... ini",
+    "category": "noun"
+  },
+  {
+    "id": "n5-213",
+    "kanji": [
+      "その"
+    ],
+    "hiragana": [
+      "その"
+    ],
+    "meaning": "... itu",
+    "category": "noun"
+  },
+  {
+    "id": "n5-214",
+    "kanji": [
+      "あの"
+    ],
+    "hiragana": [
+      "あの"
+    ],
+    "meaning": "... itu (jauh)",
+    "category": "noun"
+  },
+  {
+    "id": "n5-215",
+    "kanji": [
+      "どの"
+    ],
+    "hiragana": [
+      "どの"
+    ],
+    "meaning": "... yang mana",
+    "category": "noun"
+  },
+  {
+    "id": "n5-216",
+    "kanji": [
+      "ここ"
+    ],
+    "hiragana": [
+      "ここ"
+    ],
+    "meaning": "Di sini",
+    "category": "noun"
+  },
+  {
+    "id": "n5-217",
+    "kanji": [
+      "そこ"
+    ],
+    "hiragana": [
+      "そこ"
+    ],
+    "meaning": "Di situ",
+    "category": "noun"
+  },
+  {
+    "id": "n5-218",
+    "kanji": [
+      "あそこ"
+    ],
+    "hiragana": [
+      "あそこ"
+    ],
+    "meaning": "Di sana",
+    "category": "noun"
+  },
+  {
+    "id": "n5-219",
+    "kanji": [
+      "どこ"
+    ],
+    "hiragana": [
+      "どこ"
+    ],
+    "meaning": "Di mana",
+    "category": "noun"
+  },
+  {
+    "id": "n5-220",
+    "kanji": [
+      "だれ"
+    ],
+    "hiragana": [
+      "だれ"
+    ],
+    "meaning": "Siapa",
+    "category": "noun"
+  },
+  {
+    "id": "n5-221",
+    "kanji": [
+      "どなた"
+    ],
+    "hiragana": [
+      "どなた"
+    ],
+    "meaning": "Siapa (sopan)",
+    "category": "noun"
+  },
+  {
+    "id": "n5-222",
+    "kanji": [
+      "いつ"
+    ],
+    "hiragana": [
+      "いつ"
+    ],
+    "meaning": "Kapan",
+    "category": "noun"
+  },
+  {
+    "id": "n5-223",
+    "kanji": [
+      "なぜ"
+    ],
+    "hiragana": [
+      "なぜ"
+    ],
+    "meaning": "Mengapa",
+    "category": "adverb"
+  },
+  {
+    "id": "n5-224",
+    "kanji": [
+      "どうして"
+    ],
+    "hiragana": [
+      "どうして"
+    ],
+    "meaning": "Kenapa",
+    "category": "adverb"
+  },
+  {
+    "id": "n5-225",
+    "kanji": [
+      "いかが"
+    ],
+    "hiragana": [
+      "いかが"
+    ],
+    "meaning": "Bagaimana (sopan)",
+    "category": "adverb"
+  },
+  {
+    "id": "n5-226",
+    "kanji": [
+      "どう"
+    ],
+    "hiragana": [
+      "どう"
+    ],
+    "meaning": "Bagaimana",
+    "category": "adverb"
+  },
+  {
+    "id": "n5-227",
+    "kanji": [
+      "もう"
+    ],
+    "hiragana": [
+      "もう"
+    ],
+    "meaning": "Sudah / Lagi",
+    "category": "adverb"
+  },
+  {
+    "id": "n5-228",
+    "kanji": [
+      "まだ"
+    ],
+    "hiragana": [
+      "まだ"
+    ],
+    "meaning": "Belum / Masih",
+    "category": "adverb"
+  },
+  {
+    "id": "n5-229",
+    "kanji": [
+      "ずっと"
+    ],
+    "hiragana": [
+      "ずっと"
+    ],
+    "meaning": "Jauh lebih / Terus-menerus",
+    "category": "adverb"
+  },
+  {
+    "id": "n5-230",
+    "kanji": [
+      "とても"
+    ],
+    "hiragana": [
+      "とても"
+    ],
+    "meaning": "Sangat",
+    "category": "adverb"
+  },
+  {
+    "id": "n5-231",
+    "kanji": [
+      "たくさん"
+    ],
+    "hiragana": [
+      "たくさん"
+    ],
+    "meaning": "Banyak",
+    "category": "adverb"
+  },
+  {
+    "id": "n5-232",
+    "kanji": [
+      "少",
+      "し"
+    ],
+    "hiragana": [
+      "すこ",
+      "し"
+    ],
+    "meaning": "Sedikit",
+    "category": "adverb"
+  },
+  {
+    "id": "n5-233",
+    "kanji": [
+      "ちょっと"
+    ],
+    "hiragana": [
+      "ちょっと"
+    ],
+    "meaning": "Sebentar / Sedikit",
+    "category": "adverb"
+  },
+  {
+    "id": "n5-234",
+    "kanji": [
+      "いつも"
+    ],
+    "hiragana": [
+      "いつも"
+    ],
+    "meaning": "Selalu",
+    "category": "adverb"
+  },
+  {
+    "id": "n5-235",
+    "kanji": [
+      "時",
+      "々"
+    ],
+    "hiragana": [
+      "とき",
+      "どき"
+    ],
+    "meaning": "Kadang-kadang",
+    "category": "adverb"
+  },
+  {
+    "id": "n5-236",
+    "kanji": [
+      "たぶん"
+    ],
+    "hiragana": [
+      "たぶん"
+    ],
+    "meaning": "Mungkin",
+    "category": "adverb"
+  },
+  {
+    "id": "n5-237",
+    "kanji": [
+      "すぐ",
+      "に"
+    ],
+    "hiragana": [
+      "すぐ",
+      "に"
+    ],
+    "meaning": "Segera",
+    "category": "adverb"
+  },
+  {
+    "id": "n5-238",
+    "kanji": [
+      "また"
+    ],
+    "hiragana": [
+      "また"
+    ],
+    "meaning": "Lagi / Sampai jumpa",
+    "category": "adverb"
+  },
+  {
+    "id": "n5-239",
+    "kanji": [
+      "あと",
+      "で"
+    ],
+    "hiragana": [
+      "あと",
+      "で"
+    ],
+    "meaning": "Nanti",
+    "category": "adverb"
+  },
+  {
+    "id": "n5-240",
+    "kanji": [
+      "いつか"
+    ],
+    "hiragana": [
+      "いつか"
+    ],
+    "meaning": "Suatu saat",
+    "category": "adverb"
+  },
+  {
+    "id": "n5-241",
+    "kanji": [
+      "だんだん"
+    ],
+    "hiragana": [
+      "だんだん"
+    ],
+    "meaning": "Perlahan / Berangsur-angsur",
+    "category": "adverb"
+  },
+  {
+    "id": "n5-242",
+    "kanji": [
+      "ほんとう",
+      "に"
+    ],
+    "hiragana": [
+      "ほんとう",
+      "に"
+    ],
+    "meaning": "Benar-benar",
+    "category": "adverb"
+  },
+  {
+    "id": "n5-243",
+    "kanji": [
+      "よく"
+    ],
+    "hiragana": [
+      "よく"
+    ],
+    "meaning": "Sering / Dengan baik",
+    "category": "adverb"
+  },
+  {
+    "id": "n5-244",
+    "kanji": [
+      "一",
+      "緒",
+      "に"
+    ],
+    "hiragana": [
+      "いっ",
+      "しょ",
+      "に"
+    ],
+    "meaning": "Bersama-sama",
+    "category": "adverb"
+  },
+  {
+    "id": "n5-245",
+    "kanji": [
+      "ゆっくり"
+    ],
+    "hiragana": [
+      "ゆっくり"
+    ],
+    "meaning": "Pelan-pelan / Santai",
+    "category": "adverb"
+  },
+  {
+    "id": "n5-246",
+    "kanji": [
+      "お",
+      "願",
+      "い",
+      "します"
+    ],
+    "hiragana": [
+      "お",
+      "ねが",
+      "い",
+      "します"
+    ],
+    "meaning": "Tolong / Mohon",
+    "category": "greeting"
+  },
+  {
+    "id": "n5-247",
+    "kanji": [
+      "ありがとう"
+    ],
+    "hiragana": [
+      "ありがとう"
+    ],
+    "meaning": "Terima kasih",
+    "category": "greeting"
+  },
+  {
+    "id": "n5-248",
+    "kanji": [
+      "すみません"
+    ],
+    "hiragana": [
+      "すみません"
+    ],
+    "meaning": "Permisi / Maaf",
+    "category": "greeting"
+  },
+  {
+    "id": "n5-249",
+    "kanji": [
+      "ごめんなさい"
+    ],
+    "hiragana": [
+      "ごめんなさい"
+    ],
+    "meaning": "Maaf",
+    "category": "greeting"
+  },
+  {
+    "id": "n5-250",
+    "kanji": [
+      "おはよう"
+    ],
+    "hiragana": [
+      "おはよう"
+    ],
+    "meaning": "Selamat pagi",
+    "category": "greeting"
+  },
+  {
+    "id": "n5-251",
+    "kanji": [
+      "こんにちは"
+    ],
+    "hiragana": [
+      "こんにちは"
+    ],
+    "meaning": "Halo / Selamat siang",
+    "category": "greeting"
+  },
+  {
+    "id": "n5-252",
+    "kanji": [
+      "こんばんは"
+    ],
+    "hiragana": [
+      "こんばんは"
+    ],
+    "meaning": "Selamat malam",
+    "category": "greeting"
+  },
+  {
+    "id": "n5-253",
+    "kanji": [
+      "さようなら"
+    ],
+    "hiragana": [
+      "さようなら"
+    ],
+    "meaning": "Selamat tinggal",
+    "category": "greeting"
+  },
+  {
+    "id": "n5-254",
+    "kanji": [
+      "はい"
+    ],
+    "hiragana": [
+      "はい"
+    ],
+    "meaning": "Ya",
+    "category": "greeting"
+  },
+  {
+    "id": "n5-255",
+    "kanji": [
+      "いいえ"
+    ],
+    "hiragana": [
+      "いいえ"
+    ],
+    "meaning": "Tidak",
+    "category": "greeting"
+  },
+  {
+    "id": "n5-256",
+    "kanji": [
+      "どうぞ"
+    ],
+    "hiragana": [
+      "どうぞ"
+    ],
+    "meaning": "Silakan",
+    "category": "greeting"
+  },
+  {
+    "id": "n5-257",
+    "kanji": [
+      "いってきます"
+    ],
+    "hiragana": [
+      "いってきます"
+    ],
+    "meaning": "Saya berangkat",
+    "category": "greeting"
+  },
+  {
+    "id": "n5-258",
+    "kanji": [
+      "いってらっしゃい"
+    ],
+    "hiragana": [
+      "いってらっしゃい"
+    ],
+    "meaning": "Hati-hati di jalan",
+    "category": "greeting"
+  },
+  {
+    "id": "n5-259",
+    "kanji": [
+      "ただいま"
+    ],
+    "hiragana": [
+      "ただいま"
+    ],
+    "meaning": "Saya pulang",
+    "category": "greeting"
+  },
+  {
+    "id": "n5-260",
+    "kanji": [
+      "おかえりなさい"
+    ],
+    "hiragana": [
+      "おかえりなさい"
+    ],
+    "meaning": "Selamat datang kembali",
+    "category": "greeting"
+  },
+  {
+    "id": "n5-261",
+    "kanji": [
+      "いただきます"
+    ],
+    "hiragana": [
+      "いただきます"
+    ],
+    "meaning": "Selamat makan",
+    "category": "greeting"
+  },
+  {
+    "id": "n5-262",
+    "kanji": [
+      "ごちそうさま"
+    ],
+    "hiragana": [
+      "ごちそうさま"
+    ],
+    "meaning": "Terima kasih atas hidangannya",
+    "category": "greeting"
+  },
+  {
+    "id": "n5-263",
+    "kanji": [
+      "ご",
+      "飯"
+    ],
+    "hiragana": [
+      "ご",
+      "はん"
+    ],
+    "meaning": "Nasi / Makanan",
+    "category": "noun"
+  },
+  {
+    "id": "n5-264",
+    "kanji": [
+      "お",
+      "弁",
+      "当"
+    ],
+    "hiragana": [
+      "お",
+      "べん",
+      "とう"
+    ],
+    "meaning": "Bekal makan siang",
+    "category": "noun"
+  },
+  {
+    "id": "n5-265",
+    "kanji": [
+      "お",
+      "茶"
+    ],
+    "hiragana": [
+      "お",
+      "ちゃ"
+    ],
+    "meaning": "Teh hijau",
+    "category": "noun"
+  },
+  {
+    "id": "n5-266",
+    "kanji": [
+      "お",
+      "酒"
+    ],
+    "hiragana": [
+      "お",
+      "さけ"
+    ],
+    "meaning": "Sake / Minuman beralkohol",
+    "category": "noun"
+  },
+  {
+    "id": "n5-267",
+    "kanji": [
+      "肉"
+    ],
+    "hiragana": [
+      "にく"
+    ],
+    "meaning": "Daging",
+    "category": "noun"
+  },
+  {
+    "id": "n5-268",
+    "kanji": [
+      "魚"
+    ],
+    "hiragana": [
+      "さかな"
+    ],
+    "meaning": "Ikan",
+    "category": "noun"
+  },
+  {
+    "id": "n5-269",
+    "kanji": [
+      "鳥",
+      "肉"
+    ],
+    "hiragana": [
+      "とり",
+      "にく"
+    ],
+    "meaning": "Daging ayam",
+    "category": "noun"
+  },
+  {
+    "id": "n5-270",
+    "kanji": [
+      "牛",
+      "肉"
+    ],
+    "hiragana": [
+      "ぎゅう",
+      "にく"
+    ],
+    "meaning": "Daging sapi",
+    "category": "noun"
+  },
+  {
+    "id": "n5-271",
+    "kanji": [
+      "豚",
+      "肉"
+    ],
+    "hiragana": [
+      "ぶた",
+      "にく"
+    ],
+    "meaning": "Daging babi",
+    "category": "noun"
+  },
+  {
+    "id": "n5-272",
+    "kanji": [
+      "卵"
+    ],
+    "hiragana": [
+      "たまご"
+    ],
+    "meaning": "Telur",
+    "category": "noun"
+  },
+  {
+    "id": "n5-273",
+    "kanji": [
+      "野",
+      "菜"
+    ],
+    "hiragana": [
+      "や",
+      "さい"
+    ],
+    "meaning": "Sayuran",
+    "category": "noun"
+  },
+  {
+    "id": "n5-274",
+    "kanji": [
+      "果",
+      "物"
+    ],
+    "hiragana": [
+      "くだ",
+      "もの"
+    ],
+    "meaning": "Buah-buahan",
+    "category": "noun"
+  },
+  {
+    "id": "n5-275",
+    "kanji": [
+      "りんご"
+    ],
+    "hiragana": [
+      "りんご"
+    ],
+    "meaning": "Apel",
+    "category": "noun"
+  },
+  {
+    "id": "n5-276",
+    "kanji": [
+      "みかん"
+    ],
+    "hiragana": [
+      "みかん"
+    ],
+    "meaning": "Jeruk mandarin",
+    "category": "noun"
+  },
+  {
+    "id": "n5-277",
+    "kanji": [
+      "お",
+      "菓",
+      "子"
+    ],
+    "hiragana": [
+      "お",
+      "か",
+      "し"
+    ],
+    "meaning": "Kue / Makanan ringan",
+    "category": "noun"
+  },
+  {
+    "id": "n5-278",
+    "kanji": [
+      "飴"
+    ],
+    "hiragana": [
+      "あめ"
+    ],
+    "meaning": "Permen",
+    "category": "noun"
+  },
+  {
+    "id": "n5-279",
+    "kanji": [
+      "砂",
+      "糖"
+    ],
+    "hiragana": [
+      "さ",
+      "とう"
+    ],
+    "meaning": "Gula",
+    "category": "noun"
+  },
+  {
+    "id": "n5-280",
+    "kanji": [
+      "塩"
+    ],
+    "hiragana": [
+      "しお"
+    ],
+    "meaning": "Garam",
+    "category": "noun"
+  },
+  {
+    "id": "n5-281",
+    "kanji": [
+      "醤",
+      "油"
+    ],
+    "hiragana": [
+      "しょう",
+      "ゆ"
+    ],
+    "meaning": "Kecap asin Jepang",
+    "category": "noun"
+  },
+  {
+    "id": "n5-282",
+    "kanji": [
+      "頭"
+    ],
+    "hiragana": [
+      "あたま"
+    ],
+    "meaning": "Kepala",
+    "category": "noun"
+  },
+  {
+    "id": "n5-283",
+    "kanji": [
+      "髪"
+    ],
+    "hiragana": [
+      "かみ"
+    ],
+    "meaning": "Rambut",
+    "category": "noun"
+  },
+  {
+    "id": "n5-284",
+    "kanji": [
+      "顔"
+    ],
+    "hiragana": [
+      "かお"
+    ],
+    "meaning": "Wajah",
+    "category": "noun"
+  },
+  {
+    "id": "n5-285",
+    "kanji": [
+      "目"
+    ],
+    "hiragana": [
+      "め"
+    ],
+    "meaning": "Mata",
+    "category": "noun"
+  },
+  {
+    "id": "n5-286",
+    "kanji": [
+      "耳"
+    ],
+    "hiragana": [
+      "みみ"
+    ],
+    "meaning": "Telinga",
+    "category": "noun"
+  },
+  {
+    "id": "n5-287",
+    "kanji": [
+      "口"
+    ],
+    "hiragana": [
+      "くち"
+    ],
+    "meaning": "Mulut",
+    "category": "noun"
+  },
+  {
+    "id": "n5-288",
+    "kanji": [
+      "鼻"
+    ],
+    "hiragana": [
+      "はな"
+    ],
+    "meaning": "Hidung",
+    "category": "noun"
+  },
+  {
+    "id": "n5-289",
+    "kanji": [
+      "歯"
+    ],
+    "hiragana": [
+      "は"
+    ],
+    "meaning": "Gigi",
+    "category": "noun"
+  },
+  {
+    "id": "n5-290",
+    "kanji": [
+      "手"
+    ],
+    "hiragana": [
+      "て"
+    ],
+    "meaning": "Tangan",
+    "category": "noun"
+  },
+  {
+    "id": "n5-291",
+    "kanji": [
+      "足"
+    ],
+    "hiragana": [
+      "あし"
+    ],
+    "meaning": "Kaki",
+    "category": "noun"
+  },
+  {
+    "id": "n5-292",
+    "kanji": [
+      "体"
+    ],
+    "hiragana": [
+      "からだ"
+    ],
+    "meaning": "Tubuh",
+    "category": "noun"
+  },
+  {
+    "id": "n5-293",
+    "kanji": [
+      "お",
+      "腹"
+    ],
+    "hiragana": [
+      "お",
+      "なか"
+    ],
+    "meaning": "Perut",
+    "category": "noun"
+  },
+  {
+    "id": "n5-294",
+    "kanji": [
+      "背",
+      "中"
+    ],
+    "hiragana": [
+      "せ",
+      "なか"
+    ],
+    "meaning": "Punggung",
+    "category": "noun"
+  },
+  {
+    "id": "n5-295",
+    "kanji": [
+      "服"
+    ],
+    "hiragana": [
+      "ふく"
+    ],
+    "meaning": "Pakaian",
+    "category": "noun"
+  },
+  {
+    "id": "n5-296",
+    "kanji": [
+      "着",
+      "物"
+    ],
+    "hiragana": [
+      "き",
+      "もの"
+    ],
+    "meaning": "Kimono",
+    "category": "noun"
+  },
+  {
+    "id": "n5-297",
+    "kanji": [
+      "帽",
+      "子"
+    ],
+    "hiragana": [
+      "ぼう",
+      "し"
+    ],
+    "meaning": "Topi",
+    "category": "noun"
+  },
+  {
+    "id": "n5-298",
+    "kanji": [
+      "傘"
+    ],
+    "hiragana": [
+      "かさ"
+    ],
+    "meaning": "Payung",
+    "category": "noun"
+  },
+  {
+    "id": "n5-299",
+    "kanji": [
+      "財",
+      "布"
+    ],
+    "hiragana": [
+      "さい",
+      "ふ"
+    ],
+    "meaning": "Dompet",
+    "category": "noun"
+  },
+  {
+    "id": "n5-300",
+    "kanji": [
+      "靴",
+      "下"
+    ],
+    "hiragana": [
+      "くつ",
+      "した"
+    ],
+    "meaning": "Kaos kaki",
+    "category": "noun"
+  },
+  {
+    "id": "n5-301",
+    "kanji": [
+      "犬"
+    ],
+    "hiragana": [
+      "いぬ"
+    ],
+    "meaning": "Anjing",
+    "category": "noun"
+  },
+  {
+    "id": "n5-302",
+    "kanji": [
+      "猫"
+    ],
+    "hiragana": [
+      "ねこ"
+    ],
+    "meaning": "Kucing",
+    "category": "noun"
+  },
+  {
+    "id": "n5-303",
+    "kanji": [
+      "鳥"
+    ],
+    "hiragana": [
+      "とり"
+    ],
+    "meaning": "Burung",
+    "category": "noun"
+  },
+  {
+    "id": "n5-304",
+    "kanji": [
+      "馬"
+    ],
+    "hiragana": [
+      "うま"
+    ],
+    "meaning": "Kuda",
+    "category": "noun"
+  },
+  {
+    "id": "n5-305",
+    "kanji": [
+      "牛"
+    ],
+    "hiragana": [
+      "うし"
+    ],
+    "meaning": "Sapi",
+    "category": "noun"
+  },
+  {
+    "id": "n5-306",
+    "kanji": [
+      "豚"
+    ],
+    "hiragana": [
+      "ぶた"
+    ],
+    "meaning": "Babi",
+    "category": "noun"
+  },
+  {
+    "id": "n5-307",
+    "kanji": [
+      "動",
+      "物"
+    ],
+    "hiragana": [
+      "どう",
+      "ぶつ"
+    ],
+    "meaning": "Hewan",
+    "category": "noun"
+  },
+  {
+    "id": "n5-308",
+    "kanji": [
+      "色"
+    ],
+    "hiragana": [
+      "いろ"
+    ],
+    "meaning": "Warna",
+    "category": "noun"
+  },
+  {
+    "id": "n5-309",
+    "kanji": [
+      "赤"
+    ],
+    "hiragana": [
+      "あか"
+    ],
+    "meaning": "Merah",
+    "category": "noun"
+  },
+  {
+    "id": "n5-310",
+    "kanji": [
+      "青"
+    ],
+    "hiragana": [
+      "あお"
+    ],
+    "meaning": "Biru",
+    "category": "noun"
+  },
+  {
+    "id": "n5-311",
+    "kanji": [
+      "白"
+    ],
+    "hiragana": [
+      "しろ"
+    ],
+    "meaning": "Putih",
+    "category": "noun"
+  },
+  {
+    "id": "n5-312",
+    "kanji": [
+      "黒"
+    ],
+    "hiragana": [
+      "くろ"
+    ],
+    "meaning": "Hitam",
+    "category": "noun"
+  },
+  {
+    "id": "n5-313",
+    "kanji": [
+      "黄",
+      "色"
+    ],
+    "hiragana": [
+      "き",
+      "いろ"
+    ],
+    "meaning": "Kuning",
+    "category": "noun"
+  },
+  {
+    "id": "n5-314",
+    "kanji": [
+      "茶",
+      "色"
+    ],
+    "hiragana": [
+      "ちゃ",
+      "いろ"
+    ],
+    "meaning": "Cokelat",
+    "category": "noun"
+  },
+  {
+    "id": "n5-315",
+    "kanji": [
+      "緑"
+    ],
+    "hiragana": [
+      "みどり"
+    ],
+    "meaning": "Hijau",
+    "category": "noun"
+  },
+  {
+    "id": "n5-316",
+    "kanji": [
+      "鉛",
+      "筆"
+    ],
+    "hiragana": [
+      "えん",
+      "ぴつ"
+    ],
+    "meaning": "Pensil",
+    "category": "noun"
+  },
+  {
+    "id": "n5-317",
+    "kanji": [
+      "万",
+      "年",
+      "筆"
+    ],
+    "hiragana": [
+      "まん",
+      "ねん",
+      "ひつ"
+    ],
+    "meaning": "Pena tinta",
+    "category": "noun"
+  },
+  {
+    "id": "n5-318",
+    "kanji": [
+      "消",
+      "しゴム"
+    ],
+    "hiragana": [
+      "け",
+      "しごむ"
+    ],
+    "meaning": "Penghapus",
+    "category": "noun"
+  },
+  {
+    "id": "n5-319",
+    "kanji": [
+      "定",
+      "規"
+    ],
+    "hiragana": [
+      "じょう",
+      "ぎ"
+    ],
+    "meaning": "Penggaris",
+    "category": "noun"
+  },
+  {
+    "id": "n5-320",
+    "kanji": [
+      "紙"
+    ],
+    "hiragana": [
+      "かみ"
+    ],
+    "meaning": "Kertas",
+    "category": "noun"
+  },
+  {
+    "id": "n5-321",
+    "kanji": [
+      "机"
+    ],
+    "hiragana": [
+      "つくえ"
+    ],
+    "meaning": "Meja tulis",
+    "category": "noun"
+  },
+  {
+    "id": "n5-322",
+    "kanji": [
+      "椅",
+      "子"
+    ],
+    "hiragana": [
+      "い",
+      "す"
+    ],
+    "meaning": "Kursi",
+    "category": "noun"
+  },
+  {
+    "id": "n5-323",
+    "kanji": [
+      "棚"
+    ],
+    "hiragana": [
+      "たな"
+    ],
+    "meaning": "Rak",
+    "category": "noun"
+  },
+  {
+    "id": "n5-324",
+    "kanji": [
+      "箱"
+    ],
+    "hiragana": [
+      "はこ"
+    ],
+    "meaning": "Kotak",
+    "category": "noun"
+  },
+  {
+    "id": "n5-325",
+    "kanji": [
+      "皿"
+    ],
+    "hiragana": [
+      "さら"
+    ],
+    "meaning": "Piring",
+    "category": "noun"
+  },
+  {
+    "id": "n5-326",
+    "kanji": [
+      "箸"
+    ],
+    "hiragana": [
+      "はし"
+    ],
+    "meaning": "Sumpit",
+    "category": "noun"
+  },
+  {
+    "id": "n5-327",
+    "kanji": [
+      "切",
+      "手"
+    ],
+    "hiragana": [
+      "きっ",
+      "て"
+    ],
+    "meaning": "Perangko",
+    "category": "noun"
+  },
+  {
+    "id": "n5-328",
+    "kanji": [
+      "封",
+      "筒"
+    ],
+    "hiragana": [
+      "ふう",
+      "とう"
+    ],
+    "meaning": "Amplop",
+    "category": "noun"
+  },
+  {
+    "id": "n5-329",
+    "kanji": [
+      "葉",
+      "書"
+    ],
+    "hiragana": [
+      "は",
+      "がき"
+    ],
+    "meaning": "Kartu pos",
+    "category": "noun"
+  },
+  {
+    "id": "n5-330",
+    "kanji": [
+      "荷",
+      "物"
+    ],
+    "hiragana": [
+      "に",
+      "もつ"
+    ],
+    "meaning": "Barang bawaan",
+    "category": "noun"
+  },
+  {
+    "id": "n5-331",
+    "kanji": [
+      "鍵"
+    ],
+    "hiragana": [
+      "かぎ"
+    ],
+    "meaning": "Kunci",
+    "category": "noun"
+  },
+  {
+    "id": "n5-332",
+    "kanji": [
+      "切",
+      "符"
+    ],
+    "hiragana": [
+      "きっ",
+      "ぷ"
+    ],
+    "meaning": "Tiket",
+    "category": "noun"
+  },
+  {
+    "id": "n5-333",
+    "kanji": [
+      "灰",
+      "皿"
+    ],
+    "hiragana": [
+      "はい",
+      "ざら"
+    ],
+    "meaning": "Asbak",
+    "category": "noun"
+  },
+  {
+    "id": "n5-334",
+    "kanji": [
+      "石",
+      "鹸"
+    ],
+    "hiragana": [
+      "せっ",
+      "けん"
+    ],
+    "meaning": "Sabun",
+    "category": "noun"
+  },
+  {
+    "id": "n5-335",
+    "kanji": [
+      "零"
+    ],
+    "hiragana": [
+      "れい"
+    ],
+    "meaning": "Nol",
+    "category": "noun"
+  },
+  {
+    "id": "n5-336",
+    "kanji": [
+      "一"
+    ],
+    "hiragana": [
+      "いち"
+    ],
+    "meaning": "Satu",
+    "category": "noun"
+  },
+  {
+    "id": "n5-337",
+    "kanji": [
+      "二"
+    ],
+    "hiragana": [
+      "に"
+    ],
+    "meaning": "Dua",
+    "category": "noun"
+  },
+  {
+    "id": "n5-338",
+    "kanji": [
+      "三"
+    ],
+    "hiragana": [
+      "さん"
+    ],
+    "meaning": "Tiga",
+    "category": "noun"
+  },
+  {
+    "id": "n5-339",
+    "kanji": [
+      "四"
+    ],
+    "hiragana": [
+      "よん"
+    ],
+    "meaning": "Empat",
+    "category": "noun"
+  },
+  {
+    "id": "n5-340",
+    "kanji": [
+      "五"
+    ],
+    "hiragana": [
+      "ご"
+    ],
+    "meaning": "Lima",
+    "category": "noun"
+  },
+  {
+    "id": "n5-341",
+    "kanji": [
+      "六"
+    ],
+    "hiragana": [
+      "ろく"
+    ],
+    "meaning": "Enam",
+    "category": "noun"
+  },
+  {
+    "id": "n5-342",
+    "kanji": [
+      "七"
+    ],
+    "hiragana": [
+      "なな"
+    ],
+    "meaning": "Tujuh",
+    "category": "noun"
+  },
+  {
+    "id": "n5-343",
+    "kanji": [
+      "八"
+    ],
+    "hiragana": [
+      "はち"
+    ],
+    "meaning": "Delapan",
+    "category": "noun"
+  },
+  {
+    "id": "n5-344",
+    "kanji": [
+      "九"
+    ],
+    "hiragana": [
+      "きゅう"
+    ],
+    "meaning": "Sembilan",
+    "category": "noun"
+  },
+  {
+    "id": "n5-345",
+    "kanji": [
+      "十"
+    ],
+    "hiragana": [
+      "じゅう"
+    ],
+    "meaning": "Sepuluh",
+    "category": "noun"
+  },
+  {
+    "id": "n5-346",
+    "kanji": [
+      "百"
+    ],
+    "hiragana": [
+      "ひゃく"
+    ],
+    "meaning": "Ratusan",
+    "category": "noun"
+  },
+  {
+    "id": "n5-347",
+    "kanji": [
+      "千"
+    ],
+    "hiragana": [
+      "せん"
+    ],
+    "meaning": "Ribuan",
+    "category": "noun"
+  },
+  {
+    "id": "n5-348",
+    "kanji": [
+      "万"
+    ],
+    "hiragana": [
+      "まん"
+    ],
+    "meaning": "Puluh ribuan",
+    "category": "noun"
+  },
+  {
+    "id": "n5-349",
+    "kanji": [
+      "円"
+    ],
+    "hiragana": [
+      "えん"
+    ],
+    "meaning": "Yen (mata uang)",
+    "category": "noun"
+  },
+  {
+    "id": "n5-350",
+    "kanji": [
+      "弾",
+      "く"
+    ],
+    "hiragana": [
+      "ひ",
+      "く"
+    ],
+    "meaning": "Memainkan (alat musik petik/tuts)",
+    "category": "verb"
+  },
+  {
+    "id": "n5-351",
+    "kanji": [
+      "吹",
+      "く"
+    ],
+    "hiragana": [
+      "ふ",
+      "く"
+    ],
+    "meaning": "Meniup / Berhembus",
+    "category": "verb"
+  },
+  {
+    "id": "n5-352",
+    "kanji": [
+      "咲",
+      "く"
+    ],
+    "hiragana": [
+      "さ",
+      "く"
+    ],
+    "meaning": "Mekar",
+    "category": "verb"
+  },
+  {
+    "id": "n5-353",
+    "kanji": [
+      "晴",
+      "れる"
+    ],
+    "hiragana": [
+      "は",
+      "れる"
+    ],
+    "meaning": "Cerah",
+    "category": "verb"
+  },
+  {
+    "id": "n5-354",
+    "kanji": [
+      "曇",
+      "る"
+    ],
+    "hiragana": [
+      "くも",
+      "る"
+    ],
+    "meaning": "Mendung",
+    "category": "verb"
+  },
+  {
+    "id": "n5-355",
+    "kanji": [
+      "降",
+      "る"
+    ],
+    "hiragana": [
+      "ふ",
+      "る"
+    ],
+    "meaning": "Turun (hujan/salju)",
+    "category": "verb"
+  },
+  {
+    "id": "n5-356",
+    "kanji": [
+      "止",
+      "む"
+    ],
+    "hiragana": [
+      "や",
+      "む"
+    ],
+    "meaning": "Reda / Berhenti (hujan)",
+    "category": "verb"
+  },
+  {
+    "id": "n5-357",
+    "kanji": [
+      "答",
+      "える"
+    ],
+    "hiragana": [
+      "こた",
+      "える"
+    ],
+    "meaning": "Menjawab",
+    "category": "verb"
+  },
+  {
+    "id": "n5-358",
+    "kanji": [
+      "質",
+      "問",
+      "する"
+    ],
+    "hiragana": [
+      "しつ",
+      "もん",
+      "する"
+    ],
+    "meaning": "Bertanya",
+    "category": "verb"
+  },
+  {
+    "id": "n5-359",
+    "kanji": [
+      "頼",
+      "む"
+    ],
+    "hiragana": [
+      "たの",
+      "む"
+    ],
+    "meaning": "Meminta tolong / Memesan",
+    "category": "verb"
+  },
+  {
+    "id": "n5-360",
+    "kanji": [
+      "呼",
+      "ぶ"
+    ],
+    "hiragana": [
+      "よ",
+      "ぶ"
+    ],
+    "meaning": "Memanggil",
+    "category": "verb"
+  },
+  {
+    "id": "n5-361",
+    "kanji": [
+      "鳴",
+      "く"
+    ],
+    "hiragana": [
+      "な",
+      "く"
+    ],
+    "meaning": "Berkicau / Bersuara (hewan)",
+    "category": "verb"
+  },
+  {
+    "id": "n5-362",
+    "kanji": [
+      "差",
+      "す"
+    ],
+    "hiragana": [
+      "さ",
+      "す"
+    ],
+    "meaning": "Membuka / Memakai (payung)",
+    "category": "verb"
+  },
+  {
+    "id": "n5-363",
+    "kanji": [
+      "渡",
+      "る"
+    ],
+    "hiragana": [
+      "わた",
+      "る"
+    ],
+    "meaning": "Menyeberang",
+    "category": "verb"
+  },
+  {
+    "id": "n5-364",
+    "kanji": [
+      "曲",
+      "がる"
+    ],
+    "hiragana": [
+      "ま",
+      "がる"
+    ],
+    "meaning": "Berbelok",
+    "category": "verb"
+  },
+  {
+    "id": "n5-365",
+    "kanji": [
+      "止",
+      "まる"
+    ],
+    "hiragana": [
+      "と",
+      "まる"
+    ],
+    "meaning": "Berhenti",
+    "category": "verb"
+  },
+  {
+    "id": "n5-366",
+    "kanji": [
+      "引",
+      "く"
+    ],
+    "hiragana": [
+      "ひ",
+      "く"
+    ],
+    "meaning": "Menarik",
+    "category": "verb"
+  },
+  {
+    "id": "n5-367",
+    "kanji": [
+      "押",
+      "す"
+    ],
+    "hiragana": [
+      "お",
+      "す"
+    ],
+    "meaning": "Menekan / Mendorong",
+    "category": "verb"
+  },
+  {
+    "id": "n5-368",
+    "kanji": [
+      "磨",
+      "く"
+    ],
+    "hiragana": [
+      "みが",
+      "く"
+    ],
+    "meaning": "Menggosok (gigi)",
+    "category": "verb"
+  },
+  {
+    "id": "n5-369",
+    "kanji": [
+      "洗",
+      "濯",
+      "する"
+    ],
+    "hiragana": [
+      "せん",
+      "たく",
+      "する"
+    ],
+    "meaning": "Mencuci pakaian",
+    "category": "verb"
+  },
+  {
+    "id": "n5-370",
+    "kanji": [
+      "掃",
+      "除",
+      "する"
+    ],
+    "hiragana": [
+      "そう",
+      "じ",
+      "する"
+    ],
+    "meaning": "Membersihkan rumah",
+    "category": "verb"
+  },
+  {
+    "id": "n5-371",
+    "kanji": [
+      "散",
+      "歩",
+      "する"
+    ],
+    "hiragana": [
+      "さん",
+      "ぽ",
+      "する"
+    ],
+    "meaning": "Jalan-jalan",
+    "category": "verb"
+  },
+  {
+    "id": "n5-372",
+    "kanji": [
+      "料",
+      "理",
+      "する"
+    ],
+    "hiragana": [
+      "りょう",
+      "り",
+      "する"
+    ],
+    "meaning": "Memasak",
+    "category": "verb"
+  },
+  {
+    "id": "n5-373",
+    "kanji": [
+      "買",
+      "い",
+      "物",
+      "する"
+    ],
+    "hiragana": [
+      "か",
+      "い",
+      "もの",
+      "する"
+    ],
+    "meaning": "Berbelanja",
+    "category": "verb"
+  },
+  {
+    "id": "n5-374",
+    "kanji": [
+      "結",
+      "婚",
+      "する"
+    ],
+    "hiragana": [
+      "けっ",
+      "こん",
+      "する"
+    ],
+    "meaning": "Menikah",
+    "category": "verb"
+  },
+  {
+    "id": "n5-375",
+    "kanji": [
+      "勉",
+      "強",
+      "する"
+    ],
+    "hiragana": [
+      "べん",
+      "きょう",
+      "する"
+    ],
+    "meaning": "Belajar",
+    "category": "verb"
+  },
+  {
+    "id": "n5-376",
+    "kanji": [
+      "練",
+      "習",
+      "する"
+    ],
+    "hiragana": [
+      "れん",
+      "しゅう",
+      "する"
+    ],
+    "meaning": "Berlatih",
+    "category": "verb"
+  },
+  {
+    "id": "n5-377",
+    "kanji": [
+      "電",
+      "話",
+      "する"
+    ],
+    "hiragana": [
+      "でん",
+      "わ",
+      "する"
+    ],
+    "meaning": "Menelepon",
+    "category": "verb"
+  },
+  {
+    "id": "n5-378",
+    "kanji": [
+      "欲",
+      "しい"
+    ],
+    "hiragana": [
+      "ほ",
+      "しい"
+    ],
+    "meaning": "Menginginkan / Mau",
+    "category": "adjective"
+  },
+  {
+    "id": "n5-379",
+    "kanji": [
+      "丸",
+      "い"
+    ],
+    "hiragana": [
+      "まる",
+      "い"
+    ],
+    "meaning": "Bulat",
+    "category": "adjective"
+  },
+  {
+    "id": "n5-380",
+    "kanji": [
+      "四",
+      "角",
+      "い"
+    ],
+    "hiragana": [
+      "し",
+      "かく",
+      "い"
+    ],
+    "meaning": "Kotak / Persegi",
+    "category": "adjective"
+  },
+  {
+    "id": "n5-381",
+    "kanji": [
+      "危",
+      "ない"
+    ],
+    "hiragana": [
+      "あぶ",
+      "ない"
+    ],
+    "meaning": "Berbahaya",
+    "category": "adjective"
+  },
+  {
+    "id": "n5-382",
+    "kanji": [
+      "丈",
+      "夫"
+    ],
+    "hiragana": [
+      "じょう",
+      "ぶ"
+    ],
+    "meaning": "Kuat / Kokoh",
+    "category": "adjective"
+  },
+  {
+    "id": "n5-383",
+    "kanji": [
+      "立",
+      "派"
+    ],
+    "hiragana": [
+      "りっ",
+      "ぱ"
+    ],
+    "meaning": "Megah / Hebat",
+    "category": "adjective"
+  },
+  {
+    "id": "n5-384",
+    "kanji": [
+      "色",
+      "々"
+    ],
+    "hiragana": [
+      "いろ",
+      "いろ"
+    ],
+    "meaning": "Bermacam-macam",
+    "category": "adjective"
+  },
+  {
+    "id": "n5-385",
+    "kanji": [
+      "大",
+      "変"
+    ],
+    "hiragana": [
+      "たい",
+      "へん"
+    ],
+    "meaning": "Berat / Sangat",
+    "category": "adjective"
+  },
+  {
+    "id": "n5-386",
+    "kanji": [
+      "結",
+      "構"
+    ],
+    "hiragana": [
+      "けっ",
+      "こう"
+    ],
+    "meaning": "Cukup / Lumayan",
+    "category": "adjective"
+  },
+  {
+    "id": "n5-387",
+    "kanji": [
+      "そば"
+    ],
+    "hiragana": [
+      "そば"
+    ],
+    "meaning": "Di samping / Dekat",
+    "category": "noun"
+  },
+  {
+    "id": "n5-388",
+    "kanji": [
+      "横"
+    ],
+    "hiragana": [
+      "よこ"
+    ],
+    "meaning": "Samping / Sisi",
+    "category": "noun"
+  },
+  {
+    "id": "n5-389",
+    "kanji": [
+      "間"
+    ],
+    "hiragana": [
+      "あいだ"
+    ],
+    "meaning": "Antara",
+    "category": "noun"
+  },
+  {
+    "id": "n5-390",
+    "kanji": [
+      "真",
+      "ん",
+      "中"
+    ],
+    "hiragana": [
+      "ま",
+      "ん",
+      "なか"
+    ],
+    "meaning": "Tepat di tengah",
+    "category": "noun"
+  },
+  {
+    "id": "n5-391",
+    "kanji": [
+      "向",
+      "こう"
+    ],
+    "hiragana": [
+      "む",
+      "こう"
+    ],
+    "meaning": "Di seberang sana",
+    "category": "noun"
+  },
+  {
+    "id": "n5-392",
+    "kanji": [
+      "そして"
+    ],
+    "hiragana": [
+      "そして"
+    ],
+    "meaning": "Dan / Lalu",
+    "category": "conjunction"
+  },
+  {
+    "id": "n5-393",
+    "kanji": [
+      "それから"
+    ],
+    "hiragana": [
+      "それから"
+    ],
+    "meaning": "Setelah itu",
+    "category": "conjunction"
+  },
+  {
+    "id": "n5-394",
+    "kanji": [
+      "それで"
+    ],
+    "hiragana": [
+      "それで"
+    ],
+    "meaning": "Oleh karena itu",
+    "category": "conjunction"
+  },
+  {
+    "id": "n5-395",
+    "kanji": [
+      "でも"
+    ],
+    "hiragana": [
+      "でも"
+    ],
+    "meaning": "Tetapi",
+    "category": "conjunction"
+  },
+  {
+    "id": "n5-396",
+    "kanji": [
+      "しかし"
+    ],
+    "hiragana": [
+      "しかし"
+    ],
+    "meaning": "Namun",
+    "category": "conjunction"
+  },
+  {
+    "id": "n5-397",
+    "kanji": [
+      "だから"
+    ],
+    "hiragana": [
+      "だから"
+    ],
+    "meaning": "Maka dari itu",
+    "category": "conjunction"
+  },
+  {
+    "id": "n5-398",
+    "kanji": [
+      "ですから"
+    ],
+    "hiragana": [
+      "ですから"
+    ],
+    "meaning": "Karena itu (sopan)",
+    "category": "conjunction"
+  },
+  {
+    "id": "n5-399",
+    "kanji": [
+      "または"
+    ],
+    "hiragana": [
+      "または"
+    ],
+    "meaning": "Atau",
+    "category": "conjunction"
+  },
+  {
+    "id": "n5-400",
+    "kanji": [
+      "もし"
+    ],
+    "hiragana": [
+      "もし"
+    ],
+    "meaning": "Jikalau / Seandainya",
+    "category": "conjunction"
+  },
+  {
+    "id": "n5-401",
+    "kanji": [
+      "着",
+      "る"
+    ],
+    "hiragana": [
+      "き",
+      "る"
+    ],
+    "meaning": "Memakai (baju atas)",
+    "category": "verb"
+  },
+  {
+    "id": "n5-402",
+    "kanji": [
+      "履",
+      "く"
+    ],
+    "hiragana": [
+      "は",
+      "く"
+    ],
+    "meaning": "Memakai (celana/sepatu)",
+    "category": "verb"
+  },
+  {
+    "id": "n5-403",
+    "kanji": [
+      "被",
+      "る"
+    ],
+    "hiragana": [
+      "かぶ",
+      "る"
+    ],
+    "meaning": "Memakai (topi)",
+    "category": "verb"
+  },
+  {
+    "id": "n5-404",
+    "kanji": [
+      "掛",
+      "ける"
+    ],
+    "hiragana": [
+      "か",
+      "ける"
+    ],
+    "meaning": "Memakai (kacamata)",
+    "category": "verb"
+  },
+  {
+    "id": "n5-405",
+    "kanji": [
+      "締",
+      "める"
+    ],
+    "hiragana": [
+      "し",
+      "める"
+    ],
+    "meaning": "Memakai (dasi/sabuk)",
+    "category": "verb"
+  },
+  {
+    "id": "n5-406",
+    "kanji": [
+      "あげる"
+    ],
+    "hiragana": [
+      "あげる"
+    ],
+    "meaning": "Memberi",
+    "category": "verb"
+  },
+  {
+    "id": "n5-407",
+    "kanji": [
+      "もらう"
+    ],
+    "hiragana": [
+      "もらう"
+    ],
+    "meaning": "Menerima",
+    "category": "verb"
+  },
+  {
+    "id": "n5-408",
+    "kanji": [
+      "くれる"
+    ],
+    "hiragana": [
+      "くれる"
+    ],
+    "meaning": "Memberi (kepada saya)",
+    "category": "verb"
+  },
+  {
+    "id": "n5-409",
+    "kanji": [
+      "貸",
+      "す"
+    ],
+    "hiragana": [
+      "か",
+      "す"
+    ],
+    "meaning": "Meminjamkan",
+    "category": "verb"
+  },
+  {
+    "id": "n5-410",
+    "kanji": [
+      "借",
+      "りる"
+    ],
+    "hiragana": [
+      "か",
+      "りる"
+    ],
+    "meaning": "Meminjam",
+    "category": "verb"
+  },
+  {
+    "id": "n5-411",
+    "kanji": [
+      "返",
+      "す"
+    ],
+    "hiragana": [
+      "かえ",
+      "す"
+    ],
+    "meaning": "Mengembalikan",
+    "category": "verb"
+  },
+  {
+    "id": "n5-412",
+    "kanji": [
+      "知",
+      "る"
+    ],
+    "hiragana": [
+      "し",
+      "る"
+    ],
+    "meaning": "Mengetahui",
+    "category": "verb"
+  },
+  {
+    "id": "n5-413",
+    "kanji": [
+      "住",
+      "む"
+    ],
+    "hiragana": [
+      "す",
+      "む"
+    ],
+    "meaning": "Tinggal",
+    "category": "verb"
+  },
+  {
+    "id": "n5-414",
+    "kanji": [
+      "吸",
+      "う"
+    ],
+    "hiragana": [
+      "す",
+      "う"
+    ],
+    "meaning": "Menghisap (rokok/udara)",
+    "category": "verb"
+  },
+  {
+    "id": "n5-415",
+    "kanji": [
+      "違",
+      "う"
+    ],
+    "hiragana": [
+      "ちが",
+      "う"
+    ],
+    "meaning": "Berbeda / Salah",
+    "category": "verb"
+  },
+  {
+    "id": "n5-416",
+    "kanji": [
+      "出",
+      "かける"
+    ],
+    "hiragana": [
+      "で",
+      "かける"
+    ],
+    "meaning": "Bepergian keluar",
+    "category": "verb"
+  },
+  {
+    "id": "n5-417",
+    "kanji": [
+      "登",
+      "る"
+    ],
+    "hiragana": [
+      "のぼ",
+      "る"
+    ],
+    "meaning": "Mendaki",
+    "category": "verb"
+  },
+  {
+    "id": "n5-418",
+    "kanji": [
+      "貼",
+      "る"
+    ],
+    "hiragana": [
+      "は",
+      "る"
+    ],
+    "meaning": "Menempelkan",
+    "category": "verb"
+  },
+  {
+    "id": "n5-419",
+    "kanji": [
+      "並",
+      "ぶ"
+    ],
+    "hiragana": [
+      "なら",
+      "ぶ"
+    ],
+    "meaning": "Berbaris / Berjajar",
+    "category": "verb"
+  },
+  {
+    "id": "n5-420",
+    "kanji": [
+      "並",
+      "べる"
+    ],
+    "hiragana": [
+      "なら",
+      "べる"
+    ],
+    "meaning": "Menjajarkan",
+    "category": "verb"
+  },
+  {
+    "id": "n5-421",
+    "kanji": [
+      "勤",
+      "める"
+    ],
+    "hiragana": [
+      "つと",
+      "める"
+    ],
+    "meaning": "Bekerja (di instansi)",
+    "category": "verb"
+  },
+  {
+    "id": "n5-422",
+    "kanji": [
+      "困",
+      "る"
+    ],
+    "hiragana": [
+      "こま",
+      "る"
+    ],
+    "meaning": "Mengalami kesulitan",
+    "category": "verb"
+  },
+  {
+    "id": "n5-423",
+    "kanji": [
+      "閉",
+      "まる"
+    ],
+    "hiragana": [
+      "し",
+      "まる"
+    ],
+    "meaning": "Tertutup",
+    "category": "verb"
+  },
+  {
+    "id": "n5-424",
+    "kanji": [
+      "開",
+      "く"
+    ],
+    "hiragana": [
+      "あ",
+      "く"
+    ],
+    "meaning": "Terbuka",
+    "category": "verb"
+  },
+  {
+    "id": "n5-425",
+    "kanji": [
+      "消",
+      "える"
+    ],
+    "hiragana": [
+      "き",
+      "える"
+    ],
+    "meaning": "Padam / Lenyap",
+    "category": "verb"
+  },
+  {
+    "id": "n5-426",
+    "kanji": [
+      "つく"
+    ],
+    "hiragana": [
+      "つく"
+    ],
+    "meaning": "Menyala",
+    "category": "verb"
+  },
+  {
+    "id": "n5-427",
+    "kanji": [
+      "直",
+      "す"
+    ],
+    "hiragana": [
+      "なお",
+      "す"
+    ],
+    "meaning": "Memperbaiki",
+    "category": "verb"
+  },
+  {
+    "id": "n5-428",
+    "kanji": [
+      "なくす"
+    ],
+    "hiragana": [
+      "なくす"
+    ],
+    "meaning": "Menghilangkan",
+    "category": "verb"
+  },
+  {
+    "id": "n5-429",
+    "kanji": [
+      "医",
+      "者"
+    ],
+    "hiragana": [
+      "い",
+      "しゃ"
+    ],
+    "meaning": "Dokter",
+    "category": "noun"
+  },
+  {
+    "id": "n5-430",
+    "kanji": [
+      "お",
+      "医",
+      "者",
+      "さん"
+    ],
+    "hiragana": [
+      "お",
+      "い",
+      "しゃ",
+      "さん"
+    ],
+    "meaning": "Tuan Dokter",
+    "category": "noun"
+  },
+  {
+    "id": "n5-431",
+    "kanji": [
+      "警",
+      "官"
+    ],
+    "hiragana": [
+      "けい",
+      "かん"
+    ],
+    "meaning": "Polisi",
+    "category": "noun"
+  },
+  {
+    "id": "n5-432",
+    "kanji": [
+      "お",
+      "巡",
+      "り",
+      "さん"
+    ],
+    "hiragana": [
+      "お",
+      "まわ",
+      "り",
+      "さん"
+    ],
+    "meaning": "Pak Polisi",
+    "category": "noun"
+  },
+  {
+    "id": "n5-433",
+    "kanji": [
+      "会",
+      "社",
+      "員"
+    ],
+    "hiragana": [
+      "かい",
+      "しゃ",
+      "いん"
+    ],
+    "meaning": "Karyawan perusahaan",
+    "category": "noun"
+  },
+  {
+    "id": "n5-434",
+    "kanji": [
+      "公",
+      "務",
+      "員"
+    ],
+    "hiragana": [
+      "こう",
+      "む",
+      "いん"
+    ],
+    "meaning": "Pegawai negeri",
+    "category": "noun"
+  },
+  {
+    "id": "n5-435",
+    "kanji": [
+      "駅",
+      "員"
+    ],
+    "hiragana": [
+      "えき",
+      "いん"
+    ],
+    "meaning": "Petugas stasiun",
+    "category": "noun"
+  },
+  {
+    "id": "n5-436",
+    "kanji": [
+      "銀",
+      "行",
+      "員"
+    ],
+    "hiragana": [
+      "ぎん",
+      "こう",
+      "いん"
+    ],
+    "meaning": "Pegawai bank",
+    "category": "noun"
+  },
+  {
+    "id": "n5-437",
+    "kanji": [
+      "研",
+      "究",
+      "者"
+    ],
+    "hiragana": [
+      "けん",
+      "きゅう",
+      "しゃ"
+    ],
+    "meaning": "Peneliti",
+    "category": "noun"
+  },
+  {
+    "id": "n5-438",
+    "kanji": [
+      "みなさん"
+    ],
+    "hiragana": [
+      "みなさん"
+    ],
+    "meaning": "Semuanya / Hadirin",
+    "category": "noun"
+  },
+  {
+    "id": "n5-439",
+    "kanji": [
+      "祖",
+      "父"
+    ],
+    "hiragana": [
+      "そ",
+      "ふ"
+    ],
+    "meaning": "Kakek (sendiri)",
+    "category": "noun"
+  },
+  {
+    "id": "n5-440",
+    "kanji": [
+      "祖",
+      "母"
+    ],
+    "hiragana": [
+      "そ",
+      "ぼ"
+    ],
+    "meaning": "Nenek (sendiri)",
+    "category": "noun"
+  },
+  {
+    "id": "n5-441",
+    "kanji": [
+      "おじ"
+    ],
+    "hiragana": [
+      "おじ"
+    ],
+    "meaning": "Paman (sendiri)",
+    "category": "noun"
+  },
+  {
+    "id": "n5-442",
+    "kanji": [
+      "おば"
+    ],
+    "hiragana": [
+      "おば"
+    ],
+    "meaning": "Bibi (sendiri)",
+    "category": "noun"
+  },
+  {
+    "id": "n5-443",
+    "kanji": [
+      "お",
+      "じい",
+      "さん"
+    ],
+    "hiragana": [
+      "お",
+      "じい",
+      "さん"
+    ],
+    "meaning": "Kakek",
+    "category": "noun"
+  },
+  {
+    "id": "n5-444",
+    "kanji": [
+      "お",
+      "ばあ",
+      "さん"
+    ],
+    "hiragana": [
+      "お",
+      "ばあ",
+      "さん"
+    ],
+    "meaning": "Nenek",
+    "category": "noun"
+  },
+  {
+    "id": "n5-445",
+    "kanji": [
+      "妻"
+    ],
+    "hiragana": [
+      "つま"
+    ],
+    "meaning": "Istri (sendiri)",
+    "category": "noun"
+  },
+  {
+    "id": "n5-446",
+    "kanji": [
+      "夫"
+    ],
+    "hiragana": [
+      "おっと"
+    ],
+    "meaning": "Suami (sendiri)",
+    "category": "noun"
+  },
+  {
+    "id": "n5-447",
+    "kanji": [
+      "大",
+      "人"
+    ],
+    "hiragana": [
+      "おとな"
+    ],
+    "meaning": "Orang dewasa",
+    "category": "noun"
+  },
+  {
+    "id": "n5-448",
+    "kanji": [
+      "子",
+      "ども"
+    ],
+    "hiragana": [
+      "こ",
+      "ども"
+    ],
+    "meaning": "Anak-anak",
+    "category": "noun"
+  },
+  {
+    "id": "n5-449",
+    "kanji": [
+      "建",
+      "物"
+    ],
+    "hiragana": [
+      "たて",
+      "もの"
+    ],
+    "meaning": "Bangunan / Gedung",
+    "category": "noun"
+  },
+  {
+    "id": "n5-450",
+    "kanji": [
+      "交",
+      "番"
+    ],
+    "hiragana": [
+      "こう",
+      "ばん"
+    ],
+    "meaning": "Pos polisi",
+    "category": "noun"
+  },
+  {
+    "id": "n5-451",
+    "kanji": [
+      "大",
+      "使",
+      "館"
+    ],
+    "hiragana": [
+      "たい",
+      "し",
+      "かん"
+    ],
+    "meaning": "Kedutaan besar",
+    "category": "noun"
+  },
+  {
+    "id": "n5-452",
+    "kanji": [
+      "美",
+      "容",
+      "院"
+    ],
+    "hiragana": [
+      "び",
+      "よう",
+      "いん"
+    ],
+    "meaning": "Salon kecantikan",
+    "category": "noun"
+  },
+  {
+    "id": "n5-453",
+    "kanji": [
+      "門"
+    ],
+    "hiragana": [
+      "もん"
+    ],
+    "meaning": "Gerbang",
+    "category": "noun"
+  },
+  {
+    "id": "n5-454",
+    "kanji": [
+      "庭"
+    ],
+    "hiragana": [
+      "にわ"
+    ],
+    "meaning": "Halaman / Taman rumah",
+    "category": "noun"
+  },
+  {
+    "id": "n5-455",
+    "kanji": [
+      "池"
+    ],
+    "hiragana": [
+      "いけ"
+    ],
+    "meaning": "Kolam",
+    "category": "noun"
+  },
+  {
+    "id": "n5-456",
+    "kanji": [
+      "所"
+    ],
+    "hiragana": [
+      "ところ"
+    ],
+    "meaning": "Tempat",
+    "category": "noun"
+  },
+  {
+    "id": "n5-457",
+    "kanji": [
+      "道"
+    ],
+    "hiragana": [
+      "みち"
+    ],
+    "meaning": "Jalan",
+    "category": "noun"
+  },
+  {
+    "id": "n5-458",
+    "kanji": [
+      "交",
+      "差",
+      "点"
+    ],
+    "hiragana": [
+      "こう",
+      "さ",
+      "てん"
+    ],
+    "meaning": "Perempatan jalan",
+    "category": "noun"
+  },
+  {
+    "id": "n5-459",
+    "kanji": [
+      "角"
+    ],
+    "hiragana": [
+      "かど"
+    ],
+    "meaning": "Pojok / Sudut jalan",
+    "category": "noun"
+  },
+  {
+    "id": "n5-460",
+    "kanji": [
+      "橋"
+    ],
+    "hiragana": [
+      "はし"
+    ],
+    "meaning": "Jembatan",
+    "category": "noun"
+  },
+  {
+    "id": "n5-461",
+    "kanji": [
+      "寮"
+    ],
+    "hiragana": [
+      "りょう"
+    ],
+    "meaning": "Asrama",
+    "category": "noun"
+  },
+  {
+    "id": "n5-462",
+    "kanji": [
+      "町"
+    ],
+    "hiragana": [
+      "まち"
+    ],
+    "meaning": "Kota kecil",
+    "category": "noun"
+  },
+  {
+    "id": "n5-463",
+    "kanji": [
+      "村"
+    ],
+    "hiragana": [
+      "むら"
+    ],
+    "meaning": "Desa",
+    "category": "noun"
+  },
+  {
+    "id": "n5-464",
+    "kanji": [
+      "台",
+      "所"
+    ],
+    "hiragana": [
+      "だい",
+      "どころ"
+    ],
+    "meaning": "Dapur",
+    "category": "noun"
+  },
+  {
+    "id": "n5-465",
+    "kanji": [
+      "お",
+      "風",
+      "呂"
+    ],
+    "hiragana": [
+      "お",
+      "ふ",
+      "ろ"
+    ],
+    "meaning": "Bak mandi / Kamar mandi",
+    "category": "noun"
+  },
+  {
+    "id": "n5-466",
+    "kanji": [
+      "玄",
+      "関"
+    ],
+    "hiragana": [
+      "げん",
+      "かん"
+    ],
+    "meaning": "Pintu masuk rumah",
+    "category": "noun"
+  },
+  {
+    "id": "n5-467",
+    "kanji": [
+      "廊",
+      "下"
+    ],
+    "hiragana": [
+      "ろう",
+      "か"
+    ],
+    "meaning": "Koridor / Lorong",
+    "category": "noun"
+  },
+  {
+    "id": "n5-468",
+    "kanji": [
+      "窓"
+    ],
+    "hiragana": [
+      "まど"
+    ],
+    "meaning": "Jendela",
+    "category": "noun"
+  },
+  {
+    "id": "n5-469",
+    "kanji": [
+      "階",
+      "段"
+    ],
+    "hiragana": [
+      "かい",
+      "だん"
+    ],
+    "meaning": "Tangga",
+    "category": "noun"
+  },
+  {
+    "id": "n5-470",
+    "kanji": [
+      "天",
+      "井"
+    ],
+    "hiragana": [
+      "てん",
+      "じょう"
+    ],
+    "meaning": "Langit-langit rumah",
+    "category": "noun"
+  },
+  {
+    "id": "n5-471",
+    "kanji": [
+      "壁"
+    ],
+    "hiragana": [
+      "かべ"
+    ],
+    "meaning": "Dinding",
+    "category": "noun"
+  },
+  {
+    "id": "n5-472",
+    "kanji": [
+      "右",
+      "側"
+    ],
+    "hiragana": [
+      "みぎ",
+      "がわ"
+    ],
+    "meaning": "Sebelah kanan",
+    "category": "noun"
+  },
+  {
+    "id": "n5-473",
+    "kanji": [
+      "左",
+      "側"
+    ],
+    "hiragana": [
+      "ひだり",
+      "がわ"
+    ],
+    "meaning": "Sebelah kiri",
+    "category": "noun"
+  },
+  {
+    "id": "n5-474",
+    "kanji": [
+      "朝",
+      "ご",
+      "飯"
+    ],
+    "hiragana": [
+      "あさ",
+      "ご",
+      "はん"
+    ],
+    "meaning": "Sarapan pagi",
+    "category": "noun"
+  },
+  {
+    "id": "n5-475",
+    "kanji": [
+      "昼",
+      "ご",
+      "飯"
+    ],
+    "hiragana": [
+      "ひる",
+      "ご",
+      "はん"
+    ],
+    "meaning": "Makan siang",
+    "category": "noun"
+  },
+  {
+    "id": "n5-476",
+    "kanji": [
+      "晩",
+      "ご",
+      "飯"
+    ],
+    "hiragana": [
+      "ばん",
+      "ご",
+      "はん"
+    ],
+    "meaning": "Makan malam",
+    "category": "noun"
+  },
+  {
+    "id": "n5-477",
+    "kanji": [
+      "夕",
+      "飯"
+    ],
+    "hiragana": [
+      "ゆう",
+      "はん"
+    ],
+    "meaning": "Makan malam",
+    "category": "noun"
+  },
+  {
+    "id": "n5-478",
+    "kanji": [
+      "食",
+      "べ",
+      "物"
+    ],
+    "hiragana": [
+      "た",
+      "べ",
+      "もの"
+    ],
+    "meaning": "Makanan",
+    "category": "noun"
+  },
+  {
+    "id": "n5-479",
+    "kanji": [
+      "飲",
+      "み",
+      "物"
+    ],
+    "hiragana": [
+      "の",
+      "み",
+      "もの"
+    ],
+    "meaning": "Minuman",
+    "category": "noun"
+  },
+  {
+    "id": "n5-480",
+    "kanji": [
+      "料",
+      "理"
+    ],
+    "hiragana": [
+      "りょう",
+      "り"
+    ],
+    "meaning": "Masakan",
+    "category": "noun"
+  },
+  {
+    "id": "n5-481",
+    "kanji": [
+      "音",
+      "楽"
+    ],
+    "hiragana": [
+      "おん",
+      "がく"
+    ],
+    "meaning": "Musik",
+    "category": "noun"
+  },
+  {
+    "id": "n5-482",
+    "kanji": [
+      "映",
+      "画"
+    ],
+    "hiragana": [
+      "えい",
+      "が"
+    ],
+    "meaning": "Film",
+    "category": "noun"
+  },
+  {
+    "id": "n5-483",
+    "kanji": [
+      "歌"
+    ],
+    "hiragana": [
+      "うた"
+    ],
+    "meaning": "Lagu",
+    "category": "noun"
+  },
+  {
+    "id": "n5-484",
+    "kanji": [
+      "絵"
+    ],
+    "hiragana": [
+      "え"
+    ],
+    "meaning": "Gambar / Lukisan",
+    "category": "noun"
+  },
+  {
+    "id": "n5-485",
+    "kanji": [
+      "授",
+      "業"
+    ],
+    "hiragana": [
+      "じゅ",
+      "ぎょう"
+    ],
+    "meaning": "Pelajaran di kelas",
+    "category": "noun"
+  },
+  {
+    "id": "n5-486",
+    "kanji": [
+      "指"
+    ],
+    "hiragana": [
+      "ゆび"
+    ],
+    "meaning": "Jari",
+    "category": "noun"
+  },
+  {
+    "id": "n5-487",
+    "kanji": [
+      "首"
+    ],
+    "hiragana": [
+      "くび"
+    ],
+    "meaning": "Leher",
+    "category": "noun"
+  },
+  {
+    "id": "n5-488",
+    "kanji": [
+      "肩"
+    ],
+    "hiragana": [
+      "かた"
+    ],
+    "meaning": "Bahu",
+    "category": "noun"
+  },
+  {
+    "id": "n5-489",
+    "kanji": [
+      "声"
+    ],
+    "hiragana": [
+      "こえ"
+    ],
+    "meaning": "Suara (manusia/hewan)",
+    "category": "noun"
+  },
+  {
+    "id": "n5-490",
+    "kanji": [
+      "病",
+      "気"
+    ],
+    "hiragana": [
+      "びょう",
+      "き"
+    ],
+    "meaning": "Penyakit / Sakit",
+    "category": "noun"
+  },
+  {
+    "id": "n5-491",
+    "kanji": [
+      "風",
+      "邪"
+    ],
+    "hiragana": [
+      "か",
+      "ぜ"
+    ],
+    "meaning": "Masuk angin / Flu",
+    "category": "noun"
+  },
+  {
+    "id": "n5-492",
+    "kanji": [
+      "意",
+      "味"
+    ],
+    "hiragana": [
+      "い",
+      "み"
+    ],
+    "meaning": "Arti / Makna",
+    "category": "noun"
+  },
+  {
+    "id": "n5-493",
+    "kanji": [
+      "言",
+      "葉"
+    ],
+    "hiragana": [
+      "こと",
+      "ば"
+    ],
+    "meaning": "Kata / Bahasa",
+    "category": "noun"
+  },
+  {
+    "id": "n5-494",
+    "kanji": [
+      "質",
+      "問"
+    ],
+    "hiragana": [
+      "しつ",
+      "もん"
+    ],
+    "meaning": "Pertanyaan",
+    "category": "noun"
+  },
+  {
+    "id": "n5-495",
+    "kanji": [
+      "答",
+      "え"
+    ],
+    "hiragana": [
+      "こた",
+      "え"
+    ],
+    "meaning": "Jawaban",
+    "category": "noun"
+  },
+  {
+    "id": "n5-496",
+    "kanji": [
+      "問",
+      "題"
+    ],
+    "hiragana": [
+      "もん",
+      "だい"
+    ],
+    "meaning": "Masalah / Soal",
+    "category": "noun"
+  },
+  {
+    "id": "n5-497",
+    "kanji": [
+      "宿",
+      "題"
+    ],
+    "hiragana": [
+      "しゅく",
+      "だい"
+    ],
+    "meaning": "Pekerjaan rumah (PR)",
+    "category": "noun"
+  },
+  {
+    "id": "n5-498",
+    "kanji": [
+      "作",
+      "文"
+    ],
+    "hiragana": [
+      "さく",
+      "ぶん"
+    ],
+    "meaning": "Karangan esai",
+    "category": "noun"
+  },
+  {
+    "id": "n5-499",
+    "kanji": [
+      "眠",
+      "い"
+    ],
+    "hiragana": [
+      "ねむ",
+      "い"
+    ],
+    "meaning": "Mengantuk",
+    "category": "adjective"
+  },
+  {
+    "id": "n5-500",
+    "kanji": [
+      "若",
+      "い"
+    ],
+    "hiragana": [
+      "わか",
+      "い"
+    ],
+    "meaning": "Muda",
+    "category": "adjective"
+  },
+  {
+    "id": "n5-501",
+    "kanji": [
+      "太",
+      "い"
+    ],
+    "hiragana": [
+      "ふと",
+      "い"
+    ],
+    "meaning": "Tebal / Gemuk",
+    "category": "adjective"
+  },
+  {
+    "id": "n5-502",
+    "kanji": [
+      "細",
+      "い"
+    ],
+    "hiragana": [
+      "ほそ",
+      "い"
+    ],
+    "meaning": "Tipis / Ramping",
+    "category": "adjective"
+  },
+  {
+    "id": "n5-503",
+    "kanji": [
+      "薄",
+      "い"
+    ],
+    "hiragana": [
+      "うす",
+      "い"
+    ],
+    "meaning": "Tipis / Hambar",
+    "category": "adjective"
+  },
+  {
+    "id": "n5-504",
+    "kanji": [
+      "厚",
+      "い"
+    ],
+    "hiragana": [
+      "あつ",
+      "い"
+    ],
+    "meaning": "Tebal",
+    "category": "adjective"
+  },
+  {
+    "id": "n5-505",
+    "kanji": [
+      "大",
+      "丈",
+      "夫"
+    ],
+    "hiragana": [
+      "だい",
+      "じょう",
+      "ぶ"
+    ],
+    "meaning": "Tidak apa-apa / Aman",
+    "category": "adjective"
+  },
+  {
+    "id": "n5-506",
+    "kanji": [
+      "便",
+      "利"
+    ],
+    "hiragana": [
+      "べん",
+      "り"
+    ],
+    "meaning": "Praktis",
+    "category": "adjective"
+  },
+  {
+    "id": "n5-507",
+    "kanji": [
+      "不",
+      "便"
+    ],
+    "hiragana": [
+      "ふ",
+      "べん"
+    ],
+    "meaning": "Tidak praktis",
+    "category": "adjective"
+  },
+  {
+    "id": "n5-508",
+    "kanji": [
+      "本",
+      "当"
+    ],
+    "hiragana": [
+      "ほん",
+      "とう"
+    ],
+    "meaning": "Sungguh-sungguh",
+    "category": "adjective"
+  },
+  {
+    "id": "n5-509",
+    "kanji": [
+      "きれい"
+    ],
+    "hiragana": [
+      "きれい"
+    ],
+    "meaning": "Cantik / Bersih",
+    "category": "adjective"
+  },
+  {
+    "id": "n5-510",
+    "kanji": [
+      "いや"
+    ],
+    "hiragana": [
+      "いや"
+    ],
+    "meaning": "Tidak menyenangkan / Enggan",
+    "category": "adjective"
+  },
+  {
+    "id": "n5-511",
+    "kanji": [
+      "嫌"
+    ],
+    "hiragana": [
+      "いや"
+    ],
+    "meaning": "Tidak suka",
+    "category": "adjective"
+  },
+  {
+    "id": "n5-512",
+    "kanji": [
+      "強",
+      "い"
+    ],
+    "hiragana": [
+      "つよ",
+      "い"
+    ],
+    "meaning": "Kuat",
+    "category": "adjective"
+  },
+  {
+    "id": "n5-513",
+    "kanji": [
+      "弱",
+      "い"
+    ],
+    "hiragana": [
+      "よわ",
+      "い"
+    ],
+    "meaning": "Lemah",
+    "category": "adjective"
+  },
+  {
+    "id": "n5-514",
+    "kanji": [
+      "暗",
+      "い"
+    ],
+    "hiragana": [
+      "くら",
+      "い"
+    ],
+    "meaning": "Gelap",
+    "category": "adjective"
+  },
+  {
+    "id": "n5-515",
+    "kanji": [
+      "明",
+      "るい"
+    ],
+    "hiragana": [
+      "あか",
+      "るい"
+    ],
+    "meaning": "Terang / Ceria",
+    "category": "adjective"
+  },
+  {
+    "id": "n5-516",
+    "kanji": [
+      "汚",
+      "い"
+    ],
+    "hiragana": [
+      "きたな",
+      "い"
+    ],
+    "meaning": "Kotor",
+    "category": "adjective"
+  },
+  {
+    "id": "n5-517",
+    "kanji": [
+      "うるさい"
+    ],
+    "hiragana": [
+      "うるさい"
+    ],
+    "meaning": "Berisik",
+    "category": "adjective"
+  },
+  {
+    "id": "n5-518",
+    "kanji": [
+      "危",
+      "険"
+    ],
+    "hiragana": [
+      "き",
+      "けん"
+    ],
+    "meaning": "Bahaya",
+    "category": "adjective"
+  },
+  {
+    "id": "n5-519",
+    "kanji": [
+      "安",
+      "全"
+    ],
+    "hiragana": [
+      "あん",
+      "ぜん"
+    ],
+    "meaning": "Aman",
+    "category": "adjective"
+  },
+  {
+    "id": "n5-520",
+    "kanji": [
+      "こっち"
+    ],
+    "hiragana": [
+      "こっち"
+    ],
+    "meaning": "Sebelah sini",
+    "category": "noun"
+  },
+  {
+    "id": "n5-521",
+    "kanji": [
+      "そっち"
+    ],
+    "hiragana": [
+      "そっち"
+    ],
+    "meaning": "Sebelah situ",
+    "category": "noun"
+  },
+  {
+    "id": "n5-522",
+    "kanji": [
+      "あっち"
+    ],
+    "hiragana": [
+      "あっち"
+    ],
+    "meaning": "Sebelah sana",
+    "category": "noun"
+  },
+  {
+    "id": "n5-523",
+    "kanji": [
+      "どっち"
+    ],
+    "hiragana": [
+      "どっち"
+    ],
+    "meaning": "Sebelah mana",
+    "category": "noun"
+  },
+  {
+    "id": "n5-524",
+    "kanji": [
+      "こちら"
+    ],
+    "hiragana": [
+      "こちら"
+    ],
+    "meaning": "Arah sini (sopan)",
+    "category": "noun"
+  },
+  {
+    "id": "n5-525",
+    "kanji": [
+      "そちら"
+    ],
+    "hiragana": [
+      "そちら"
+    ],
+    "meaning": "Arah situ (sopan)",
+    "category": "noun"
+  },
+  {
+    "id": "n5-526",
+    "kanji": [
+      "あちら"
+    ],
+    "hiragana": [
+      "あちら"
+    ],
+    "meaning": "Arah sana (sopan)",
+    "category": "noun"
+  },
+  {
+    "id": "n5-527",
+    "kanji": [
+      "どちら"
+    ],
+    "hiragana": [
+      "どちら"
+    ],
+    "meaning": "Arah mana (sopan)",
+    "category": "noun"
+  },
+  {
+    "id": "n5-528",
+    "kanji": [
+      "もちろん"
+    ],
+    "hiragana": [
+      "もちろん"
+    ],
+    "meaning": "Tentu saja",
+    "category": "adverb"
+  },
+  {
+    "id": "n5-529",
+    "kanji": [
+      "ぜひ"
+    ],
+    "hiragana": [
+      "ぜひ"
+    ],
+    "meaning": "Pasti / Sangat ingin",
+    "category": "adverb"
+  },
+  {
+    "id": "n5-530",
+    "kanji": [
+      "はじめて"
+    ],
+    "hiragana": [
+      "はじめて"
+    ],
+    "meaning": "Untuk pertama kalinya",
+    "category": "adverb"
+  },
+  {
+    "id": "n5-531",
+    "kanji": [
+      "まっすぐ"
+    ],
+    "hiragana": [
+      "まっすぐ"
+    ],
+    "meaning": "Lurus",
+    "category": "adverb"
+  },
+  {
+    "id": "n5-532",
+    "kanji": [
+      "いっぱい"
+    ],
+    "hiragana": [
+      "いっぱい"
+    ],
+    "meaning": "Penuh / Banyak",
+    "category": "adverb"
+  },
+  {
+    "id": "n5-533",
+    "kanji": [
+      "ちょうど"
+    ],
+    "hiragana": [
+      "ちょうど"
+    ],
+    "meaning": "Tepat / Pas",
+    "category": "adverb"
+  },
+  {
+    "id": "n5-534",
+    "kanji": [
+      "ちゃんと"
+    ],
+    "hiragana": [
+      "ちゃんと"
+    ],
+    "meaning": "Dengan benar / Rapi",
+    "category": "adverb"
+  },
+  {
+    "id": "n5-535",
+    "kanji": [
+      "もう",
+      "一",
+      "度"
+    ],
+    "hiragana": [
+      "もう",
+      "いち",
+      "ど"
+    ],
+    "meaning": "Sekali lagi",
+    "category": "adverb"
+  }
+]

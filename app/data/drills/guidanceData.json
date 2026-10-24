@@ -1,0 +1,157 @@
+{
+  "pools": {
+    "objects": [
+      { "kana": "ないふ", "katakana": "ナイフ", "kanji": "ナイフ", "meaning": "pisau" },
+      { "kana": "ふぉーく", "katakana": "フォーク", "kanji": "フォーク", "meaning": "garpu" },
+      { "kana": "すぷーん", "katakana": "スプーン", "kanji": "スプーン", "meaning": "sendok" },
+      { "kana": "りんご", "katakana": "リンゴ", "kanji": "りんご", "meaning": "apel" },
+      { "kana": "すいか", "katakana": "スイカ", "kanji": "スイカ", "meaning": "semangka" },
+      { "kana": "みかん", "katakana": "ミカン", "kanji": "みかん", "meaning": "jeruk" },
+      { "kana": "ばなな", "katakana": "バナナ", "kanji": "バナナ", "meaning": "pisang" },
+      { "kana": "ほん", "katakana": "ホン", "kanji": "本", "meaning": "buku" },
+      { "kana": "さいふ", "katakana": "サイフ", "kanji": "財布", "meaning": "dompet" },
+      { "kana": "かさ", "katakana": "カサ", "kanji": "傘", "meaning": "payung" },
+      { "kana": "かぎ", "katakana": "カギ", "kanji": "鍵", "meaning": "kunci" },
+      { "kana": "すまほ", "katakana": "スマホ", "kanji": "スマホ", "meaning": "ponsel pintar" },
+      { "kana": "てがみ", "katakana": "テガミ", "kanji": "手紙", "meaning": "surat" },
+      { "kana": "ゆびわ", "katakana": "ユビワ", "kanji": "指輪", "meaning": "cincin" },
+      { "kana": "とけい", "katakana": "トケイ", "kanji": "時計", "meaning": "jam" },
+      { "kana": "かばん", "katakana": "カバン", "kanji": "鞄", "meaning": "tas" },
+      { "kana": "めがね", "katakana": "メガネ", "kanji": "眼鏡", "meaning": "kacamata" },
+      { "kana": "いぬ", "katakana": "イヌ", "kanji": "犬", "meaning": "anjing" },
+      { "kana": "ねこ", "katakana": "ネコ", "kanji": "猫", "meaning": "kucing" },
+      { "kana": "とり", "katakana": "トリ", "kanji": "鳥", "meaning": "burung" },
+      { "kana": "いす", "katakana": "イス", "kanji": "椅子", "meaning": "kursi" },
+      { "kana": "つくえ", "katakana": "ツクエ", "kanji": "机", "meaning": "meja" }
+    ],
+    "places": [
+      { "kana": "としょかん", "katakana": "トショカン", "kanji": "図書館", "meaning": "perpustakaan" },
+      { "kana": "えき", "katakana": "エキ", "kanji": "駅", "meaning": "stasiun" },
+      { "kana": "こうえん", "katakana": "コウエン", "kanji": "公園", "meaning": "taman" },
+      { "kana": "へや", "katakana": "ヘヤ", "kanji": "部屋", "meaning": "kamar" },
+      { "kana": "がっこう", "katakana": "ガッコウ", "kanji": "学校", "meaning": "sekolah" },
+      { "kana": "かふぇ", "katakana": "カフェ", "kanji": "カフェ", "meaning": "kafe" },
+      { "kana": "みせ", "katakana": "ミセ", "kanji": "店", "meaning": "toko" },
+      { "kana": "びょういん", "katakana": "ビョウイン", "kanji": "病院", "meaning": "rumah sakit" },
+      { "kana": "うち", "katakana": "ウチ", "kanji": "家", "meaning": "rumah" },
+      { "kana": "ほてる", "katakana": "ホテル", "kanji": "ホテル", "meaning": "hotel" }
+    ],
+    "people": [
+      { "kana": "ともだち", "katakana": "トモダチ", "kanji": "友達", "meaning": "teman" },
+      { "kana": "こども", "katakana": "コドモ", "kanji": "子供", "meaning": "anak" },
+      { "kana": "せんぱい", "katakana": "センパイ", "kanji": "先輩", "meaning": "senior" },
+      { "kana": "せんせい", "katakana": "センセイ", "kanji": "先生", "meaning": "guru" },
+      { "kana": "かぞく", "katakana": "カゾク", "kanji": "家族", "meaning": "keluarga" },
+      { "kana": "あに", "katakana": "アニ", "kanji": "兄", "meaning": "kakak" },
+      { "kana": "おとうと", "katakana": "オトウト", "kanji": "弟", "meaning": "adik" },
+      { "kana": "がくせい", "katakana": "ガクセイ", "kanji": "学生", "meaning": "siswa" }
+    ],
+    "times": [
+      { "kana": "あした", "katakana": "アシタ", "kanji": "明日", "meaning": "besok" },
+      { "kana": "きょう", "katakana": "キョウ", "kanji": "今日", "meaning": "hari ini" },
+      { "kana": "ひる", "katakana": "ヒル", "kanji": "昼", "meaning": "siang" },
+      { "kana": "よる", "katakana": "ヨル", "kanji": "malam", "meaning": "malam" },
+      { "kana": "あさ", "katakana": "アサ", "kanji": "朝", "meaning": "pagi" },
+      { "kana": "らいしゅう", "katakana": "ライシュウ", "kanji": "来週", "meaning": "minggu depan" },
+      { "kana": "ごじ", "katakana": "ゴジ", "kanji": "5時", "meaning": "jam lima" },
+      { "kana": "きのう", "katakana": "キノウ", "kanji": "昨日", "meaning": "kemarin" }
+    ],
+    "positions": [
+      { "kana": "うえ", "katakana": "ウエ", "kanji": "上", "meaning": "atas" },
+      { "kana": "した", "katakana": "シタ", "kanji": "下", "meaning": "bawah" },
+      { "kana": "なか", "katakana": "ナカ", "kanji": "中", "meaning": "dalam" },
+      { "kana": "となり", "katakana": "トナリ", "kanji": "隣", "meaning": "samping" },
+      { "kana": "まえ", "katakana": "マエ", "kanji": "前", "meaning": "depan" },
+      { "kana": "うしろ", "katakana": "ウシロ", "kanji": "後ろ", "meaning": "belakang" },
+      { "kana": "ちかく", "katakana": "チカク", "kanji": "近く", "meaning": "dekat" }
+    ],
+    "verbs": [
+      { "kana": "きった", "katakana": "キッタ", "kanji": "切った", "meaning": "memotong" },
+      { "kana": "むいた", "katakana": "ムイタ", "kanji": "剥いた", "meaning": "mengupas" },
+      { "kana": "たべた", "katakana": "タベタ", "kanji": "食べた", "meaning": "memakan" },
+      { "kana": "つぶした", "katakana": "ツブシタ", "kanji": "潰した", "meaning": "melumatkan" },
+      { "kana": "なげた", "katakana": "ナゲタ", "kanji": "投げた", "meaning": "melempar" },
+      { "kana": "やいた", "katakana": "ヤイタ", "kanji": "焼いた", "meaning": "memanggang" },
+      { "kana": "あらった", "katakana": "アラッタ", "kanji": "洗った", "meaning": "mencuci" },
+      { "kana": "つつんだ", "katakana": "ツツンダ", "kanji": "包んだ", "meaning": "membungkus" },
+      { "kana": "さがした", "katakana": "サガシタ", "kanji": "探した", "meaning": "mencari" },
+      { "kana": "おとした", "katakana": "オトシタ", "kanji": "落とした", "meaning": "menjatuhkan" },
+      { "kana": "わすれた", "katakana": "ワスレタ", "kanji": "忘れた", "meaning": "melupakan" },
+      { "kana": "みつけた", "katakana": "ミツケタ", "kanji": "見つけた", "meaning": "menemukan" },
+      { "kana": "なくした", "katakana": "ナクシタ", "kanji": "無くした", "meaning": "menghilangkan" },
+      { "kana": "ひろった", "katakana": "ヒロッタ", "kanji": "拾った", "meaning": "memungut" },
+      { "kana": "かくした", "katakana": "カクシタ", "kanji": "隠した", "meaning": "menyembunyikan" },
+      { "kana": "しらべた", "katakana": "シラベタ", "kanji": "調べた", "meaning": "memeriksa" },
+      { "kana": "こわした", "katakana": "コワシタ", "kanji": "壊した", "meaning": "merusak" },
+      { "kana": "べんきょうした", "katakana": "ベンキョウシタ", "kanji": "勉強した", "meaning": "belajar" },
+      { "kana": "あそんだ", "katakana": "アソンダ", "kanji": "遊んだ", "meaning": "bermain" },
+      { "kana": "はなした", "katakana": "ハナシタ", "kanji": "話した", "meaning": "berbicara" },
+      { "kana": "はこんだ", "katakana": "ハコンダ", "kanji": "運んだ", "meaning": "membawa" },
+      { "kana": "おくった", "katakana": "オクッタ", "kanji": "送った", "meaning": "mengirim" },
+      { "kana": "よんだ", "katakana": "ヨンダ", "kanji": "読んだ", "meaning": "membaca" },
+      { "kana": "かった", "katakana": "カッタ", "kanji": "買った", "meaning": "membeli" }
+    ]
+  },
+  "templates": [
+    {
+      "id": "struct-1",
+      "v1Pool": "objects",
+      "v2Pool": "objects",
+      "v3Pool": "verbs",
+      "kanaParticle1": "で",
+      "kanaParticle2": "を",
+      "kanaParticle3": "",
+      "meaningTemplate": "Dengan {v1}, {v3} {v2}"
+    },
+    {
+      "id": "struct-2",
+      "v1Pool": "places",
+      "v2Pool": "objects",
+      "v3Pool": "verbs",
+      "kanaParticle1": "で",
+      "kanaParticle2": "を",
+      "kanaParticle3": "",
+      "meaningTemplate": "Di {v1}, {v3} {v2}"
+    },
+    {
+      "id": "struct-3",
+      "v1Pool": "people",
+      "v2Pool": "places",
+      "v3Pool": "verbs",
+      "kanaParticle1": "と",
+      "kanaParticle2": "で",
+      "kanaParticle3": "",
+      "meaningTemplate": "Bersama {v1}, {v3} di {v2}"
+    },
+    {
+      "id": "struct-4",
+      "v1Pool": "times",
+      "v2Pool": "objects",
+      "v3Pool": "verbs",
+      "kanaParticle1": "まで",
+      "kanaParticle2": "を",
+      "kanaParticle3": "",
+      "meaningTemplate": "Sampai {v1}, {v3} {v2}"
+    },
+    {
+      "id": "struct-5",
+      "v1Pool": "places",
+      "v2Pool": "objects",
+      "v3Pool": "verbs",
+      "kanaParticle1": "から",
+      "kanaParticle2": "を",
+      "kanaParticle3": "",
+      "meaningTemplate": "Dari {v1}, {v3} {v2}"
+    },
+    {
+      "id": "struct-6",
+      "v1Pool": "objects",
+      "v2Pool": "objects",
+      "v3Pool": "positions",
+      "kanaParticle1": "は",
+      "kanaParticle2": "の",
+      "kanaParticle3": "に あります",
+      "meaningTemplate": "{v1} ada di {v3} {v2}"
+    }
+  ]
+}

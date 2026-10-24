@@ -1,0 +1,382 @@
+{
+  "stories": [
+    {
+      "id": "story-morning",
+      "title": "Rutinitas Pagi di Rumah",
+      "fullMeaning": "Cerita tentang rutinitas santai di pagi hari saat matahari mulai terbit.",
+      "sentences": [
+        {
+          "id": 1,
+          "hiragana": "あさ です。",
+          "katakana": "アサ デス。",
+          "romaji": "asa desu.",
+          "meaning": "Pagi telah tiba."
+        },
+        {
+          "id": 2,
+          "hiragana": "たいよう が のぼります。",
+          "katakana": "タイヨウ ガ ノボリマス。",
+          "romaji": "taiyou ga noborimasu.",
+          "meaning": "Matahari mulai terbit."
+        },
+        {
+          "id": 3,
+          "hiragana": "ねこ が め を さまします。",
+          "katakana": "ネコ ガ メ オ サマシマス。",
+          "romaji": "neko ga me o samashimasu.",
+          "meaning": "Kucing terbangun dari tidur."
+        },
+        {
+          "id": 4,
+          "hiragana": "まど を あけます。",
+          "katakana": "マド オ アケマス。",
+          "romaji": "mado o akemasu.",
+          "meaning": "Saya membuka jendela."
+        },
+        {
+          "id": 5,
+          "hiragana": "とり が うたっています。",
+          "katakana": "トリ ガ ウタッテイマス。",
+          "romaji": "tori ga utatteimasu.",
+          "meaning": "Burung-burung sedang berkicau."
+        },
+        {
+          "id": 6,
+          "hiragana": "あさごはん を たべます。",
+          "katakana": "アサゴハン オ タベマス。",
+          "romaji": "asagohan o tabemasu.",
+          "meaning": "Saya menikmati sarapan pagi."
+        },
+        {
+          "id": 7,
+          "hiragana": "おちゃ を のみます。",
+          "katakana": "オチャ オ ノミマス。",
+          "romaji": "ocha o nomimasu.",
+          "meaning": "Saya meminum teh hangat."
+        },
+        {
+          "id": 8,
+          "hiragana": "きょう も よい ひ です。",
+          "katakana": "キョウ モ ヨイ ヒ デス。",
+          "romaji": "kyou mo yoi hi desu.",
+          "meaning": "Hari ini hari yang menyenangkan."
+        }
+      ]
+    },
+    {
+      "id": "story-park",
+      "title": "Jalan Santai di Taman",
+      "fullMeaning": "Perjalanan menikmati udara segar dan pemandangan indah di taman kota.",
+      "sentences": [
+        {
+          "id": 1,
+          "hiragana": "こうえん に いきます。",
+          "katakana": "コウエン ニ イキマス。",
+          "romaji": "kouen ni ikimasu.",
+          "meaning": "Saya pergi ke taman."
+        },
+        {
+          "id": 2,
+          "hiragana": "てんき が とても いい です。",
+          "katakana": "テンキ ガ トテモ イイ デス。",
+          "romaji": "tenki ga totemo ii desu.",
+          "meaning": "Cuacanya sangat cerah."
+        },
+        {
+          "id": 3,
+          "hiragana": "みち を ゆっくり あるきます。",
+          "katakana": "ミチ オ ユックリ アルキマス。",
+          "romaji": "michi o yukkuri arukimasu.",
+          "meaning": "Saya berjalan santai di jalan setapak."
+        },
+        {
+          "id": 4,
+          "hiragana": "はな が さいています。",
+          "katakana": "ハナ ガ サイテイマス。",
+          "romaji": "hana ga saiteimasu.",
+          "meaning": "Bunga-bunga sedang bermekaran."
+        },
+        {
+          "id": 5,
+          "hiragana": "いぬ が はしっています。",
+          "katakana": "イヌ ガ ハシッテイマス。",
+          "romaji": "inu ga hashitteimasu.",
+          "meaning": "Seekor anjing sedang berlari."
+        },
+        {
+          "id": 6,
+          "hiragana": "べんち に すわります。",
+          "katakana": "ベンチ ニ スワリマス。",
+          "romaji": "benchi ni suwarimasu.",
+          "meaning": "Saya duduk santai di bangku."
+        },
+        {
+          "id": 7,
+          "hiragana": "ほん を すこし よみます。",
+          "katakana": "ホン オ スコシ ヨミマス。",
+          "romaji": "hon o sukoshi yomimasu.",
+          "meaning": "Saya membaca buku sebentar."
+        },
+        {
+          "id": 8,
+          "hiragana": "こころ が おちつきます。",
+          "katakana": "ココロ ガ オチツキマス。",
+          "romaji": "kokoro ga ochitsukimasu.",
+          "meaning": "Hati terasa tenang dan damai."
+        }
+      ]
+    },
+    {
+      "id": "story-train",
+      "title": "Perjalanan Naik Kereta",
+      "fullMeaning": "Kisah perjalanan liburan menggunakan kereta menuju kota tujuan.",
+      "sentences": [
+        {
+          "id": 1,
+          "hiragana": "えき に つきました。",
+          "katakana": "エキ ニ ツキマシタ。",
+          "romaji": "eki ni tsukimashita.",
+          "meaning": "Saya telah tiba di stasiun."
+        },
+        {
+          "id": 2,
+          "hiragana": "きっぷ を かいます。",
+          "katakana": "キップ オ カイマス。",
+          "romaji": "kippu o kaimasu.",
+          "meaning": "Saya membeli tiket kereta."
+        },
+        {
+          "id": 3,
+          "hiragana": "でんしゃ が はいって きます。",
+          "katakana": "デンシャ ガ ハイッテ キマス。",
+          "romaji": "densha ga haitte kimasu.",
+          "meaning": "Kereta api datang memasuki peron."
+        },
+        {
+          "id": 4,
+          "hiragana": "まど の せき に すわります。",
+          "katakana": "マド ノ セキ ニ スワリマス。",
+          "romaji": "mado no seki ni suwarimasu.",
+          "meaning": "Saya duduk di kursi dekat jendela."
+        },
+        {
+          "id": 5,
+          "hiragana": "やま や かわ が みえます。",
+          "katakana": "ヤマ ヤ カワ ガ ミエマス。",
+          "romaji": "yama ya kawa ga miemasu.",
+          "meaning": "Gunung dan sungai terlihat di luar."
+        },
+        {
+          "id": 6,
+          "hiragana": "おんがく を ききます。",
+          "katakana": "オンガク オ キキマス。",
+          "romaji": "ongaku o kikimasu.",
+          "meaning": "Saya mendengarkan musik santai."
+        },
+        {
+          "id": 7,
+          "hiragana": "まち に とうちゃく します。",
+          "katakana": "マチ ニ トウチャク シマス。",
+          "romaji": "machi ni touchaku shimasu.",
+          "meaning": "Kereta tiba di kota tujuan."
+        },
+        {
+          "id": 8,
+          "hiragana": "たび が はじまります。",
+          "katakana": "タビ ガ ハジマリマス。",
+          "romaji": "tabi ga hajimarimasu.",
+          "meaning": "Perjalanan baru telah dimulai."
+        }
+      ]
+    },
+    {
+      "id": "story-library",
+      "title": "Belajar di Perpustakaan",
+      "fullMeaning": "Suasana tenang saat belajar dan membaca di perpustakaan bersama teman.",
+      "sentences": [
+        {
+          "id": 1,
+          "hiragana": "としょかん に はいります。",
+          "katakana": "トショカン ニ ハイリマス。",
+          "romaji": "toshokan ni hairimasu.",
+          "meaning": "Saya masuk ke dalam perpustakaan."
+        },
+        {
+          "id": 2,
+          "hiragana": "なか は とても しずか です。",
+          "katakana": "ナカ ワ トテモ シズカ デス。",
+          "romaji": "naka wa totemo shizuka desu.",
+          "meaning": "Di dalam suasananya sangat hening."
+        },
+        {
+          "id": 3,
+          "hiragana": "つくえ に かばん を おきます。",
+          "katakana": "ツクエ ニ カバン オ オキマス。",
+          "romaji": "tsukue ni kaban o okimasu.",
+          "meaning": "Saya meletakkan tas di atas meja."
+        },
+        {
+          "id": 4,
+          "hiragana": "のーと と ぺん を だします。",
+          "katakana": "ノート ト ペン オ ダシマス。",
+          "romaji": "nooto to pen o dashimasu.",
+          "meaning": "Saya mengeluarkan catatan dan pulpen."
+        },
+        {
+          "id": 5,
+          "hiragana": "にほんご を べんきょう します。",
+          "katakana": "ニホンゴ オ ベンキョウ シマス。",
+          "romaji": "nihongo o benkyou shimasu.",
+          "meaning": "Saya belajar bahasa Jepang."
+        },
+        {
+          "id": 6,
+          "hiragana": "あたらしい ことば を かきます。",
+          "katakana": "アタラシイ コトバ オ カキマス。",
+          "romaji": "atarashii kotoba o kakimasu.",
+          "meaning": "Saya menulis kosakata baru."
+        },
+        {
+          "id": 7,
+          "hiragana": "ともだち が て を ふります。",
+          "katakana": "トモダチ ガ テ オ フリマス。",
+          "romaji": "tomodachi ga te o furimasu.",
+          "meaning": "Teman saya melambaikan tangan."
+        },
+        {
+          "id": 8,
+          "hiragana": "いっしょ に がんばりました。",
+          "katakana": "イッショ ニ ガンバリマシタ。",
+          "romaji": "issho ni gambarimashita.",
+          "meaning": "Kami berjuang bersama-sama."
+        }
+      ]
+    },
+    {
+      "id": "story-cooking",
+      "title": "Memasak di Dapur",
+      "fullMeaning": "Aktivitas menyiapkan santapan lezat dan harum di dapur.",
+      "sentences": [
+        {
+          "id": 1,
+          "hiragana": "だいどころ に たちます。",
+          "katakana": "ダイドコロ ニ タチマス。",
+          "romaji": "daidokoro ni tachimasu.",
+          "meaning": "Saya berdiri di dapur."
+        },
+        {
+          "id": 2,
+          "hiragana": "て を きれいに あらいます。",
+          "katakana": "テ オ キレイニ アライマス。",
+          "romaji": "te o kireini araimasu.",
+          "meaning": "Saya mencuci tangan hingga bersih."
+        },
+        {
+          "id": 3,
+          "hiragana": "やさい を ないふ で きります。",
+          "katakana": "ヤサイ オ ナイフ デ キリマス。",
+          "romaji": "yasai o naifu de kirimasu.",
+          "meaning": "Saya memotong sayuran dengan pisau."
+        },
+        {
+          "id": 4,
+          "hiragana": "なべ に みず を いれます。",
+          "katakana": "ナベ ニ ミズ オ イレマス。",
+          "romaji": "nabe ni mizu o iremasu.",
+          "meaning": "Saya menuangkan air ke dalam panci."
+        },
+        {
+          "id": 5,
+          "hiragana": "すーぷ を ぐつぐつ にます。",
+          "katakana": "スープ オ グツグツ ニマス。",
+          "romaji": "suupu o gutsugutsu nimasu.",
+          "meaning": "Saya merebus sup hingga mendidih."
+        },
+        {
+          "id": 6,
+          "hiragana": "いい におい が して きます。",
+          "katakana": "イイ ニオイ ガ シテ キマス。",
+          "romaji": "ii nioi ga shite kimasu.",
+          "meaning": "Aroma sedap mulai tercium wangi."
+        },
+        {
+          "id": 7,
+          "hiragana": "さら に りょうり を もります。",
+          "katakana": "サラ ニ リョウリ オ モリマス。",
+          "romaji": "sara ni ryouri o morimasu.",
+          "meaning": "Saya menata masakan di atas piring."
+        },
+        {
+          "id": 8,
+          "hiragana": "とても おいしそう です。",
+          "katakana": "トテモ オイシソウ デス。",
+          "romaji": "totemo oishisou desu.",
+          "meaning": "Kelihatannya sangat lezat."
+        }
+      ]
+    },
+    {
+      "id": "story-night",
+      "title": "Malam yang Damai",
+      "fullMeaning": "Menikmati ketenangan malam hari sebelum beristirahat tidur.",
+      "sentences": [
+        {
+          "id": 1,
+          "hiragana": "よる に なりました。",
+          "katakana": "ヨル ニ ナリマシタ。",
+          "romaji": "yoru ni narimashita.",
+          "meaning": "Malam telah tiba."
+        },
+        {
+          "id": 2,
+          "hiragana": "そと は くらくて すずしい です。",
+          "katakana": "ソト ワ クラクテ スズシイ デス。",
+          "romaji": "soto wa kurakute suzushii desu.",
+          "meaning": "Di luar gelap dan sejuk."
+        },
+        {
+          "id": 3,
+          "hiragana": "ほし が きれいに ひかります。",
+          "katakana": "ホシ ガ キレイニ ヒカリマス。",
+          "romaji": "hoshi ga kireini hikarimasu.",
+          "meaning": "Bintang-bintang bersinar indah."
+        },
+        {
+          "id": 4,
+          "hiragana": "へや の あかり を つけます。",
+          "katakana": "ヘヤ ノ アカリ オ ツケマス。",
+          "romaji": "heya no akari o tsukemasu.",
+          "meaning": "Saya menyalakan lampu kamar."
+        },
+        {
+          "id": 5,
+          "hiragana": "あたたかい みるく を のみます。",
+          "katakana": "アタタカイ ミルク オ ノミマス。",
+          "romaji": "atatakai miruku o nomimasu.",
+          "meaning": "Saya meminum susu hangat."
+        },
+        {
+          "id": 6,
+          "hiragana": "にっき を すこし かきます。",
+          "katakana": "ニッキ オ スコシ カキマス。",
+          "romaji": "nikki o sukoshi kakimasu.",
+          "meaning": "Saya menulis buku harian sejenak."
+        },
+        {
+          "id": 7,
+          "hiragana": "べっど に はいります。",
+          "katakana": "ベッド ニ ハイリマス。",
+          "romaji": "beddo ni hairimasu.",
+          "meaning": "Saya berbaring di atas kasur."
+        },
+        {
+          "id": 8,
+          "hiragana": "おやすみなさい。",
+          "katakana": "オヤスミナサイ。",
+          "romaji": "oyasuminasai.",
+          "meaning": "Selamat malam dan mimpi indah."
+        }
+      ]
+    }
+  ]
+}

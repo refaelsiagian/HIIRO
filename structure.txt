@@ -1,0 +1,136 @@
+1 [Alat] で [Objek] を [Kata Kerja]
+
+Alat / Instrumen (dengan partikel で)
+ナイフで (Naifu de) = Dengan pisau
+素手で (Sude de) = Dengan tangan kosong
+フォークで (Fōku de) = Dengan garpu
+機械で (Kikai de) = Dengan mesin
+
+Objek Buah (dengan partikel を) (atau yang lain)
+りんごを (Ringo o) = Apel
+スイカを (Suika o) = Semangka
+みかんを (Mikan o) = Jeruk
+バナナを (Banana o) = Pisang
+
+Kata Kerja (Bentuk Lampau)
+切った (Kitta) = Memotong
+剥いた (Muita) = Mengupas (kulit)
+食べた (Tabeta) = Memakan
+潰した (Tsubushita) = Menghancurkan / Melumatkan
+
+kata kerja lainnya
+彫った (Hotta) = Mengukir
+
+蹴った (Ketta) = Menendang
+
+すりつぶした (Suritsubushita) = Menggiling / Melumatkan
+
+投げた (Nageta) = Melempar
+
+焼いた (Yaita) = Membakar / Memanggang
+
+煮た (Nita) = Merebus
+
+洗った (Aratta) = Mencuci
+
+包んだ (Tsutsunda) = Membungkus
+
+かじった (Kajitta) = Menggigit
+
+絞った (Shibotta) = Memeras (mengambil airnya)
+
+隠した (Kakushita) = Menyembunyikan
+
+塗った (Nutta) = Mengecat / Mewarnai (permukaannya)
+
+叩いた (Tataita) = Memukul
+
+凍らせた (Kōraseta) = Membekukan
+
+埋めた (Umeta) = Mengubur
+
+踏んだ (Funda) = Menginjak
+
+落とした (Otoshita) = Menjatuhkan
+
+揚げた (Ageta) = Menggoreng
+
+もいだ (Moida) = Memetik (langsung dari pohon)
+
+混ぜた (Mazeta) = Mencampur
+
+刺した (Sashita) = Menusuk
+
+測った (Hakatta) = Menimbang / Mengukur
+
+運んだ (Hakonda) = Membawa / Memindahkan
+
+飾った (Kazatta) = Menghias / Memajang
+
+撫でた (Nadeta) = Mengelus / Membelai
+
+割った (Watta) = Membelah / Memecahkan
+
+溶かした (Tokashita) = Melelehkan / Mencairkan
+
+嗅いだ (Kaida) = Mencium (baunya)
+
+舐めた (Nameta) = Menjilat
+
+描いた (Kaita) = Menggambar (di atas permukaannya)
+
+撃った (Utta) = Menembak
+
+抱きしめた (Dakishimeta) = Memeluk
+
+2 [Tempat] で [Objek] を [Kata Kerja]
+
+[Tempat (B)] [Objek (C)] [Kata Kerja (D)]
+
+図書館 (Toshokan) 本 (Hon) 探した (Tansaku)
+
+駅 (Eki) 財布 (Saifu) 落とした (Otoshita)
+
+公園 (Kōen) 傘 (Kasa) 忘れた (Wasureta)
+
+部屋 (Heya) 鍵 (Kagi) 見つけた (Mitsuketa)
+
+extended verb
+
+無くした (Nakushita) = Menghilangkan. 
+拾った (Hirotta) = Memungut / Memungut dari jalan. 
+隠した (Kakushita) = Menyembunyikan. 
+投げた (Nageta) = Melempar. 
+調べた (Shirabeta) = Memeriksa / Mengamati. 
+壊した (Kowashita) = Mengerusak / Menghancurkan. 
+
+extended noun
+
+スマホ (Sumaho) = Ponsel pintar (Smartphone)
+
+手紙 (Tegami) = Surat
+
+指輪 (Yubiwa) = Cincin
+
+時計 (Tokei) = Jam / Jam tangan
+
+鞄 (Kaban) = Tas
+
+眼鏡 (Megane) = Kacamata
+
+3 [Orang] と + [Tempat] で + [Kata Kerja Aksi]
+
+友達 (Tomodachi) と + 図書館 (Toshokan) で + 勉強した (Benkyō shita)
+ = Teman dan saya belajar bersama di perpustakaan.
+
+子供 (Kodomo) と + 公園 (Kōen) で + 遊んだ (Asonda)
+ = Saya bermain dengan anak di taman.
+
+先輩 (Senpai) と + カフェ (Kafe) で + 話した (Hanashita)
+ = Saya berbicara dengan senior di kafe.
+
+4 [Keterangan Waktu] まで + [Objek] を + [Kata Kerja]
+
+5 [Keterangan Waktu/Tempat] から + [Objek] を + [Kata Kerja]
+
+6 [Objek A] は + [Objek B] の + [Kata Keterangan Posisi] に (?)
