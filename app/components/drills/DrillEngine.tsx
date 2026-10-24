@@ -114,15 +114,15 @@ const DrillEngine: React.FC<DrillEngineProps> = ({
         }
     }, [score, lives, timeLeft, targetScore, gameState, handleGameOver]);
 
-    const handleCorrect = () => {
+    const handleCorrect = useCallback(() => {
         if (gameState !== 'playing') return;
         setScore(prev => prev + 1);
-    };
+    }, [gameState]);
 
-    const handleWrong = () => {
+    const handleWrong = useCallback(() => {
         if (gameState !== 'playing') return;
         setLives(prev => prev - 1);
-    };
+    }, [gameState]);
 
 
     const handleFinishedClose = () => {

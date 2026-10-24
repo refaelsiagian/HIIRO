@@ -1,7 +1,8 @@
 "use client";
 
-import React, { useState, useEffect, useCallback, useRef } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { CharItem } from '../../types/kana';
+import GlanceTimerBar from './GlanceTimerBar';
 
 interface QuickGlanceDrillProps {
     groupChars: CharItem[];
@@ -85,51 +86,14 @@ const QuickGlanceDrill: React.FC<QuickGlanceDrillProps> = ({
     }, [generateMatch, generateMismatch, matchCount, totalPairs]);
 
     const [pairs, setPairs] = useState<PairData[]>([]);
-    const [timeLeft, setTimeLeft] = useState(timeLimitMs);
-    
-    // Timer ref
-    const timerRef = useRef<NodeJS.Timeout | null>(null);
-    const lastTickRef = useRef<number>(Date.now());
-    const timeLeftRef = useRef<number>(timeLimitMs);
+    const [resetSignal, setResetSignal] = useState(0);
 
+    // Initialize board
     useEffect(() => {
         if (isActive && pairs.length === 0) {
             setPairs(initializeBoard());
-            setTimeLeft(timeLimitMs);
-            timeLeftRef.current = timeLimitMs;
-            lastTickRef.current = Date.now();
         }
-    }, [isActive, pairs.length, initializeBoard, timeLimitMs]);
-
-    useEffect(() => {
-        if (!isActive || pairs.length === 0) {
-            if (timerRef.current) clearInterval(timerRef.current);
-            return;
-        }
-
-        lastTickRef.current = Date.now();
-        timerRef.current = setInterval(() => {
-            const now = Date.now();
-            const delta = now - lastTickRef.current;
-            lastTickRef.current = now;
-
-            timeLeftRef.current -= delta;
-
-            if (timeLeftRef.current <= 0) {
-                // Time out!
-                onWrong();
-                // Reset timer
-                timeLeftRef.current = timeLimitMs;
-                lastTickRef.current = Date.now();
-            }
-
-            setTimeLeft(timeLeftRef.current);
-        }, 50); // High frequency for smooth bar
-
-        return () => {
-            if (timerRef.current) clearInterval(timerRef.current);
-        };
-    }, [isActive, pairs.length, onWrong, timeLimitMs]);
+    }, [isActive, pairs.length, initializeBoard]);
 
     const handlePairClick = (index: number) => {
         if (!isActive) return;
@@ -138,17 +102,13 @@ const QuickGlanceDrill: React.FC<QuickGlanceDrillProps> = ({
         if (!clickedPair.isMatch) {
             // Clicked a mismatch!
             onWrong();
-            setTimeLeft(timeLimitMs);
-            timeLeftRef.current = timeLimitMs;
-            lastTickRef.current = Date.now();
+            setResetSignal(prev => prev + 1);
             return;
         }
 
         // Correct!
         onCorrect();
-        setTimeLeft(timeLimitMs);
-        timeLeftRef.current = timeLimitMs;
-        lastTickRef.current = Date.now();
+        setResetSignal(prev => prev + 1);
 
         setPairs(prev => {
             const newPairs = [...prev];
@@ -207,21 +167,18 @@ const QuickGlanceDrill: React.FC<QuickGlanceDrillProps> = ({
 
     if (pairs.length === 0) return <div>Loading...</div>;
 
-    // Calculate percentage for progress bar (grows to full red)
-    const progressPercent = ((timeLimitMs - Math.max(0, timeLeft)) / timeLimitMs) * 100;
-
     return (
         <div className="flex flex-col items-center justify-center w-full h-full text-[#5C3A21] relative pb-12">
             
             {/* Header & Progress Bar */}
             <div className="absolute top-0 w-full flex flex-col items-center px-4 max-w-2xl md:-top-6">
                 <h2 className="text-xl font-bold font-sans mb-4">Quick Glance</h2>
-                <div className="w-full h-4 bg-white/40 rounded-full overflow-hidden border border-[#DF7956]/30">
-                    <div 
-                        className="h-full bg-red-500 transition-all duration-75 ease-linear"
-                        style={{ width: `${progressPercent}%` }}
-                    />
-                </div>
+                <GlanceTimerBar
+                    durationMs={timeLimitMs}
+                    isActive={!!isActive}
+                    onTimeout={onWrong}
+                    resetSignal={resetSignal}
+                />
             </div>
 
             {/* Grid */}
