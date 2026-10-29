@@ -120,16 +120,16 @@ const CheckTruthDrill: React.FC<CheckTruthDrillProps> = ({ groupChars, onCorrect
                 <h2 className="text-xl font-bold font-sans">Periksa kebenarannya</h2>
             </div>
 
-            <div className="flex flex-col items-center justify-center mt-12 w-full max-w-4xl px-4">
+            <div className="flex flex-col items-center justify-center mt-6 md:mt-8 w-full max-w-xl md:max-w-2xl px-4">
                 
                 {/* 6 Pairs Grid */}
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-6 md:gap-12 w-full mb-12">
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4 md:gap-5 w-full mb-8 sm:mb-10 md:mb-12">
                     {question.pairs.map((pair, idx) => (
-                        <div key={idx} className="flex flex-col items-center justify-center bg-white/20 p-6 rounded-lg drop-shadow-sm border-2 border-[#FFB7A3]/30">
-                            <span className={`text-7xl md:text-8xl text-[#5C3A21] ${!isSansSerif ? 'font-serif' : 'font-sans'}`}>
+                        <div key={idx} className="flex flex-col items-center justify-center bg-white/20 py-3 px-4 sm:py-4 sm:px-6 rounded-lg drop-shadow-sm border-2 border-[#FFB7A3]/30">
+                            <span className={`text-5xl sm:text-6xl md:text-6xl text-[#5C3A21] ${!isSansSerif ? 'font-serif' : 'font-sans'} leading-none`}>
                                 {pair.kana}
                             </span>
-                            <span className="text-3xl font-arbutus text-[#5C3A21] mt-4">
+                            <span className="text-lg sm:text-xl md:text-2xl font-arbutus text-[#5C3A21] mt-1.5 sm:mt-2 leading-none">
                                 {pair.romaji}
                             </span>
                         </div>
@@ -137,24 +137,24 @@ const CheckTruthDrill: React.FC<CheckTruthDrillProps> = ({ groupChars, onCorrect
                 </div>
 
                 {/* Statement */}
-                <div className="mb-10 text-center">
-                    <p className="text-2xl md:text-3xl font-bold">"{question.statementText}"</p>
+                <div className="mb-5 md:mb-6 text-center">
+                    <p className="text-xl sm:text-2xl md:text-2xl font-bold">"{question.statementText}"</p>
                 </div>
 
                 {/* Buttons */}
-                <div className="flex space-x-8 md:space-x-12">
+                <div className="flex space-x-6 sm:space-x-8 md:space-x-10">
                     <button 
                         onClick={() => handleAnswer(true)}
-                        className="w-20 h-20 md:w-24 md:h-24 bg-[#FFB7A3] text-[#5C3A21] rounded-full flex items-center justify-center hover:scale-105 active:scale-95 transition-transform drop-shadow-md cursor-pointer"
+                        className="w-16 h-16 md:w-20 md:h-20 bg-[#FFB7A3] text-[#5C3A21] rounded-full flex items-center justify-center hover:scale-105 active:scale-95 transition-transform drop-shadow-md cursor-pointer"
                     >
-                        <Circle size={48} strokeWidth={2.5} />
+                        <Circle className="w-8 h-8 md:w-10 md:h-10" strokeWidth={2.5} />
                     </button>
                     
                     <button 
                         onClick={() => handleAnswer(false)}
-                        className="w-20 h-20 md:w-24 md:h-24 bg-[#FFB7A3] text-[#5C3A21] rounded-full flex items-center justify-center hover:scale-105 active:scale-95 transition-transform drop-shadow-md cursor-pointer"
+                        className="w-16 h-16 md:w-20 md:h-20 bg-[#FFB7A3] text-[#5C3A21] rounded-full flex items-center justify-center hover:scale-105 active:scale-95 transition-transform drop-shadow-md cursor-pointer"
                     >
-                        <X size={56} strokeWidth={2.5} />
+                        <X className="w-9 h-9 md:w-11 md:h-11" strokeWidth={2.5} />
                     </button>
                 </div>
 
