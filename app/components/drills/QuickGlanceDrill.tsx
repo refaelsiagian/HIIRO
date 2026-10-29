@@ -13,6 +13,7 @@ interface QuickGlanceDrillProps {
     totalPairs?: number;
     matchCount?: number;
     barIntervalSeconds?: number;
+    columns?: number;
 }
 
 type PairData = {
@@ -35,10 +36,12 @@ const QuickGlanceDrill: React.FC<QuickGlanceDrillProps> = ({
     totalPairs: propTotalPairs,
     matchCount: propMatchCount,
     barIntervalSeconds,
+    columns: propColumns,
 }) => {
     const totalPairs = propTotalPairs ?? DEFAULT_TOTAL_PAIRS;
     const matchCount = propMatchCount ?? DEFAULT_MATCH_COUNT;
     const timeLimitMs = barIntervalSeconds ? barIntervalSeconds * 1000 : DEFAULT_TIME_LIMIT_MS;
+    const columns = propColumns ?? (totalPairs === 36 || totalPairs === 45 ? 9 : (totalPairs <= 40 ? 10 : 15));
     
     // Generate a mismatch pair
     const generateMismatch = useCallback(() => {
@@ -183,26 +186,25 @@ const QuickGlanceDrill: React.FC<QuickGlanceDrillProps> = ({
 
             {/* Grid */}
             <div className="mt-16 md:mt-24 w-full max-w-6xl px-2 overflow-y-auto hide-scrollbar flex justify-center">
-                <div className={`grid gap-1.5 md:gap-2 ${
-                    totalPairs <= 40 
-                        ? 'grid-cols-5 sm:grid-cols-8 md:grid-cols-10' 
-                        : 'grid-cols-5 sm:grid-cols-6 md:grid-cols-10 lg:grid-cols-15'
-                }`}>
+                <div 
+                    className="grid gap-1 sm:gap-1.5 md:gap-2 justify-center"
+                    style={{ gridTemplateColumns: `repeat(${columns}, minmax(0, 1fr))` }}
+                >
                     {pairs.map((pair, index) => (
                         <button
                             key={pair.id}
                             onClick={() => handlePairClick(index)}
                             className={`
-                                flex flex-col items-center justify-center p-1 md:p-2 rounded 
+                                flex flex-col items-center justify-center p-0.5 sm:p-1 md:p-2 rounded 
                                 bg-white/60 hover:bg-white active:scale-95 transition-all
                                 border border-[#FFB7A3] drop-shadow-sm cursor-pointer
-                                w-[52px] h-[64px] sm:w-[60px] sm:h-[72px] md:w-[68px] md:h-[80px]
+                                w-[34px] h-[46px] sm:w-[54px] sm:h-[66px] md:w-[68px] md:h-[80px]
                             `}
                         >
-                            <span className={`text-2xl sm:text-3xl md:text-4xl text-[#5C3A21] ${!isSansSerif ? 'font-serif' : 'font-sans'} leading-none`}>
+                            <span className={`text-lg sm:text-2xl md:text-3xl lg:text-4xl text-[#5C3A21] ${!isSansSerif ? 'font-serif' : 'font-sans'} leading-none`}>
                                 {pair.kana}
                             </span>
-                            <span className="text-sm sm:text-base md:text-lg font-arbutus text-[#DF7956] mt-1 leading-none">
+                            <span className="text-[10px] sm:text-xs md:text-sm lg:text-base font-arbutus text-[#DF7956] mt-0.5 sm:mt-1 leading-none">
                                 {pair.romaji}
                             </span>
                         </button>
