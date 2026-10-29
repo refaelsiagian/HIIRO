@@ -7,6 +7,7 @@ import {
   Akaya_Kanadaka 
 } from "next/font/google";
 import "./globals.css";
+import { GlobalBackground } from "./components/GlobalBackground";
 
 const notoSansJP = Noto_Sans_JP({
   variable: "--font-noto-sans-jp",
@@ -49,8 +50,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${notoSansJP.variable} ${notoSerifJP.variable} ${outfit.variable} ${arbutusSlab.variable} ${akayaKanadaka.variable} font-sans antialiased bg-app-bg text-slate-800 min-h-screen relative`}
+        className={`${notoSansJP.variable} ${notoSerifJP.variable} ${outfit.variable} ${arbutusSlab.variable} ${akayaKanadaka.variable} font-sans antialiased text-slate-800 min-h-screen relative`}
       >
+        <GlobalBackground />
         {/* Anti-Scale Overlay Warning */}
         <div className="hidden [@media(max-width:1500px)]:flex [@media(max-height:900px)]:flex fixed inset-0 z-[9999] bg-[#FFE8E0] text-[#543323] flex-col items-center justify-center p-8 text-center">
             <h1 className="text-[40px] font-arbutus tracking-tight mb-4">Skala Layar Terlalu Besar</h1>

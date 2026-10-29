@@ -27,6 +27,10 @@ const StageSelection: React.FC = () => {
         setIsMounted(true);
     }, []);
 
+    const handleBack = () => {
+        router.push(`/select/${category}/${section}`);
+    };
+
     const [isSansSerif, setIsSansSerif] = useState(false);
     const [selectedCharIndex, setSelectedCharIndex] = useState(0);
     const [activeDrill, setActiveDrill] = useState<{stageId: string, mode: string} | null>(null);
@@ -142,9 +146,8 @@ const StageSelection: React.FC = () => {
 
     return (
         <div 
-            className="h-screen font-sans flex flex-col md:flex-row overflow-hidden"
+            className="h-screen font-sans flex flex-col md:flex-row overflow-hidden relative bg-transparent"
             style={{ 
-                background: room.pageBgGradient,
                 color: room.fontColor,
                 '--theme-plate-bg': room.plateBg,
                 '--theme-plate-border': room.plateBorder,
@@ -156,15 +159,15 @@ const StageSelection: React.FC = () => {
         >
             {/* LEFT PANEL */}
             <div className="w-full md:w-5/12 flex flex-col h-full overflow-y-auto hide-scrollbar relative">
-                
-                {/* Independent Back Button */}
-                <button 
-                    onClick={() => router.push(`/select/${category}/${section}`)} 
-                    className="absolute top-12 left-12 hover:opacity-70 transition-opacity z-20"
-                    style={{ color: room.fontColor }}
-                >
-                    <ArrowLeft size={40} strokeWidth={2} />
-                </button>
+                    
+                    {/* Independent Back Button */}
+                    <button 
+                        onClick={handleBack} 
+                        className="absolute top-12 left-12 hover:opacity-70 transition-opacity z-20"
+                        style={{ color: room.fontColor }}
+                    >
+                        <ArrowLeft size={40} strokeWidth={2} />
+                    </button>
                 
                 {/* Content Container */}
                 <div className="flex-1 flex flex-col pl-[200px] pt-[120px]">

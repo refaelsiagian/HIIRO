@@ -157,7 +157,7 @@ const DrillEngine: React.FC<DrillEngineProps> = ({
         <div 
             className="min-h-screen p-6 font-sans flex flex-col items-center justify-between relative overflow-hidden"
             style={{
-                background: activeRoom.pageBgGradient,
+                background: 'transparent',
                 color: activeRoom.fontColor,
                 '--theme-plate-bg': activeRoom.plateBg,
                 '--theme-plate-border': activeRoom.plateBorder,
