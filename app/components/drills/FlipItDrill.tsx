@@ -203,7 +203,7 @@ const FlipItDrill: React.FC<FlipItDrillProps> = ({
     const isLargeGrid = pairsPerWave > 8; // e.g. 12 pairs = 24 cards
 
     return (
-        <div className="flex flex-col items-center justify-center w-full h-full text-[#5C3A21] relative pb-24">
+        <div className="flex flex-col items-center justify-center w-full h-full text-[#5C3A21] relative">
             {/* Header with Wave Indicator */}
             <div className="absolute top-0 md:-top-8 w-full flex flex-col items-center">
                 <h2 className="text-xl font-bold font-sans">Flip and Match</h2>
@@ -225,9 +225,9 @@ const FlipItDrill: React.FC<FlipItDrillProps> = ({
             )}
 
             {/* Grid */}
-            <div className="mt-12 md:mt-14 px-4">
+            <div className="mt-8 md:mt-10 px-4">
                 <div className={`
-                    grid gap-2.5 md:gap-4
+                    grid gap-2 sm:gap-3 md:gap-3.5
                     ${isLargeGrid ? 'grid-cols-6 max-w-4xl' : 'grid-cols-4 max-w-xl'}
                 `}>
                     {cards.map((card, index) => {
@@ -239,7 +239,7 @@ const FlipItDrill: React.FC<FlipItDrillProps> = ({
                                 onClick={() => handleCardClick(index)}
                                 disabled={card.isMatched || card.isFlipped || isTransitioning}
                                 className={`
-                                    relative w-14 h-18 sm:w-20 sm:h-24 md:w-24 md:h-28 rounded-lg transition-all duration-300 transform-gpu
+                                    relative w-14 h-16 sm:w-18 sm:h-20 md:w-20 md:h-24 rounded-lg transition-all duration-300 transform-gpu
                                     ${card.isMatched ? 'opacity-0 pointer-events-none' : 'cursor-pointer drop-shadow-sm'}
                                     ${!isVisible && !isTransitioning && 'hover:-translate-y-1'}
                                 `}
@@ -261,8 +261,8 @@ const FlipItDrill: React.FC<FlipItDrillProps> = ({
                                     <span 
                                         className={`
                                             ${card.type === 'kana' 
-                                                ? 'text-3xl sm:text-4xl md:text-5xl' 
-                                                : 'text-xl sm:text-2xl font-arbutus'} 
+                                                ? 'text-2xl sm:text-3xl md:text-4xl' 
+                                                : 'text-lg sm:text-xl font-arbutus'} 
                                             text-[#5C3A21]
                                             ${card.type === 'kana' && !isSansSerif ? 'font-serif' : 'font-sans'}
                                         `}
@@ -277,18 +277,18 @@ const FlipItDrill: React.FC<FlipItDrillProps> = ({
             </div>
 
             {/* Match Button */}
-            <div className="absolute bottom-6 md:bottom-10 flex justify-center w-full">
+            <div className="mt-5 md:mt-6 flex justify-center w-full">
                 <button
                     onClick={handleMatchClick}
                     disabled={flippedIndices.length !== 2 || isTransitioning}
                     className={`
-                        flex items-center space-x-2 px-8 py-3.5 rounded-full font-bold text-xl transition-all duration-300
+                        flex items-center space-x-2 px-7 py-2.5 sm:px-8 sm:py-3 rounded-full font-bold text-lg sm:text-xl transition-all duration-300
                         ${flippedIndices.length === 2 && !isTransitioning
                             ? 'bg-[#DF7956] text-white hover:scale-105 active:scale-95 drop-shadow-lg cursor-pointer' 
                             : 'bg-[#DF7956]/50 text-white/70 cursor-not-allowed scale-95'}
                     `}
                 >
-                    <Check strokeWidth={3} />
+                    <Check strokeWidth={3} className="w-5 h-5 sm:w-6 sm:h-6" />
                     <span>MATCH</span>
                 </button>
             </div>

@@ -219,7 +219,7 @@ const DrillEngine: React.FC<DrillEngineProps> = ({
             </div>
 
             {/* Game Content */}
-            <div key={resetKey} className={`w-full ${mode === 'wordbuilder' ? 'max-w-6xl 2xl:max-w-7xl pb-6' : (mode === 'textbuilder' || mode === 'under-guidance') ? 'max-w-5xl pb-4' : mode === 'check-truth' ? 'max-w-4xl pb-6' : 'max-w-4xl pb-24'} flex-1 flex flex-col items-center justify-center relative`}>
+            <div key={resetKey} className={`w-full ${mode === 'wordbuilder' ? 'max-w-6xl 2xl:max-w-7xl pb-6' : (mode === 'textbuilder' || mode === 'under-guidance') ? 'max-w-5xl pb-4' : (mode === 'check-truth' || mode === 'flip-it') ? 'max-w-4xl pb-6' : 'max-w-4xl pb-24'} flex-1 flex flex-col items-center justify-center relative`}>
                 {children({ 
                     onCorrect: handleCorrect, 
                     onWrong: handleWrong, 
