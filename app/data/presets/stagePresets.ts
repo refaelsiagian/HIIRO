@@ -177,7 +177,7 @@ export const SHIKEN_STAGES_PRESET: StageConfig[] = [
     options: {
       totalPairs: 40,
       matchCount: 8,
-      barIntervalSeconds: 5,
+      barIntervalSeconds: 10,
     },
   },
 ];

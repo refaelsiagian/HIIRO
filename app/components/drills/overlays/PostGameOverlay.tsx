@@ -43,15 +43,33 @@ export const PostGameOverlay: React.FC<PostGameOverlayProps> = ({
                             <h3 className="font-arbutus text-2xl font-medium mb-6">Penilaian Tuntas</h3>
                             
                             <div className="flex items-center space-x-4">
-                                <Star className={`w-8 h-8 ${score >= targetScore ? 'fill-[#C15A3D] text-[#C15A3D]' : 'text-[#C15A3D] opacity-30'}`} />
+                                <Star 
+                                    className={`w-8 h-8 ${score >= targetScore ? 'opacity-100' : 'opacity-30'}`}
+                                    style={{ 
+                                        color: 'var(--theme-star-color, #C15A3D)', 
+                                        fill: score >= targetScore ? 'var(--theme-star-color, #C15A3D)' : 'none' 
+                                    }} 
+                                />
                                 <span className={`text-xl ${score >= targetScore ? '' : 'opacity-50'}`}>Permainan selesai</span>
                             </div>
                             <div className="flex items-center space-x-4">
-                                <Star className={`w-8 h-8 ${score >= targetScore && lives === maxLives ? 'fill-[#C15A3D] text-[#C15A3D]' : 'text-[#C15A3D] opacity-30'}`} />
+                                <Star 
+                                    className={`w-8 h-8 ${score >= targetScore && lives === maxLives ? 'opacity-100' : 'opacity-30'}`}
+                                    style={{ 
+                                        color: 'var(--theme-star-color, #C15A3D)', 
+                                        fill: score >= targetScore && lives === maxLives ? 'var(--theme-star-color, #C15A3D)' : 'none' 
+                                    }} 
+                                />
                                 <span className={`text-xl ${score >= targetScore && lives === maxLives ? '' : 'opacity-50'}`}>Nyawa tidak berkurang</span>
                             </div>
                             <div className="flex items-center space-x-4">
-                                <Star className={`w-8 h-8 ${score >= targetScore && timeLeft >= timeThreshold ? 'fill-[#C15A3D] text-[#C15A3D]' : 'text-[#C15A3D] opacity-30'}`} />
+                                <Star 
+                                    className={`w-8 h-8 ${score >= targetScore && timeLeft >= timeThreshold ? 'opacity-100' : 'opacity-30'}`}
+                                    style={{ 
+                                        color: 'var(--theme-star-color, #C15A3D)', 
+                                        fill: score >= targetScore && timeLeft >= timeThreshold ? 'var(--theme-star-color, #C15A3D)' : 'none' 
+                                    }} 
+                                />
                                 <span className={`text-xl ${score >= targetScore && timeLeft >= timeThreshold ? '' : 'opacity-50'}`}>Waktu tersisa tidak kurang dari {timeThreshold} detik</span>
                             </div>
                         </div>

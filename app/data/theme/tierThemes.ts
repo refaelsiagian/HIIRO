@@ -34,6 +34,9 @@ export interface RoomTheme {
   
   // Interactive Drill Elements
   petalBg: string;        // Hex color for shuriken/petal buttons in drills
+  
+  // Character Selector Highlight
+  letterHighlight: string; // Hex color for active letter highlight & bottom border
 }
 
 export interface TierTheme {
@@ -57,7 +60,8 @@ export const TIER_THEMES: Record<'hiragana' | 'katakana', Record<CardTier, TierT
         plateBorder: '#E89A81',
         fontColor: '#6F3E28',
         starColor: '#CC6E34',
-        petalBg: '#FFB7A3',
+        petalBg: '#CC6E34',
+        letterHighlight: '#A55B38',
       },
     },
     shotesto: {
@@ -69,12 +73,13 @@ export const TIER_THEMES: Record<'hiragana' | 'katakana', Record<CardTier, TierT
         letterOpacity: 'opacity-40',
       },
       room: {
-        pageBgGradient: 'linear-gradient(to bottom right, #FFF3F0, #FFDAD1)',
-        plateBg: '#FFE8E0',
-        plateBorder: '#E89A81',
-        fontColor: '#6F3E28',
-        starColor: '#CC6E34',
-        petalBg: '#FFB7A3',
+        pageBgGradient: 'linear-gradient(to bottom right, #F5FFF2, #C6E3BC)',
+        plateBg: '#E2EFDF',
+        plateBorder: '#709360',
+        fontColor: '#1F4712',
+        starColor: '#709360',
+        petalBg: '#709360',
+        letterHighlight: '#709360',
       },
     },
     // Shiken (Section Exam) 
@@ -87,29 +92,31 @@ export const TIER_THEMES: Record<'hiragana' | 'katakana', Record<CardTier, TierT
         letterOpacity: 'opacity-40',
       },
       room: {
-        pageBgGradient: 'linear-gradient(to bottom right, #FFF3F0, #FFDAD1)',
-        plateBg: '#FFE8E0',
-        plateBorder: '#E89A81',
-        fontColor: '#6F3E28',
-        starColor: '#CC6E34',
-        petalBg: '#FFB7A3',
+        pageBgGradient: 'linear-gradient(to bottom right, #FFF0F0, #FFC0C0)',
+        plateBg: '#FFE0E0',
+        plateBorder: '#CE5252',
+        fontColor: '#6F2828',
+        starColor: '#CE5252',
+        petalBg: '#CE5252',
+        letterHighlight: '#CE5252',
       },
     },
     daishiken: {
       paper: {
-        bg: '#B576E7',
+        bg: '#B893D5',
         border: '#794D9B',
         fontColor: '#4F286F',
         starColor: '#794D9B',
         letterOpacity: 'opacity-40',
       },
       room: {
-        pageBgGradient: 'linear-gradient(to bottom right, #FFF3F0, #FFDAD1)',
-        plateBg: '#ECC5FF',
-        plateBorder: '#C681E8',
+        pageBgGradient: 'linear-gradient(to bottom right, #F8F3FF, #D8C6EE)',
+        plateBg: '#F4DDFF',
+        plateBorder: '#A264C1',
         fontColor: '#4A286F',
-        starColor: '#8F34CC',
-        petalBg: '#FFB7A3',
+        starColor: '#8F5ABD',
+        petalBg: '#8F5ABD',
+        letterHighlight: '#8F5ABD',
       },
     },
   },
@@ -129,6 +136,7 @@ export const TIER_THEMES: Record<'hiragana' | 'katakana', Record<CardTier, TierT
         fontColor: '#6F3E28',
         starColor: '#CC6E34',
         petalBg: '#FFB7A3',
+        letterHighlight: '#A55B38',
       },
     },
     shotesto: {
@@ -140,12 +148,13 @@ export const TIER_THEMES: Record<'hiragana' | 'katakana', Record<CardTier, TierT
         letterOpacity: 'opacity-40',
       },
       room: {
-        pageBgGradient: 'linear-gradient(to bottom right, #FFF3F0, #FFDAD1)',
+        pageBgGradient: 'linear-gradient(to bottom right, #F3FFF0, #BACFB3)',
         plateBg: '#FFE8E0',
         plateBorder: '#E89A81',
         fontColor: '#6F3E28',
         starColor: '#CC6E34',
         petalBg: '#FFB7A3',
+        letterHighlight: '#709360',
       },
     },
     // Shiken (Section Exam) 
@@ -164,6 +173,7 @@ export const TIER_THEMES: Record<'hiragana' | 'katakana', Record<CardTier, TierT
         fontColor: '#6F3E28',
         starColor: '#CC6E34',
         petalBg: '#FFB7A3',
+        letterHighlight: '#CE5252',
       },
     },
     daishiken: {
@@ -181,6 +191,7 @@ export const TIER_THEMES: Record<'hiragana' | 'katakana', Record<CardTier, TierT
         fontColor: '#4A286F',
         starColor: '#8F34CC',
         petalBg: '#FFB7A3',
+        letterHighlight: '#C681E8',
       },
     },
   },

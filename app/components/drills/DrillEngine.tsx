@@ -164,6 +164,7 @@ const DrillEngine: React.FC<DrillEngineProps> = ({
                 '--theme-font-color': activeRoom.fontColor,
                 '--theme-star-color': activeRoom.starColor,
                 '--theme-petal-bg': activeRoom.petalBg,
+                '--theme-letter-highlight': activeRoom.letterHighlight,
             } as React.CSSProperties}
         >
             

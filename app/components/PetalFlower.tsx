@@ -4,9 +4,10 @@ import { PetalSVG } from './PetalSVG';
 interface PetalFlowerProps {
     starsEarned: number;
     className?: string;
+    petalColor?: string;
 }
 
-export const PetalFlower: React.FC<PetalFlowerProps> = ({ starsEarned, className = '' }) => {
+export const PetalFlower: React.FC<PetalFlowerProps> = ({ starsEarned, className = '', petalColor }) => {
     // 5 petals rotated in a circle
     const angles = [0, 72, 144, 216, 288];
 
@@ -26,7 +27,8 @@ export const PetalFlower: React.FC<PetalFlowerProps> = ({ starsEarned, className
                         <div className="w-16 h-20 -mt-6">
                             <PetalSVG
                                 isFilled={isFilled}
-                                className={isFilled ? 'text-[#C15A3D]' : 'text-[#C15A3D] opacity-70'}
+                                style={{ color: petalColor || 'var(--theme-petal-bg, #C15A3D)' }}
+                                className={isFilled ? '' : 'opacity-70'}
                             />
                         </div>
                     </div>

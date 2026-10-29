@@ -105,17 +105,16 @@ const StageSelection: React.FC = () => {
     const theme = getTierTheme(category, tier);
     const room = theme.room;
 
-    let fontColor = `text-[${room.fontColor}]`;
-    let starColor = `text-[${room.starColor}]`;
-    let starColorEmpty = `text-[${room.starColor}]`;
-
     const renderFlower = (stageIndex: number, isUnlocked: boolean, stagePetals: number, customColor?: string) => {
         const maxPetals = 5;
         const angleStep = 360 / maxPetals;
-        const colorToUse = customColor || starColor;
+        const colorToUse = customColor || room.petalBg;
 
         return (
-            <div className={`relative w-[120px] h-[120px] ${!isUnlocked ? 'opacity-30 grayscale' : ''} ${colorToUse}`}>
+            <div 
+                className={`relative w-[120px] h-[120px] ${!isUnlocked ? 'opacity-30 grayscale' : ''}`}
+                style={{ color: colorToUse }}
+            >
                 {[...Array(maxPetals)].map((_, i) => {
                     const rotation = i * angleStep;
                     const isActive = stagePetals > i;
@@ -130,7 +129,8 @@ const StageSelection: React.FC = () => {
                             }}
                         >
                             <PetalSVG 
-                                className={`w-full h-full ${colorToUse}`}
+                                className="w-full h-full"
+                                style={{ color: colorToUse }}
                                 isFilled={isActive}
                             />
                         </div>
@@ -142,14 +142,16 @@ const StageSelection: React.FC = () => {
 
     return (
         <div 
-            className="h-screen font-sans text-slate-800 flex flex-col md:flex-row overflow-hidden"
+            className="h-screen font-sans flex flex-col md:flex-row overflow-hidden"
             style={{ 
                 background: room.pageBgGradient,
+                color: room.fontColor,
                 '--theme-plate-bg': room.plateBg,
                 '--theme-plate-border': room.plateBorder,
                 '--theme-font-color': room.fontColor,
                 '--theme-star-color': room.starColor,
                 '--theme-petal-bg': room.petalBg,
+                '--theme-letter-highlight': room.letterHighlight,
             } as React.CSSProperties}
         >
             {/* LEFT PANEL */}
@@ -158,7 +160,8 @@ const StageSelection: React.FC = () => {
                 {/* Independent Back Button */}
                 <button 
                     onClick={() => router.push(`/select/${category}/${section}`)} 
-                    className={`absolute top-12 left-12 hover:opacity-70 transition-opacity z-20 ${fontColor}`}
+                    className="absolute top-12 left-12 hover:opacity-70 transition-opacity z-20"
+                    style={{ color: room.fontColor }}
                 >
                     <ArrowLeft size={40} strokeWidth={2} />
                 </button>
@@ -170,17 +173,23 @@ const StageSelection: React.FC = () => {
                     <div className="mb-8">
                         {/* Title Row */}
                         <div className="flex items-baseline mb-4">
-                            <h1 className={`text-[48px] leading-none font-arbutus tracking-tight mr-4 ${fontColor}`}>
+                            <h1 
+                                className="text-[48px] leading-none font-arbutus tracking-tight mr-4"
+                                style={{ color: room.fontColor }}
+                            >
                                 {level.displayName}
                             </h1>
-                            <p className={`text-xl opacity-70 font-sans ${fontColor}`}>
+                            <p 
+                                className="text-xl opacity-70 font-sans"
+                                style={{ color: room.fontColor }}
+                            >
                                 {level.subtitleKanji}
                             </p>
                         </div>
                         
                         {/* Star Counter */}
-                        <div className={`flex items-center font-outfit ${fontColor}`}>
-                            <Star className={`w-5 h-5 mr-2 ${starColor}`} fill="currentColor" />
+                        <div className="flex items-center font-outfit" style={{ color: room.fontColor }}>
+                            <Star className="w-5 h-5 mr-2" style={{ color: room.starColor, fill: room.starColor }} />
                             {earnedStars}/{totalStars}
                         </div>
                     </div>
@@ -191,33 +200,45 @@ const StageSelection: React.FC = () => {
                             
                             {/* Character Grid - Horizontal */}
                             <div className="flex space-x-4 mb-16 max-w-full overflow-x-auto hide-scrollbar px-2">
-                                {displayChars.map((char, index) => (
-                                    <button 
-                                        key={index}
-                                        onClick={() => setSelectedCharIndex(index)}
-                                        className={`flex flex-col items-center justify-center min-w-[80px] w-[80px] h-[134px] transition-all duration-300 border-b-[2px] flex-shrink-0 ${
-                                            selectedCharIndex === index 
-                                                ? (isExam 
-                                                    ? 'bg-gradient-to-b from-[#F3E0FF]/0 to-[#ECC5FF] border-[#C681E8]' 
-                                                    : 'bg-gradient-to-b from-[#FFE0CD]/0 to-[#FFB49F] border-[#A55B38]')
-                                                : 'border-transparent hover:bg-black/5'
-                                        } ${fontColor}`}
-                                    >
-                                        <span className={`text-[40px] mb-4 leading-none ${!isSansSerif ? 'font-serif' : 'font-sans'}`}>{char.k}</span>
-                                        <span className="text-2xl font-outfit leading-none">{char.r}</span>
-                                    </button>
-                                ))}
+                                {displayChars.map((char, index) => {
+                                    const isSelected = selectedCharIndex === index;
+                                    const highlightColor = room.letterHighlight || '#A55B38';
+                                    const highlightBg = highlightColor.startsWith('#') && highlightColor.length === 7
+                                        ? `${highlightColor}33`
+                                        : highlightColor;
+
+                                    return (
+                                        <button 
+                                            key={index}
+                                            onClick={() => setSelectedCharIndex(index)}
+                                            style={{ 
+                                                color: room.fontColor,
+                                                borderBottomColor: isSelected ? highlightColor : 'transparent',
+                                                background: isSelected 
+                                                    ? `linear-gradient(to bottom, transparent, ${highlightBg})` 
+                                                    : undefined
+                                            }}
+                                            className="flex flex-col items-center justify-center min-w-[80px] w-[80px] h-[134px] transition-all duration-300 border-b-[2px] flex-shrink-0 hover:bg-black/5"
+                                        >
+                                            <span className={`text-[40px] mb-4 leading-none ${!isSansSerif ? 'font-serif' : 'font-sans'}`}>{char.k}</span>
+                                            <span className="text-2xl font-outfit leading-none">{char.r}</span>
+                                        </button>
+                                    );
+                                })}
                             </div>
 
                             {/* Large Character Preview */}
                             <div className="flex flex-col items-center justify-center mb-16">
-                                <span className={`text-[280px] leading-none ${fontColor} ${!isSansSerif ? 'font-serif' : 'font-sans'}`}>
+                                <span 
+                                    className={`text-[280px] leading-none ${!isSansSerif ? 'font-serif' : 'font-sans'}`}
+                                    style={{ color: room.fontColor }}
+                                >
                                     {displayChars[selectedCharIndex]?.k || '?'}
                                 </span>
                             </div>
 
                             {/* Font Toggle (Under Big Letter) */}
-                            <div className={`flex items-center text-sm font-medium pb-24 ${fontColor}`}>
+                            <div className="flex items-center text-sm font-medium pb-24" style={{ color: room.fontColor }}>
                                 <button 
                                     onClick={() => setIsSansSerif(!isSansSerif)}
                                     className="flex items-center space-x-3 group"
@@ -249,10 +270,6 @@ const StageSelection: React.FC = () => {
 
                         const plateBg = room.plateBg;
                         const plateBorder = room.plateBorder;
-                        const plateFontColor = fontColor;
-                        const plateStarColor = starColor;
-                        const plateStarColorEmpty = starColorEmpty;
-                        
                         const stagePetals = petals[category]?.[section]?.[groupId]?.[stage.id] || 0;
 
                         return (
@@ -277,33 +294,39 @@ const StageSelection: React.FC = () => {
                                 {/* INNER CONTENT LAYER */}
                                 <div className="absolute inset-0 p-[20px] flex justify-between z-10 w-full h-full">
                                     
-                                    <div className="text-left flex flex-col justify-between h-full py-[4px]">
+                                    <div className="text-left flex flex-col justify-between h-full py-[4px]" style={{ color: room.fontColor }}>
                                         <div>
-                                            <span className={`text-[16px] font-outfit font-normal tracking-wide block leading-none mb-[8px] ${plateFontColor}`}>
+                                            <span className="text-[16px] font-outfit font-normal tracking-wide block leading-none mb-[8px]">
                                                 Tahap {index + 1}
                                             </span>
-                                            <h3 className={`text-[32px] font-arbutus flex items-center leading-none ${plateFontColor}`}>
+                                            <h3 className="text-[32px] font-arbutus flex items-center leading-none">
                                                 {stage.displayName}
-                                                {!isUnlocked && <Lock className={`w-5 h-5 ml-3 opacity-60 ${plateFontColor}`} />}
+                                                {!isUnlocked && <Lock className="w-5 h-5 ml-3 opacity-60" />}
                                             </h3>
                                         </div>
                                         
                                         {/* Stars */}
                                         <div className="flex gap-[16px]">
-                                            {[1, 2, 3].map(starNum => (
-                                                <Star 
-                                                    key={starNum} 
-                                                    className={`w-[40px] h-[40px] ${starNum <= stageStars ? plateStarColor : plateStarColorEmpty} transition-all duration-300`} 
-                                                    fill={starNum <= stageStars ? "currentColor" : "none"}
-                                                    strokeWidth={1.5}
-                                                />
-                                            ))}
+                                            {[1, 2, 3].map(starNum => {
+                                                const isFilled = starNum <= stageStars;
+                                                return (
+                                                    <Star 
+                                                        key={starNum} 
+                                                        className={`w-[40px] h-[40px] transition-all duration-300 ${!isFilled ? 'opacity-35' : ''}`}
+                                                        style={{ 
+                                                            color: room.starColor,
+                                                            fill: isFilled ? room.starColor : 'none'
+                                                        }}
+                                                        strokeWidth={1.5}
+                                                    />
+                                                );
+                                            })}
                                         </div>
                                     </div>
 
                                     {/* Flower (Petals) */}
                                     <div className="flex-shrink-0 flex items-center justify-center pr-[12px]">
-                                        {renderFlower(index, isUnlocked, stagePetals, plateStarColor)}
+                                        {renderFlower(index, isUnlocked, stagePetals, room.petalBg)}
                                     </div>
                                 </div>
                             </button>
