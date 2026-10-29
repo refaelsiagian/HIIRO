@@ -122,18 +122,28 @@ const FlipItDrill: React.FC<FlipItDrillProps> = ({
     }, [groupChars, pairsPerWave, waveCount]);
 
     const [currentWaveIndex, setCurrentWaveIndex] = useState(0);
-    const [cards, setCards] = useState<CardData[]>([]);
+    const [cards, setCards] = useState<CardData[]>(() => {
+        if (waves.length > 0) {
+            return createCardsForWave(waves[0], 0);
+        }
+        return [];
+    });
     const [flippedIndices, setFlippedIndices] = useState<number[]>([]);
     const [isTransitioning, setIsTransitioning] = useState(false);
+    const [isWaveEntering, setIsWaveEntering] = useState(false);
 
+    // Sync if waves change (e.g. stage restarts or changes)
+    const prevWavesRef = React.useRef(waves);
     useEffect(() => {
-        if (isActive && waves.length > 0) {
+        if (prevWavesRef.current !== waves && waves.length > 0) {
+            prevWavesRef.current = waves;
             setCurrentWaveIndex(0);
             setCards(createCardsForWave(waves[0], 0));
             setFlippedIndices([]);
             setIsTransitioning(false);
+            setIsWaveEntering(false);
         }
-    }, [isActive, waves]);
+    }, [waves]);
 
     const handleCardClick = (index: number) => {
         if (!isActive || isTransitioning) return;
@@ -179,13 +189,25 @@ const FlipItDrill: React.FC<FlipItDrillProps> = ({
             if (allMatched) {
                 if (currentWaveIndex + 1 < waves.length) {
                     setIsTransitioning(true);
+                    
+                    // The last two cards fade out with transition-opacity 300ms.
+                    // Immediately after they disappear (at 300ms), start the next wave with domino ripple!
                     setTimeout(() => {
                         const nextWaveIdx = currentWaveIndex + 1;
                         setCurrentWaveIndex(nextWaveIdx);
                         setCards(createCardsForWave(waves[nextWaveIdx], nextWaveIdx));
                         setFlippedIndices([]);
-                        setIsTransitioning(false);
-                    }, 800);
+                        setIsWaveEntering(true);
+
+                        const cols = pairsPerWave > 8 ? 6 : 4;
+                        const maxDiagonal = (cols - 1) + 3; // 4x4 -> 6, 6x4 -> 8
+                        const cascadeDuration = (maxDiagonal * 45) + 380;
+
+                        setTimeout(() => {
+                            setIsTransitioning(false);
+                            setIsWaveEntering(false);
+                        }, cascadeDuration);
+                    }, 300);
                 }
             }
         } else {
@@ -198,7 +220,7 @@ const FlipItDrill: React.FC<FlipItDrillProps> = ({
         }
     };
 
-    if (cards.length === 0) return <div>Loading...</div>;
+    if (cards.length === 0 && waves.length === 0) return null;
 
     const isLargeGrid = pairsPerWave > 8; // e.g. 12 pairs = 24 cards
 
@@ -208,21 +230,13 @@ const FlipItDrill: React.FC<FlipItDrillProps> = ({
             <div className="absolute top-0 md:-top-8 w-full flex flex-col items-center">
                 <h2 className="text-xl font-bold font-sans">Flip and Match</h2>
                 {waves.length > 1 && (
-                    <span className="text-xs font-semibold px-3 py-0.5 rounded-full bg-[#DF7956]/20 text-[#5C3A21] mt-1">
+                    <span className={`text-xs font-semibold px-3 py-0.5 rounded-full mt-1 transition-all duration-300 ${
+                        isWaveEntering ? 'bg-[#DF7956] text-white scale-110 shadow-sm' : 'bg-[#DF7956]/20 text-[#5C3A21]'
+                    }`}>
                         Gelombang {currentWaveIndex + 1} dari {waves.length}
                     </span>
                 )}
             </div>
-
-            {/* Wave Transition Banner */}
-            {isTransitioning && (
-                <div className="absolute inset-0 z-30 flex flex-col items-center justify-center bg-black/10 backdrop-blur-[2px] rounded-2xl animate-fade-in pointer-events-none">
-                    <div className="bg-white/95 px-6 py-3 rounded-2xl shadow-xl flex items-center space-x-2 text-[#5C3A21]">
-                        <Sparkles className="w-5 h-5 text-[#DF7956] animate-spin" />
-                        <span className="font-bold">Gelombang {currentWaveIndex + 1} Selesai!</span>
-                    </div>
-                </div>
-            )}
 
             {/* Grid */}
             <div className="mt-8 md:mt-10 px-4">
@@ -232,18 +246,27 @@ const FlipItDrill: React.FC<FlipItDrillProps> = ({
                 `}>
                     {cards.map((card, index) => {
                         const isVisible = card.isFlipped || card.isMatched;
+                        const cols = isLargeGrid ? 6 : 4;
+                        const row = Math.floor(index / cols);
+                        const col = index % cols;
+                        const diagonal = row + col;
+                        const staggerDelay = diagonal * 45;
 
                         return (
                             <button
-                                key={card.id}
+                                key={`${card.id}-${currentWaveIndex}`}
                                 onClick={() => handleCardClick(index)}
                                 disabled={card.isMatched || card.isFlipped || isTransitioning}
                                 className={`
                                     relative w-14 h-16 sm:w-18 sm:h-20 md:w-20 md:h-24 rounded-lg transition-all duration-300 transform-gpu
                                     ${card.isMatched ? 'opacity-0 pointer-events-none' : 'cursor-pointer drop-shadow-sm'}
                                     ${!isVisible && !isTransitioning && 'hover:-translate-y-1'}
+                                    ${isWaveEntering ? 'animate-domino' : ''}
                                 `}
-                                style={{ perspective: '1000px' }}
+                                style={{ 
+                                    perspective: '1000px',
+                                    animationDelay: isWaveEntering ? `${staggerDelay}ms` : undefined,
+                                }}
                             >
                                 {/* Front (Hidden State) */}
                                 <div 

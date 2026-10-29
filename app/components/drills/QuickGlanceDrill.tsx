@@ -88,15 +88,15 @@ const QuickGlanceDrill: React.FC<QuickGlanceDrillProps> = ({
         return initialPairs;
     }, [generateMatch, generateMismatch, matchCount, totalPairs]);
 
-    const [pairs, setPairs] = useState<PairData[]>([]);
+    const [pairs, setPairs] = useState<PairData[]>(() => initializeBoard());
     const [resetSignal, setResetSignal] = useState(0);
 
-    // Initialize board
+    // Initialize board if empty
     useEffect(() => {
-        if (isActive && pairs.length === 0) {
+        if (pairs.length === 0) {
             setPairs(initializeBoard());
         }
-    }, [isActive, pairs.length, initializeBoard]);
+    }, [pairs.length, initializeBoard]);
 
     const handlePairClick = (index: number) => {
         if (!isActive) return;
@@ -168,7 +168,7 @@ const QuickGlanceDrill: React.FC<QuickGlanceDrillProps> = ({
         });
     };
 
-    if (pairs.length === 0) return <div>Loading...</div>;
+    if (pairs.length === 0) return null;
 
     return (
         <div className="flex flex-col items-center justify-center w-full h-full text-[#5C3A21] relative pb-12">
