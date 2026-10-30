@@ -223,7 +223,7 @@ export const DAISHIKEN_STAGES_PRESET: StageConfig[] = [
     id: 'under-guidance-1',
     displayName: 'Under Guidance',
     subtitle: 'Under Guidance',
-    instruction: 'Amati pola struktur 4 kalimat contoh dan pilih kalimat kana yang sesuai arti',
+    instruction: 'Amati 4 kalimat panduan dan susun kata serta partikel menjadi kalimat sesuai arti',
     timer: 180,
     scoreGoal: 8,
     filepath: 'app/components/drills/UnderGuidanceDrill.tsx',

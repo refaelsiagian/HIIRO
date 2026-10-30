@@ -5,17 +5,19 @@ export interface GuidanceSentence {
     meaning: string;
 }
 
-export interface GuidanceOption {
+export interface GuidanceToken {
     id: string;
-    kana: string;
-    isCorrect: boolean;
+    text: string;
+    type: 'word' | 'particle';
 }
 
 export interface UnderGuidanceQuestion {
     templateId: string;
     references: GuidanceSentence[];
     questionMeaning: string;
-    options: GuidanceOption[];
+    targetSentence: string;
+    targetTokens: string[];
+    bankTokens: GuidanceToken[];
 }
 
 interface WordEntry {
@@ -133,43 +135,54 @@ export function generateUnderGuidanceQuestion(category: 'hiragana' | 'katakana' 
     // Shuffle the 4 references so Ref 1 isn't always in position 1
     const references = shuffle([ref1, ref2, ref3, ref4]);
 
-    // Question: (A2, B2, C2) - Displays meaning only!
+    // Question: (A2, B2, C2)
     const questionSentence = buildSentence(a2, b2, c2);
 
-    // 4 Options (1 correct + 3 minimal distractors)
-    const correctOption: GuidanceOption = {
-        id: 'opt-correct',
-        kana: questionSentence.kana,
-        isCorrect: true
-    };
+    const a1Text = isKatakana ? a1.katakana : a1.kana;
+    const a2Text = isKatakana ? a2.katakana : a2.kana;
+    const b1Text = isKatakana ? b1.katakana : b1.kana;
+    const b2Text = isKatakana ? b2.katakana : b2.kana;
+    const c1Text = isKatakana ? c1.katakana : c1.kana;
+    const c2Text = isKatakana ? c2.katakana : c2.kana;
 
-    // Distractor 1: flips A (uses A1 instead of A2)
-    const distractorA: GuidanceOption = {
-        id: 'opt-distractor-a',
-        kana: buildSentence(a1, b2, c2).kana,
-        isCorrect: false
-    };
+    // Target tokens in proper grammatical order
+    const targetTokens = [
+        a2Text,
+        template.kanaParticle1,
+        b2Text,
+        template.kanaParticle2,
+        c2Text,
+        template.kanaParticle3
+    ].filter(Boolean);
 
-    // Distractor 2: flips B (uses B1 instead of B2)
-    const distractorB: GuidanceOption = {
-        id: 'opt-distractor-b',
-        kana: buildSentence(a2, b1, c2).kana,
-        isCorrect: false
-    };
+    // Bank tokens: ALL words and particles used in the 4 guide sentences
+    const rawBank: GuidanceToken[] = [
+        { id: `w1_1_${a1Text}`, text: a1Text, type: 'word' },
+        { id: `w1_2_${a2Text}`, text: a2Text, type: 'word' },
+        { id: `w2_1_${b1Text}`, text: b1Text, type: 'word' },
+        { id: `w2_2_${b2Text}`, text: b2Text, type: 'word' },
+        { id: `w3_1_${c1Text}`, text: c1Text, type: 'word' },
+        { id: `w3_2_${c2Text}`, text: c2Text, type: 'word' },
+        { id: `p_1_${template.kanaParticle1}`, text: template.kanaParticle1, type: 'particle' },
+        { id: `p_2_${template.kanaParticle2}`, text: template.kanaParticle2, type: 'particle' },
+    ];
 
-    // Distractor 3: flips C (uses C1 instead of C2)
-    const distractorC: GuidanceOption = {
-        id: 'opt-distractor-c',
-        kana: buildSentence(a2, b2, c1).kana,
-        isCorrect: false
-    };
+    if (template.kanaParticle3) {
+        rawBank.push({
+            id: `p_3_${template.kanaParticle3}`,
+            text: template.kanaParticle3,
+            type: 'particle'
+        });
+    }
 
-    const options = shuffle([correctOption, distractorA, distractorB, distractorC]);
+    const bankTokens = shuffle(rawBank);
 
     return {
         templateId: template.id,
         references,
         questionMeaning: questionSentence.meaning,
-        options
+        targetSentence: questionSentence.kana,
+        targetTokens,
+        bankTokens
     };
 }
