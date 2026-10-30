@@ -1,12 +1,14 @@
 "use client";
 
-import React, { useState, useEffect, useMemo, useCallback } from 'react';
+import React, { useState, useEffect, useMemo, useCallback, useRef } from 'react';
 import { CharItem } from '../../types/kana';
-import { CheckCircle2, XCircle, BookOpen, Sparkles } from 'lucide-react';
+import { ChevronsUp, ChevronsDown, Check, RotateCcw } from 'lucide-react';
 import {
     generateTextbuilderStory,
+    generateRoundPills,
     TextbuilderStory,
-    TextbuilderOption
+    TextbuilderSentence,
+    TextbuilderWordPill
 } from '../../utils/drills/textbuilderGenerator';
 
 interface TextbuilderDrillProps {
@@ -19,14 +21,14 @@ interface TextbuilderDrillProps {
 }
 
 /**
- * Textbuilder Drill (Daishiken Quiz 4)
- * - 8-sentence passage with initial blank slots.
- * - Each sentence shows:
- *     1. Romaji hint ON TOP of the blank spot.
- *     2. The blank slot (or filled Kana).
- *     3. Sentence meaning UNDER the blank spot.
- * - Player selects the correct Kana sentence out of 4 options (1 correct + 3 confusable distractors).
- * - Sentences are solved sequentially from 1 to 8.
+ * Textbuilder Drill (Daishiken Quiz 4) - Sentence Builder
+ * - 8-sentence passage with romaji guide on top, blank slot in middle, and meaning below.
+ * - Word pills generated from a random target sentence + confusable distractors + other story words.
+ * - Player inspects the pills, determines which sentence matches, and selects it in the passage.
+ * - When selected, romaji and meaning appear in the fixed textfield.
+ * - Player constructs the sentence with pills, then presses "Periksa".
+ * - When solved, pills are transferred into the text passage as completed Kana!
+ * - Passage is scrollable with subtle flickering indicator arrows and hidden scrollbars.
  */
 const TextbuilderDrill: React.FC<TextbuilderDrillProps> = ({
     groupChars,
@@ -45,183 +47,397 @@ const TextbuilderDrill: React.FC<TextbuilderDrillProps> = ({
         return /[\u30A0-\u30FF]/.test(firstChar) ? 'katakana' : 'hiragana';
     }, [groupChars]);
 
-    const [story, setStory] = useState<TextbuilderStory | null>(null);
-    const [currentStep, setCurrentStep] = useState(0);
-    const [selectedOptId, setSelectedOptId] = useState<string | null>(null);
-    const [isAnswering, setIsAnswering] = useState(false);
+    // 1. Story session state
+    const [story, setStory] = useState<TextbuilderStory | null>(() => {
+        return generateTextbuilderStory(category);
+    });
 
-    // Initialize or reset story
-    const loadNewStory = useCallback(() => {
-        setStory(generateTextbuilderStory(category));
-        setCurrentStep(0);
-        setSelectedOptId(null);
-        setIsAnswering(false);
-    }, [category]);
+    const [solvedSentenceIds, setSolvedSentenceIds] = useState<Set<number>>(new Set());
+
+    // 2. Active target sentence (the one for which current pills are generated)
+    const [targetSentenceId, setTargetSentenceId] = useState<number | null>(() => {
+        if (!story || story.sentences.length === 0) return null;
+        const initialIdx = Math.floor(Math.random() * story.sentences.length);
+        return story.sentences[initialIdx].id;
+    });
+
+    // 3. Bank pills for current round
+    const [roundPills, setRoundPills] = useState<TextbuilderWordPill[]>(() => {
+        if (!story || story.sentences.length === 0) return [];
+        const initialTarget = story.sentences.find(s => s.id === (targetSentenceId || 1)) || story.sentences[0];
+        return generateRoundPills(initialTarget, story.sentences);
+    });
+
+    // 4. Selected sentence in the passage by the player
+    const [selectedSentenceId, setSelectedSentenceId] = useState<number | null>(null);
+
+    // 5. Placed pills on the underline
+    const [selectedPills, setSelectedPills] = useState<TextbuilderWordPill[]>([]);
+
+    // 6. Feedback & answering lock
+    const [validationState, setValidationState] = useState<'idle' | 'correct' | 'wrong'>('idle');
+    const [isAnswering, setIsAnswering] = useState(false);
+    const [hintAlert, setHintAlert] = useState(false);
+
+    // Scroll state for passage container
+    const passageRef = useRef<HTMLDivElement>(null);
+    const [canScrollUp, setCanScrollUp] = useState(false);
+    const [canScrollDown, setCanScrollDown] = useState(false);
+
+    const checkScroll = useCallback(() => {
+        const el = passageRef.current;
+        if (!el) return;
+        const { scrollTop, scrollHeight, clientHeight } = el;
+        setCanScrollUp(scrollTop > 10);
+        setCanScrollDown(scrollTop + clientHeight < scrollHeight - 10);
+    }, []);
 
     useEffect(() => {
-        loadNewStory();
-    }, [loadNewStory]);
+        checkScroll();
+        window.addEventListener('resize', checkScroll);
+        return () => window.removeEventListener('resize', checkScroll);
+    }, [checkScroll, story]);
 
-    const activeSentence = story?.sentences[currentStep] || null;
+    // Active target sentence object
+    const currentTargetSentence = useMemo<TextbuilderSentence | null>(() => {
+        if (!story || targetSentenceId === null) return null;
+        return story.sentences.find(s => s.id === targetSentenceId) || null;
+    }, [story, targetSentenceId]);
 
-    const handleSelectOption = (opt: TextbuilderOption) => {
-        if (!isActive || isAnswering || !story || !activeSentence) return;
+    // Active player-selected sentence object
+    const selectedSentence = useMemo<TextbuilderSentence | null>(() => {
+        if (!story || selectedSentenceId === null) return null;
+        return story.sentences.find(s => s.id === selectedSentenceId) || null;
+    }, [story, selectedSentenceId]);
 
-        setIsAnswering(true);
-        setSelectedOptId(opt.id);
+    // When player clicks an unsolved sentence in the passage
+    const handleSelectSentence = (sentence: TextbuilderSentence) => {
+        if (!isActive || isAnswering) return;
+        if (solvedSentenceIds.has(sentence.id)) return;
 
-        if (opt.isCorrect) {
-            onCorrect();
-            setTimeout(() => {
-                setSelectedOptId(null);
-                setIsAnswering(false);
-                if (currentStep < story.sentences.length - 1) {
-                    setCurrentStep(prev => prev + 1);
-                }
-            }, 550);
-        } else {
-            onWrong();
-            setTimeout(() => {
-                setSelectedOptId(null);
-                setIsAnswering(false);
-            }, 600);
+        if (selectedSentenceId !== sentence.id) {
+            setSelectedSentenceId(sentence.id);
+            // Reset placed pills if switching to a different sentence
+            setSelectedPills([]);
+            setValidationState('idle');
+            setHintAlert(false);
         }
     };
 
-    if (!story || !activeSentence) {
-        return (
-            <div className="flex items-center justify-center w-full h-full min-h-[350px]">
-                <div className="w-8 h-8 rounded-full border-2 border-[#DF7956] border-t-transparent animate-spin" />
-            </div>
-        );
-    }
+    // When player clicks a pill in the bank
+    const handleAddPill = (pill: TextbuilderWordPill) => {
+        if (!isActive || isAnswering) return;
+
+        if (selectedSentenceId === null) {
+            // Prompt player to choose matching sentence first
+            setHintAlert(true);
+            setTimeout(() => setHintAlert(false), 1200);
+            return;
+        }
+
+        if (selectedPills.some(p => p.id === pill.id)) return;
+
+        setSelectedPills(prev => [...prev, pill]);
+        setValidationState('idle');
+    };
+
+    // When player clicks a placed pill on the underline (returns to bank)
+    const handleRemovePill = (indexToRemove: number) => {
+        if (!isActive || isAnswering) return;
+
+        setSelectedPills(prev => prev.filter((_, i) => i !== indexToRemove));
+        setValidationState('idle');
+    };
+
+    // Reset placed pills back to bank
+    const handleReset = () => {
+        if (!isActive || isAnswering) return;
+
+        setSelectedPills([]);
+        setValidationState('idle');
+    };
+
+    // Check / Submit sentence
+    const handleCheck = useCallback(() => {
+        if (!isActive || isAnswering || !currentTargetSentence || !story) return;
+        if (selectedSentenceId === null || selectedPills.length === 0) return;
+
+        setIsAnswering(true);
+
+        const isCorrectSentence = selectedSentenceId === currentTargetSentence.id;
+        const selectedSentenceText = selectedPills.map(p => p.text).join('');
+        const targetSentenceText = currentTargetSentence.tokens.join('');
+        const isCorrectTokens = selectedSentenceText === targetSentenceText;
+
+        if (isCorrectSentence && isCorrectTokens) {
+            // Correct!
+            setValidationState('correct');
+            onCorrect();
+
+            setTimeout(() => {
+                const nextSolved = new Set(solvedSentenceIds);
+                nextSolved.add(currentTargetSentence.id);
+                setSolvedSentenceIds(nextSolved);
+
+                // Check if all 8 sentences are solved
+                if (nextSolved.size >= story.sentences.length) {
+                    setIsAnswering(false);
+                    return;
+                }
+
+                // Pick next random unsolved sentence
+                const remaining = story.sentences.filter(s => !nextSolved.has(s.id));
+                const nextTarget = remaining[Math.floor(Math.random() * remaining.length)];
+
+                setTargetSentenceId(nextTarget.id);
+                setRoundPills(generateRoundPills(nextTarget, story.sentences));
+                setSelectedSentenceId(null);
+                setSelectedPills([]);
+                setValidationState('idle');
+                setIsAnswering(false);
+            }, 600);
+        } else {
+            // Wrong!
+            setValidationState('wrong');
+            onWrong();
+
+            setTimeout(() => {
+                setValidationState('idle');
+                setIsAnswering(false);
+            }, 650);
+        }
+    }, [
+        isActive,
+        isAnswering,
+        currentTargetSentence,
+        story,
+        selectedSentenceId,
+        selectedPills,
+        solvedSentenceIds,
+        onCorrect,
+        onWrong
+    ]);
+
+    // Keyboard support: Enter to submit, Backspace to remove last pill
+    useEffect(() => {
+        const handleKeyDown = (e: KeyboardEvent) => {
+            if (e.key === 'Enter') {
+                if (selectedSentenceId !== null && selectedPills.length > 0 && !isAnswering) {
+                    handleCheck();
+                }
+            } else if (e.key === 'Backspace') {
+                const tag = (e.target as HTMLElement)?.tagName;
+                if (tag !== 'INPUT' && tag !== 'TEXTAREA') {
+                    if (selectedPills.length > 0 && !isAnswering) {
+                        setSelectedPills(prev => prev.slice(0, -1));
+                        setValidationState('idle');
+                    }
+                }
+            }
+        };
+
+        window.addEventListener('keydown', handleKeyDown);
+        return () => window.removeEventListener('keydown', handleKeyDown);
+    }, [selectedSentenceId, selectedPills, isAnswering, handleCheck]);
+
+    if (!story) return null;
+
+    const selectedPillIds = new Set(selectedPills.map(p => p.id));
+    const targetLength = currentTargetSentence ? currentTargetSentence.tokens.length : 0;
+    const isReadyToCheck = selectedSentenceId !== null && selectedPills.length === targetLength;
 
     return (
-        <div className="flex flex-col items-center justify-between w-full max-w-5xl mx-auto h-full text-[#5C3A21] px-2 sm:px-4 py-1 select-none">
-            {/* Top Bar: Story Title & Progress */}
-            <div className="w-full flex items-center justify-between text-xs sm:text-sm font-bold text-[#5C3A21]/75 mb-2 px-1">
-                <div className="flex items-center gap-2">
-                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold tracking-wider uppercase bg-[#DF7956]/15 text-[#DF7956] border border-[#DF7956]/30 font-mono">
-                        <BookOpen size={13} /> {story.title}
-                    </span>
-                    <span className="text-xs text-[#5C3A21]/70 hidden md:inline-block font-normal italic">
-                        {story.fullMeaning}
-                    </span>
-                </div>
-                <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-bold font-mono bg-white/80 border border-[#DF7956]/30 text-[#DF7956]">
-                    Kalimat {currentStep + 1} / {story.sentences.length}
-                </span>
-            </div>
+        <div className="flex flex-col items-center justify-center w-full max-w-4xl mx-auto h-full text-[#5C3A21] px-4 py-1 select-none">
+            
+            {/* 1. Story Passage Container (Open literary page layout with left vertical margin line) */}
+            <div className="relative w-full max-w-3xl xl:max-w-4xl mb-5 sm:mb-10">
+                
+                {/* Flickering Top Arrow */}
+                {canScrollUp && (
+                    <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 z-20 pointer-events-none flex items-center justify-center animate-bounce">
+                        <ChevronsUp size={20} className="text-[#DF7956]/70 drop-shadow-xs" />
+                    </div>
+                )}
 
-            {/* Story Passage Grid (8 Sentences) */}
-            <div className="w-full bg-white/85 backdrop-blur-md border-2 border-[#DF7956]/30 rounded-2xl p-2.5 sm:p-3.5 mb-2.5 shadow-sm">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-2 sm:gap-2.5">
-                    {story.sentences.map((s, idx) => {
-                        const isFilled = idx < currentStep;
-                        const isCurrent = idx === currentStep;
+                {/* The 8 Sentences Passage - Inline text flow across the full row */}
+                <div
+                    ref={passageRef}
+                    onScroll={checkScroll}
+                    className="max-h-[220px] sm:max-h-[250px] md:max-h-[280px] overflow-y-auto hide-scrollbar border-l-5 border-[#DF7956] pl-4 sm:pl-6 py-2"
+                >
+                    <div className="flex flex-wrap items-start gap-x-6 sm:gap-x-2 gap-y-4 sm:gap-y-4">
+                        {story.sentences.map((s) => {
+                            const isSolved = solvedSentenceIds.has(s.id);
+                            const isSelected = selectedSentenceId === s.id;
 
-                        return (
-                            <div
-                                key={s.id}
-                                className={`flex flex-col justify-between p-2 sm:p-2.5 rounded-xl border transition-all duration-300 ${
-                                    isFilled
-                                        ? 'bg-emerald-50/90 border-emerald-300/80 shadow-xs'
-                                        : isCurrent
-                                            ? 'bg-[#DF7956]/12 border-2 border-[#DF7956] shadow-sm ring-2 ring-[#DF7956]/20'
-                                            : 'bg-white/50 border-[#DF7956]/20 opacity-60'
-                                }`}
-                            >
-                                {/* 1. TOP: Romaji Hint */}
-                                <div className="flex items-center justify-between text-[11px] sm:text-xs font-mono font-bold tracking-wide text-[#DF7956] mb-0.5">
-                                    <span className="flex items-center gap-1">
-                                        <span className={`w-4 h-4 rounded-full flex items-center justify-center text-[10px] ${
-                                            isFilled ? 'bg-emerald-200 text-emerald-800' : isCurrent ? 'bg-[#DF7956] text-white' : 'bg-black/10 text-[#5C3A21]'
-                                        }`}>
-                                            {s.id}
-                                        </span>
-                                        <span>{s.romaji}</span>
-                                    </span>
-                                    {isFilled && (
-                                        <CheckCircle2 size={14} className="text-emerald-600" />
-                                    )}
-                                </div>
-
-                                {/* 2. MIDDLE: Blank Spot or Filled Kana Sentence */}
-                                <div className="py-1 min-h-[30px] flex items-center">
-                                    {isFilled ? (
-                                        <span className={`font-bold text-sm sm:text-base text-emerald-800 tracking-wider ${isSansSerif ? 'font-sans' : 'font-serif'}`}>
-                                            {s.kana}
-                                        </span>
-                                    ) : isCurrent ? (
-                                        <div className="flex items-center gap-1.5 font-bold text-xs sm:text-sm text-[#DF7956] tracking-wider animate-pulse">
-                                            <span className="w-1.5 h-1.5 rounded-full bg-[#DF7956] inline-block animate-ping" />
-                                            <span>[ _ _ _ _ _ _ _ _ _ _ ]</span>
+                            return (
+                                <div
+                                    key={s.id}
+                                    onClick={() => handleSelectSentence(s)}
+                                    className={`group inline-flex flex-col justify-start transition-all duration-200 rounded-xl p-2 max-w-full ${
+                                        isSolved
+                                            ? 'cursor-default hover:bg-[#7D4E94]/8'
+                                            : isSelected
+                                            ? 'cursor-pointer'
+                                            : 'cursor-pointer hover:bg-[#7D4E94]/10'
+                                    }`}
+                                >
+                                    {isSolved ? (
+                                        /* 1. Solved State: Full Kana text in big font + meaning below */
+                                        <div className="flex flex-col">
+                                            <div className={`text-lg sm:text-xl md:text-2xl font-semibold text-[#5C3A21] leading-snug tracking-wide break-words ${isSansSerif ? 'font-sans' : 'font-serif'}`}>
+                                                {s.tokens.join(' ')}
+                                            </div>
+                                            <div className="text-xs sm:text-sm md:text-base text-[#5C3A21] mt-2 font-normal leading-tight">
+                                                {s.meaning}
+                                            </div>
+                                        </div>
+                                    ) : isSelected ? (
+                                        /* 2. Chosen State: Romaji on warm gradient bar with bottom orange underline + meaning below */
+                                        <div className="flex flex-col">
+                                            <div className="px-3 py-1 bg-gradient-to-t from-[#DF7956]/25 via-[#DF7956]/10 to-transparent border-b-2 border-[#DF7956] rounded-t-md flex items-center min-h-[34px] sm:min-h-[38px] min-w-[170px] sm:min-w-[210px]">
+                                                <span className="font-arbutus text-sm sm:text-base md:text-lg font-medium text-[#8A513B] tracking-wide break-all">
+                                                    {s.romaji}
+                                                </span>
+                                            </div>
+                                            <div className="text-xs sm:text-sm md:text-base text-[#5C3A21]/80 mt-1 font-normal px-1 leading-tight">
+                                                {s.meaning}
+                                            </div>
                                         </div>
                                     ) : (
-                                        <span className="text-[#5C3A21]/30 text-xs tracking-widest font-mono">
-                                            [ • • • • • • • • • • ]
-                                        </span>
+                                        /* 3. Unsolved State: Romaji on subtle underline + meaning below */
+                                        <div className="flex flex-col">
+                                            <div className="px-3 py-1 border-b-2 border-[#CC6E34] flex items-center min-h-[34px] sm:min-h-[38px] min-w-[170px] sm:min-w-[210px]">
+                                                <span className="font-arbutus text-sm sm:text-base md:text-lg italic font-medium text-[#5C3A21]/70 tracking-wide break-all">
+                                                    {s.romaji}
+                                                </span>
+                                            </div>
+                                            <div className="text-xs sm:text-sm md:text-base text-[#5C3A21] mt-1 font-normal leading-tight">
+                                                {s.meaning}
+                                            </div>
+                                        </div>
                                     )}
                                 </div>
-
-                                {/* 3. BOTTOM: Sentence Meaning */}
-                                <div className="text-[11px] sm:text-xs text-[#5C3A21]/75 italic font-medium leading-tight">
-                                    {s.meaning}
-                                </div>
-                            </div>
-                        );
-                    })}
+                            );
+                        })}
+                    </div>
                 </div>
+
+                {/* Flickering Bottom Arrow */}
+                {canScrollDown && (
+                    <div className="absolute -bottom-3.5 left-1/2 -translate-x-1/2 z-20 pointer-events-none flex items-center justify-center animate-bounce">
+                        <ChevronsDown size={20} className="text-[#DF7956]/70 drop-shadow-xs" />
+                    </div>
+                )}
             </div>
 
-            {/* Bottom Options Area: 4 Kana Choice Buttons */}
-            <div className="w-full flex flex-col items-center">
-                <div className="w-full flex items-center justify-between text-xs font-bold text-[#5C3A21]/80 mb-1.5 px-2">
-                    <span className="flex items-center gap-1">
-                        <Sparkles size={13} className="text-[#DF7956]" />
-                        Pilih kalimat Kana yang tepat untuk Kalimat #{currentStep + 1}:
-                    </span>
-                    <span className="font-mono text-[#DF7956] text-xs">
-                        {activeSentence.romaji}
-                    </span>
+            {/* 2. Target Sentence Textfield Area (Fixed Height: Romaji on top, Underline in middle, Meaning below) */}
+            <div className="w-full max-w-3xl xl:max-w-4xl h-[135px] sm:h-[145px] flex flex-col justify-between mb-4 sm:mb-6">
+                
+                {/* Top: Romaji guide of selected sentence */}
+                <div className="text-sm sm:text-base md:text-xl font-arbutus font-medium tracking-wide text-left flex items-center justify-between">
+                    {selectedSentence ? (
+                        <span className="text-[#8A513B]">
+                            {selectedSentence.romaji}
+                        </span>
+                    ) : (
+                        <span className={`transition-colors duration-300 ${hintAlert ? 'text-rose-600' : 'text-[#5C3A21]'}`}>
+                            {hintAlert ? 'Pilih kalimat terlebih dahulu' : 'Pilih kalimat yang cocok dengan kata-kata yang tersedia'}
+                        </span>
+                    )}
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-2.5 w-full">
-                    {activeSentence.options.map((opt) => {
-                        const isSelected = selectedOptId === opt.id;
-                        let btnStyle = "bg-white/90 border-[#DF7956]/30 hover:border-[#DF7956] hover:bg-[#DF7956]/10 text-[#5C3A21]";
-
-                        if (isSelected) {
-                            if (opt.isCorrect) {
-                                btnStyle = "bg-emerald-500 border-emerald-600 text-white shadow-md scale-[1.01]";
-                            } else {
-                                btnStyle = "bg-rose-500 border-rose-600 text-white shadow-md";
-                            }
-                        }
-
-                        return (
+                {/* Middle: Placed Pills on top of the Underline */}
+                <div className={`min-h-[60px] sm:min-h-[68px] pb-2 flex flex-wrap items-end gap-2 border-b-2 transition-all duration-200 ${
+                    validationState === 'correct'
+                        ? 'border-emerald-500'
+                        : validationState === 'wrong'
+                        ? 'border-rose-500 animate-shake'
+                        : 'border-[#5C3A21]/30'
+                }`}>
+                    {selectedPills.length === 0 ? (
+                        <span className="text-xs sm:text-sm md:text-base text-[#5C3A21]/35 italic py-1 select-none">
+                            {selectedSentence ? 'Ketuk kata-kata di bawah untuk menyusun...' : '\u00A0'}
+                        </span>
+                    ) : (
+                        selectedPills.map((pill, idx) => (
                             <button
-                                key={opt.id}
-                                onClick={() => handleSelectOption(opt)}
-                                disabled={!isActive || isAnswering}
-                                className={`relative flex items-center justify-between px-3.5 sm:px-4 py-2.5 sm:py-3 rounded-xl border-2 transition-all duration-200 shadow-xs cursor-pointer active:scale-98 text-left ${btnStyle}`}
+                                key={`${pill.id}-${idx}`}
+                                onClick={() => handleRemovePill(idx)}
+                                disabled={isAnswering}
+                                title="Klik untuk membatalkan"
+                                className={`px-4 py-2 sm:px-4.5 sm:py-2.5 rounded-xl font-semibold text-base sm:text-lg md:text-2xl transition-all duration-150 cursor-pointer shadow-xs active:scale-95 ${
+                                    validationState === 'correct'
+                                        ? 'bg-emerald-100 border border-emerald-500 text-emerald-800'
+                                        : validationState === 'wrong'
+                                        ? 'bg-rose-100 border border-rose-500 text-rose-800'
+                                        : 'bg-white/95 hover:bg-white text-[#5C3A21] border border-[#FFB7A3]/60 hover:border-rose-400 hover:text-rose-700'
+                                }`}
                             >
-                                <span className={`text-sm sm:text-base md:text-lg font-bold tracking-wide ${isSansSerif ? 'font-sans' : 'font-serif'}`}>
-                                    {opt.kana}
+                                <span className={isSansSerif ? 'font-sans' : 'font-serif'}>
+                                    {pill.text}
                                 </span>
-
-                                {isSelected && (
-                                    opt.isCorrect ? (
-                                        <CheckCircle2 size={18} className="text-white shrink-0 ml-2" />
-                                    ) : (
-                                        <XCircle size={18} className="text-white shrink-0 ml-2 animate-bounce" />
-                                    )
-                                )}
                             </button>
-                        );
-                    })}
+                        ))
+                    )}
+                </div>
+
+                {/* Bottom: Meaning of selected sentence */}
+                <div className="text-sm sm:text-base md:text-lg text-[#5C3A21]/80 font-medium text-left leading-relaxed pt-1.5 sm:pt-2">
+                    {selectedSentence ? selectedSentence.meaning : '\u00A0'}
                 </div>
             </div>
+
+            {/* 3. Word Pills Bank (Fixed Height so row changes don't shift layout) */}
+            <div className="w-full max-w-3xl xl:max-w-4xl h-[100px] sm:h-[110px] flex flex-wrap content-start items-center gap-2 sm:gap-2.5 mb-4 sm:mb-6">
+                {roundPills.map((pill) => {
+                    const isUsed = selectedPillIds.has(pill.id);
+                    if (isUsed) return null; // Disappears from bank when placed on the line
+
+                    return (
+                        <button
+                            key={pill.id}
+                            onClick={() => handleAddPill(pill)}
+                            disabled={isAnswering}
+                            className="px-4 py-2 sm:px-5 sm:py-2.5 rounded-xl text-base sm:text-lg md:text-2xl font-semibold bg-white/80 hover:bg-white text-[#5C3A21] border border-[#FFB7A3]/60 shadow-xs hover:shadow hover:scale-105 active:scale-95 cursor-pointer transition-all duration-150"
+                        >
+                            <span className={isSansSerif ? 'font-sans' : 'font-serif'}>
+                                {pill.text}
+                            </span>
+                        </button>
+                    );
+                })}
+            </div>
+
+            {/* 4. Controls: Reset and Periksa Button */}
+            <div className="relative flex items-center justify-center w-full max-w-3xl xl:max-w-4xl h-[56px] sm:h-[62px]">
+                {/* Reset button positioned gracefully to the left without shifting Periksa's center */}
+                <button
+                    onClick={handleReset}
+                    disabled={selectedPills.length === 0 || isAnswering}
+                    className={`absolute right-[calc(50%+90px)] sm:right-[calc(50%+110px)] flex items-center gap-1.5 px-3.5 py-1.5 rounded-full font-bold text-xs sm:text-sm text-[#5C3A21]/70 hover:text-[#5C3A21] hover:bg-black/5 transition-all cursor-pointer whitespace-nowrap ${
+                        selectedPills.length > 0 && !isAnswering ? 'opacity-100' : 'opacity-0 pointer-events-none'
+                    }`}
+                >
+                    <RotateCcw size={16} />
+                    <span>Reset</span>
+                </button>
+
+                {/* Periksa Button anchored firmly in the center */}
+                <button
+                    onClick={handleCheck}
+                    disabled={!isReadyToCheck || isAnswering}
+                    className={`flex items-center gap-2 px-10 py-2.5 sm:px-12 sm:py-3.5 rounded-full font-bold text-lg sm:text-xl transition-all duration-200 ${
+                        isReadyToCheck && !isAnswering
+                            ? 'bg-[#DF7956] text-white hover:scale-105 active:scale-95 drop-shadow-md cursor-pointer'
+                            : 'bg-[#DF7956]/40 text-white/70 cursor-not-allowed scale-98'
+                    }`}
+                >
+                    <Check size={22} strokeWidth={3} />
+                    <span>Periksa</span>
+                </button>
+            </div>
+
         </div>
     );
 };

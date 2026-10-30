@@ -1,10 +1,10 @@
 import textbuilderDataRaw from '../../data/drills/textbuilderData.json';
 import charsRaw from '../../data/chars.json';
 
-export interface TextbuilderOption {
+export interface TextbuilderWordPill {
     id: string;
-    kana: string;
-    isCorrect: boolean;
+    text: string;
+    isTargetToken: boolean;
 }
 
 export interface TextbuilderSentence {
@@ -12,7 +12,7 @@ export interface TextbuilderSentence {
     kana: string;
     romaji: string;
     meaning: string;
-    options: TextbuilderOption[];
+    tokens: string[];
 }
 
 export interface TextbuilderStory {
@@ -60,48 +60,25 @@ function shuffle<T>(array: T[]): T[] {
     return copy;
 }
 
-/**
- * Generates 3 unique distractor sentences by replacing 1 or 2 characters
- * with their confusable equivalents from chars.json.
- */
-export function generateConfusableDistractors(sentence: string, count = 3): string[] {
-    const distractors = new Set<string>();
+export function mutateWordWithConfusable(word: string): string | null {
+    const chars = word.split('');
     const validIndices: number[] = [];
-
-    for (let i = 0; i < sentence.length; i++) {
-        const ch = sentence[i];
+    chars.forEach((ch, idx) => {
         if (confusableMap.has(ch) && (confusableMap.get(ch)?.length ?? 0) > 0) {
-            validIndices.push(i);
+            validIndices.push(idx);
         }
-    }
+    });
 
-    if (validIndices.length === 0) {
-        return [sentence + ' !', sentence + ' ?', sentence + ' .'];
-    }
+    if (validIndices.length === 0) return null;
 
-    let attempts = 0;
-    while (distractors.size < count && attempts < 200) {
-        attempts++;
-        // Mutate 1 character (or 2 characters if struggling to find unique candidates)
-        const numMutations = (attempts > 30 || Math.random() < 0.3) && validIndices.length > 1 ? 2 : 1;
-        const chosenIndices = [...validIndices].sort(() => 0.5 - Math.random()).slice(0, numMutations);
+    const chosenIdx = validIndices[Math.floor(Math.random() * validIndices.length)];
+    const confList = confusableMap.get(chars[chosenIdx]);
+    if (!confList || confList.length === 0) return null;
 
-        const charsArr = sentence.split('');
-        for (const idx of chosenIndices) {
-            const confList = confusableMap.get(charsArr[idx]);
-            if (confList && confList.length > 0) {
-                const rep = confList[Math.floor(Math.random() * confList.length)];
-                charsArr[idx] = rep;
-            }
-        }
-
-        const candidate = charsArr.join('');
-        if (candidate !== sentence && !distractors.has(candidate)) {
-            distractors.add(candidate);
-        }
-    }
-
-    return Array.from(distractors);
+    const rep = confList[Math.floor(Math.random() * confList.length)];
+    chars[chosenIdx] = rep;
+    const result = chars.join('');
+    return result !== word ? result : null;
 }
 
 /**
@@ -117,29 +94,16 @@ export function generateTextbuilderStory(
         : stories[Math.floor(Math.random() * stories.length)];
 
     const sentences: TextbuilderSentence[] = selectedStory.sentences.map((s, idx) => {
-        const targetKana = category === 'katakana' ? s.katakana : s.hiragana;
-        const distractorKanas = generateConfusableDistractors(targetKana, 3);
-
-        const correctOpt: TextbuilderOption = {
-            id: `opt-${s.id}-correct`,
-            kana: targetKana,
-            isCorrect: true,
-        };
-
-        const distractorOpts: TextbuilderOption[] = distractorKanas.map((dKana, dIdx) => ({
-            id: `opt-${s.id}-dist-${dIdx}`,
-            kana: dKana,
-            isCorrect: false,
-        }));
-
-        const options = shuffle([correctOpt, ...distractorOpts]);
+        const rawKana = category === 'katakana' ? s.katakana : s.hiragana;
+        // Strip trailing '。' for the token pills
+        const tokens = rawKana.replace(/。$/, '').split(' ').filter(Boolean);
 
         return {
             id: s.id || (idx + 1),
-            kana: targetKana,
+            kana: rawKana,
             romaji: s.romaji,
             meaning: s.meaning,
-            options,
+            tokens,
         };
     });
 
@@ -149,4 +113,68 @@ export function generateTextbuilderStory(
         fullMeaning: selectedStory.fullMeaning,
         sentences,
     };
+}
+
+/**
+ * Generates the word pills for a target sentence:
+ * 1. Correct tokens of the target sentence
+ * 2. Confusable character distractors from the target tokens
+ * 3. Additional tokens borrowed from other sentences in the story
+ * Returns shuffled pills with unique IDs.
+ */
+export function generateRoundPills(
+    targetSentence: TextbuilderSentence,
+    allSentences: TextbuilderSentence[]
+): TextbuilderWordPill[] {
+    const pills: TextbuilderWordPill[] = [];
+    const usedTexts = new Set<string>();
+
+    // 1. Correct tokens
+    targetSentence.tokens.forEach((token, idx) => {
+        pills.push({
+            id: `target_${targetSentence.id}_${idx}_${token}`,
+            text: token,
+            isTargetToken: true,
+        });
+        usedTexts.add(token);
+    });
+
+    // 2. Confusable distractors from target tokens
+    const confusableCandidates: string[] = [];
+    targetSentence.tokens.forEach((token) => {
+        const mutated = mutateWordWithConfusable(token);
+        if (mutated && !usedTexts.has(mutated)) {
+            confusableCandidates.push(mutated);
+            usedTexts.add(mutated);
+        }
+    });
+
+    // Take up to 2 confusable distractors
+    shuffle(confusableCandidates).slice(0, 2).forEach((confWord, idx) => {
+        pills.push({
+            id: `conf_${targetSentence.id}_${idx}_${confWord}`,
+            text: confWord,
+            isTargetToken: false,
+        });
+    });
+
+    // 3. Other words from the story
+    const otherTokens = allSentences
+        .filter(s => s.id !== targetSentence.id)
+        .flatMap(s => s.tokens)
+        .filter(t => !usedTexts.has(t));
+
+    const shuffledOthers = shuffle(Array.from(new Set(otherTokens)));
+    // Take 2 or 3 other tokens so total pills is 7 to 8
+    const neededOthers = Math.max(2, 7 - pills.length);
+    shuffledOthers.slice(0, neededOthers).forEach((otherWord, idx) => {
+        pills.push({
+            id: `other_${targetSentence.id}_${idx}_${otherWord}`,
+            text: otherWord,
+            isTargetToken: false,
+        });
+        usedTexts.add(otherWord);
+    });
+
+    return shuffle(pills);
 }
