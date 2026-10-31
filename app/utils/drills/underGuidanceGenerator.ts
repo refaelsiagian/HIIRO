@@ -8,6 +8,7 @@ export interface GuidanceSentence {
 export interface GuidanceToken {
     id: string;
     text: string;
+    romaji: string;
     type: 'word' | 'particle';
 }
 
@@ -44,6 +45,111 @@ interface GuidanceData {
 }
 
 const guidanceData = guidanceDataRaw as GuidanceData;
+
+const wordRomajiMap: Record<string, string> = {
+    // Objects
+    'ないふ': 'naifu', 'ナイフ': 'naifu',
+    'ふぉーく': 'fooku', 'フォーク': 'fooku',
+    'すぷーん': 'supuun', 'スプーン': 'supuun',
+    'りんご': 'ringo', 'リンゴ': 'ringo',
+    'すいか': 'suika', 'スイカ': 'suika',
+    'みかん': 'mikan', 'ミカン': 'mikan',
+    'ばなな': 'banana', 'バナナ': 'banana',
+    'ほん': 'hon', 'ホン': 'hon',
+    'さいふ': 'saifu', 'サイフ': 'saifu',
+    'かさ': 'kasa', 'カサ': 'kasa',
+    'かぎ': 'kagi', 'カギ': 'kagi',
+    'すまほ': 'sumaho', 'スマホ': 'sumaho',
+    'てがみ': 'tegami', 'テガミ': 'tegami',
+    'ゆびわ': 'yubiwa', 'ユビワ': 'yubiwa',
+    'とけい': 'tokei', 'トケイ': 'tokei',
+    'かばん': 'kaban', 'カバン': 'kaban',
+    'めがね': 'megane', 'メガネ': 'megane',
+    'いぬ': 'inu', 'イヌ': 'inu',
+    'ねこ': 'neko', 'ネコ': 'neko',
+    'とり': 'tori', 'トリ': 'tori',
+    'いす': 'isu', 'イス': 'isu',
+    'つくえ': 'tsukue', 'ツクエ': 'tsukue',
+
+    // Places
+    'としょかん': 'toshokan', 'トショカン': 'toshokan',
+    'えき': 'eki', 'エキ': 'eki',
+    'こうえん': 'kouen', 'コウエン': 'kouen',
+    'へや': 'heya', 'ヘヤ': 'heya',
+    'がっこう': 'gakkou', 'ガッコウ': 'gakkou',
+    'かふぇ': 'kafe', 'カフェ': 'kafe',
+    'みせ': 'mise', 'ミセ': 'mise',
+    'びょういん': 'byouin', 'ビョウイン': 'byouin',
+    'うち': 'uchi', 'ウチ': 'uchi',
+    'ほてる': 'hoteru', 'ホテル': 'hoteru',
+
+    // People
+    'ともだち': 'tomodachi', 'トモダチ': 'tomodachi',
+    'こども': 'kodomo', 'コドモ': 'kodomo',
+    'せんぱい': 'senpai', 'センパイ': 'senpai',
+    'せんせい': 'sensei', 'センセイ': 'sensei',
+    'かぞく': 'kazoku', 'カゾク': 'kazoku',
+    'あに': 'ani', 'アニ': 'ani',
+    'おとうと': 'otouto', 'オトウト': 'otouto',
+    'がくせい': 'gakusei', 'ガクセイ': 'gakusei',
+
+    // Times
+    'あした': 'ashita', 'アシタ': 'ashita',
+    'きょう': 'kyou', 'キョウ': 'kyou',
+    'ひる': 'hiru', 'ヒル': 'hiru',
+    'よる': 'yoru', 'ヨル': 'yoru',
+    'あさ': 'asa', 'アサ': 'asa',
+    'らいしゅう': 'raishuu', 'ライシュウ': 'raishuu',
+    'ごじ': 'goji', 'ゴジ': 'goji',
+    'きのう': 'kinou', 'キノウ': 'kinou',
+
+    // Positions
+    'うえ': 'ue', 'ウエ': 'ue',
+    'した': 'shita', 'シタ': 'shita',
+    'なか': 'naka', 'ナカ': 'naka',
+    'となり': 'tonari', 'トナリ': 'tonari',
+    'まえ': 'mae', 'マエ': 'mae',
+    'うしろ': 'ushiro', 'ウシロ': 'ushiro',
+    'ちかく': 'chikaku', 'チカク': 'chikaku',
+
+    // Verbs
+    'きった': 'kitta', 'キッタ': 'kitta',
+    'むいた': 'muita', 'ムイタ': 'muita',
+    'たべた': 'tabeta', 'タベタ': 'tabeta',
+    'つぶした': 'tsubushita', 'ツブシタ': 'tsubushita',
+    'なげた': 'nageta', 'ナゲタ': 'nageta',
+    'やいた': 'yaita', 'ヤイタ': 'yaita',
+    'あらった': 'aratta', 'アラッタ': 'aratta',
+    'つつんだ': 'tsutsunda', 'ツツンダ': 'tsutsunda',
+    'さがした': 'sagashita', 'サガシタ': 'sagashita',
+    'おとした': 'otoshita', 'オトシタ': 'otoshita',
+    'わすれた': 'wasureta', 'ワスレタ': 'wasureta',
+    'みつけた': 'mitsuketa', 'ミツケタ': 'mitsuketa',
+    'なくした': 'nakushita', 'ナクシタ': 'nakushita',
+    'ひろった': 'hirotta', 'ヒロッタ': 'hirotta',
+    'かくした': 'kakushita', 'カクシタ': 'kakushita',
+    'しらべた': 'shirabeta', 'シラベタ': 'shirabeta',
+    'こわした': 'kowashita', 'コワシタ': 'kowashita',
+    'べんきょうした': 'benkyoushita', 'ベンキョウシタ': 'benkyoushita',
+    'あそんだ': 'asonda', 'アソンダ': 'asonda',
+    'はなした': 'hanashita', 'ハナシタ': 'hanashita',
+    'はこんだ': 'hakonda', 'ハコンダ': 'hakonda',
+    'おくった': 'okutta', 'オクッタ': 'okutta',
+    'よんだ': 'yonda', 'ヨンダ': 'yonda',
+    'かった': 'katta', 'カッタ': 'katta',
+
+    // Particles
+    'で': 'de', 'デ': 'de',
+    'を': 'o', 'オ': 'o',
+    'と': 'to', 'ト': 'to',
+    'まで': 'made', 'マデ': 'made',
+    'から': 'kara', 'カラ': 'kara',
+    'は': 'wa', 'ハ': 'wa',
+    'の': 'no', 'ノ': 'no',
+    'に': 'ni', 'ニ': 'ni',
+    'に あります': 'ni arimasu', 'ニ アリマス': 'ni arimasu',
+    'へ': 'e', 'ヘ': 'e'
+};
 
 function shuffle<T>(array: T[]): T[] {
     const copy = [...array];
@@ -155,22 +261,25 @@ export function generateUnderGuidanceQuestion(category: 'hiragana' | 'katakana' 
         template.kanaParticle3
     ].filter(Boolean);
 
+    const getRomaji = (text: string) => wordRomajiMap[text] || text;
+
     // Bank tokens: ALL words and particles used in the 4 guide sentences
     const rawBank: GuidanceToken[] = [
-        { id: `w1_1_${a1Text}`, text: a1Text, type: 'word' },
-        { id: `w1_2_${a2Text}`, text: a2Text, type: 'word' },
-        { id: `w2_1_${b1Text}`, text: b1Text, type: 'word' },
-        { id: `w2_2_${b2Text}`, text: b2Text, type: 'word' },
-        { id: `w3_1_${c1Text}`, text: c1Text, type: 'word' },
-        { id: `w3_2_${c2Text}`, text: c2Text, type: 'word' },
-        { id: `p_1_${template.kanaParticle1}`, text: template.kanaParticle1, type: 'particle' },
-        { id: `p_2_${template.kanaParticle2}`, text: template.kanaParticle2, type: 'particle' },
+        { id: `w1_1_${a1Text}`, text: a1Text, romaji: getRomaji(a1Text), type: 'word' },
+        { id: `w1_2_${a2Text}`, text: a2Text, romaji: getRomaji(a2Text), type: 'word' },
+        { id: `w2_1_${b1Text}`, text: b1Text, romaji: getRomaji(b1Text), type: 'word' },
+        { id: `w2_2_${b2Text}`, text: b2Text, romaji: getRomaji(b2Text), type: 'word' },
+        { id: `w3_1_${c1Text}`, text: c1Text, romaji: getRomaji(c1Text), type: 'word' },
+        { id: `w3_2_${c2Text}`, text: c2Text, romaji: getRomaji(c2Text), type: 'word' },
+        { id: `p_1_${template.kanaParticle1}`, text: template.kanaParticle1, romaji: getRomaji(template.kanaParticle1), type: 'particle' },
+        { id: `p_2_${template.kanaParticle2}`, text: template.kanaParticle2, romaji: getRomaji(template.kanaParticle2), type: 'particle' },
     ];
 
     if (template.kanaParticle3) {
         rawBank.push({
             id: `p_3_${template.kanaParticle3}`,
             text: template.kanaParticle3,
+            romaji: getRomaji(template.kanaParticle3),
             type: 'particle'
         });
     }

@@ -152,7 +152,7 @@ const UnderGuidanceDrill: React.FC<UnderGuidanceDrillProps> = ({
         <div className="flex flex-col items-center justify-center w-full max-w-4xl mx-auto h-full text-[#5C3A21] px-4 py-2 select-none">
             
             {/* 1. 4 Guidance Sentences (2x2 Grid with Generous Room & Clean Width) */}
-            <div className="w-full max-w-3xl xl:max-w-4xl min-h-[145px] sm:min-h-[160px] flex flex-col justify-center mb-10 sm:mb-14">
+            <div className="w-full max-w-3xl xl:max-w-4xl min-h-[145px] sm:min-h-[160px] flex flex-col justify-center mb-8 sm:mb-10">
                 <div className="grid grid-cols-2 gap-x-10 sm:gap-x-16 gap-y-4 sm:gap-y-6 w-full text-left">
                     {question.references.map((ref, idx) => (
                         <div key={idx} className="flex flex-col">
@@ -167,10 +167,21 @@ const UnderGuidanceDrill: React.FC<UnderGuidanceDrillProps> = ({
                 </div>
             </div>
 
-            {/* 2. Target Sentence Area (Placed Tiles, Underline, and Target Meaning) */}
-            <div className="w-full max-w-3xl xl:max-w-4xl h-[92px] sm:h-[102px] flex flex-col justify-between mb-8 sm:mb-10">
+            {/* 2. Target Sentence Area (Accompanying Romaji, Placed Tiles, Underline, and Target Meaning) */}
+            <div className="w-full max-w-3xl xl:max-w-4xl h-[125px] sm:h-[135px] flex flex-col justify-between mb-8 sm:mb-10">
+                {/* Top: Accompanying Romaji for currently placed pills */}
+                <div className="text-sm sm:text-base md:text-xl font-arbutus font-medium tracking-wide text-left min-h-[26px] sm:min-h-[30px] flex items-center transition-all duration-150">
+                    {selectedTokens.length > 0 ? (
+                        <span className="text-[#8A513B] tracking-wide">
+                            {selectedTokens.map(t => t.romaji).join(' ')}
+                        </span>
+                    ) : (
+                        <span className="text-transparent select-none">&nbsp;</span>
+                    )}
+                </div>
+
                 {/* Placed Tiles sitting on top of the Underline */}
-                <div className={`h-[52px] sm:h-[58px] pb-1.5 flex flex-wrap items-end gap-2 border-b-2 transition-all duration-200 ${
+                <div className={`min-h-[56px] sm:min-h-[62px] pb-1.5 flex flex-wrap items-end gap-2 border-b-2 transition-all duration-200 ${
                     validationState === 'correct'
                         ? 'border-emerald-500'
                         : validationState === 'wrong'
