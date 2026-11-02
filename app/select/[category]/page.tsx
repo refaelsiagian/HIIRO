@@ -1,7 +1,8 @@
 "use client";
 
 import React, { useMemo, useState, useEffect } from 'react';
-import { useParams, useRouter } from 'next/navigation';
+import { useParams } from 'next/navigation';
+import Link from 'next/link';
 import { ArrowLeft, Star } from 'lucide-react';
 import { useGameStore } from '../../store/useGameStore';
 import typesDataRaw from '../../data/types.json';
@@ -10,7 +11,6 @@ import { resolveSection } from '../../utils/levelResolver';
 
 const SectionSelection: React.FC = () => {
     const params = useParams();
-    const router = useRouter();
     const category = params.category as 'hiragana' | 'katakana';
     const { getGroupStars } = useGameStore();
     const [isMounted, setIsMounted] = useState(false);
@@ -41,12 +41,12 @@ const SectionSelection: React.FC = () => {
         <div className="min-h-screen p-6 flex flex-col overflow-hidden">
             {/* HEADER NAVIGASI */}
             <div className="absolute top-6 left-6 z-10">
-                <button
-                    onClick={() => router.push('/')}
-                    className="p-3 text-[#5C3A21] hover:text-[#DF7956] transition-colors"
+                <Link
+                    href="/"
+                    className="p-3 text-[#5C3A21] hover:text-[#DF7956] transition-colors inline-block"
                 >
                     <ArrowLeft size={40} strokeWidth={2} />
-                </button>
+                </Link>
             </div>
 
             {/* HEADER */}
@@ -118,9 +118,9 @@ const SectionSelection: React.FC = () => {
                         }
 
                         return (
-                            <button
+                            <Link
                                 key={sectionKey}
-                                onClick={() => router.push(`/select/${category}/${sectionKey}`)}
+                                href={`/select/${category}/${sectionKey}`}
                                 className={`w-[358px] h-[520px] shrink-0 snap-center ${cardStyle} shadow-2xl p-8 flex flex-col justify-between ${fontColor} hover:scale-105 active:scale-95 transition-all duration-300 relative overflow-hidden text-left`}
                             >
                                 <div 
@@ -150,7 +150,7 @@ const SectionSelection: React.FC = () => {
                                         <p className="text-[16px] font-outfit font-normal">{totalHuruf} huruf</p>
                                     )}
                                 </div>
-                            </button>
+                            </Link>
                         );
                     })}
                 </div>

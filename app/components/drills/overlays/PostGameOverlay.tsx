@@ -1,6 +1,7 @@
 import React from 'react';
 import { Star } from 'lucide-react';
 import { PetalFlower } from '../../PetalFlower';
+import { QuizOverlayBackgroundSVG } from '../../QuizOverlayBackgroundSVG';
 
 interface PostGameOverlayProps {
     score: number;
@@ -32,7 +33,7 @@ export const PostGameOverlay: React.FC<PostGameOverlayProps> = ({
     return (
         <div className={`absolute inset-0 z-40 flex items-center justify-center bg-black/40 backdrop-blur-sm p-4 ${isClosing ? 'animate-fadeout' : 'animate-fadein'}`}>
             <div className={`relative w-full max-w-5xl aspect-[1.8/1] max-h-[90vh] flex items-center justify-center text-[#5A301E] ${isClosing ? 'animate-popdown' : 'animate-popup'}`}>
-                <img src="/icons/quiz-overlay.svg" className="absolute inset-0 w-full h-full object-fill drop-shadow-2xl" alt="Background" />
+                <QuizOverlayBackgroundSVG className="absolute inset-0 w-full h-full object-fill drop-shadow-2xl" />
                 <div className="relative z-10 w-full h-full p-4 flex flex-col justify-between pt-[8%] pb-[10%] pl-[10%] pr-[10%]">
                     <h2 className="text-5xl font-arbutus font-bold text-center">
                         {score >= targetScore ? 'Selesai!' : (lives <= 0 ? 'Nyawa Habis' : 'Waktu Habis')}

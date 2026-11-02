@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { QuizOverlayBackgroundSVG } from '../../QuizOverlayBackgroundSVG';
 
 interface PauseOverlayProps {
     onContinue: () => void;
@@ -29,7 +30,7 @@ export const PauseOverlay: React.FC<PauseOverlayProps> = ({ onContinue, onReturn
     return (
         <div className={`absolute inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm p-4 ${isClosing ? 'animate-fadeout' : 'animate-fadein'}`}>
             <div className={`relative w-full max-w-5xl aspect-[1.8/1]  flex items-center justify-center text-[#5A301E] ${isClosing ? 'animate-popdown' : 'animate-popup'}`}>
-                <img src="/icons/quiz-overlay.svg" className="absolute inset-0 w-full h-full object-fill drop-shadow-2xl" alt="Background" />
+                <QuizOverlayBackgroundSVG className="absolute inset-0 w-full h-full object-fill drop-shadow-2xl" />
                 
                 <div className="relative z-10 w-full h-full p-8 flex flex-col justify-center items-center">
                     <div className="text-center mb-16 mt-[8%]">

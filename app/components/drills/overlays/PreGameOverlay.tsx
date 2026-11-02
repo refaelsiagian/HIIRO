@@ -1,5 +1,6 @@
 import React from 'react';
 import { Star, X } from 'lucide-react';
+import { QuizOverlayBackgroundSVG } from '../../QuizOverlayBackgroundSVG';
 
 interface PreGameOverlayProps {
     stageNumber?: number | string;
@@ -36,7 +37,7 @@ export const PreGameOverlay: React.FC<PreGameOverlayProps> = ({
                 className={`relative w-full max-w-5xl aspect-[1.8/1] max-h-[90vh] flex items-center justify-center text-[#5A301E] ${isClosing ? 'animate-popdown' : 'animate-popup'}`}
                 onClick={(e) => e.stopPropagation()}
             >
-                <img src="/icons/quiz-overlay.svg" className="absolute inset-0 w-full h-full object-fill drop-shadow-2xl" alt="Background" />
+                <QuizOverlayBackgroundSVG className="absolute inset-0 w-full h-full object-fill drop-shadow-2xl" />
                 
                 {/* Close Button */}
                 <button 

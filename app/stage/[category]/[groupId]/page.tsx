@@ -2,6 +2,7 @@
 
 import React, { useMemo, useState, useEffect } from 'react';
 import { useParams, useRouter } from 'next/navigation';
+import Link from 'next/link';
 import { useGameStore } from '../../../store/useGameStore';
 import { Star, Lock, ArrowLeft } from 'lucide-react';
 import { QuizBackgroundSVG } from '../../../components/QuizBackgroundSVG';
@@ -26,10 +27,6 @@ const StageSelection: React.FC = () => {
     useEffect(() => {
         setIsMounted(true);
     }, []);
-
-    const handleBack = () => {
-        router.push(`/select/${category}/${section}`);
-    };
 
     const [isSansSerif, setIsSansSerif] = useState(false);
     const [selectedCharIndex, setSelectedCharIndex] = useState(0);
@@ -161,13 +158,13 @@ const StageSelection: React.FC = () => {
             <div className="w-full md:w-5/12 flex flex-col h-full overflow-y-auto hide-scrollbar relative">
                     
                     {/* Independent Back Button */}
-                    <button 
-                        onClick={handleBack} 
+                    <Link 
+                        href={`/select/${category}/${section}`}
                         className="absolute top-12 left-12 hover:opacity-70 transition-opacity z-20"
                         style={{ color: room.fontColor }}
                     >
                         <ArrowLeft size={40} strokeWidth={2} />
-                    </button>
+                    </Link>
                 
                 {/* Content Container */}
                 <div className="flex-1 flex flex-col pl-[200px] pt-[120px]">

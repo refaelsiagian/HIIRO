@@ -1,7 +1,8 @@
 "use client";
 
 import React, { useMemo, useState, useEffect } from 'react';
-import { useParams, useRouter } from 'next/navigation';
+import { useParams } from 'next/navigation';
+import Link from 'next/link';
 import { ArrowLeft, Star, Lock } from 'lucide-react';
 import { useGameStore } from '../../../store/useGameStore';
 import { SubKatakanaPaperSVG } from '../../../components/SubKatakanaPaperSVG';
@@ -13,7 +14,6 @@ import typesDataRaw from '../../../data/types.json';
 
 const GroupSelection: React.FC = () => {
     const params = useParams();
-    const router = useRouter();
     const category = params.category as 'hiragana' | 'katakana';
     const section = params.section as string;
     const { getGroupStars } = useGameStore();
@@ -49,12 +49,12 @@ const GroupSelection: React.FC = () => {
         <div className="min-h-screen p-6 flex flex-col overflow-hidden">
             {/* HEADER NAVIGASI */}
             <div className="absolute top-6 left-6 z-10">
-                <button
-                    onClick={() => router.push(`/select/${category}`)}
-                    className="p-3 text-slate-800 hover:text-blue-600 transition-colors"
+                <Link
+                    href={`/select/${category}`}
+                    className="p-3 text-slate-800 hover:text-blue-600 transition-colors inline-block"
                 >
                     <ArrowLeft size={40} strokeWidth={2} />
-                </button>
+                </Link>
             </div>
 
             {/* HEADER */}
@@ -100,13 +100,8 @@ const GroupSelection: React.FC = () => {
                         const theme = getTierTheme(category, tier);
                         const paper = theme.paper;
 
-                        return (
-                            <button
-                                key={group.id}
-                                disabled={!isUnlocked}
-                                onClick={() => isUnlocked && router.push(`/stage/${category}/${group.id}`)}
-                                className={`w-[360px] h-[480px] shrink-0 snap-center transition-all duration-300 relative text-left group ${!isUnlocked ? 'opacity-60 cursor-not-allowed grayscale' : 'hover:scale-105 active:scale-95'}`}
-                            >
+                        const cardInner = (
+                            <>
                                 {/* SVG BACKGROUND */}
                                 <div className={`absolute inset-0 z-0 ${!isUnlocked ? 'opacity-50' : 'group-hover:drop-shadow-xl'} transition-all duration-300`}>
                                     {category === 'katakana' ? (
@@ -162,7 +157,29 @@ const GroupSelection: React.FC = () => {
                                         </p>
                                     </div>
                                 </div>
-                            </button>
+                            </>
+                        );
+
+                        if (!isUnlocked) {
+                            return (
+                                <div
+                                    key={group.id}
+                                    aria-disabled="true"
+                                    className="w-[360px] h-[480px] shrink-0 snap-center transition-all duration-300 relative text-left group opacity-60 cursor-not-allowed grayscale"
+                                >
+                                    {cardInner}
+                                </div>
+                            );
+                        }
+
+                        return (
+                            <Link
+                                key={group.id}
+                                href={`/stage/${category}/${group.id}`}
+                                className="w-[360px] h-[480px] shrink-0 snap-center transition-all duration-300 relative text-left group hover:scale-105 active:scale-95"
+                            >
+                                {cardInner}
+                            </Link>
                         );
                     })}
                 </div>
