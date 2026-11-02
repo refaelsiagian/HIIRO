@@ -3,23 +3,30 @@
 import React, { useState, useEffect, useMemo, useRef } from 'react';
 import { usePathname } from 'next/navigation';
 import { getTierTheme } from '../data/theme/tierThemes';
+import { useGameStore } from '../store/useGameStore';
+import { FallingPetals } from './FallingPetals';
 
 const DEFAULT_BG = 'linear-gradient(to bottom right, #FFF3F0, #FFDAD1)';
+const DEFAULT_PETAL_COLOR = '#DF7956';
 
 export const GlobalBackground: React.FC = () => {
     const pathname = usePathname();
+    const isQuizActive = useGameStore(state => state.isQuizActive);
 
-    const targetBg = useMemo(() => {
-        if (!pathname) return DEFAULT_BG;
+    const { targetBg, targetPetalColor } = useMemo(() => {
+        if (!pathname) return { targetBg: DEFAULT_BG, targetPetalColor: DEFAULT_PETAL_COLOR };
         const parts = pathname.split('/').filter(Boolean);
         // Pattern: /stage/[category]/[groupId]
         if (parts[0] === 'stage' && parts.length >= 3) {
             const category = (parts[1] === 'katakana' ? 'katakana' : 'hiragana') as 'hiragana' | 'katakana';
             const groupId = parts[2];
             const theme = getTierTheme(category, groupId);
-            return theme.room.pageBgGradient || DEFAULT_BG;
+            return {
+                targetBg: theme.room.pageBgGradient || DEFAULT_BG,
+                targetPetalColor: theme.room.petalBg || DEFAULT_PETAL_COLOR,
+            };
         }
-        return DEFAULT_BG;
+        return { targetBg: DEFAULT_BG, targetPetalColor: DEFAULT_PETAL_COLOR };
     }, [pathname]);
 
     const [activeBg, setActiveBg] = useState(targetBg);
@@ -61,6 +68,9 @@ export const GlobalBackground: React.FC = () => {
                     animation: prevBg ? 'globalBgFadeIn 0.6s ease-in-out forwards' : undefined,
                 }}
             />
+
+            {/* Falling subtle petals & particles */}
+            <FallingPetals color={targetPetalColor} isDimmed={isQuizActive} />
 
             <style jsx global>{`
                 @keyframes globalBgFadeIn {

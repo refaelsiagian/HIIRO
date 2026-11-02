@@ -13,6 +13,10 @@ interface GameState {
     // category -> section -> group -> stage -> petals (perfect streak count)
     petals: Record<string, Record<string, Record<string, Record<string, number>>>>;
     
+    // Active quiz/drill state for ambient UI adjustments
+    isQuizActive: boolean;
+    setIsQuizActive: (active: boolean) => void;
+
     // Actions
     completeStage: (category: string, section: string, group: string, stage: string, stars: number, score: number) => void;
     failStage: (category: string, section: string, group: string, stage: string) => void; // Resets petals
@@ -25,6 +29,8 @@ export const useGameStore = create<GameState>()(
         (set, get) => ({
             progress: {},
             petals: {},
+            isQuizActive: false,
+            setIsQuizActive: (isQuizActive: boolean) => set({ isQuizActive }),
             
             completeStage: (category, section, group, stage, stars, score) => set((state) => {
                 const newProgress = { ...state.progress };
@@ -82,6 +88,7 @@ export const useGameStore = create<GameState>()(
         }),
         {
             name: 'kanadrill-storage',
+            partialize: (state) => ({ progress: state.progress, petals: state.petals }),
         }
     )
 );

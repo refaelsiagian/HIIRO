@@ -5,7 +5,7 @@ import Link from 'next/link';
 
 const MainMenu: React.FC = () => {
     return (
-        <div className="min-h-screen bg-app-bg p-6 font-sans text-slate-800 flex flex-col overflow-hidden">
+        <div className="min-h-screen bg-transparent p-6 font-sans text-slate-800 flex flex-col overflow-hidden">
             {/* HEADER */}
             <header className="max-w-4xl mx-auto text-center mb-16 pt-10 text-[#5C3A21]">
                 <h1 className="text-6xl mb-4 tracking-tight font-arbutus">

@@ -21,7 +21,7 @@ const StageSelection: React.FC = () => {
     const router = useRouter();
     const category = params.category as 'hiragana' | 'katakana';
     const groupId = params.groupId as string;
-    const { progress, petals } = useGameStore();
+    const { progress, petals, setIsQuizActive } = useGameStore();
     const [isMounted, setIsMounted] = useState(false);
 
     useEffect(() => {
@@ -31,6 +31,13 @@ const StageSelection: React.FC = () => {
     const [isSansSerif, setIsSansSerif] = useState(false);
     const [selectedCharIndex, setSelectedCharIndex] = useState(0);
     const [activeDrill, setActiveDrill] = useState<{stageId: string, mode: string} | null>(null);
+
+    useEffect(() => {
+        setIsQuizActive(!!activeDrill);
+        return () => {
+            setIsQuizActive(false);
+        };
+    }, [activeDrill, setIsQuizActive]);
     const [infoOverlayData, setInfoOverlayData] = useState<{ stage: StageConfig; stageNumber: number } | null>(null);
     const [isClosingInfo, setIsClosingInfo] = useState(false);
     const [postGameOverlayData, setPostGameOverlayData] = useState<any>(null);
