@@ -187,48 +187,44 @@ const QuickGlanceDrill: React.FC<QuickGlanceDrillProps> = ({
             {/* Grid */}
             <div className="mt-16 md:mt-24 w-full max-w-6xl px-2 overflow-y-auto hide-scrollbar flex justify-center">
                 <div 
-                    className="grid gap-1 sm:gap-1.5 md:gap-2 justify-center"
+                    className="grid gap-1.5 sm:gap-2 md:gap-2.5 lg:gap-3 justify-center"
                     style={{ gridTemplateColumns: `repeat(${columns}, minmax(0, 1fr))` }}
                 >
-                    {pairs.map((pair, index) => {
-                        const isCompound = pair.kana.length > 1;
-
-                        return (
-                            <button
-                                key={pair.id}
-                                onClick={() => handlePairClick(index)}
-                                disabled={!isActive}
-                                className={`
-                                    flex flex-col items-center justify-center rounded 
-                                    bg-white/60 hover:bg-white active:scale-95 transition-all
-                                    border border-[#FFB7A3] drop-shadow-sm cursor-pointer select-none
-                                    ${columns <= 10
-                                        ? 'w-[38px] h-[50px] sm:w-[60px] sm:h-[72px] md:w-[78px] md:h-[90px] lg:w-[86px] lg:h-[98px] p-0.5 sm:p-1 md:p-1.5'
-                                        : 'w-[34px] h-[46px] sm:w-[54px] sm:h-[66px] md:w-[68px] md:h-[80px] p-0.5 sm:p-1'
-                                    }
-                                `}
+                    {pairs.map((pair, index) => (
+                        <button
+                            key={pair.id}
+                            onClick={() => handlePairClick(index)}
+                            disabled={!isActive}
+                            className={`
+                                flex flex-col items-center justify-center rounded-lg 
+                                bg-white/60 hover:bg-white active:scale-95 transition-all
+                                border border-[#FFB7A3] drop-shadow-sm cursor-pointer select-none
+                                ${columns <= 10
+                                    ? 'w-[38px] h-[52px] sm:w-[62px] sm:h-[76px] md:w-[84px] md:h-[98px] lg:w-[100px] lg:h-[114px] xl:w-[108px] xl:h-[122px] p-1 sm:p-1.5 md:p-2'
+                                    : 'w-[34px] h-[46px] sm:w-[54px] sm:h-[66px] md:w-[70px] md:h-[82px] p-0.5 sm:p-1'
+                                }
+                            `}
+                        >
+                            <span 
+                                className={`whitespace-nowrap leading-none select-none text-[#5C3A21] ${
+                                    columns <= 10
+                                        ? 'text-lg sm:text-2xl md:text-3xl lg:text-4xl'
+                                        : 'text-sm sm:text-xl md:text-2xl lg:text-3xl'
+                                } ${!isSansSerif ? 'font-serif' : 'font-sans'}`}
                             >
-                                <span 
-                                    className={`whitespace-nowrap leading-none select-none text-[#5C3A21] ${
-                                        isCompound 
-                                            ? 'text-sm sm:text-base md:text-xl lg:text-2xl tracking-tight' 
-                                            : 'text-lg sm:text-xl md:text-2xl lg:text-3xl'
-                                    } ${!isSansSerif ? 'font-serif' : 'font-sans'}`}
-                                >
-                                    {pair.kana}
-                                </span>
-                                <span 
-                                    className={`font-arbutus text-[#DF7956] leading-none select-none whitespace-nowrap ${
-                                        columns <= 10 
-                                            ? 'text-[10px] sm:text-xs md:text-sm lg:text-sm mt-1 sm:mt-1.5' 
-                                            : 'text-[9px] sm:text-[11px] md:text-xs lg:text-xs mt-0.5 sm:mt-1'
-                                    }`}
-                                >
-                                    {pair.romaji}
-                                </span>
-                            </button>
-                        );
-                    })}
+                                {pair.kana}
+                            </span>
+                            <span 
+                                className={`font-arbutus text-[#DF7956] leading-none select-none whitespace-nowrap ${
+                                    columns <= 10 
+                                        ? 'text-[10px] sm:text-xs md:text-sm lg:text-base mt-1 sm:mt-1.5 md:mt-2' 
+                                        : 'text-[8px] sm:text-[10px] md:text-xs lg:text-sm mt-0.5 sm:mt-1'
+                                }`}
+                            >
+                                {pair.romaji}
+                            </span>
+                        </button>
+                    ))}
                 </div>
             </div>
         </div>
