@@ -465,7 +465,7 @@
       "か",
       "か"
     ],
-    "group": "y-gyo"
+    "group": "yw-gyo"
   },
   {
     "char": "ゆ",
@@ -478,7 +478,7 @@
       "め",
       "ぬ"
     ],
-    "group": "y-gyo"
+    "group": "yw-gyo"
   },
   {
     "char": "よ",
@@ -491,7 +491,7 @@
       "ほ",
       "ゆ"
     ],
-    "group": "y-gyo"
+    "group": "yw-gyo"
   },
   {
     "char": "ら",
@@ -569,7 +569,7 @@
       "ね",
       "め"
     ],
-    "group": "w-gyo"
+    "group": "yw-gyo"
   },
   {
     "char": "を",
@@ -582,7 +582,7 @@
       "ち",
       "と"
     ],
-    "group": "w-gyo"
+    "group": "yw-gyo"
   },
   {
     "char": "ん",
@@ -1752,7 +1752,7 @@
       "ハ",
       "マ"
     ],
-    "group": "y-gyo"
+    "group": "yw-gyo"
   },
   {
     "char": "ユ",
@@ -1765,7 +1765,7 @@
       "エ",
       "ヨ"
     ],
-    "group": "y-gyo"
+    "group": "yw-gyo"
   },
   {
     "char": "ヨ",
@@ -1778,7 +1778,7 @@
       "エ",
       "ユ"
     ],
-    "group": "y-gyo"
+    "group": "yw-gyo"
   },
   {
     "char": "ワ",
@@ -1791,7 +1791,7 @@
       "ラ",
       "フ"
     ],
-    "group": "w-gyo"
+    "group": "yw-gyo"
   },
   {
     "char": "ヲ",
@@ -1804,7 +1804,7 @@
       "ヨ",
       "フ"
     ],
-    "group": "w-gyo"
+    "group": "yw-gyo"
   },
   {
     "char": "ラ",

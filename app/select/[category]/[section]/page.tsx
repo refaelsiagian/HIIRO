@@ -129,7 +129,7 @@ const GroupSelection: React.FC = () => {
                                     </div>
                                     
                                     <div className="absolute top-[92px] left-[152px] right-0 pr-[42px] flex flex-col items-start z-10">
-                                        <h2 className="text-[36px] font-arbutus font-normal whitespace-pre-line leading-none mb-2 text-left">
+                                        <h2 className="text-[32px] font-arbutus font-normal whitespace-pre-line leading-none mb-2 text-left">
                                             {displayTitle}
                                         </h2>
                                         

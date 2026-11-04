@@ -76,7 +76,7 @@ function isYoonChar(c: RawChar): boolean {
 }
 
 function isYaFamilyChar(c: RawChar): boolean {
-    return c.group === 'y-gyo' || ['ya', 'yu', 'yo'].includes(c.romaji);
+    return c.group === 'y-gyo' || c.group === 'yw-gyo' || ['ya', 'yu', 'yo'].includes(c.romaji);
 }
 
 /**

@@ -98,18 +98,6 @@
     "type": "gojuon"
   },
   {
-    "id": "y-gyo",
-    "category": "hiragana",
-    "display_name": "Ya-Gyō",
-    "subtitle_kanji": "や行",
-    "char_member": [
-      "や",
-      "ゆ",
-      "よ"
-    ],
-    "type": "gojuon"
-  },
-  {
     "id": "r-gyo",
     "category": "hiragana",
     "display_name": "Ra-Gyō",
@@ -124,11 +112,14 @@
     "type": "gojuon"
   },
   {
-    "id": "w-gyo",
+    "id": "yw-gyo",
     "category": "hiragana",
-    "display_name": "Wa-Gyō",
-    "subtitle_kanji": "わ行",
+    "display_name": "Ya-Gyō・Wa-Gyō",
+    "subtitle_kanji": "や行・わ行",
     "char_member": [
+      "や",
+      "ゆ",
+      "よ",
       "わ",
       "を"
     ],
@@ -431,29 +422,6 @@
     "type": "gojuon"
   },
   {
-    "id": "y-gyo",
-    "category": "katakana",
-    "display_name": "Ya-Gyō",
-    "subtitle_kanji": "ヤ行",
-    "char_member": [
-      "ヤ",
-      "ユ",
-      "ヨ"
-    ],
-    "type": "gojuon"
-  },
-  {
-    "id": "w-gyo",
-    "category": "katakana",
-    "display_name": "Wa-Gyō",
-    "subtitle_kanji": "ワ行",
-    "char_member": [
-      "ワ",
-      "ヲ"
-    ],
-    "type": "gojuon"
-  },
-  {
     "id": "r-gyo",
     "category": "katakana",
     "display_name": "Ra-Gyō",
@@ -464,6 +432,20 @@
       "ル",
       "レ",
       "ロ"
+    ],
+    "type": "gojuon"
+  },
+  {
+    "id": "yw-gyo",
+    "category": "katakana",
+    "display_name": "Ya-Gyō・Wa-Gyō",
+    "subtitle_kanji": "ヤ行・ワ行",
+    "char_member": [
+      "ヤ",
+      "ユ",
+      "ヨ",
+      "ワ",
+      "ヲ"
     ],
     "type": "gojuon"
   },

@@ -87,15 +87,7 @@ export const GOJUON_LEVEL_DEFINITIONS: SectionLevelDefinition = {
       gameModes: NORMAL_STAGES_PRESET,
     },
 
-    // 10. Ya-Gyō
-    {
-      id: 'y-gyo',
-      tier: 'regular',
-      groupId: 'y-gyo',
-      gameModes: NORMAL_STAGES_PRESET,
-    },
-
-    // 11. Ra-Gyō
+    // 10. Ra-Gyō
     {
       id: 'r-gyo',
       tier: 'regular',
@@ -103,33 +95,25 @@ export const GOJUON_LEVEL_DEFINITIONS: SectionLevelDefinition = {
       gameModes: NORMAL_STAGES_PRESET,
     },
 
-    // 12. Shōtesuto 3 (Review Ma, Ya, Ra)
+    // 11. Ya-Gyō & Wa-Gyō
+    {
+      id: 'yw-gyo',
+      tier: 'regular',
+      groupId: 'yw-gyo',
+      gameModes: NORMAL_STAGES_PRESET,
+    },
+
+    // 12. Shōtesuto 3 (Review Ma, Ra, Ya-Wa)
     {
       id: 'shotesto-3',
       tier: 'shotesto',
       displayName: 'Shōtesuto 3',
       subtitleKanji: '小テスト 3',
-      includeGroups: ['m-gyo', 'y-gyo', 'r-gyo'],
+      includeGroups: ['m-gyo', 'r-gyo', 'yw-gyo'],
       gameModes: SHOTESTO_STAGES_PRESET,
     },
 
-    // 13. Wa-Gyō
-    {
-      id: 'w-gyo',
-      tier: 'regular',
-      groupId: 'w-gyo',
-      gameModes: NORMAL_STAGES_PRESET,
-    },
-
-    // 14. N Akhiran
-    {
-      id: 'n-final',
-      tier: 'regular',
-      groupId: 'n-final',
-      gameModes: NORMAL_STAGES_PRESET,
-    },
-
-    // 15. Shiken Gojūon (Comprehensive Final for Gojuon)
+    // 13. Shiken Gojūon (Comprehensive Final for Gojuon)
     {
       id: 'shiken-gojuon',
       tier: 'shiken',

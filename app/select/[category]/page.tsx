@@ -81,6 +81,9 @@ const SectionSelection: React.FC = () => {
                                     totalHuruf += group.chars.length;
                                 }
                             });
+                            if (sectionKey === 'gojuon') {
+                                totalHuruf += 1; // Includes 'n' introduced in Shiken
+                            }
                         }
 
                         const stars = { earned, total };
