@@ -103,7 +103,7 @@ const SequenceDrill: React.FC<SequenceDrillProps> = ({ groupChars, onCorrect, on
     }, [displayIndex, isDisplaying, sequence.length, isActive, sequenceLength, displayTime]);
 
     const handleChoice = (romaji: string) => {
-        if (isDisplaying) return;
+        if (isDisplaying || !isActive) return;
 
         const currentIndex = userInput.length;
         if (romaji !== sequence[currentIndex].r) {
@@ -129,7 +129,7 @@ const SequenceDrill: React.FC<SequenceDrillProps> = ({ groupChars, onCorrect, on
     if (sequence.length === 0) return <div>No data</div>;
 
     return (
-        <div className="flex flex-col items-center justify-center w-full h-full text-[#5C3A21] relative">
+        <div className="flex flex-col items-center justify-center w-full h-full text-[#5C3A21] relative select-none">
             {/* Absolute positioning keeps the message stuck in place */}
             <div className="absolute top-0 md:-top-8 w-full flex justify-center">
                 <h2 className="text-xl font-bold font-sans">{message}</h2>
@@ -137,9 +137,15 @@ const SequenceDrill: React.FC<SequenceDrillProps> = ({ groupChars, onCorrect, on
             
             <div className="flex flex-col items-center justify-center min-h-[350px] w-full mt-12">
                 {isDisplaying ? (
-                    <div className="flex items-center justify-center h-48">
+                    <div className="flex items-center justify-center min-h-[200px] sm:min-h-[240px]">
                         {displayIndex < sequenceLength && (
-                            <span className={`text-[240px] leading-none ${!isSansSerif ? 'font-serif' : 'font-sans'}`}>
+                            <span 
+                                className={`whitespace-nowrap leading-none select-none ${
+                                    sequence[displayIndex].k.length > 1
+                                        ? 'text-[130px] sm:text-[170px] md:text-[200px]'
+                                        : 'text-[180px] sm:text-[220px] md:text-[240px]'
+                                } ${!isSansSerif ? 'font-serif' : 'font-sans'}`}
+                            >
                                 {sequence[displayIndex].k}
                             </span>
                         )}
@@ -147,19 +153,30 @@ const SequenceDrill: React.FC<SequenceDrillProps> = ({ groupChars, onCorrect, on
                 ) : (
                     <>
                         {/* Blanks for answers */}
-                        <div className="flex justify-center space-x-8 mb-16 h-24 items-end">
+                        <div className="flex justify-center space-x-4 sm:space-x-8 mb-16 min-h-[5rem] sm:min-h-[6rem] items-end">
                             {sequence.map((item, index) => {
                                 const isAnswered = index < userInput.length;
-                                const answeredRomaji = userInput[index];
-                                const answeredItem = sequence.find(s => s.r === answeredRomaji);
+                                const isCompound = item.k.length > 1;
                                 
                                 return (
                                     <div 
                                         key={index} 
-                                        className={`w-20 flex items-end justify-center pb-2 h-20 ${!isAnswered ? 'border-b-4 border-[#C15A3D]' : ''}`}
+                                        className={`flex items-end justify-center pb-2 h-20 sm:h-24 transition-all duration-200 ${
+                                            isCompound 
+                                                ? 'w-28 sm:w-32 md:w-[8.5rem]' 
+                                                : 'w-16 sm:w-20'
+                                        } ${
+                                            !isAnswered ? 'border-b-4 border-[#C15A3D]' : 'border-b-4 border-transparent'
+                                        }`}
                                     >
-                                        {isAnswered && answeredItem && (
-                                            <span className={`text-6xl ${!isSansSerif ? 'font-serif' : 'font-sans'}`}>{answeredItem.k}</span>
+                                        {isAnswered && (
+                                            <span 
+                                                className={`whitespace-nowrap leading-none text-5xl sm:text-6xl ${
+                                                    !isSansSerif ? 'font-serif' : 'font-sans'
+                                                }`}
+                                            >
+                                                {item.k}
+                                            </span>
                                         )}
                                     </div>
                                 );
@@ -174,7 +191,7 @@ const SequenceDrill: React.FC<SequenceDrillProps> = ({ groupChars, onCorrect, on
                                     <button
                                         key={index}
                                         onClick={() => handleChoice(opt.r)}
-                                        disabled={isUsed}
+                                        disabled={isUsed || !isActive}
                                         className={`relative w-24 h-24 flex items-center justify-center transition-all
                                             ${isUsed ? 'opacity-0 pointer-events-none scale-95' : 'hover:scale-105 active:scale-95 cursor-pointer drop-shadow-xl'}`}
                                     >
@@ -194,7 +211,7 @@ const SequenceDrill: React.FC<SequenceDrillProps> = ({ groupChars, onCorrect, on
                                             }}
                                         />
                                         {/* Text on top */}
-                                        <span className="relative z-10 text-3xl font-arbutus text-[#5C3A21] mt-1">
+                                        <span className="relative z-10 text-3xl font-arbutus text-[#5C3A21] mt-1 select-none">
                                             {opt.r}
                                         </span>
                                     </button>

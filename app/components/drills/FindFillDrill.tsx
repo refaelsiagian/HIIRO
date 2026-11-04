@@ -185,11 +185,20 @@ const FindFillDrill: React.FC<FindFillDrillProps> = ({ groupChars, onCorrect, on
                 <div className="relative z-10 w-full h-full flex flex-col items-center justify-between py-12 md:py-16">
                     {Array.from({ length: capacity }).map((_, slotIdx) => {
                         const isFilled = slotIdx < board.length;
+                        const charItem = isFilled ? board[slotIdx] : null;
+                        const isCompound = charItem ? charItem.k.length > 1 : false;
+
                         return (
-                            <div key={slotIdx} className="w-12 h-12 flex items-center justify-center">
-                                {isFilled ? (
-                                    <span className={`text-4xl md:text-5xl text-[#5C3A21] ${!isSansSerif ? 'font-serif' : 'font-sans'}`}>
-                                        {board[slotIdx].k}
+                            <div key={slotIdx} className="w-full px-1 h-12 flex items-center justify-center">
+                                {isFilled && charItem ? (
+                                    <span 
+                                        className={`whitespace-nowrap leading-none select-none text-[#5C3A21] ${
+                                            isCompound 
+                                                ? 'text-2xl sm:text-3xl md:text-[32px] tracking-tight' 
+                                                : 'text-4xl md:text-5xl'
+                                        } ${!isSansSerif ? 'font-serif' : 'font-sans'}`}
+                                    >
+                                        {charItem.k}
                                     </span>
                                 ) : (
                                     <div className="w-8 h-8 md:w-10 md:h-10 bg-[#C15A3D] rounded-sm transform rotate-45 opacity-80" />
@@ -203,12 +212,13 @@ const FindFillDrill: React.FC<FindFillDrillProps> = ({ groupChars, onCorrect, on
     };
 
     return (
-        <div className="flex flex-col items-center justify-center w-full h-full text-[#5C3A21] relative">
-            <div className="absolute top-0 md:-top-8 w-full flex justify-center">
-                <h2 className="text-xl font-bold font-sans">Tentukan letaknya</h2>
+        <div className="flex flex-col items-center justify-center w-full h-full text-[#5C3A21] relative select-none -translate-y-6 sm:-translate-y-8 md:-translate-y-10">
+            {/* Title / Instruction: close to boards */}
+            <div className="w-full flex justify-center mb-3 md:mb-4">
+                <h2 className="text-lg md:text-xl font-bold font-sans opacity-90">Tentukan letaknya</h2>
             </div>
             
-            <div className="flex w-full items-center justify-center mt-12 gap-8 md:gap-16">
+            <div className="flex w-full items-center justify-center gap-6 sm:gap-8 md:gap-14 lg:gap-16">
                 
                 {/* Left Boards */}
                 <div className="flex space-x-2 md:space-x-6">
@@ -218,17 +228,23 @@ const FindFillDrill: React.FC<FindFillDrillProps> = ({ groupChars, onCorrect, on
 
                 {/* Center Control */}
                 <div className="flex flex-col items-center justify-center">
-                    <div className="flex flex-col items-center justify-center h-[300px]">
-                        <span className={`text-[120px] md:text-[180px] leading-none text-[#5C3A21] ${!isSansSerif ? 'font-serif' : 'font-sans'}`}>
+                    <div className="flex flex-col items-center justify-center h-[260px] md:h-[300px]">
+                        <span 
+                            className={`whitespace-nowrap select-none leading-none text-[#5C3A21] ${
+                                question.char.k.length > 1
+                                    ? 'text-[100px] sm:text-[130px] md:text-[160px]'
+                                    : 'text-[120px] md:text-[180px]'
+                            } ${!isSansSerif ? 'font-serif' : 'font-sans'}`}
+                        >
                             {question.char.k}
                         </span>
-                        <span className="text-4xl md:text-5xl font-arbutus text-[#5C3A21] mt-8">
+                        <span className="text-4xl md:text-5xl font-arbutus text-[#5C3A21] mt-6 md:mt-8">
                             {question.romaji}
                         </span>
                     </div>
 
                     {/* Buttons */}
-                    <div className="flex space-x-4 md:space-x-6 mt-24">
+                    <div className="flex space-x-4 md:space-x-6 mt-16 md:mt-20">
                         {[
                             { action: 0, icon: <ChevronsLeft size={28} /> },
                             { action: 1, icon: <ChevronLeft size={28} /> },
