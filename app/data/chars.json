@@ -2636,7 +2636,7 @@
       "テ",
       "ディ"
     ],
-    "group": "t-special"
+    "group": "tw-special"
   },
   {
     "char": "ディ",
@@ -2649,7 +2649,7 @@
       "デ",
       "ティ"
     ],
-    "group": "t-special"
+    "group": "tw-special"
   },
   {
     "char": "ウィ",
@@ -2662,7 +2662,7 @@
       "イ",
       "フィ"
     ],
-    "group": "w-special"
+    "group": "tw-special"
   },
   {
     "char": "ウェ",
@@ -2675,7 +2675,7 @@
       "エ",
       "フェ"
     ],
-    "group": "w-special"
+    "group": "tw-special"
   },
   {
     "char": "ー",
@@ -2693,7 +2693,7 @@
   {
     "char": "ウォ",
     "category": "katakana",
-    "romaji": "who",
+    "romaji": "wo",
     "consonant": "w",
     "vowel": "o",
     "confusable_with": [
@@ -2701,6 +2701,6 @@
       "オ",
       "フォ"
     ],
-    "group": "w-special"
+    "group": "tw-special"
   }
 ]

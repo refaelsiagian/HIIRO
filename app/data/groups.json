@@ -627,7 +627,7 @@
       "ヴェ",
       "ヴォ"
     ],
-    "type": "tokushuon"
+    "type": "gairaion"
   },
   {
     "id": "f-special",
@@ -640,30 +640,21 @@
       "フェ",
       "フォ"
     ],
-    "type": "tokushuon"
+    "type": "gairaion"
   },
   {
-    "id": "t-special",
+    "id": "tw-special",
     "category": "katakana",
-    "display_name": "Di/Ti",
-    "subtitle_kanji": "ディ・ティ",
+    "display_name": "T & W-Series",
+    "subtitle_kanji": "ティ・ウィ行",
     "char_member": [
       "ティ",
-      "ディ"
-    ],
-    "type": "tokushuon"
-  },
-  {
-    "id": "w-special",
-    "category": "katakana",
-    "display_name": "Wi/We/Wo",
-    "subtitle_kanji": "ウィ・ウェ・ウォ",
-    "char_member": [
+      "ディ",
       "ウィ",
       "ウェ",
       "ウォ"
     ],
-    "type": "tokushuon"
+    "type": "gairaion"
   },
   {
     "id": "symbol",

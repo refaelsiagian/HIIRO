@@ -108,17 +108,16 @@
     ]
   },
   {
-    "id": "tokushuon",
+    "id": "gairaion",
     "category": "katakana",
-    "display_name": "Tokushuon",
-    "subtitle_hiragana": "とくしゅおん",
-    "subtitle_katakana": "トクシュオン",
-    "subtitle_kanji": "特殊音",
+    "display_name": "Gairaion",
+    "subtitle_hiragana": "がいらいおん",
+    "subtitle_katakana": "ガイライオン",
+    "subtitle_kanji": "外来音",
     "group_member": [
       "v-special",
       "f-special",
-      "t-special",
-      "w-special"
+      "tw-special"
     ]
   }
 ]
