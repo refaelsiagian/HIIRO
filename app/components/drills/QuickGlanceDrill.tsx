@@ -171,7 +171,7 @@ const QuickGlanceDrill: React.FC<QuickGlanceDrillProps> = ({
     if (pairs.length === 0) return null;
 
     return (
-        <div className="flex flex-col items-center justify-center w-full h-full text-[#5C3A21] relative pb-12">
+        <div className="flex flex-col items-center justify-center w-full h-full text-[#5C3A21] relative pb-12 select-none">
             
             {/* Header & Progress Bar */}
             <div className="absolute top-0 w-full flex flex-col items-center px-4 max-w-2xl md:-top-6">
@@ -190,25 +190,45 @@ const QuickGlanceDrill: React.FC<QuickGlanceDrillProps> = ({
                     className="grid gap-1 sm:gap-1.5 md:gap-2 justify-center"
                     style={{ gridTemplateColumns: `repeat(${columns}, minmax(0, 1fr))` }}
                 >
-                    {pairs.map((pair, index) => (
-                        <button
-                            key={pair.id}
-                            onClick={() => handlePairClick(index)}
-                            className={`
-                                flex flex-col items-center justify-center p-0.5 sm:p-1 md:p-2 rounded 
-                                bg-white/60 hover:bg-white active:scale-95 transition-all
-                                border border-[#FFB7A3] drop-shadow-sm cursor-pointer
-                                w-[34px] h-[46px] sm:w-[54px] sm:h-[66px] md:w-[68px] md:h-[80px]
-                            `}
-                        >
-                            <span className={`text-lg sm:text-2xl md:text-3xl lg:text-4xl text-[#5C3A21] ${!isSansSerif ? 'font-serif' : 'font-sans'} leading-none`}>
-                                {pair.kana}
-                            </span>
-                            <span className="text-[10px] sm:text-xs md:text-sm lg:text-base font-arbutus text-[#DF7956] mt-0.5 sm:mt-1 leading-none">
-                                {pair.romaji}
-                            </span>
-                        </button>
-                    ))}
+                    {pairs.map((pair, index) => {
+                        const isCompound = pair.kana.length > 1;
+
+                        return (
+                            <button
+                                key={pair.id}
+                                onClick={() => handlePairClick(index)}
+                                disabled={!isActive}
+                                className={`
+                                    flex flex-col items-center justify-center rounded 
+                                    bg-white/60 hover:bg-white active:scale-95 transition-all
+                                    border border-[#FFB7A3] drop-shadow-sm cursor-pointer select-none
+                                    ${columns <= 10
+                                        ? 'w-[38px] h-[50px] sm:w-[60px] sm:h-[72px] md:w-[78px] md:h-[90px] lg:w-[86px] lg:h-[98px] p-0.5 sm:p-1 md:p-1.5'
+                                        : 'w-[34px] h-[46px] sm:w-[54px] sm:h-[66px] md:w-[68px] md:h-[80px] p-0.5 sm:p-1'
+                                    }
+                                `}
+                            >
+                                <span 
+                                    className={`whitespace-nowrap leading-none select-none text-[#5C3A21] ${
+                                        isCompound 
+                                            ? 'text-sm sm:text-base md:text-xl lg:text-2xl tracking-tight' 
+                                            : 'text-lg sm:text-xl md:text-2xl lg:text-3xl'
+                                    } ${!isSansSerif ? 'font-serif' : 'font-sans'}`}
+                                >
+                                    {pair.kana}
+                                </span>
+                                <span 
+                                    className={`font-arbutus text-[#DF7956] leading-none select-none whitespace-nowrap ${
+                                        columns <= 10 
+                                            ? 'text-[10px] sm:text-xs md:text-sm lg:text-sm mt-1 sm:mt-1.5' 
+                                            : 'text-[9px] sm:text-[11px] md:text-xs lg:text-xs mt-0.5 sm:mt-1'
+                                    }`}
+                                >
+                                    {pair.romaji}
+                                </span>
+                            </button>
+                        );
+                    })}
                 </div>
             </div>
         </div>
