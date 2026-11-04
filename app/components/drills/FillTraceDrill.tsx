@@ -149,7 +149,7 @@ const FillTraceDrill: React.FC<FillTraceDrillProps> = ({ groupChars, onCorrect, 
     };
 
     return (
-        <div className="flex flex-col items-center justify-center w-full h-full text-[#5C3A21] relative">
+        <div className="flex flex-col items-center justify-center w-full h-full text-[#5C3A21] relative select-none">
             <div className="absolute top-0 md:-top-8 w-full flex justify-center">
                 <h2 className={`text-xl font-bold font-sans ${wrongAttempt ? 'text-red-500' : ''}`}>
                     {message}
@@ -159,33 +159,40 @@ const FillTraceDrill: React.FC<FillTraceDrillProps> = ({ groupChars, onCorrect, 
             <div className="flex flex-col items-center justify-center w-full mt-12">
                 
                 {/* Spots row */}
-                <div className="flex justify-center items-end space-x-2 md:space-x-4 h-32 mb-16 px-4 w-full max-w-5xl overflow-x-auto hide-scrollbar">
+                <div className="flex justify-center items-end gap-3 sm:gap-4 md:gap-6 min-h-[5rem] sm:min-h-[6rem] md:min-h-[7rem] mb-12 sm:mb-16 px-4 w-full max-w-5xl overflow-x-auto hide-scrollbar">
                     {sequence.map((item, index) => {
                         const isMemoryVisible = isVisibleInMemory(index);
                         const targetIndex = fillOrder[currentStep];
                         const isAnswerTarget = phase === 'answer' && index === targetIndex;
                         const isFilled = phase === 'answer' && fillOrder.indexOf(index) < currentStep;
+                        const isCompound = item.k.length > 1;
 
                         return (
                             <div 
                                 key={index} 
-                                className={`w-12 h-16 md:w-16 md:h-24 flex items-end justify-center pb-2 flex-shrink-0 transition-all duration-300 relative overflow-hidden rounded-t-lg
-                                    ${isAnswerTarget ? 'border-b-4 border-[#C15A3D]' : 'border-b-4 border-[#C15A3D]/40'}`}
+                                className={`flex items-end justify-center pb-2 h-20 sm:h-24 md:h-28 flex-shrink-0 transition-all duration-300 relative rounded-t-lg ${
+                                    isCompound 
+                                        ? 'w-24 sm:w-28 md:w-32' 
+                                        : 'w-14 sm:w-16 md:w-20'
+                                } ${
+                                    isAnswerTarget ? 'border-b-4 border-[#C15A3D]' : 'border-b-4 border-[#C15A3D]/40'
+                                }`}
                             >
                                 {isAnswerTarget && (
-                                    <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent"></div>
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent rounded-t-lg"></div>
                                 )}
                                 <span 
-                                    className={`text-4xl md:text-5xl transition-opacity duration-300 relative z-10
-                                        ${!isSansSerif ? 'font-serif' : 'font-sans'}
-                                        ${isMemoryVisible || isFilled ? 'opacity-100 scale-100' : 'opacity-0 scale-90'}
-                                    `}
+                                    className={`whitespace-nowrap leading-none select-none text-4xl sm:text-5xl md:text-6xl transition-opacity duration-300 relative z-10 ${
+                                        !isSansSerif ? 'font-serif' : 'font-sans'
+                                    } ${isMemoryVisible || isFilled ? 'opacity-100 scale-100' : 'opacity-0 scale-90'}`}
                                 >
                                     {item.k}
                                 </span>
                                 {/* Optional: showing question mark for target in answer phase */}
                                 {isAnswerTarget && !isFilled && (
-                                    <span className="absolute text-3xl opacity-30 font-sans font-bold bottom-4 animate-pulse z-10">?</span>
+                                    <div className="absolute inset-0 flex items-center justify-center z-10 pointer-events-none">
+                                        <span className="text-3xl md:text-4xl opacity-30 font-sans font-bold animate-pulse">?</span>
+                                    </div>
                                 )}
                             </div>
                         );
@@ -193,33 +200,43 @@ const FillTraceDrill: React.FC<FillTraceDrillProps> = ({ groupChars, onCorrect, 
                 </div>
 
                 {/* Options (Only in answer phase) */}
-                <div className={`flex flex-col items-center justify-center gap-4 w-full px-4 transition-opacity duration-500 ${phase === 'answer' ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
+                <div className={`flex flex-col items-center justify-center gap-3 sm:gap-4 w-full px-4 transition-opacity duration-500 ${phase === 'answer' ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
                     {options.map((row, rowIndex) => (
-                        <div key={rowIndex} className="flex justify-center gap-4">
-                            {row.map((opt, index) => (
-                                <button
-                                    key={index}
-                                    onClick={() => handleChoice(opt.k)}
-                                    disabled={phase !== 'answer'}
-                                    className="relative w-16 h-16 md:w-20 md:h-20 flex items-center justify-center hover:scale-105 active:scale-95 cursor-pointer drop-shadow-md transition-transform"
-                                >
-                                    <div 
-                                        className="absolute inset-0 w-full h-full bg-[#FFB7A3]"
-                                        style={{ 
-                                            backgroundColor: 'var(--theme-petal-bg, #FFB7A3)',
-                                            maskImage: 'url(/icons/shuriken.svg)', 
-                                            WebkitMaskImage: 'url(/icons/shuriken.svg)', 
-                                            maskSize: 'contain', 
-                                            WebkitMaskSize: 'contain',
-                                            maskPosition: 'center',
-                                            maskRepeat: 'no-repeat',
-                                        }}
-                                    />
-                                    <span className={`relative z-10 text-3xl md:text-4xl text-[#5C3A21] ${!isSansSerif ? 'font-serif' : 'font-sans'}`}>
-                                        {opt.k}
-                                    </span>
-                                </button>
-                            ))}
+                        <div key={rowIndex} className="flex justify-center gap-3 sm:gap-4">
+                            {row.map((opt, index) => {
+                                const isCompound = opt.k.length > 1;
+
+                                return (
+                                    <button
+                                        key={index}
+                                        onClick={() => handleChoice(opt.k)}
+                                        disabled={phase !== 'answer' || !isActive}
+                                        className="relative w-16 h-16 md:w-20 md:h-20 flex items-center justify-center hover:scale-105 active:scale-95 cursor-pointer drop-shadow-md transition-transform"
+                                    >
+                                        <div 
+                                            className="absolute inset-0 w-full h-full bg-[#FFB7A3]"
+                                            style={{ 
+                                                backgroundColor: 'var(--theme-petal-bg, #FFB7A3)',
+                                                maskImage: 'url(/icons/shuriken.svg)', 
+                                                WebkitMaskImage: 'url(/icons/shuriken.svg)', 
+                                                maskSize: 'contain', 
+                                                WebkitMaskSize: 'contain',
+                                                maskPosition: 'center',
+                                                maskRepeat: 'no-repeat',
+                                            }}
+                                        />
+                                        <span 
+                                            className={`relative z-10 text-[#5C3A21] whitespace-nowrap leading-none select-none ${
+                                                isCompound 
+                                                    ? 'text-2xl sm:text-2xl md:text-3xl tracking-tight' 
+                                                    : 'text-3xl md:text-4xl'
+                                            } ${!isSansSerif ? 'font-serif' : 'font-sans'}`}
+                                        >
+                                            {opt.k}
+                                        </span>
+                                    </button>
+                                );
+                            })}
                         </div>
                     ))}
                 </div>
