@@ -75,7 +75,7 @@ export const SHOTESTO_STAGES_PRESET: StageConfig[] = [
     subtitle: 'Check Truth',
     instruction: 'Periksa pernyataan dan tentukan benar atau salah',
     timer: 90,
-    scoreGoal: 10,
+    scoreGoal: 0,
     filepath: 'app/components/drills/CheckTruthDrill.tsx',
     drillType: 'check-truth',
   },
@@ -85,7 +85,7 @@ export const SHOTESTO_STAGES_PRESET: StageConfig[] = [
     subtitle: 'Fill the Trace',
     instruction: 'Ingat urutan kana yang muncul lalu isi posisi yang ditandai',
     timer: 180,
-    scoreGoal: 5,
+    scoreGoal: 1,
     filepath: 'app/components/drills/FillTraceDrill.tsx',
     drillType: 'fill-trace',
     options: {
@@ -98,7 +98,7 @@ export const SHOTESTO_STAGES_PRESET: StageConfig[] = [
     subtitle: 'Flip It!',
     instruction: 'Buka kartu dan cocokkan pasangan kana dengan romaji yang tepat',
     timer: 180,
-    scoreGoal: 16, // Make sure the score to match the pairs times wave counts
+    scoreGoal: 0, // Make sure the score to match the pairs times wave counts
     filepath: 'app/components/drills/FlipItDrill.tsx',
     drillType: 'flip-it',
     options: {
@@ -135,7 +135,7 @@ export const SHIKEN_STAGES_PRESET: StageConfig[] = [
     subtitle: 'Check Truth',
     instruction: 'Periksa pernyataan dan tentukan benar atau salah',
     timer: 90,
-    scoreGoal: 10,
+    scoreGoal: 0,
     filepath: 'app/components/drills/CheckTruthDrill.tsx',
     drillType: 'check-truth',
   },
@@ -145,7 +145,7 @@ export const SHIKEN_STAGES_PRESET: StageConfig[] = [
     subtitle: 'Fill the Trace',
     instruction: 'Ingat urutan kana yang muncul lalu isi posisi yang ditandai',
     timer: 180,
-    scoreGoal: 1,
+    scoreGoal: 0,
     filepath: 'app/components/drills/FillTraceDrill.tsx',
     drillType: 'fill-trace',
     options: {
@@ -158,7 +158,7 @@ export const SHIKEN_STAGES_PRESET: StageConfig[] = [
     subtitle: 'Flip It!',
     instruction: 'Buka kartu dan cocokkan pasangan kana dengan romaji yang tepat',
     timer: 210,
-    scoreGoal: 24, // Make sure the score to match the pairs times wave counts
+    scoreGoal: 0, // Make sure the score to match the pairs times wave counts
     filepath: 'app/components/drills/FlipItDrill.tsx',
     drillType: 'flip-it',
     options: {
@@ -172,7 +172,7 @@ export const SHIKEN_STAGES_PRESET: StageConfig[] = [
     subtitle: 'Quick Glance',
     instruction: 'Temukan pasangan yang cocok di antara grid sebelum bar merah habis',
     timer: 150,
-    scoreGoal: 20,
+    scoreGoal: 10,
     filepath: 'app/components/drills/QuickGlanceDrill.tsx',
     drillType: 'quick-glance',
     options: {

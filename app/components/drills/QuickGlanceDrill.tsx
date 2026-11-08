@@ -202,7 +202,7 @@ const QuickGlanceDrill: React.FC<QuickGlanceDrillProps> = ({
                             >
                                 {pair.kana}
                             </span>
-                            <span className="text-[9px] sm:text-xs md:text-xs lg:text-sm font-arbutus text-[#DF7956] mt-0.5 sm:mt-1 leading-none select-none whitespace-nowrap">
+                            <span className="text-[10px] sm:text-xs md:text-sm lg:text-base font-arbutus text-[#DF7956] mt-1 sm:mt-1.5 leading-none select-none whitespace-nowrap">
                                 {pair.romaji}
                             </span>
                         </button>
