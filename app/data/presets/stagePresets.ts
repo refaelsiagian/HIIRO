@@ -145,7 +145,7 @@ export const SHIKEN_STAGES_PRESET: StageConfig[] = [
     subtitle: 'Fill the Trace',
     instruction: 'Ingat urutan kana yang muncul lalu isi posisi yang ditandai',
     timer: 180,
-    scoreGoal: 0,
+    scoreGoal: 7,
     filepath: 'app/components/drills/FillTraceDrill.tsx',
     drillType: 'fill-trace',
     options: {

@@ -1,4 +1,7 @@
+"use client";
+
 import React from 'react';
+import './falling-petals.css';
 
 interface FallingPetalsProps {
     color?: string;
@@ -90,65 +93,6 @@ export const FallingPetals: React.FC<FallingPetalsProps> = ({ color = '#DF7956',
                     </div>
                 </div>
             ))}
-
-            <style jsx global>{`
-                @keyframes fallingPetal {
-                    0% {
-                        transform: translateY(-80px);
-                    }
-                    100% {
-                        transform: translateY(calc(100vh + 80px));
-                    }
-                }
-
-                @keyframes swayPetal1 {
-                    0% {
-                        transform: translateX(-24px) rotate(0deg) rotateY(0deg);
-                    }
-                    50% {
-                        transform: translateX(24px) rotate(45deg) rotateY(55deg);
-                    }
-                    100% {
-                        transform: translateX(-24px) rotate(-30deg) rotateY(0deg);
-                    }
-                }
-
-                @keyframes swayPetal2 {
-                    0% {
-                        transform: translateX(30px) rotate(20deg) rotateX(10deg);
-                    }
-                    50% {
-                        transform: translateX(-26px) rotate(-40deg) rotateX(50deg);
-                    }
-                    100% {
-                        transform: translateX(30px) rotate(20deg) rotateX(10deg);
-                    }
-                }
-
-                @keyframes swayPetal3 {
-                    0% {
-                        transform: translateX(-35px) rotate(-15deg) rotateY(30deg);
-                    }
-                    50% {
-                        transform: translateX(35px) rotate(60deg) rotateY(0deg);
-                    }
-                    100% {
-                        transform: translateX(-35px) rotate(-15deg) rotateY(30deg);
-                    }
-                }
-
-                @keyframes swayPetal4 {
-                    0% {
-                        transform: translateX(18px) rotate(40deg) rotateZ(0deg);
-                    }
-                    50% {
-                        transform: translateX(-20px) rotate(-25deg) rotateZ(25deg);
-                    }
-                    100% {
-                        transform: translateX(18px) rotate(40deg) rotateZ(0deg);
-                    }
-                }
-            `}</style>
         </div>
     );
 };

@@ -2,12 +2,18 @@
 
 import React from 'react';
 import Link from 'next/link';
+import { AuthButton } from './components/AuthButton';
 
 const MainMenu: React.FC = () => {
     return (
-        <div className="min-h-screen bg-transparent p-6 font-sans text-slate-800 flex flex-col overflow-hidden">
+        <div className="min-h-screen bg-transparent p-6 font-sans text-slate-800 flex flex-col overflow-hidden relative">
+            {/* TOP BAR / AUTH BUTTON */}
+            <div className="w-full max-w-4xl mx-auto flex justify-end items-center pt-2 sm:pt-4 px-2 z-20">
+                <AuthButton />
+            </div>
+
             {/* HEADER */}
-            <header className="max-w-4xl mx-auto text-center mb-16 pt-10 text-[#5C3A21]">
+            <header className="max-w-4xl mx-auto text-center mb-16 pt-4 text-[#5C3A21]">
                 <h1 className="text-6xl mb-4 tracking-tight font-arbutus">
                     Hiiro
                 </h1>

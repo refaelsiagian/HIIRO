@@ -1,0 +1,697 @@
+{
+  "state": {
+    "progress": {
+      "hiragana": {
+        "dakuon-handakuon": {
+          "g-gyo": {
+            "true-false-1": {
+              "stars": 3,
+              "score": 10
+            },
+            "true-false-2": {
+              "stars": 3,
+              "score": 10
+            },
+            "sequence-1": {
+              "stars": 3,
+              "score": 5
+            },
+            "sequence-2": {
+              "stars": 3,
+              "score": 7
+            },
+            "find-fill-1": {
+              "stars": 3,
+              "score": 10
+            }
+          },
+          "z-gyo": {
+            "true-false-1": {
+              "stars": 3,
+              "score": 10
+            },
+            "true-false-2": {
+              "stars": 3,
+              "score": 10
+            },
+            "sequence-1": {
+              "stars": 3,
+              "score": 5
+            },
+            "sequence-2": {
+              "stars": 3,
+              "score": 7
+            },
+            "find-fill-1": {
+              "stars": 3,
+              "score": 10
+            }
+          },
+          "d-gyo": {
+            "true-false-1": {
+              "stars": 3,
+              "score": 10
+            },
+            "true-false-2": {
+              "stars": 3,
+              "score": 10
+            },
+            "sequence-1": {
+              "stars": 3,
+              "score": 5
+            },
+            "sequence-2": {
+              "stars": 3,
+              "score": 7
+            },
+            "find-fill-1": {
+              "stars": 3,
+              "score": 10
+            }
+          },
+          "shotesto-dakuon-1": {
+            "check-truth-1": {
+              "stars": 2,
+              "score": 10
+            },
+            "fill-trace-1": {
+              "stars": 3,
+              "score": 5
+            },
+            "flip-it-1": {
+              "stars": 3,
+              "score": 16
+            },
+            "quick-glance-1": {
+              "stars": 3,
+              "score": 15
+            }
+          },
+          "b-gyo": {
+            "true-false-1": {
+              "stars": 3,
+              "score": 10
+            }
+          },
+          "p-gyo": {
+            "true-false-1": {
+              "stars": 3,
+              "score": 10
+            }
+          },
+          "shiken-dakuon-handakuon": {
+            "check-truth-1": {
+              "stars": 1,
+              "score": 10
+            },
+            "fill-trace-1": {
+              "stars": 2,
+              "score": 2
+            },
+            "flip-it-1": {
+              "stars": 3,
+              "score": 5
+            },
+            "quick-glance-1": {
+              "stars": 3,
+              "score": 20
+            }
+          }
+        },
+        "daishiken": {
+          "daishiken-final": {
+            "the-other-one-1": {
+              "stars": 3,
+              "score": 10
+            },
+            "wordbuilder-1": {
+              "stars": 3,
+              "score": 10
+            },
+            "under-guidance-1": {
+              "stars": 3,
+              "score": 8
+            },
+            "textbuilder-1": {
+              "stars": 3,
+              "score": 8
+            }
+          }
+        },
+        "gojuon": {
+          "a-gyo": {
+            "true-false-1": {
+              "stars": 3,
+              "score": 10
+            },
+            "true-false-2": {
+              "stars": 3,
+              "score": 0
+            },
+            "sequence-1": {
+              "stars": 3,
+              "score": 5
+            },
+            "sequence-2": {
+              "stars": 2,
+              "score": 7
+            }
+          },
+          "k-gyo": {
+            "true-false-1": {
+              "stars": 3,
+              "score": 1
+            },
+            "true-false-2": {
+              "stars": 3,
+              "score": 1
+            },
+            "sequence-1": {
+              "stars": 3,
+              "score": 1
+            },
+            "sequence-2": {
+              "stars": 3,
+              "score": 0
+            },
+            "find-fill-1": {
+              "stars": 3,
+              "score": 0
+            }
+          },
+          "s-gyo": {
+            "true-false-1": {
+              "stars": 3,
+              "score": 0
+            },
+            "true-false-2": {
+              "stars": 3,
+              "score": 0
+            },
+            "sequence-1": {
+              "stars": 3,
+              "score": 0
+            },
+            "sequence-2": {
+              "stars": 3,
+              "score": 0
+            },
+            "find-fill-1": {
+              "stars": 3,
+              "score": 0
+            }
+          },
+          "shotesto-1": {
+            "check-truth-1": {
+              "stars": 3,
+              "score": 0
+            },
+            "fill-trace-1": {
+              "stars": 3,
+              "score": 0
+            },
+            "flip-it-1": {
+              "stars": 3,
+              "score": 0
+            },
+            "quick-glance-1": {
+              "stars": 3,
+              "score": 0
+            }
+          },
+          "t-gyo": {
+            "true-false-1": {
+              "stars": 3,
+              "score": 0
+            },
+            "true-false-2": {
+              "stars": 3,
+              "score": 0
+            },
+            "sequence-1": {
+              "stars": 3,
+              "score": 0
+            },
+            "sequence-2": {
+              "stars": 3,
+              "score": 0
+            },
+            "find-fill-1": {
+              "stars": 3,
+              "score": 0
+            }
+          },
+          "n-gyo": {
+            "true-false-1": {
+              "stars": 3,
+              "score": 0
+            },
+            "true-false-2": {
+              "stars": 3,
+              "score": 0
+            },
+            "sequence-1": {
+              "stars": 3,
+              "score": 0
+            },
+            "sequence-2": {
+              "stars": 3,
+              "score": 0
+            },
+            "find-fill-1": {
+              "stars": 3,
+              "score": 0
+            }
+          },
+          "h-gyo": {
+            "true-false-1": {
+              "stars": 3,
+              "score": 0
+            },
+            "true-false-2": {
+              "stars": 3,
+              "score": 0
+            },
+            "sequence-1": {
+              "stars": 3,
+              "score": 0
+            },
+            "sequence-2": {
+              "stars": 3,
+              "score": 0
+            },
+            "find-fill-1": {
+              "stars": 3,
+              "score": 0
+            }
+          },
+          "shotesto-2": {
+            "check-truth-1": {
+              "stars": 3,
+              "score": 0
+            },
+            "fill-trace-1": {
+              "stars": 3,
+              "score": 0
+            },
+            "flip-it-1": {
+              "stars": 3,
+              "score": 0
+            },
+            "quick-glance-1": {
+              "stars": 3,
+              "score": 0
+            }
+          },
+          "m-gyo": {
+            "true-false-1": {
+              "stars": 3,
+              "score": 0
+            },
+            "true-false-2": {
+              "stars": 3,
+              "score": 0
+            },
+            "sequence-1": {
+              "stars": 3,
+              "score": 0
+            },
+            "sequence-2": {
+              "stars": 3,
+              "score": 0
+            },
+            "find-fill-1": {
+              "stars": 3,
+              "score": 0
+            }
+          },
+          "y-gyo": {
+            "true-false-1": {
+              "stars": 3,
+              "score": 10
+            },
+            "true-false-2": {
+              "stars": 3,
+              "score": 10
+            },
+            "sequence-1": {
+              "stars": 3,
+              "score": 5
+            },
+            "sequence-2": {
+              "stars": 2,
+              "score": 7
+            }
+          },
+          "r-gyo": {
+            "true-false-1": {
+              "stars": 3,
+              "score": 0
+            },
+            "true-false-2": {
+              "stars": 3,
+              "score": 0
+            },
+            "sequence-1": {
+              "stars": 3,
+              "score": 0
+            },
+            "sequence-2": {
+              "stars": 3,
+              "score": 0
+            },
+            "find-fill-1": {
+              "stars": 3,
+              "score": 0
+            }
+          },
+          "yw-gyo": {
+            "true-false-1": {
+              "stars": 3,
+              "score": 0
+            }
+          },
+          "shotesto-3": {
+            "check-truth-1": {
+              "stars": 3,
+              "score": 0
+            }
+          },
+          "shiken-gojuon": {
+            "check-truth-1": {
+              "stars": 3,
+              "score": 0
+            },
+            "fill-trace-1": {
+              "stars": 3,
+              "score": 0
+            }
+          }
+        },
+        "yoon": {
+          "k-yoon": {
+            "true-false-1": {
+              "stars": 3,
+              "score": 10
+            },
+            "true-false-2": {
+              "stars": 1,
+              "score": 10
+            },
+            "sequence-1": {
+              "stars": 2,
+              "score": 5
+            }
+          }
+        }
+      },
+      "katakana": {
+        "tokushuon": {
+          "v-special": {
+            "true-false-1": {
+              "stars": 3,
+              "score": 0
+            },
+            "true-false-2": {
+              "stars": 3,
+              "score": 0
+            },
+            "sequence-1": {
+              "stars": 3,
+              "score": 0
+            },
+            "sequence-2": {
+              "stars": 3,
+              "score": 0
+            }
+          }
+        },
+        "gairaion": {
+          "v-special": {
+            "true-false-1": {
+              "stars": 3,
+              "score": 0
+            },
+            "true-false-2": {
+              "stars": 3,
+              "score": 0
+            },
+            "sequence-1": {
+              "stars": 3,
+              "score": 0
+            },
+            "sequence-2": {
+              "stars": 3,
+              "score": 0
+            },
+            "find-fill-1": {
+              "stars": 3,
+              "score": 0
+            }
+          },
+          "f-special": {
+            "true-false-1": {
+              "stars": 3,
+              "score": 0
+            }
+          },
+          "tw-special": {
+            "true-false-1": {
+              "stars": 3,
+              "score": 0
+            },
+            "true-false-2": {
+              "stars": 3,
+              "score": 0
+            }
+          },
+          "shotesto-gairaion-1": {
+            "check-truth-1": {
+              "stars": 3,
+              "score": 0
+            },
+            "fill-trace-1": {
+              "stars": 3,
+              "score": 0
+            },
+            "flip-it-1": {
+              "stars": 3,
+              "score": 0
+            }
+          },
+          "shiken-gairaion": {
+            "check-truth-1": {
+              "stars": 3,
+              "score": 0
+            },
+            "fill-trace-1": {
+              "stars": 3,
+              "score": 0
+            },
+            "flip-it-1": {
+              "stars": 3,
+              "score": 0
+            },
+            "quick-glance-1": {
+              "stars": 3,
+              "score": 0
+            }
+          }
+        }
+      }
+    },
+    "petals": {
+      "hiragana": {
+        "dakuon-handakuon": {
+          "g-gyo": {
+            "true-false-1": 4,
+            "true-false-2": 1,
+            "sequence-1": 1,
+            "sequence-2": 1,
+            "find-fill-1": 1
+          },
+          "z-gyo": {
+            "true-false-1": 1,
+            "true-false-2": 1,
+            "sequence-1": 1,
+            "sequence-2": 1,
+            "find-fill-1": 1
+          },
+          "d-gyo": {
+            "true-false-1": 1,
+            "true-false-2": 1,
+            "sequence-1": 0,
+            "sequence-2": 1,
+            "find-fill-1": 1
+          },
+          "shotesto-dakuon-1": {
+            "check-truth-1": 0,
+            "fill-trace-1": 0,
+            "flip-it-1": 2,
+            "quick-glance-1": 1
+          },
+          "b-gyo": {
+            "true-false-1": 1
+          },
+          "p-gyo": {
+            "true-false-1": 1
+          },
+          "shiken-dakuon-handakuon": {
+            "check-truth-1": 0,
+            "fill-trace-1": 0,
+            "flip-it-1": 1,
+            "quick-glance-1": 0
+          }
+        },
+        "daishiken": {
+          "daishiken-final": {
+            "daishiken-exam-1": 0,
+            "the-other-one-1": 0,
+            "wordbuilder-1": 0,
+            "under-guidance-1": 1,
+            "textbuilder-1": 0
+          }
+        },
+        "gojuon": {
+          "a-gyo": {
+            "true-false-1": 4,
+            "true-false-2": 1,
+            "sequence-1": 1,
+            "sequence-2": 0
+          },
+          "k-gyo": {
+            "true-false-1": 1,
+            "true-false-2": 2,
+            "sequence-1": 1,
+            "sequence-2": 1,
+            "find-fill-1": 1
+          },
+          "s-gyo": {
+            "true-false-1": 1,
+            "true-false-2": 1,
+            "sequence-1": 1,
+            "sequence-2": 1,
+            "find-fill-1": 1
+          },
+          "shotesto-1": {
+            "check-truth-1": 1,
+            "fill-trace-1": 1,
+            "flip-it-1": 2,
+            "quick-glance-1": 1
+          },
+          "t-gyo": {
+            "true-false-1": 1,
+            "true-false-2": 1,
+            "sequence-1": 1,
+            "sequence-2": 1,
+            "find-fill-1": 1
+          },
+          "n-gyo": {
+            "true-false-1": 1,
+            "true-false-2": 1,
+            "sequence-1": 1,
+            "sequence-2": 1,
+            "find-fill-1": 1
+          },
+          "h-gyo": {
+            "true-false-1": 1,
+            "true-false-2": 1,
+            "sequence-1": 1,
+            "sequence-2": 1,
+            "find-fill-1": 1
+          },
+          "shotesto-2": {
+            "check-truth-1": 1,
+            "fill-trace-1": 1,
+            "flip-it-1": 1,
+            "quick-glance-1": 1
+          },
+          "m-gyo": {
+            "true-false-1": 1,
+            "true-false-2": 1,
+            "sequence-1": 1,
+            "sequence-2": 1,
+            "find-fill-1": 1
+          },
+          "y-gyo": {
+            "true-false-1": 1,
+            "true-false-2": 1,
+            "sequence-1": 1,
+            "sequence-2": 0,
+            "find-fill-1": 0
+          },
+          "r-gyo": {
+            "true-false-1": 1,
+            "true-false-2": 1,
+            "sequence-1": 1,
+            "sequence-2": 1,
+            "find-fill-1": 1
+          },
+          "yw-gyo": {
+            "true-false-1": 1
+          },
+          "shotesto-3": {
+            "check-truth-1": 1
+          },
+          "shiken-gojuon": {
+            "check-truth-1": 1,
+            "fill-trace-1": 1
+          }
+        },
+        "yoon": {
+          "k-yoon": {
+            "true-false-1": 1,
+            "true-false-2": 0,
+            "sequence-1": 0,
+            "sequence-2": 0
+          }
+        }
+      },
+      "katakana": {
+        "daishiken": {
+          "daishiken-final": {
+            "the-other-one-1": 0
+          }
+        },
+        "tokushuon": {
+          "v-special": {
+            "true-false-1": 1,
+            "true-false-2": 1,
+            "sequence-1": 1,
+            "sequence-2": 1
+          }
+        },
+        "gairaion": {
+          "v-special": {
+            "true-false-1": 1,
+            "true-false-2": 1,
+            "sequence-1": 1,
+            "sequence-2": 1,
+            "find-fill-1": 0
+          },
+          "f-special": {
+            "true-false-1": 1
+          },
+          "tw-special": {
+            "true-false-1": 0,
+            "true-false-2": 1,
+            "sequence-1": 0
+          },
+          "shotesto-gairaion-1": {
+            "check-truth-1": 1,
+            "fill-trace-1": 2,
+            "flip-it-1": 1,
+            "quick-glance-1": 0
+          },
+          "shiken-gairaion": {
+            "check-truth-1": 1,
+            "fill-trace-1": 2,
+            "flip-it-1": 1,
+            "quick-glance-1": 0
+          }
+        }
+      }
+    }
+  },
+  "version": 0
+}

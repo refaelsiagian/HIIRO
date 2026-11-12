@@ -1,5 +1,6 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
+import { saveStageProgressToCloud } from '../../lib/supabase/syncProgress';
 
 interface StageScore {
     stars: number; // 0-3
@@ -40,9 +41,13 @@ export const useGameStore = create<GameState>()(
                 
                 // Only save if it's a new high score for stars
                 const currentStars = newProgress[category][section][group][stage]?.stars || 0;
+                let finalStars = currentStars;
+                let finalScore = newProgress[category][section][group][stage]?.score || score;
                 
                 if (stars > currentStars) {
                     newProgress[category][section][group][stage] = { stars, score };
+                    finalStars = stars;
+                    finalScore = score;
                 }
 
                 const newPetals = { ...state.petals };
@@ -50,15 +55,19 @@ export const useGameStore = create<GameState>()(
                 newPetals[category][section] = { ...(typeof newPetals[category][section] === 'object' ? newPetals[category][section] : {}) };
                 newPetals[category][section][group] = { ...(newPetals[category][section][group] || {}) };
                 
+                let nextPetals = 0;
                 // If it's a perfect 3-star finish, increment petals streak
                 if (stars === 3) {
                     const currentPetals = newPetals[category][section][group][stage] || 0;
-                    // Max petals logic can be handled in UI, or we can cap it here. We'll let UI handle it.
-                    newPetals[category][section][group][stage] = currentPetals + 1;
+                    nextPetals = currentPetals + 1;
+                    newPetals[category][section][group][stage] = nextPetals;
                 } else {
                     // "if you fail getting 3 star... petals reset"
                     newPetals[category][section][group][stage] = 0;
                 }
+
+                // Asynchronously save to cloud if logged in
+                saveStageProgressToCloud(category, section, group, stage, finalStars, finalScore, nextPetals);
 
                 return { progress: newProgress, petals: newPetals };
             }),
@@ -69,6 +78,11 @@ export const useGameStore = create<GameState>()(
                 newPetals[category][section] = { ...(typeof newPetals[category][section] === 'object' ? newPetals[category][section] : {}) };
                 newPetals[category][section][group] = { ...(newPetals[category][section][group] || {}) };
                 newPetals[category][section][group][stage] = 0; // Reset streak
+
+                const currentStars = state.progress[category]?.[section]?.[group]?.[stage]?.stars || 0;
+                const currentScore = state.progress[category]?.[section]?.[group]?.[stage]?.score || 0;
+                saveStageProgressToCloud(category, section, group, stage, currentStars, currentScore, 0);
+
                 return { petals: newPetals };
             }),
 

@@ -71,13 +71,6 @@ export const GlobalBackground: React.FC = () => {
 
             {/* Falling subtle petals & particles */}
             <FallingPetals color={targetPetalColor} isDimmed={isQuizActive} />
-
-            <style jsx global>{`
-                @keyframes globalBgFadeIn {
-                    0% { opacity: 0; }
-                    100% { opacity: 1; }
-                }
-            `}</style>
         </div>
     );
 };

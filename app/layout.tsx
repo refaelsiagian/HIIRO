@@ -7,6 +7,7 @@ import {
   Akaya_Kanadaka 
 } from "next/font/google";
 import "./globals.css";
+import "./components/falling-petals.css";
 import { GlobalBackground } from "./components/GlobalBackground";
 
 const notoSansJP = Noto_Sans_JP({
