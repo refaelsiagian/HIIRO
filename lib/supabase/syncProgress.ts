@@ -1,6 +1,5 @@
 import { createClient } from './client';
 import { useGameStore } from '../../app/store/useGameStore';
-import recoveredData from './recoveredGuestData.json';
 
 export const GUEST_STORAGE_KEY = 'kanadrill-guest-data';
 
@@ -19,28 +18,28 @@ function countStages(progress: Record<string, any> = {}): number {
     return count;
 }
 
-// Retrieve guest data: checks localStorage, fallback to the recovered 106 stages
-export function getGuestData() {
+// Retrieve guest data from localStorage. Fresh browser/incognito starts as a new empty guest.
+export function getGuestData(): { progress: any; petals: any; highestPetals: any } {
+    const emptyGuestState = { progress: {}, petals: {}, highestPetals: {} };
     if (typeof window === 'undefined') {
-        return (recoveredData as any).state;
+        return emptyGuestState;
     }
     const raw = localStorage.getItem(GUEST_STORAGE_KEY);
     if (raw) {
         try {
             const parsed = JSON.parse(raw);
-            if (parsed && parsed.progress && countStages(parsed.progress) > 0) {
-                // If saved data has at least as many stages as recovered, use it
-                const savedCount = countStages(parsed.progress);
-                const recoveredCount = countStages((recoveredData as any).state.progress);
-                if (savedCount >= recoveredCount) {
-                    return parsed;
-                }
+            if (parsed && typeof parsed === 'object') {
+                return {
+                    progress: parsed.progress || {},
+                    petals: parsed.petals || {},
+                    highestPetals: parsed.highestPetals || parsed.petals || {},
+                };
             }
         } catch (e) {
             console.error('Failed to parse guest data from localStorage:', e);
         }
     }
-    return (recoveredData as any).state;
+    return emptyGuestState;
 }
 
 export function saveGuestData(data?: { progress: any; petals: any; highestPetals?: any }) {
