@@ -11,6 +11,7 @@ interface PostGameOverlayProps {
     timeLeft: number;
     maxTime: number;
     currentPetals: number;
+    highestPetals?: number;
     isClosing: boolean;
     onClose: () => void;
     onReload: () => void;
@@ -24,6 +25,7 @@ export const PostGameOverlay: React.FC<PostGameOverlayProps> = ({
     timeLeft,
     maxTime,
     currentPetals,
+    highestPetals = currentPetals,
     isClosing,
     onClose,
     onReload
@@ -77,11 +79,18 @@ export const PostGameOverlay: React.FC<PostGameOverlayProps> = ({
 
                         <div className="flex flex-col items-center">
                             <div className="w-48 h-48 relative">
-                                <PetalFlower starsEarned={currentPetals} />
+                                <PetalFlower starsEarned={currentPetals} highestPetals={highestPetals} />
                             </div>
-                            <p className="mt-8 font-arbutus font-medium text-xl">
-                                Tuntas Beruntun {currentPetals}x
-                            </p>
+                            <div className="mt-8 text-center">
+                                <p className="font-arbutus font-medium text-xl">
+                                    Tuntas Beruntun {currentPetals}x{currentPetals >= 5 ? ' (max)' : ''}
+                                </p>
+                                {highestPetals > currentPetals && (
+                                    <p className="text-xs font-outfit opacity-60 mt-1">
+                                        Rekor Tertinggi: {highestPetals}x{highestPetals >= 5 ? ' (max)' : ''}
+                                    </p>
+                                )}
+                            </div>
                         </div>
                     </div>
 

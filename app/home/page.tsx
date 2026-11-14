@@ -24,6 +24,7 @@ const HomePage: React.FC = () => {
 
     const progress = useGameStore(state => state.progress);
     const petals = useGameStore(state => state.petals);
+    const highestPetals = useGameStore(state => state.highestPetals);
 
     const handleSyncStatus = async () => {
         const status = await checkAccountSyncStatus();
@@ -112,10 +113,11 @@ const HomePage: React.FC = () => {
                 }
             }
 
-            for (const sec in catPetals) {
-                for (const grp in catPetals[sec]) {
-                    for (const stg in catPetals[sec][grp]) {
-                        totalPetals += catPetals[sec][grp][stg] || 0;
+            const catHighestPetals = highestPetals?.[category] || petals?.[category] || {};
+            for (const sec in catHighestPetals) {
+                for (const grp in catHighestPetals[sec]) {
+                    for (const stg in catHighestPetals[sec][grp]) {
+                        totalPetals += Math.min(5, catHighestPetals[sec][grp][stg] || 0);
                     }
                 }
             }
@@ -153,7 +155,7 @@ const HomePage: React.FC = () => {
                 activeGroupName,
             };
         };
-    }, [progress, petals]);
+    }, [progress, petals, highestPetals]);
 
     const hiraganaStats = getStats('hiragana');
     const katakanaStats = getStats('katakana');
@@ -294,11 +296,13 @@ const HomePage: React.FC = () => {
                                 </div>
                             </div>
 
-                            {hiraganaStats.activeGroupName && (
-                                <div className="text-[11px] sm:text-sm font-outfit opacity-75 text-center truncate mt-3 pt-2">
-                                    Terakhir: <span className="font-semibold">{hiraganaStats.activeGroupName}</span>
-                                </div>
-                            )}
+                            <div className="text-[11px] sm:text-sm font-outfit opacity-75 text-center truncate mt-3 pt-2">
+                                {hiraganaStats.activeGroupName ? (
+                                    <>Terakhir: <span className="font-semibold">{hiraganaStats.activeGroupName}</span></>
+                                ) : (
+                                    <span className="font-semibold">Siap Dimulai!</span>
+                                )}
+                            </div>
                         </div>
                     </Link>
 
@@ -371,11 +375,13 @@ const HomePage: React.FC = () => {
                                 </div>
                             </div>
 
-                            {katakanaStats.activeGroupName && (
-                                <div className="text-[11px] sm:text-sm font-outfit opacity-75 text-center truncate mt-3 pt-2">
-                                    Terakhir: <span className="font-semibold">{katakanaStats.activeGroupName}</span>
-                                </div>
-                            )}
+                            <div className="text-[11px] sm:text-sm font-outfit opacity-75 text-center truncate mt-3 pt-2">
+                                {katakanaStats.activeGroupName ? (
+                                    <>Terakhir: <span className="font-semibold">{katakanaStats.activeGroupName}</span></>
+                                ) : (
+                                    <span className="font-semibold">Siap Dimulai!</span>
+                                )}
+                            </div>
                         </div>
                     </Link>
                 </main>

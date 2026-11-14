@@ -64,6 +64,8 @@ export interface ResolvedGroupLevel {
   chars: ResolvedChar[];        // Full character objects with metadata
   letters: string[];            // Convenient romaji array (e.g. ['a', 'i', 'u', 'e', 'o'])
   gameModes: StageConfig[];
+  includeGroups?: string[];
+  includeSections?: string[];
 }
 
 export interface ResolvedSectionLevel {

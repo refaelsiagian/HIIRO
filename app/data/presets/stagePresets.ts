@@ -75,7 +75,7 @@ export const SHOTESTO_STAGES_PRESET: StageConfig[] = [
     subtitle: 'Check Truth',
     instruction: 'Periksa pernyataan dan tentukan benar atau salah',
     timer: 90,
-    scoreGoal: 0,
+    scoreGoal: 7,
     filepath: 'app/components/drills/CheckTruthDrill.tsx',
     drillType: 'check-truth',
   },
@@ -97,8 +97,8 @@ export const SHOTESTO_STAGES_PRESET: StageConfig[] = [
     displayName: 'Flip It!',
     subtitle: 'Flip It!',
     instruction: 'Buka kartu dan cocokkan pasangan kana dengan romaji yang tepat',
-    timer: 180,
-    scoreGoal: 0, // Make sure the score to match the pairs times wave counts
+    timer: 150,
+    scoreGoal: 16, // Make sure the score to match the pairs times wave counts
     filepath: 'app/components/drills/FlipItDrill.tsx',
     drillType: 'flip-it',
     options: {
@@ -135,7 +135,7 @@ export const SHIKEN_STAGES_PRESET: StageConfig[] = [
     subtitle: 'Check Truth',
     instruction: 'Periksa pernyataan dan tentukan benar atau salah',
     timer: 90,
-    scoreGoal: 0,
+    scoreGoal: 7,
     filepath: 'app/components/drills/CheckTruthDrill.tsx',
     drillType: 'check-truth',
   },

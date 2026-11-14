@@ -21,7 +21,7 @@ const StageSelection: React.FC = () => {
     const router = useRouter();
     const category = params.category as 'hiragana' | 'katakana';
     const groupId = params.groupId as string;
-    const { progress, petals, setIsQuizActive } = useGameStore();
+    const { progress, petals, highestPetals, setIsQuizActive } = useGameStore();
     const [isMounted, setIsMounted] = useState(false);
 
     useEffect(() => {
@@ -113,7 +113,7 @@ const StageSelection: React.FC = () => {
     const theme = getTierTheme(category, tier);
     const room = theme.room;
 
-    const renderFlower = (stageIndex: number, isUnlocked: boolean, stagePetals: number, customColor?: string) => {
+    const renderFlower = (stageIndex: number, isUnlocked: boolean, stagePetals: number, stageHighestPetals: number, customColor?: string) => {
         const maxPetals = 5;
         const angleStep = 360 / maxPetals;
         const colorToUse = customColor || room.petalBg;
@@ -126,6 +126,8 @@ const StageSelection: React.FC = () => {
                 {[...Array(maxPetals)].map((_, i) => {
                     const rotation = i * angleStep;
                     const isActive = stagePetals > i;
+                    const isGhost = !isActive && stageHighestPetals > i;
+                    const isFilled = isActive || isGhost;
                     
                     return (
                         <div 
@@ -137,9 +139,9 @@ const StageSelection: React.FC = () => {
                             }}
                         >
                             <PetalSVG 
-                                className="w-full h-full"
+                                className={`w-full h-full transition-opacity duration-300 ${isGhost ? 'opacity-30' : isActive ? 'opacity-100' : 'opacity-20'}`}
                                 style={{ color: colorToUse }}
-                                isFilled={isActive}
+                                isFilled={isFilled}
                             />
                         </div>
                     );
@@ -278,6 +280,7 @@ const StageSelection: React.FC = () => {
                         const plateBg = room.plateBg;
                         const plateBorder = room.plateBorder;
                         const stagePetals = petals[category]?.[section]?.[groupId]?.[stage.id] || 0;
+                        const stageHighestPetals = highestPetals?.[category]?.[section]?.[groupId]?.[stage.id] || stagePetals;
 
                         return (
                             <button
@@ -333,7 +336,7 @@ const StageSelection: React.FC = () => {
 
                                     {/* Flower (Petals) */}
                                     <div className="flex-shrink-0 flex items-center justify-center pr-[12px]">
-                                        {renderFlower(index, isUnlocked, stagePetals, room.petalBg)}
+                                        {renderFlower(index, isUnlocked, stagePetals, stageHighestPetals, room.petalBg)}
                                     </div>
                                 </div>
                             </button>
@@ -366,6 +369,7 @@ const StageSelection: React.FC = () => {
                     timeLeft={postGameOverlayData.timeLeft}
                     maxTime={postGameOverlayData.maxTime}
                     currentPetals={postGameOverlayData.currentPetals}
+                    highestPetals={postGameOverlayData.highestPetals}
                     isClosing={true}
                     onClose={() => {}}
                     onReload={() => {}}

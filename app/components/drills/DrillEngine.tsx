@@ -44,8 +44,9 @@ const DrillEngine: React.FC<DrillEngineProps> = ({
     isSansSerif,
     onToggleSansSerif
 }) => {
-    const { completeStage, failStage, petals } = useGameStore();
+    const { completeStage, failStage, petals, highestPetals } = useGameStore();
     const currentPetals = petals[category]?.[section]?.[groupId]?.[stageId] || 0;
+    const stageHighestPetals = highestPetals?.[category]?.[section]?.[groupId]?.[stageId] || currentPetals;
 
     const [timeLeft, setTimeLeft] = useState(maxTime);
     const [lives, setLives] = useState(maxLives);
@@ -134,7 +135,8 @@ const DrillEngine: React.FC<DrillEngineProps> = ({
             maxLives,
             timeLeft,
             maxTime: maxTime,
-            currentPetals
+            currentPetals,
+            highestPetals: stageHighestPetals
         });
     };
 
@@ -255,6 +257,7 @@ const DrillEngine: React.FC<DrillEngineProps> = ({
                     timeLeft={timeLeft}
                     maxTime={maxTime}
                     currentPetals={currentPetals}
+                    highestPetals={stageHighestPetals}
                     isClosing={isClosingOverlay}
                     onClose={handleFinishedClose}
                     onReload={handleFinishedReload}

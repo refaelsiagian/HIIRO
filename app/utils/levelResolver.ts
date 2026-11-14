@@ -120,6 +120,8 @@ export function resolveLevel(
     chars: resolvedChars,
     letters: romajiList,
     gameModes: definition.gameModes,
+    includeGroups: definition.includeGroups,
+    includeSections: definition.includeSections,
   };
 }
 

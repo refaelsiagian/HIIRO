@@ -16,7 +16,7 @@ const GroupSelection: React.FC = () => {
     const params = useParams();
     const category = params.category as 'hiragana' | 'katakana';
     const section = params.section as string;
-    const { getGroupStars } = useGameStore();
+    const { getGroupStars, getGroupHighestPetals, getSectionHighestPetals } = useGameStore();
     const [isMounted, setIsMounted] = useState(false);
 
     useEffect(() => {
@@ -75,14 +75,35 @@ const GroupSelection: React.FC = () => {
                         const isExam = tier !== 'regular';
                         
                         let isUnlocked = true;
+                        let lockReason = '';
+
                         if (index > 0) {
                             if (!isMounted) {
                                 isUnlocked = false;
-                            } else {
-                                const prevGroup = groups[index - 1];
-                                const prevStars = getGroupStars(category, section, prevGroup.id);
+                            } else if (tier === 'regular') {
+                                // Regular subsection: opened with Stars
+                                const prevRegularGroup = groups.slice(0, index).reverse().find(g => g.tier === 'regular') || groups[index - 1];
+                                const prevStars = getGroupStars(category, section, prevRegularGroup.id);
                                 if (prevStars < 1) {
                                     isUnlocked = false;
+                                    lockReason = 'Butuh 1 Bintang';
+                                }
+                            } else if (tier === 'shotesto') {
+                                // Shōtesuto: opened with Petals from included review groups
+                                const includedGroups = group.includeGroups || [];
+                                const earnedPetals = includedGroups.reduce((acc: number, gId: string) => acc + getGroupHighestPetals(category, section, gId), 0);
+                                const requiredPetals = Math.max(1, includedGroups.length);
+                                if (earnedPetals < requiredPetals) {
+                                    isUnlocked = false;
+                                    lockReason = `Butuh ${requiredPetals} 🌸 (${earnedPetals}/${requiredPetals})`;
+                                }
+                            } else if (tier === 'shiken') {
+                                // Shiken: opened with Petals across the entire section
+                                const sectionPetals = getSectionHighestPetals(category, section);
+                                const requiredPetals = 10;
+                                if (sectionPetals < requiredPetals) {
+                                    isUnlocked = false;
+                                    lockReason = `Butuh ${requiredPetals} 🌸 (${sectionPetals}/${requiredPetals})`;
                                 }
                             }
                         }
@@ -114,10 +135,15 @@ const GroupSelection: React.FC = () => {
                                 {/* INNER CARD CONTENT */}
                                 <div className="absolute inset-0 z-10" style={{ color: paper.fontColor }}>
                                     {!isUnlocked && (
-                                        <div className="absolute inset-0 z-20 flex items-center justify-center bg-black/10">
-                                            <div className="bg-white/80 p-4 rounded-full shadow-lg">
-                                                <Lock className="w-8 h-8 text-[#5C3A21]" />
+                                        <div className="absolute inset-0 z-20 flex flex-col items-center justify-center bg-black/15 backdrop-blur-[1px] p-4 text-center">
+                                            <div className="bg-white/90 p-3.5 rounded-full shadow-lg mb-2">
+                                                <Lock className="w-7 h-7 text-[#5C3A21]" />
                                             </div>
+                                            {lockReason && (
+                                                <span className="text-xs font-bold font-outfit px-3 py-1 rounded-full bg-white/90 text-[#5C3A21] shadow-sm tracking-wide">
+                                                    {lockReason}
+                                                </span>
+                                            )}
                                         </div>
                                     )}
                                     

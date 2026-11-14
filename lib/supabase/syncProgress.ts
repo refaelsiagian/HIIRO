@@ -43,11 +43,12 @@ export function getGuestData() {
     return (recoveredData as any).state;
 }
 
-export function saveGuestData(data?: { progress: any; petals: any }) {
+export function saveGuestData(data?: { progress: any; petals: any; highestPetals?: any }) {
     if (typeof window === 'undefined') return;
     const toSave = data || {
         progress: useGameStore.getState().progress,
         petals: useGameStore.getState().petals,
+        highestPetals: useGameStore.getState().highestPetals || useGameStore.getState().petals,
     };
     localStorage.setItem(GUEST_STORAGE_KEY, JSON.stringify(toSave));
 }
@@ -58,6 +59,7 @@ export function restoreGuestData() {
     useGameStore.setState({
         progress: data.progress || {},
         petals: data.petals || {},
+        highestPetals: data.highestPetals || data.petals || {},
     });
     saveGuestData(data);
 }
@@ -132,6 +134,7 @@ export async function loadCloudProgressIntoStore() {
 
         const newProgress: Record<string, Record<string, Record<string, Record<string, { stars: number; score: number }>>>> = {};
         const newPetals: Record<string, Record<string, Record<string, Record<string, number>>>> = {};
+        const newHighestPetals: Record<string, Record<string, Record<string, Record<string, number>>>> = {};
 
         for (const row of cloudRows) {
             const parts = row.stage_key.split('/');
@@ -147,11 +150,17 @@ export async function loadCloudProgressIntoStore() {
             newPetals[cat][sec] = { ...(newPetals[cat][sec] || {}) };
             newPetals[cat][sec][grp] = { ...(newPetals[cat][sec][grp] || {}) };
             newPetals[cat][sec][grp][stg] = row.petals || 0;
+
+            newHighestPetals[cat] = { ...(newHighestPetals[cat] || {}) };
+            newHighestPetals[cat][sec] = { ...(newHighestPetals[cat][sec] || {}) };
+            newHighestPetals[cat][sec][grp] = { ...(newHighestPetals[cat][sec][grp] || {}) };
+            newHighestPetals[cat][sec][grp][stg] = row.highest_petals ?? row.petals ?? 0;
         }
 
         useGameStore.setState({
             progress: newProgress,
             petals: newPetals,
+            highestPetals: newHighestPetals,
         });
     } catch (err) {
         console.error('Failed to load cloud progress:', err);
@@ -172,6 +181,7 @@ export async function transferLocalProgressToCloud() {
             stars: number;
             score: number;
             petals: number;
+            highest_petals: number;
             updated_at: string;
         }> = [];
 
@@ -182,6 +192,7 @@ export async function transferLocalProgressToCloud() {
             stars: 0,
             score: 0,
             petals: 0,
+            highest_petals: 0,
             updated_at: new Date().toISOString(),
         });
 
@@ -191,13 +202,15 @@ export async function transferLocalProgressToCloud() {
                     for (const stg in guest.progress[cat][sec][grp]) {
                         const item = guest.progress[cat][sec][grp][stg];
                         if (item && item.stars > 0) {
-                            const petalsCount = guest.petals?.[cat]?.[sec]?.[grp]?.[stg] || 0;
+                            const currentPetals = guest.petals?.[cat]?.[sec]?.[grp]?.[stg] || 0;
+                            const highestCount = guest.highestPetals?.[cat]?.[sec]?.[grp]?.[stg] || currentPetals;
                             upserts.push({
                                 user_id: user.id,
                                 stage_key: `${cat}/${sec}/${grp}/${stg}`,
                                 stars: item.stars,
                                 score: item.score,
-                                petals: petalsCount,
+                                petals: currentPetals,
+                                highest_petals: highestCount,
                                 updated_at: new Date().toISOString(),
                             });
                         }
@@ -220,6 +233,7 @@ export async function transferLocalProgressToCloud() {
         useGameStore.setState({
             progress: guest.progress,
             petals: guest.petals,
+            highestPetals: guest.highestPetals || guest.petals,
         });
     } catch (err) {
         console.error('Failed to transfer local progress to cloud:', err);
@@ -245,6 +259,7 @@ export async function startAnewFresh() {
             stars: 0,
             score: 0,
             petals: 0,
+            highest_petals: 0,
             updated_at: new Date().toISOString(),
         }, {
             onConflict: 'user_id,stage_key',
@@ -265,7 +280,8 @@ export async function saveStageProgressToCloud(
     stage: string,
     stars: number,
     score: number,
-    petals: number
+    petals: number,
+    highestPetals?: number
 ) {
     const supabase = createClient();
     const { data: { user } } = await supabase.auth.getUser();
@@ -279,16 +295,20 @@ export async function saveStageProgressToCloud(
     const stageKey = `${category}/${section}/${group}/${stage}`;
 
     try {
-        await supabase.from('user_progress').upsert({
+        const { error } = await supabase.from('user_progress').upsert({
             user_id: user.id,
             stage_key: stageKey,
             stars,
             score,
             petals,
+            highest_petals: highestPetals ?? petals,
             updated_at: new Date().toISOString(),
         }, {
             onConflict: 'user_id,stage_key',
         });
+        if (error) {
+            console.error('Failed to save stage to cloud (supabase error):', error);
+        }
     } catch (err) {
         console.error('Failed to save stage to cloud:', err);
     }
