@@ -1,7 +1,7 @@
 "use client";
 
 import React from 'react';
-import './falling-petals.css';
+import '../styles/falling-petals.css';
 
 interface FallingPetalsProps {
     color?: string;
