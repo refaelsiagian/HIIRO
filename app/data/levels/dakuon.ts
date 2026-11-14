@@ -16,6 +16,7 @@ export const DAKUON_LEVEL_DEFINITIONS: SectionLevelDefinition = {
       id: 'g-gyo',
       tier: 'regular',
       groupId: 'g-gyo',
+      requiredStars: 0,
       gameModes: NORMAL_STAGES_PRESET,
     },
 
@@ -24,6 +25,7 @@ export const DAKUON_LEVEL_DEFINITIONS: SectionLevelDefinition = {
       id: 'z-gyo',
       tier: 'regular',
       groupId: 'z-gyo',
+      requiredStars: 8,
       gameModes: NORMAL_STAGES_PRESET,
     },
 
@@ -32,6 +34,7 @@ export const DAKUON_LEVEL_DEFINITIONS: SectionLevelDefinition = {
       id: 'd-gyo',
       tier: 'regular',
       groupId: 'd-gyo',
+      requiredStars: 16,
       gameModes: NORMAL_STAGES_PRESET,
     },
 
@@ -42,6 +45,7 @@ export const DAKUON_LEVEL_DEFINITIONS: SectionLevelDefinition = {
       displayName: 'Shōtesuto 1',
       subtitleKanji: '小テスト 1',
       includeGroups: ['g-gyo', 'z-gyo', 'd-gyo'],
+      requiredPetals: 25,
       gameModes: SHOTESTO_STAGES_PRESET,
     },
 
@@ -50,6 +54,7 @@ export const DAKUON_LEVEL_DEFINITIONS: SectionLevelDefinition = {
       id: 'b-gyo',
       tier: 'regular',
       groupId: 'b-gyo',
+      requiredStars: 28,
       gameModes: NORMAL_STAGES_PRESET,
     },
 
@@ -58,6 +63,7 @@ export const DAKUON_LEVEL_DEFINITIONS: SectionLevelDefinition = {
       id: 'p-gyo',
       tier: 'regular',
       groupId: 'p-gyo',
+      requiredStars: 36,
       gameModes: NORMAL_STAGES_PRESET,
     },
 
@@ -68,6 +74,7 @@ export const DAKUON_LEVEL_DEFINITIONS: SectionLevelDefinition = {
       displayName: 'Shiken',
       subtitleKanji: '試験',
       includeSections: ['gojuon', 'dakuon-handakuon'],
+      requiredPetals: 50,
       gameModes: SHIKEN_STAGES_PRESET,
     },
   ],

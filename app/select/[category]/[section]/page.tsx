@@ -16,7 +16,7 @@ const GroupSelection: React.FC = () => {
     const params = useParams();
     const category = params.category as 'hiragana' | 'katakana';
     const section = params.section as string;
-    const { getGroupStars, getGroupHighestPetals, getSectionHighestPetals } = useGameStore();
+    const { getGroupStars, getGroupHighestPetals, getSectionStars, getSectionHighestPetals, progress } = useGameStore();
     const [isMounted, setIsMounted] = useState(false);
 
     useEffect(() => {
@@ -74,36 +74,63 @@ const GroupSelection: React.FC = () => {
                         const tier = group.tier;
                         const isExam = tier !== 'regular';
                         
+                        const sectionStars = isMounted ? getSectionStars(category, section) : 0;
+                        const sectionPetals = isMounted ? getSectionHighestPetals(category, section) : 0;
+
+                        // Calculate total and completed stages in preceding groups (used for Shiken unlock & display)
+                        let totalSectionStages = 0;
+                        let completedSectionStages = 0;
+
+                        if (tier === 'shiken') {
+                            const precedingGroups = groups.slice(0, index);
+                            precedingGroups.forEach(pg => {
+                                totalSectionStages += pg.gameModes.length;
+                                const pgProgress = isMounted ? (progress?.[category]?.[section]?.[pg.id] || {}) : {};
+                                pg.gameModes.forEach(stage => {
+                                    if (pgProgress[stage.id]?.stars > 0) {
+                                        completedSectionStages++;
+                                    }
+                                });
+                            });
+                        }
+
                         let isUnlocked = true;
-                        let lockReason = '';
+                        let lockPills: string[] = [];
 
                         if (index > 0) {
                             if (!isMounted) {
                                 isUnlocked = false;
-                            } else if (tier === 'regular') {
-                                // Regular subsection: opened with Stars
-                                const prevRegularGroup = groups.slice(0, index).reverse().find(g => g.tier === 'regular') || groups[index - 1];
-                                const prevStars = getGroupStars(category, section, prevRegularGroup.id);
-                                if (prevStars < 1) {
-                                    isUnlocked = false;
-                                    lockReason = 'Butuh 1 Bintang';
-                                }
-                            } else if (tier === 'shotesto') {
-                                // Shōtesuto: opened with Petals from included review groups
-                                const includedGroups = group.includeGroups || [];
-                                const earnedPetals = includedGroups.reduce((acc: number, gId: string) => acc + getGroupHighestPetals(category, section, gId), 0);
-                                const requiredPetals = Math.max(1, includedGroups.length);
-                                if (earnedPetals < requiredPetals) {
-                                    isUnlocked = false;
-                                    lockReason = `Butuh ${requiredPetals} 🌸 (${earnedPetals}/${requiredPetals})`;
-                                }
                             } else if (tier === 'shiken') {
-                                // Shiken: opened with Petals across the entire section
-                                const sectionPetals = getSectionHighestPetals(category, section);
-                                const requiredPetals = 10;
-                                if (sectionPetals < requiredPetals) {
+                                // Shiken requires ALL preceding stages in the section to be completed, plus required petals
+                                const hasPetalReq = group.requiredPetals !== undefined && group.requiredPetals > 0;
+                                const isStagesMet = completedSectionStages >= totalSectionStages;
+                                const isPetalsMet = !hasPetalReq || sectionPetals >= group.requiredPetals!;
+
+                                if (!isStagesMet || !isPetalsMet) {
                                     isUnlocked = false;
-                                    lockReason = `Butuh ${requiredPetals} 🌸 (${sectionPetals}/${requiredPetals})`;
+                                    lockPills = [
+                                        `Tahap: ${completedSectionStages}/${totalSectionStages}`,
+                                        `🌸 ${sectionPetals}/${group.requiredPetals || 0}`
+                                    ];
+                                }
+                            } else {
+                                const hasPetalReq = group.requiredPetals !== undefined && group.requiredPetals > 0;
+                                const hasStarReq = group.requiredStars !== undefined && group.requiredStars > 0;
+
+                                if (hasPetalReq && sectionPetals < group.requiredPetals!) {
+                                    isUnlocked = false;
+                                    lockPills = [`Butuh ${group.requiredPetals} 🌸 (${sectionPetals}/${group.requiredPetals})`];
+                                } else if (hasStarReq && sectionStars < group.requiredStars!) {
+                                    isUnlocked = false;
+                                    lockPills = [`Butuh ${group.requiredStars} ★ (${sectionStars}/${group.requiredStars})`];
+                                } else if (!hasPetalReq && !hasStarReq && group.requiredStars !== 0) {
+                                    // Fallback if not explicitly configured: previous group has >= 1 star
+                                    const prevGroup = groups[index - 1];
+                                    const prevStars = getGroupStars(category, section, prevGroup.id);
+                                    if (prevStars < 1) {
+                                        isUnlocked = false;
+                                        lockPills = ['Butuh 1 Bintang'];
+                                    }
                                 }
                             }
                         }
@@ -136,14 +163,19 @@ const GroupSelection: React.FC = () => {
                                 <div className="absolute inset-0 z-10" style={{ color: paper.fontColor }}>
                                     {!isUnlocked && (
                                         <div className="absolute inset-0 z-20 flex flex-col items-center justify-center bg-black/15 backdrop-blur-[1px] p-4 text-center">
-                                            <div className="bg-white/90 p-3.5 rounded-full shadow-lg mb-2">
+                                            <div className="bg-white/90 p-3.5 rounded-full shadow-lg mb-2.5">
                                                 <Lock className="w-7 h-7 text-[#5C3A21]" />
                                             </div>
-                                            {lockReason && (
-                                                <span className="text-xs font-bold font-outfit px-3 py-1 rounded-full bg-white/90 text-[#5C3A21] shadow-sm tracking-wide">
-                                                    {lockReason}
-                                                </span>
-                                            )}
+                                            <div className="flex flex-col items-center space-y-1.5">
+                                                {lockPills.map((pill, pIdx) => (
+                                                    <span 
+                                                        key={pIdx} 
+                                                        className="text-xs font-bold font-outfit px-3 py-1 rounded-full bg-white/90 text-[#5C3A21] shadow-sm tracking-wide whitespace-nowrap"
+                                                    >
+                                                        {pill}
+                                                    </span>
+                                                ))}
+                                            </div>
                                         </div>
                                     )}
                                     

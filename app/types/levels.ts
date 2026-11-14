@@ -36,6 +36,8 @@ export interface GroupLevelDefinition {
   includeSections?: string[];   // References multiple section ids from types.json (for cumulative Shiken exams)
   displayName?: string;         // Optional override; defaults to groups.json display_name
   subtitleKanji?: string;       // Optional override; defaults to groups.json subtitle_kanji
+  requiredStars?: number;       // Cumulative stars in this section required to unlock
+  requiredPetals?: number;      // Cumulative highest petals in this section required to unlock
   gameModes: StageConfig[];
 }
 
@@ -66,6 +68,8 @@ export interface ResolvedGroupLevel {
   gameModes: StageConfig[];
   includeGroups?: string[];
   includeSections?: string[];
+  requiredStars?: number;
+  requiredPetals?: number;
 }
 
 export interface ResolvedSectionLevel {

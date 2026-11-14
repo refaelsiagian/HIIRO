@@ -16,6 +16,7 @@ export const YOON_LEVEL_DEFINITIONS: SectionLevelDefinition = {
       id: 'k-yoon',
       tier: 'regular',
       groupId: 'k-yoon',
+      requiredStars: 0,
       gameModes: NORMAL_STAGES_PRESET,
     },
 
@@ -24,6 +25,7 @@ export const YOON_LEVEL_DEFINITIONS: SectionLevelDefinition = {
       id: 's-yoon',
       tier: 'regular',
       groupId: 's-yoon',
+      requiredStars: 8,
       gameModes: NORMAL_STAGES_PRESET,
     },
 
@@ -32,6 +34,7 @@ export const YOON_LEVEL_DEFINITIONS: SectionLevelDefinition = {
       id: 't-yoon',
       tier: 'regular',
       groupId: 't-yoon',
+      requiredStars: 16,
       gameModes: NORMAL_STAGES_PRESET,
     },
 
@@ -42,6 +45,7 @@ export const YOON_LEVEL_DEFINITIONS: SectionLevelDefinition = {
       displayName: 'Shōtesuto 1',
       subtitleKanji: '小テスト 1',
       includeGroups: ['k-yoon', 's-yoon', 't-yoon'],
+      requiredPetals: 25,
       gameModes: SHOTESTO_STAGES_PRESET,
     },
 
@@ -50,6 +54,7 @@ export const YOON_LEVEL_DEFINITIONS: SectionLevelDefinition = {
       id: 'n-yoon',
       tier: 'regular',
       groupId: 'n-yoon',
+      requiredStars: 28,
       gameModes: NORMAL_STAGES_PRESET,
     },
 
@@ -58,6 +63,7 @@ export const YOON_LEVEL_DEFINITIONS: SectionLevelDefinition = {
       id: 'h-yoon',
       tier: 'regular',
       groupId: 'h-yoon',
+      requiredStars: 36,
       gameModes: NORMAL_STAGES_PRESET,
     },
 
@@ -66,6 +72,7 @@ export const YOON_LEVEL_DEFINITIONS: SectionLevelDefinition = {
       id: 'm-yoon',
       tier: 'regular',
       groupId: 'm-yoon',
+      requiredStars: 44,
       gameModes: NORMAL_STAGES_PRESET,
     },
 
@@ -76,6 +83,7 @@ export const YOON_LEVEL_DEFINITIONS: SectionLevelDefinition = {
       displayName: 'Shōtesuto 2',
       subtitleKanji: '小テスト 2',
       includeGroups: ['n-yoon', 'h-yoon', 'm-yoon'],
+      requiredPetals: 60,
       gameModes: SHOTESTO_STAGES_PRESET,
     },
 
@@ -84,6 +92,7 @@ export const YOON_LEVEL_DEFINITIONS: SectionLevelDefinition = {
       id: 'r-yoon',
       tier: 'regular',
       groupId: 'r-yoon',
+      requiredStars: 52,
       gameModes: NORMAL_STAGES_PRESET,
     },
 
@@ -92,6 +101,7 @@ export const YOON_LEVEL_DEFINITIONS: SectionLevelDefinition = {
       id: 'g-yoon',
       tier: 'regular',
       groupId: 'g-yoon',
+      requiredStars: 60,
       gameModes: NORMAL_STAGES_PRESET,
     },
 
@@ -100,6 +110,7 @@ export const YOON_LEVEL_DEFINITIONS: SectionLevelDefinition = {
       id: 'j-yoon',
       tier: 'regular',
       groupId: 'j-yoon',
+      requiredStars: 68,
       gameModes: NORMAL_STAGES_PRESET,
     },
 
@@ -110,6 +121,7 @@ export const YOON_LEVEL_DEFINITIONS: SectionLevelDefinition = {
       displayName: 'Shōtesuto 3',
       subtitleKanji: '小テスト 3',
       includeGroups: ['r-yoon', 'g-yoon', 'j-yoon'],
+      requiredPetals: 95,
       gameModes: SHOTESTO_STAGES_PRESET,
     },
 
@@ -118,6 +130,7 @@ export const YOON_LEVEL_DEFINITIONS: SectionLevelDefinition = {
       id: 'b-yoon',
       tier: 'regular',
       groupId: 'b-yoon',
+      requiredStars: 76,
       gameModes: NORMAL_STAGES_PRESET,
     },
 
@@ -126,6 +139,7 @@ export const YOON_LEVEL_DEFINITIONS: SectionLevelDefinition = {
       id: 'p-yoon',
       tier: 'regular',
       groupId: 'p-yoon',
+      requiredStars: 84,
       gameModes: NORMAL_STAGES_PRESET,
     },
 
@@ -136,6 +150,7 @@ export const YOON_LEVEL_DEFINITIONS: SectionLevelDefinition = {
       displayName: 'Shiken',
       subtitleKanji: '試験',
       includeSections: ['gojuon', 'dakuon-handakuon', 'yoon'],
+      requiredPetals: 110,
       gameModes: SHIKEN_STAGES_PRESET,
     },
   ],

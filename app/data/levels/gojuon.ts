@@ -16,6 +16,7 @@ export const GOJUON_LEVEL_DEFINITIONS: SectionLevelDefinition = {
       id: 'a-gyo',
       tier: 'regular',
       groupId: 'a-gyo',
+      requiredStars: 0,
       gameModes: NORMAL_STAGES_PRESET,
     },
 
@@ -24,6 +25,7 @@ export const GOJUON_LEVEL_DEFINITIONS: SectionLevelDefinition = {
       id: 'k-gyo',
       tier: 'regular',
       groupId: 'k-gyo',
+      requiredStars: 8,
       gameModes: NORMAL_STAGES_PRESET,
     },
 
@@ -32,6 +34,7 @@ export const GOJUON_LEVEL_DEFINITIONS: SectionLevelDefinition = {
       id: 's-gyo',
       tier: 'regular',
       groupId: 's-gyo',
+      requiredStars: 16,
       gameModes: NORMAL_STAGES_PRESET,
     },
 
@@ -42,6 +45,7 @@ export const GOJUON_LEVEL_DEFINITIONS: SectionLevelDefinition = {
       displayName: 'Shōtesuto 1',
       subtitleKanji: '小テスト 1',
       includeGroups: ['a-gyo', 'k-gyo', 's-gyo'],
+      requiredPetals: 25,
       gameModes: SHOTESTO_STAGES_PRESET,
     },
 
@@ -50,6 +54,7 @@ export const GOJUON_LEVEL_DEFINITIONS: SectionLevelDefinition = {
       id: 't-gyo',
       tier: 'regular',
       groupId: 't-gyo',
+      requiredStars: 28,
       gameModes: NORMAL_STAGES_PRESET,
     },
 
@@ -58,6 +63,7 @@ export const GOJUON_LEVEL_DEFINITIONS: SectionLevelDefinition = {
       id: 'n-gyo',
       tier: 'regular',
       groupId: 'n-gyo',
+      requiredStars: 36,
       gameModes: NORMAL_STAGES_PRESET,
     },
 
@@ -66,6 +72,7 @@ export const GOJUON_LEVEL_DEFINITIONS: SectionLevelDefinition = {
       id: 'h-gyo',
       tier: 'regular',
       groupId: 'h-gyo',
+      requiredStars: 44,
       gameModes: NORMAL_STAGES_PRESET,
     },
 
@@ -76,6 +83,7 @@ export const GOJUON_LEVEL_DEFINITIONS: SectionLevelDefinition = {
       displayName: 'Shōtesuto 2',
       subtitleKanji: '小テスト 2',
       includeGroups: ['t-gyo', 'n-gyo', 'h-gyo'],
+      requiredPetals: 60,
       gameModes: SHOTESTO_STAGES_PRESET,
     },
 
@@ -84,6 +92,7 @@ export const GOJUON_LEVEL_DEFINITIONS: SectionLevelDefinition = {
       id: 'm-gyo',
       tier: 'regular',
       groupId: 'm-gyo',
+      requiredStars: 52,
       gameModes: NORMAL_STAGES_PRESET,
     },
 
@@ -92,6 +101,7 @@ export const GOJUON_LEVEL_DEFINITIONS: SectionLevelDefinition = {
       id: 'r-gyo',
       tier: 'regular',
       groupId: 'r-gyo',
+      requiredStars: 60,
       gameModes: NORMAL_STAGES_PRESET,
     },
 
@@ -100,6 +110,7 @@ export const GOJUON_LEVEL_DEFINITIONS: SectionLevelDefinition = {
       id: 'yw-gyo',
       tier: 'regular',
       groupId: 'yw-gyo',
+      requiredStars: 68,
       gameModes: NORMAL_STAGES_PRESET,
     },
 
@@ -110,6 +121,7 @@ export const GOJUON_LEVEL_DEFINITIONS: SectionLevelDefinition = {
       displayName: 'Shōtesuto 3',
       subtitleKanji: '小テスト 3',
       includeGroups: ['m-gyo', 'r-gyo', 'yw-gyo'],
+      requiredPetals: 95,
       gameModes: SHOTESTO_STAGES_PRESET,
     },
 
@@ -120,6 +132,7 @@ export const GOJUON_LEVEL_DEFINITIONS: SectionLevelDefinition = {
       displayName: 'Shiken',
       subtitleKanji: '試験',
       includeSections: ['gojuon'],
+      requiredPetals: 110,
       gameModes: SHIKEN_STAGES_PRESET,
     },
   ],

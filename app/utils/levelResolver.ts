@@ -122,6 +122,8 @@ export function resolveLevel(
     gameModes: definition.gameModes,
     includeGroups: definition.includeGroups,
     includeSections: definition.includeSections,
+    requiredStars: definition.requiredStars,
+    requiredPetals: definition.requiredPetals,
   };
 }
 

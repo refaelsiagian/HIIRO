@@ -11,6 +11,7 @@ export const DAISHIKEN_SECTION_DEFINITION: SectionLevelDefinition = {
       tier: 'daishiken',
       displayName: 'Daishiken',
       subtitleKanji: '大試験',
+      requiredStars: 0,
       gameModes: DAISHIKEN_STAGES_PRESET,
     },
   ],

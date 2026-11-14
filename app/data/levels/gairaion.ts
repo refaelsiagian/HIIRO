@@ -15,6 +15,7 @@ export const GAIRAION_LEVEL_DEFINITIONS: SectionLevelDefinition = {
       id: 'v-special',
       tier: 'regular',
       groupId: 'v-special',
+      requiredStars: 0,
       gameModes: NORMAL_STAGES_PRESET,
     },
 
@@ -23,6 +24,7 @@ export const GAIRAION_LEVEL_DEFINITIONS: SectionLevelDefinition = {
       id: 'f-special',
       tier: 'regular',
       groupId: 'f-special',
+      requiredStars: 8,
       gameModes: NORMAL_STAGES_PRESET,
     },
 
@@ -31,6 +33,7 @@ export const GAIRAION_LEVEL_DEFINITIONS: SectionLevelDefinition = {
       id: 'tw-special',
       tier: 'regular',
       groupId: 'tw-special',
+      requiredStars: 16,
       gameModes: NORMAL_STAGES_PRESET,
     },
 
@@ -41,6 +44,7 @@ export const GAIRAION_LEVEL_DEFINITIONS: SectionLevelDefinition = {
       displayName: 'Shōtesuto 1',
       subtitleKanji: '小テスト 1',
       includeGroups: ['v-special', 'f-special', 'tw-special'],
+      requiredPetals: 25,
       gameModes: SHOTESTO_STAGES_PRESET,
     },
 
@@ -51,6 +55,7 @@ export const GAIRAION_LEVEL_DEFINITIONS: SectionLevelDefinition = {
       displayName: 'Shiken',
       subtitleKanji: '試験',
       includeSections: ['gojuon', 'dakuon-handakuon', 'yoon', 'gairaion'],
+      requiredPetals: 40,
       gameModes: SHIKEN_STAGES_PRESET,
     },
   ],

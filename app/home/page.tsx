@@ -138,9 +138,9 @@ const HomePage: React.FC = () => {
             const maxStars = totalStages * 3;
             const maxPetals = totalStages * 5;
 
-            const percentStages = totalStages > 0 ? Math.min(100, Math.round((completedStages / totalStages) * 100)) : 0;
-            const percentStars = maxStars > 0 ? Math.min(100, Math.round((totalStars / maxStars) * 100)) : 0;
-            const percentPetals = maxPetals > 0 ? Math.min(100, Math.round((totalPetals / maxPetals) * 100)) : 0;
+            const percentStages = totalStages > 0 ? Math.min(100, Math.floor((completedStages / totalStages) * 100)) : 0;
+            const percentStars = maxStars > 0 ? Math.min(100, Math.floor((totalStars / maxStars) * 100)) : 0;
+            const percentPetals = maxPetals > 0 ? Math.min(100, Math.floor((totalPetals / maxPetals) * 100)) : 0;
 
             return {
                 totalStages,
