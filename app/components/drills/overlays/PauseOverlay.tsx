@@ -16,15 +16,21 @@ export const PauseOverlay: React.FC<PauseOverlayProps> = ({ onContinue, onReturn
         setInternalIsClosing(true);
         setTimeout(() => {
             onContinue();
-        }, 400);
+        }, 220);
     };
 
     const handleReturn = () => {
-        onReturnToMenu();
+        setInternalIsClosing(true);
+        setTimeout(() => {
+            onReturnToMenu();
+        }, 220);
     };
 
     const handleRestart = () => {
-        onRestart();
+        setInternalIsClosing(true);
+        setTimeout(() => {
+            onRestart();
+        }, 220);
     };
 
     return (

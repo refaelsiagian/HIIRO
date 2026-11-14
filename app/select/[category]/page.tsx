@@ -38,9 +38,9 @@ const SectionSelection: React.FC = () => {
     }
 
     return (
-        <div className="min-h-screen p-6 flex flex-col overflow-hidden">
+        <div className="min-h-screen p-6 flex flex-col overflow-hidden animate-page-enter">
             {/* HEADER NAVIGASI */}
-            <div className="absolute top-6 left-6 z-10">
+            <div className="absolute top-6 left-6 z-10 animate-fadein">
                 <Link
                     href="/home"
                     className="p-3 text-[#5C3A21] hover:text-[#DF7956] transition-colors inline-block"
@@ -50,7 +50,7 @@ const SectionSelection: React.FC = () => {
             </div>
 
             {/* HEADER */}
-            <header className="text-center mt-12 mb-16">
+            <header className="text-center mt-12 mb-16 animate-header-enter">
                 <h1 className="text-6xl text-[#5C3A21] tracking-tight capitalize font-akaya">
                     {category}
                 </h1>
@@ -62,7 +62,7 @@ const SectionSelection: React.FC = () => {
             {/* HORIZONTAL CAROUSEL */}
             <main className="flex-1 w-full flex items-center overflow-x-auto pb-12 snap-x snap-mandatory hide-scrollbar">
                 <div className="flex space-x-[64px] px-12 md:px-32 w-max mx-auto h-[520px]">
-                    {catTypes.map((typeData) => {
+                    {catTypes.map((typeData, index) => {
                         const sectionKey = typeData.id;
                         const displaySub = category === 'katakana' ? typeData.subtitle_katakana : typeData.subtitle_hiragana;
                         
@@ -75,7 +75,7 @@ const SectionSelection: React.FC = () => {
 
                         if (resolvedSection) {
                             resolvedSection.groups.forEach(group => {
-                                earned += isMounted ? getGroupStars(category, sectionKey, group.id) : 0;
+                                earned += getGroupStars(category, sectionKey, group.id);
                                 total += group.gameModes.length * 3;
                                 if (group.tier === 'regular') {
                                     totalHuruf += group.chars.length;
@@ -124,7 +124,8 @@ const SectionSelection: React.FC = () => {
                             <Link
                                 key={sectionKey}
                                 href={`/select/${category}/${sectionKey}`}
-                                className={`w-[358px] h-[520px] shrink-0 snap-center ${cardStyle} shadow-2xl p-8 flex flex-col justify-between ${fontColor} hover:scale-105 active:scale-95 transition-all duration-300 relative overflow-hidden text-left`}
+                                style={{ animationDelay: `${index * 60}ms` }}
+                                className={`w-[358px] h-[520px] shrink-0 snap-center ${cardStyle} shadow-2xl p-8 flex flex-col justify-between ${fontColor} hover:scale-105 active:scale-95 transition-all duration-300 relative overflow-hidden text-left animate-card-deal`}
                             >
                                 <div 
                                     className={`absolute top-[36px] left-[30px] ${kanjiOpacity} text-[48px] font-serif leading-[60px] font-normal tracking-[12px]`}

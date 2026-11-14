@@ -46,9 +46,9 @@ const GroupSelection: React.FC = () => {
     const headerSub = rawDisplaySub.replace('\n', '・');
 
     return (
-        <div className="min-h-screen p-6 flex flex-col overflow-hidden">
+        <div className="min-h-screen p-6 flex flex-col overflow-hidden animate-page-enter">
             {/* HEADER NAVIGASI */}
-            <div className="absolute top-6 left-6 z-10">
+            <div className="absolute top-6 left-6 z-10 animate-fadein">
                 <Link
                     href={`/select/${category}`}
                     className="p-3 text-slate-800 hover:text-blue-600 transition-colors inline-block"
@@ -58,7 +58,7 @@ const GroupSelection: React.FC = () => {
             </div>
 
             {/* HEADER */}
-            <header className="text-center mt-12 mb-16">
+            <header className="text-center mt-12 mb-16 animate-header-enter">
                 <h1 className="text-5xl text-[#5C3A21] tracking-tight font-arbutus">
                     {headerTitle}
                 </h1>
@@ -74,8 +74,8 @@ const GroupSelection: React.FC = () => {
                         const tier = group.tier;
                         const isExam = tier !== 'regular';
                         
-                        const sectionStars = isMounted ? getSectionStars(category, section) : 0;
-                        const sectionPetals = isMounted ? getSectionHighestPetals(category, section) : 0;
+                        const sectionStars = getSectionStars(category, section);
+                        const sectionPetals = getSectionHighestPetals(category, section);
 
                         // Calculate total and completed stages in preceding groups (used for Shiken unlock & display)
                         let totalSectionStages = 0;
@@ -135,7 +135,7 @@ const GroupSelection: React.FC = () => {
                             }
                         }
 
-                        const earnedStars = isMounted ? getGroupStars(category, section, group.id) : 0;
+                        const earnedStars = getGroupStars(category, section, group.id);
                         const maxStars = group.gameModes.length * 3;
                         
                         const displayTitle = group.displayName;
@@ -223,7 +223,8 @@ const GroupSelection: React.FC = () => {
                                 <div
                                     key={group.id}
                                     aria-disabled="true"
-                                    className="w-[360px] h-[480px] shrink-0 snap-center transition-all duration-300 relative text-left group opacity-60 cursor-not-allowed grayscale"
+                                    style={{ animationDelay: `${index * 50}ms` }}
+                                    className="w-[360px] h-[480px] shrink-0 snap-center transition-all duration-300 relative text-left group opacity-60 cursor-not-allowed grayscale animate-card-deal"
                                 >
                                     {cardInner}
                                 </div>
@@ -234,7 +235,8 @@ const GroupSelection: React.FC = () => {
                             <Link
                                 key={group.id}
                                 href={`/stage/${category}/${group.id}`}
-                                className="w-[360px] h-[480px] shrink-0 snap-center transition-all duration-300 relative text-left group hover:scale-105 active:scale-95"
+                                style={{ animationDelay: `${index * 50}ms` }}
+                                className="w-[360px] h-[480px] shrink-0 snap-center transition-all duration-300 relative text-left group hover:scale-105 active:scale-95 animate-card-deal"
                             >
                                 {cardInner}
                             </Link>

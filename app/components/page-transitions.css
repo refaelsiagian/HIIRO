@@ -1,0 +1,73 @@
+/* Page & Card Entrance Micro-Animations */
+
+@keyframes pageEnter {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.animate-page-enter {
+    animation: pageEnter 0.28s ease-out forwards;
+}
+
+@keyframes fadeInDown {
+    0% {
+        opacity: 0;
+        transform: translateY(-14px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-header-enter {
+    animation: fadeInDown 0.35s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+}
+
+@keyframes cardDeal {
+    0% {
+        opacity: 0;
+        transform: translateY(28px) scale(0.96);
+    }
+    100% {
+        transform: translateY(0) scale(1);
+    }
+}
+
+.animate-card-deal {
+    animation: cardDeal 0.42s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+}
+
+@keyframes stampIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.90);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.animate-stamp {
+    animation: stampIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+}
+
+@keyframes stagePlateEnter {
+    0% {
+        opacity: 0;
+        transform: translateX(32px);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+.animate-stage-plate {
+    animation: stagePlateEnter 0.38s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+}
+

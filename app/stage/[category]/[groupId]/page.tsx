@@ -9,8 +9,6 @@ import { QuizBackgroundSVG } from '../../../components/QuizBackgroundSVG';
 import { PetalSVG } from '../../../components/PetalSVG';
 import DrillView from '../../../components/drills/DrillView';
 import { PreGameOverlay } from '../../../components/drills/overlays/PreGameOverlay';
-import { PostGameOverlay } from '../../../components/drills/overlays/PostGameOverlay';
-import { PauseOverlay } from '../../../components/drills/overlays/PauseOverlay';
 import { getResolvedLevelById } from '../../../utils/levelResolver';
 import { SECTIONS_CONFIG } from '../../../data/levels/index';
 import { StageConfig } from '../../../types/levels';
@@ -40,8 +38,6 @@ const StageSelection: React.FC = () => {
     }, [activeDrill, setIsQuizActive]);
     const [infoOverlayData, setInfoOverlayData] = useState<{ stage: StageConfig; stageNumber: number } | null>(null);
     const [isClosingInfo, setIsClosingInfo] = useState(false);
-    const [postGameOverlayData, setPostGameOverlayData] = useState<any>(null);
-    const [closingPauseOverlay, setClosingPauseOverlay] = useState(false);
 
     const closeInfoOverlay = () => {
         setIsClosingInfo(true);
@@ -79,19 +75,8 @@ const StageSelection: React.FC = () => {
                 groupId={groupId} 
                 stageId={activeDrill.stageId} 
                 mode={activeDrill.mode} 
-                onClose={(data) => {
+                onClose={() => {
                     setActiveDrill(null);
-                    if (data && data.isPauseClose) {
-                        setClosingPauseOverlay(true);
-                        setTimeout(() => {
-                            setClosingPauseOverlay(false);
-                        }, 400);
-                    } else if (data) {
-                        setPostGameOverlayData(data);
-                        setTimeout(() => {
-                            setPostGameOverlayData(null);
-                        }, 400);
-                    }
                 }}
                 isSansSerif={isSansSerif}
                 onToggleSansSerif={() => setIsSansSerif(!isSansSerif)}
@@ -105,7 +90,7 @@ const StageSelection: React.FC = () => {
     const activeStages = level.gameModes;
     const displayChars = level.chars.length > 0 ? level.chars : [{ k: '?', r: 'test' }];
 
-    const groupProgress = isMounted ? (progress[category]?.[section]?.[groupId] || {}) : {};
+    const groupProgress = progress[category]?.[section]?.[groupId] || {};
     const earnedStars = Object.values(groupProgress).reduce((acc, curr) => acc + curr.stars, 0);
     const totalStars = activeStages.length * 3;
 
@@ -152,7 +137,7 @@ const StageSelection: React.FC = () => {
 
     return (
         <div 
-            className="h-screen font-sans flex flex-col md:flex-row overflow-hidden relative bg-transparent"
+            className="h-screen font-sans flex flex-col md:flex-row overflow-hidden relative bg-transparent animate-page-enter"
             style={{ 
                 color: room.fontColor,
                 '--theme-plate-bg': room.plateBg,
@@ -169,7 +154,7 @@ const StageSelection: React.FC = () => {
                     {/* Independent Back Button */}
                     <Link 
                         href={`/select/${category}/${section}`}
-                        className="absolute top-12 left-12 hover:opacity-70 transition-opacity z-20"
+                        className="absolute top-12 left-12 hover:opacity-70 transition-opacity z-20 animate-fadein"
                         style={{ color: room.fontColor }}
                     >
                         <ArrowLeft size={40} strokeWidth={2} />
@@ -179,7 +164,7 @@ const StageSelection: React.FC = () => {
                 <div className="flex-1 flex flex-col pl-[200px] pt-[120px]">
                     
                     {/* Title Section */}
-                    <div className="mb-8">
+                    <div className="mb-8 animate-header-enter">
                         {/* Title Row */}
                         <div className="flex items-baseline mb-4">
                             <h1 
@@ -239,7 +224,8 @@ const StageSelection: React.FC = () => {
                             {/* Large Character Preview */}
                             <div className="flex flex-col items-center justify-center mb-16">
                                 <span 
-                                    className={`text-[280px] leading-none ${!isSansSerif ? 'font-serif' : 'font-sans'}`}
+                                    key={selectedCharIndex}
+                                    className={`text-[280px] leading-none animate-stamp ${!isSansSerif ? 'font-serif' : 'font-sans'}`}
                                     style={{ color: room.fontColor }}
                                 >
                                     {displayChars[selectedCharIndex]?.k || '?'}
@@ -291,7 +277,8 @@ const StageSelection: React.FC = () => {
                                         setInfoOverlayData({ stage, stageNumber: index + 1 });
                                     }
                                 }}
-                                className={`relative w-[707px] max-w-full h-auto aspect-[707/194] flex items-center justify-between transition-all duration-300 group ${!isUnlocked ? 'opacity-60 grayscale cursor-not-allowed' : 'cursor-pointer'}`}
+                                style={{ animationDelay: `${index * 45}ms` }}
+                                className={`relative w-[707px] max-w-full h-auto aspect-[707/194] flex items-center justify-between transition-all duration-300 group animate-stage-plate ${!isUnlocked ? 'opacity-60 grayscale cursor-not-allowed' : 'cursor-pointer'}`}
                             >
                                 {/* SVG QUIZ BACKGROUND */}
                                 <QuizBackgroundSVG 
@@ -356,33 +343,6 @@ const StageSelection: React.FC = () => {
                     isClosing={isClosingInfo}
                     onClose={closeInfoOverlay}
                     onStart={handleStartDrill}
-                />
-            )}
-            
-            {/* POST GAME OVERLAY (Closing Animation) */}
-            {postGameOverlayData && (
-                <PostGameOverlay
-                    score={postGameOverlayData.score}
-                    targetScore={postGameOverlayData.targetScore}
-                    lives={postGameOverlayData.lives}
-                    maxLives={postGameOverlayData.maxLives}
-                    timeLeft={postGameOverlayData.timeLeft}
-                    maxTime={postGameOverlayData.maxTime}
-                    currentPetals={postGameOverlayData.currentPetals}
-                    highestPetals={postGameOverlayData.highestPetals}
-                    isClosing={true}
-                    onClose={() => {}}
-                    onReload={() => {}}
-                />
-            )}
-            
-            {/* PAUSE OVERLAY (Closing Animation) */}
-            {closingPauseOverlay && (
-                <PauseOverlay 
-                    onContinue={() => {}}
-                    onReturnToMenu={() => {}}
-                    onRestart={() => {}}
-                    isClosing={true}
                 />
             )}
         </div>

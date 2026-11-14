@@ -169,7 +169,7 @@ const HomePage: React.FC = () => {
     }
 
     return (
-        <div className="min-h-screen bg-transparent p-6 font-sans text-slate-800 flex flex-col overflow-hidden relative">
+        <div className="min-h-screen bg-transparent p-6 font-sans text-slate-800 flex flex-col overflow-hidden relative animate-page-enter">
             <SyncConfirmModal 
                 isOpen={showSyncModal}
                 onSync={handleModalSync}
@@ -178,7 +178,7 @@ const HomePage: React.FC = () => {
 
             <div className="flex-1 flex flex-col justify-between max-w-4xl w-full mx-auto animate-fadein">
                 {/* TOP BAR / USER PROFILE ON TOP CORNER */}
-                <div className="w-full flex justify-between items-center pt-2 sm:pt-4 px-2 z-20">
+                <div className="w-full flex justify-between items-center pt-2 sm:pt-4 px-2 z-20 animate-header-enter">
                     {/* BRAND LOGO */}
                     <Link 
                         href="/home"
@@ -230,7 +230,8 @@ const HomePage: React.FC = () => {
                     {/* ================= HIRAGANA CARD ================= */}
                     <Link
                         href="/select/hiragana"
-                        className="flex-1 w-full max-w-sm sm:max-w-md bg-[#DF7956] text-[#FFEFE8] p-8 sm:p-10 rounded-[2.5rem] shadow-2xl hover:scale-105 transition-all duration-300 group flex flex-col justify-between relative overflow-hidden active:scale-95 min-h-[540px] sm:min-h-[580px]"
+                        style={{ animationDelay: '0ms' }}
+                        className="flex-1 w-full max-w-sm sm:max-w-md bg-[#DF7956] text-[#FFEFE8] p-8 sm:p-10 rounded-[2.5rem] shadow-2xl hover:scale-105 transition-all duration-300 group flex flex-col justify-between relative overflow-hidden active:scale-95 min-h-[540px] sm:min-h-[580px] animate-card-deal"
                     >
                         <div className="flex flex-col items-center">
                             <span className="text-8xl sm:text-9xl font-black mb-3 group-hover:scale-110 transition-transform duration-300 font-serif select-none leading-none">
@@ -309,7 +310,8 @@ const HomePage: React.FC = () => {
                     {/* ================= KATAKANA CARD ================= */}
                     <Link
                         href="/select/katakana"
-                        className="flex-1 w-full max-w-sm sm:max-w-md bg-gradient-to-br from-[#F07B55] to-[#FFE8E0] text-[#6F3E28] p-8 sm:p-10 rounded-[2.5rem] shadow-2xl hover:scale-105 transition-all duration-300 group flex flex-col justify-between relative overflow-hidden active:scale-95 min-h-[540px] sm:min-h-[580px]"
+                        style={{ animationDelay: '80ms' }}
+                        className="flex-1 w-full max-w-sm sm:max-w-md bg-gradient-to-br from-[#F07B55] to-[#FFE8E0] text-[#6F3E28] p-8 sm:p-10 rounded-[2.5rem] shadow-2xl hover:scale-105 transition-all duration-300 group flex flex-col justify-between relative overflow-hidden active:scale-95 min-h-[540px] sm:min-h-[580px] animate-card-deal"
                     >
                         <div className="flex flex-col items-center">
                             <span className="text-8xl sm:text-9xl font-black mb-3 group-hover:scale-110 transition-transform duration-300 font-serif select-none leading-none">

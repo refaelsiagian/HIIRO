@@ -127,17 +127,10 @@ const DrillEngine: React.FC<DrillEngineProps> = ({
 
 
     const handleFinishedClose = () => {
-        // Instantly return to menu and pass data so parent can render the closing animation over the menu
-        onClose({
-            score,
-            targetScore,
-            lives,
-            maxLives,
-            timeLeft,
-            maxTime: maxTime,
-            currentPetals,
-            highestPetals: stageHighestPetals
-        });
+        setIsClosingOverlay(true);
+        setTimeout(() => {
+            onClose();
+        }, 220);
     };
 
     const handleFinishedReload = () => {
@@ -237,8 +230,7 @@ const DrillEngine: React.FC<DrillEngineProps> = ({
                     onContinue={() => setIsPaused(false)}
                     onRestart={handleFinishedReload}
                     onReturnToMenu={() => {
-                        // Instantly return to menu with isPauseClose flag
-                        onClose({ isPauseClose: true });
+                        onClose();
                     }}
                 />
             )}
