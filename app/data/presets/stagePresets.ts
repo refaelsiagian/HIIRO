@@ -7,7 +7,6 @@ export const NORMAL_STAGES_PRESET: StageConfig[] = [
   {
     id: 'true-false-1',
     displayName: 'True or False',
-    subtitle: 'Truth or False',
     instruction: 'Tentukan apakah pasangan huruf kana dan romajinya benar atau salah',
     timer: 45,
     scoreGoal: 10,
@@ -17,7 +16,6 @@ export const NORMAL_STAGES_PRESET: StageConfig[] = [
   {
     id: 'true-false-2',
     displayName: 'True or False Multi',
-    subtitle: 'Truth or False',
     instruction: 'Tentukan apakah pasangan huruf kana dan romajinya benar atau salah',
     timer: 45,
     scoreGoal: 0,
@@ -30,7 +28,6 @@ export const NORMAL_STAGES_PRESET: StageConfig[] = [
   {
     id: 'sequence-1',
     displayName: 'Sequence Drill 1',
-    subtitle: 'Urutan',
     instruction: 'Pilih karakter yang tepat sesuai dengan urutan',
     timer: 60,
     scoreGoal: 5,
@@ -43,7 +40,6 @@ export const NORMAL_STAGES_PRESET: StageConfig[] = [
   {
     id: 'sequence-2',
     displayName: 'Sequence Drill 2',
-    subtitle: 'Urutan',
     instruction: 'Pilih karakter yang tepat sesuai dengan urutan',
     timer: 90,
     scoreGoal: 7,
@@ -56,7 +52,6 @@ export const NORMAL_STAGES_PRESET: StageConfig[] = [
   {
     id: 'find-fill-1',
     displayName: 'Find & Fill',
-    subtitle: 'Cari & Isi',
     instruction: 'Temukan dan isi bagian yang kosong dengan benar',
     timer: 120,
     scoreGoal: 10,
@@ -72,7 +67,6 @@ export const SHOTESTO_STAGES_PRESET: StageConfig[] = [
   {
     id: 'check-truth-1',
     displayName: 'Check the Truth',
-    subtitle: 'Check Truth',
     instruction: 'Periksa pernyataan dan tentukan benar atau salah',
     timer: 90,
     scoreGoal: 7,
@@ -82,7 +76,6 @@ export const SHOTESTO_STAGES_PRESET: StageConfig[] = [
   {
     id: 'fill-trace-1',
     displayName: 'Fill the Trace',
-    subtitle: 'Fill the Trace',
     instruction: 'Ingat urutan kana yang muncul lalu isi posisi yang ditandai',
     timer: 180,
     scoreGoal: 1,
@@ -95,7 +88,6 @@ export const SHOTESTO_STAGES_PRESET: StageConfig[] = [
   {
     id: 'flip-it-1',
     displayName: 'Flip It!',
-    subtitle: 'Flip It!',
     instruction: 'Buka kartu dan cocokkan pasangan kana dengan romaji yang tepat',
     timer: 150,
     scoreGoal: 16, // Make sure the score to match the pairs times wave counts
@@ -109,7 +101,6 @@ export const SHOTESTO_STAGES_PRESET: StageConfig[] = [
   {
     id: 'quick-glance-1',
     displayName: 'Quick Glance',
-    subtitle: 'Quick Glance',
     instruction: 'Temukan pasangan yang cocok di antara grid sebelum bar merah habis',
     timer: 150,
     scoreGoal: 15,
@@ -132,7 +123,6 @@ export const SHIKEN_STAGES_PRESET: StageConfig[] = [
   {
     id: 'check-truth-1',
     displayName: 'Check the Truth',
-    subtitle: 'Check Truth',
     instruction: 'Periksa pernyataan dan tentukan benar atau salah',
     timer: 90,
     scoreGoal: 7,
@@ -142,7 +132,6 @@ export const SHIKEN_STAGES_PRESET: StageConfig[] = [
   {
     id: 'fill-trace-1',
     displayName: 'Fill the Trace',
-    subtitle: 'Fill the Trace',
     instruction: 'Ingat urutan kana yang muncul lalu isi posisi yang ditandai',
     timer: 180,
     scoreGoal: 7,
@@ -155,7 +144,6 @@ export const SHIKEN_STAGES_PRESET: StageConfig[] = [
   {
     id: 'flip-it-1',
     displayName: 'Flip It!',
-    subtitle: 'Flip It!',
     instruction: 'Buka kartu dan cocokkan pasangan kana dengan romaji yang tepat',
     timer: 210,
     scoreGoal: 0, // Make sure the score to match the pairs times wave counts
@@ -169,7 +157,6 @@ export const SHIKEN_STAGES_PRESET: StageConfig[] = [
   {
     id: 'quick-glance-1',
     displayName: 'Quick Glance',
-    subtitle: 'Quick Glance',
     instruction: 'Temukan pasangan yang cocok di antara grid sebelum bar merah habis',
     timer: 150,
     scoreGoal: 10,
@@ -196,7 +183,6 @@ export const DAISHIKEN_STAGES_PRESET: StageConfig[] = [
   {
     id: 'the-other-one-1',
     displayName: 'The Other One',
-    subtitle: 'The Other One',
     instruction: 'Pilih huruf yang tidak termasuk dalam kelompok atau lengkapi posisi yang kosong',
     timer: 120,
     scoreGoal: 10,
@@ -209,7 +195,6 @@ export const DAISHIKEN_STAGES_PRESET: StageConfig[] = [
   {
     id: 'wordbuilder-1',
     displayName: 'Wordbuilder',
-    subtitle: 'Wordbuilder',
     instruction: 'Susun kata dari huruf yang tersedia di papan hingga seluruh grid kosong',
     timer: 300,
     scoreGoal: 50,
@@ -222,7 +207,6 @@ export const DAISHIKEN_STAGES_PRESET: StageConfig[] = [
   {
     id: 'under-guidance-1',
     displayName: 'Under Guidance',
-    subtitle: 'Under Guidance',
     instruction: 'Amati 4 kalimat panduan dan susun kata serta partikel menjadi kalimat sesuai arti',
     timer: 240,
     scoreGoal: 5,
@@ -232,7 +216,6 @@ export const DAISHIKEN_STAGES_PRESET: StageConfig[] = [
   {
     id: 'textbuilder-1',
     displayName: 'Textbuilder',
-    subtitle: 'Textbuilder',
     instruction: 'Pilih kalimat pada teks bacaan yang cocok dengan kata-kata yang tersedia, lalu susun hingga lengkap',
     timer: 240,
     scoreGoal: 8,
@@ -243,4 +226,3 @@ export const DAISHIKEN_STAGES_PRESET: StageConfig[] = [
     },
   },
 ];
-

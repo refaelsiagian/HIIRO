@@ -16,7 +16,6 @@ export type DrillType =
 export interface StageConfig {
   id: string;
   displayName: string;
-  subtitle?: string;
   instruction: string;
   timer: number;       // in seconds
   scoreGoal: number;
