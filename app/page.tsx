@@ -1,53 +1,93 @@
 "use client";
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { AuthButton } from './components/AuthButton';
+import { useRouter } from 'next/navigation';
+import { createClient } from '../lib/supabase/client';
 
-const MainMenu: React.FC = () => {
-    return (
-        <div className="min-h-screen bg-transparent p-6 font-sans text-slate-800 flex flex-col overflow-hidden relative">
-            {/* TOP BAR / AUTH BUTTON */}
-            <div className="w-full max-w-4xl mx-auto flex justify-end items-center pt-2 sm:pt-4 px-2 z-20">
-                <AuthButton />
+const LandingPage: React.FC = () => {
+    const router = useRouter();
+    const supabase = createClient();
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const checkUser = async () => {
+            const { data: { user } } = await supabase.auth.getUser();
+            if (user) {
+                // If already logged in, redirect straight to /home
+                router.replace('/home');
+            } else {
+                setLoading(false);
+            }
+        };
+
+        checkUser();
+    }, [supabase, router]);
+
+    const handleLogin = async () => {
+        await supabase.auth.signInWithOAuth({
+            provider: 'google',
+            options: {
+                redirectTo: `${window.location.origin}/auth/callback?next=/home`,
+            },
+        });
+    };
+
+    if (loading) {
+        return (
+            <div className="min-h-screen flex items-center justify-center font-outfit text-[#5C3A21]/50 text-base">
+                Memuat Hiiro...
             </div>
+        );
+    }
 
-            {/* HEADER */}
-            <header className="max-w-4xl mx-auto text-center mb-16 pt-4 text-[#5C3A21]">
-                <h1 className="text-6xl mb-4 tracking-tight font-arbutus">
+    return (
+        <div className="min-h-screen bg-transparent p-6 font-sans text-slate-800 flex flex-col justify-between items-center overflow-hidden relative">
+            <div /> {/* Spacer */}
+
+            {/* MAIN HERO SECTION */}
+            <div className="flex flex-col items-center max-w-xl mx-auto w-full text-center py-12 animate-fadein">
+                <span className="text-xs uppercase tracking-[0.35em] text-[#DF7956] font-serif font-bold mb-3 select-none">
+                    ひいろ • 日色
+                </span>
+                
+                <h1 className="text-7xl sm:text-8xl tracking-tight font-arbutus text-[#5C3A21] mb-5 select-none drop-shadow-xs">
                     Hiiro
                 </h1>
-                <p className="opacity-80 font-medium font-akaya text-3xl">Pilih sistem penulisan yang ingin kamu pelajari hari ini</p>
-            </header>
 
-            {/* MAIN CONTENT */}
-            <main className="max-w-4xl w-full mx-auto flex-1 flex flex-col justify-center space-y-6 sm:space-y-0 sm:flex-row sm:space-x-12">
-                {/* Hiragana Card */}
-                <Link
-                    href="/select/hiragana"
-                    className="flex-1 bg-[#DF7956] text-[#FFEFE8] p-12 rounded-[2.5rem] shadow-2xl hover:scale-105 transition-all duration-300 group flex flex-col items-center justify-center relative overflow-hidden active:scale-95"
+                <p className="font-akaya text-2xl sm:text-3xl text-[#5C3A21]/80 max-w-md mx-auto leading-relaxed mb-10 select-none">
+                    Kuasai aksara Jepang selangkah demi selangkah dengan ketenangan
+                </p>
+
+                {/* HERO GOOGLE LOGIN BUTTON */}
+                <button
+                    onClick={handleLogin}
+                    className="flex items-center space-x-3.5 bg-white/90 hover:bg-white text-[#5C3A21] border-2 border-[#DF7956]/40 hover:border-[#DF7956] px-8 py-4 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 font-outfit text-base sm:text-lg font-semibold active:scale-95 cursor-pointer group"
                 >
-                    <span className="text-9xl font-black mb-8 group-hover:scale-110 transition-transform duration-300 font-serif">あ</span>
-                    <h2 className="text-4xl tracking-tight font-arbutus">Hiragana</h2>
-                    <p className="mt-4 font-medium opacity-90 font-outfit text-xl">Huruf Jepang dasar</p>
-                </Link>
+                    <svg className="w-5 h-5 sm:w-6 sm:h-6 group-hover:scale-110 transition-transform" viewBox="0 0 24 24">
+                        <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" />
+                        <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" />
+                        <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z" />
+                        <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z" />
+                    </svg>
+                    <span>Masuk dengan Google</span>
+                </button>
 
-                {/* Katakana Card */}
+                {/* GUEST OPTION LINK */}
                 <Link
-                    href="/select/katakana"
-                    className="flex-1 bg-gradient-to-br from-[#F07B55] to-[#FFE8E0] text-[#6F3E28] p-12 rounded-[2.5rem] shadow-2xl hover:scale-105 transition-all duration-300 group flex flex-col items-center justify-center relative overflow-hidden active:scale-95"
+                    href="/home"
+                    className="mt-5 text-sm sm:text-base font-outfit text-[#5C3A21]/70 hover:text-[#DF7956] transition-colors underline-offset-4 hover:underline cursor-pointer flex items-center space-x-1.5 active:scale-95"
                 >
-                    <span className="text-9xl font-black mb-8 group-hover:scale-110 transition-transform duration-300 font-serif">ア</span>
-                    <h2 className="text-4xl tracking-tight font-arbutus">Katakana</h2>
-                    <p className="mt-4 font-medium opacity-90 font-outfit text-xl">Untuk kata serapan asing</p>
+                    <span>Lanjut sebagai Tamu</span>
+                    <span className="text-xs">→</span>
                 </Link>
-            </main>
+            </div>
 
-            <footer className="text-center py-12 text-[#5C3A21]/50 text-sm font-bold tracking-widest uppercase mt-auto font-outfit">
+            <footer className="text-center py-6 text-[#5C3A21]/45 text-xs font-bold tracking-widest uppercase font-outfit select-none">
                 © 2026 Hiiro Studio
             </footer>
         </div>
     );
 };
 
-export default MainMenu;
+export default LandingPage;

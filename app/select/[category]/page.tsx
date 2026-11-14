@@ -42,7 +42,7 @@ const SectionSelection: React.FC = () => {
             {/* HEADER NAVIGASI */}
             <div className="absolute top-6 left-6 z-10">
                 <Link
-                    href="/"
+                    href="/home"
                     className="p-3 text-[#5C3A21] hover:text-[#DF7956] transition-colors inline-block"
                 >
                     <ArrowLeft size={40} strokeWidth={2} />
