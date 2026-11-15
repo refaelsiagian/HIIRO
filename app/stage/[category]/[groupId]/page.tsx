@@ -278,7 +278,7 @@ const StageSelection: React.FC = () => {
                                         setInfoOverlayData({ stage, stageNumber: index + 1 });
                                     }
                                 }}
-                                style={{ animationDelay: `${index * 45}ms` }}
+                                style={{ animationDelay: `${index * 60}ms` }}
                                 className={`relative w-[707px] max-w-full h-auto aspect-[707/194] flex items-center justify-between transition-all duration-300 group animate-stage-plate ${!isUnlocked ? 'opacity-60 grayscale cursor-not-allowed' : 'cursor-pointer'}`}
                             >
                                 {/* SVG QUIZ BACKGROUND */}

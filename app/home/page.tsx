@@ -312,7 +312,7 @@ const HomePage: React.FC = () => {
                     <Link
                         href="/select/katakana"
                         prefetch={true}
-                        style={{ animationDelay: '80ms' }}
+                        style={{ animationDelay: '140ms' }}
                         className="flex-1 w-full max-w-sm sm:max-w-md bg-gradient-to-br from-[#F07B55] to-[#FFE8E0] text-[#6F3E28] p-8 sm:p-10 rounded-[2.5rem] shadow-2xl hover:scale-105 transition-all duration-300 group flex flex-col justify-between relative overflow-hidden active:scale-95 min-h-[540px] sm:min-h-[580px] animate-card-deal"
                     >
                         <div className="flex flex-col items-center">

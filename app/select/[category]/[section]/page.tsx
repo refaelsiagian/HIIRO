@@ -224,7 +224,7 @@ const GroupSelection: React.FC = () => {
                                 <div
                                     key={group.id}
                                     aria-disabled="true"
-                                    style={{ animationDelay: `${index * 50}ms` }}
+                                    style={{ animationDelay: `${index * 70}ms` }}
                                     className="w-[360px] h-[480px] shrink-0 snap-center transition-all duration-300 relative text-left group opacity-60 cursor-not-allowed grayscale animate-card-deal"
                                 >
                                     {cardInner}
@@ -237,7 +237,7 @@ const GroupSelection: React.FC = () => {
                                 key={group.id}
                                 href={`/stage/${category}/${group.id}`}
                                 prefetch={true}
-                                style={{ animationDelay: `${index * 50}ms` }}
+                                style={{ animationDelay: `${index * 70}ms` }}
                                 className="w-[360px] h-[480px] shrink-0 snap-center transition-all duration-300 relative text-left group hover:scale-105 active:scale-95 animate-card-deal"
                             >
                                 {cardInner}

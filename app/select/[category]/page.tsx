@@ -126,7 +126,7 @@ const SectionSelection: React.FC = () => {
                                 key={sectionKey}
                                 href={`/select/${category}/${sectionKey}`}
                                 prefetch={true}
-                                style={{ animationDelay: `${index * 60}ms` }}
+                                style={{ animationDelay: `${index * 85}ms` }}
                                 className={`w-[358px] h-[520px] shrink-0 snap-center ${cardStyle} shadow-2xl p-8 flex flex-col justify-between ${fontColor} hover:scale-105 active:scale-95 transition-all duration-300 relative overflow-hidden text-left animate-card-deal`}
                             >
                                 <div 
