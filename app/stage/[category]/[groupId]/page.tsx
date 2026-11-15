@@ -137,7 +137,7 @@ const StageSelection: React.FC = () => {
 
     return (
         <div 
-            className="h-screen font-sans flex flex-col md:flex-row overflow-hidden relative bg-transparent animate-page-enter"
+            className="h-screen font-sans flex flex-col md:flex-row overflow-hidden relative bg-transparent"
             style={{ 
                 color: room.fontColor,
                 '--theme-plate-bg': room.plateBg,
@@ -154,6 +154,7 @@ const StageSelection: React.FC = () => {
                     {/* Independent Back Button */}
                     <Link 
                         href={`/select/${category}/${section}`}
+                        prefetch={true}
                         className="absolute top-12 left-12 hover:opacity-70 transition-opacity z-20 animate-fadein"
                         style={{ color: room.fontColor }}
                     >

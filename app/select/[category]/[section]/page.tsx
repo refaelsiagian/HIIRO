@@ -46,11 +46,12 @@ const GroupSelection: React.FC = () => {
     const headerSub = rawDisplaySub.replace('\n', '・');
 
     return (
-        <div className="min-h-screen p-6 flex flex-col overflow-hidden animate-page-enter">
+        <div className="min-h-screen p-6 flex flex-col overflow-hidden">
             {/* HEADER NAVIGASI */}
             <div className="absolute top-6 left-6 z-10 animate-fadein">
                 <Link
                     href={`/select/${category}`}
+                    prefetch={true}
                     className="p-3 text-slate-800 hover:text-blue-600 transition-colors inline-block"
                 >
                     <ArrowLeft size={40} strokeWidth={2} />
@@ -235,6 +236,7 @@ const GroupSelection: React.FC = () => {
                             <Link
                                 key={group.id}
                                 href={`/stage/${category}/${group.id}`}
+                                prefetch={true}
                                 style={{ animationDelay: `${index * 50}ms` }}
                                 className="w-[360px] h-[480px] shrink-0 snap-center transition-all duration-300 relative text-left group hover:scale-105 active:scale-95 animate-card-deal"
                             >

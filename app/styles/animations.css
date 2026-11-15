@@ -1,4 +1,4 @@
-/* Page & Card Entrance Micro-Animations */
+/* Page & Card Entrance Micro-Animations (GPU Hardware Accelerated) */
 
 @keyframes pageEnter {
     0% {
@@ -10,42 +10,46 @@
 }
 
 .animate-page-enter {
-    animation: pageEnter 0.28s ease-out forwards;
+    animation: pageEnter 0.22s ease-out forwards;
 }
 
 @keyframes fadeInDown {
     0% {
         opacity: 0;
-        transform: translateY(-14px);
+        transform: translate3d(0, -12px, 0);
     }
     100% {
         opacity: 1;
-        transform: translateY(0);
+        transform: translate3d(0, 0, 0);
     }
 }
 
 .animate-header-enter {
-    animation: fadeInDown 0.35s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+    animation: fadeInDown 0.32s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+    will-change: transform, opacity;
 }
 
 @keyframes cardDeal {
     0% {
         opacity: 0;
-        transform: translateY(28px) scale(0.96);
+        transform: translate3d(0, 24px, 0);
     }
     100% {
-        transform: translateY(0) scale(1);
+        transform: translate3d(0, 0, 0);
     }
 }
 
 .animate-card-deal {
-    animation: cardDeal 0.42s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+    animation: cardDeal 0.36s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+    will-change: transform, opacity;
+    backface-visibility: hidden;
+    transform: translateZ(0);
 }
 
 @keyframes stampIn {
     0% {
         opacity: 0;
-        transform: scale(0.90);
+        transform: scale(0.92);
     }
     100% {
         opacity: 1;
@@ -54,20 +58,24 @@
 }
 
 .animate-stamp {
-    animation: stampIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+    animation: stampIn 0.32s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+    will-change: transform, opacity;
+    backface-visibility: hidden;
 }
 
 @keyframes stagePlateEnter {
     0% {
         opacity: 0;
-        transform: translateX(32px);
+        transform: translate3d(24px, 0, 0);
     }
     100% {
-        transform: translateX(0);
+        transform: translate3d(0, 0, 0);
     }
 }
 
 .animate-stage-plate {
-    animation: stagePlateEnter 0.38s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+    animation: stagePlateEnter 0.34s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+    will-change: transform, opacity;
+    backface-visibility: hidden;
+    transform: translateZ(0);
 }
-

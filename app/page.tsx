@@ -76,6 +76,7 @@ const LandingPage: React.FC = () => {
                 {/* GUEST OPTION LINK */}
                 <Link
                     href="/home"
+                    prefetch={true}
                     className="mt-5 text-sm sm:text-base font-outfit text-[#5C3A21]/70 hover:text-[#DF7956] transition-colors underline-offset-4 hover:underline cursor-pointer flex items-center space-x-1.5 active:scale-95"
                 >
                     <span>Lanjut sebagai Tamu</span>

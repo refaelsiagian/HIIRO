@@ -38,11 +38,12 @@ const SectionSelection: React.FC = () => {
     }
 
     return (
-        <div className="min-h-screen p-6 flex flex-col overflow-hidden animate-page-enter">
+        <div className="min-h-screen p-6 flex flex-col overflow-hidden">
             {/* HEADER NAVIGASI */}
             <div className="absolute top-6 left-6 z-10 animate-fadein">
                 <Link
                     href="/home"
+                    prefetch={true}
                     className="p-3 text-[#5C3A21] hover:text-[#DF7956] transition-colors inline-block"
                 >
                     <ArrowLeft size={40} strokeWidth={2} />
@@ -124,6 +125,7 @@ const SectionSelection: React.FC = () => {
                             <Link
                                 key={sectionKey}
                                 href={`/select/${category}/${sectionKey}`}
+                                prefetch={true}
                                 style={{ animationDelay: `${index * 60}ms` }}
                                 className={`w-[358px] h-[520px] shrink-0 snap-center ${cardStyle} shadow-2xl p-8 flex flex-col justify-between ${fontColor} hover:scale-105 active:scale-95 transition-all duration-300 relative overflow-hidden text-left animate-card-deal`}
                             >
