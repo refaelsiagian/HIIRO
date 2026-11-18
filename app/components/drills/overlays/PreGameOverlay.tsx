@@ -12,6 +12,9 @@ interface PreGameOverlayProps {
     isClosing: boolean;
     onClose: () => void;
     onStart: () => void;
+    rulesPreset?: 'standard' | 'endless';
+    starThresholds?: [number, number, number];
+    bonusTimeText?: string;
 }
 
 export const PreGameOverlay: React.FC<PreGameOverlayProps> = ({
@@ -23,10 +26,15 @@ export const PreGameOverlay: React.FC<PreGameOverlayProps> = ({
     maxTime,
     isClosing,
     onClose,
-    onStart
+    onStart,
+    rulesPreset = 'standard',
+    starThresholds,
+    bonusTimeText,
 }) => {
     const displayStageNumber = stageNumber !== undefined ? stageNumber : stageId;
     const displayTitle = title || subtitle;
+    const thresholds = starThresholds || [20, 40, 60];
+    const isEndless = rulesPreset === 'endless';
 
     return (
         <div 
@@ -51,25 +59,49 @@ export const PreGameOverlay: React.FC<PreGameOverlayProps> = ({
                     <div>
                         <p className="text-xl font-medium opacity-80 mb-2 font-outfit">Tahap {displayStageNumber}</p>
                         <h2 className="text-5xl font-arbutus font-bold mb-4">{displayTitle}</h2>
-                        <p className="text-xl opacity-90 max-w-2xl font-outfit">{description}</p>
+                        <p className="text-xl opacity-90 max-w-3xl font-outfit">{description}</p>
                     </div>
 
                     <div className="flex justify-between items-end mt-auto">
                         <div className="space-y-4 font-outfit">
-                            <h3 className="font-arbutus text-2xl font-medium mb-6">Penilaian Tuntas</h3>
+                            <h3 className="font-arbutus text-2xl font-medium mb-4">Penilaian Tuntas</h3>
                             
-                            <div className="flex items-center space-x-4">
-                                <Star className="w-8 h-8 fill-[#C15A3D] text-[#C15A3D]" />
-                                <span className="text-xl">Permainan selesai</span>
-                            </div>
-                            <div className="flex items-center space-x-4">
-                                <Star className="w-8 h-8 fill-[#C15A3D] text-[#C15A3D]" />
-                                <span className="text-xl">Nyawa tidak berkurang</span>
-                            </div>
-                            <div className="flex items-center space-x-4">
-                                <Star className="w-8 h-8 fill-[#C15A3D] text-[#C15A3D]" />
-                                <span className="text-xl">Waktu tersisa tidak kurang dari {maxTime >= 30 ? 15 : maxTime / 2} detik</span>
-                            </div>
+                            {isEndless ? (
+                                <>
+                                    <div className="flex items-center space-x-4">
+                                        <Star className="w-8 h-8 fill-[#C15A3D] text-[#C15A3D]" />
+                                        <span className="text-xl">Mencapai skor {thresholds[0]}</span>
+                                    </div>
+                                    <div className="flex items-center space-x-4">
+                                        <Star className="w-8 h-8 fill-[#C15A3D] text-[#C15A3D]" />
+                                        <span className="text-xl">Mencapai skor {thresholds[1]}</span>
+                                    </div>
+                                    <div className="flex items-center space-x-4">
+                                        <Star className="w-8 h-8 fill-[#C15A3D] text-[#C15A3D]" />
+                                        <span className="text-xl">Mencapai skor {thresholds[2]}</span>
+                                    </div>
+                                    {bonusTimeText && (
+                                        <p className="text-base text-[#C15A3D] font-medium pt-1">
+                                            Bonus Waktu: {bonusTimeText}
+                                        </p>
+                                    )}
+                                </>
+                            ) : (
+                                <>
+                                    <div className="flex items-center space-x-4">
+                                        <Star className="w-8 h-8 fill-[#C15A3D] text-[#C15A3D]" />
+                                        <span className="text-xl">Permainan selesai</span>
+                                    </div>
+                                    <div className="flex items-center space-x-4">
+                                        <Star className="w-8 h-8 fill-[#C15A3D] text-[#C15A3D]" />
+                                        <span className="text-xl">Nyawa tidak berkurang</span>
+                                    </div>
+                                    <div className="flex items-center space-x-4">
+                                        <Star className="w-8 h-8 fill-[#C15A3D] text-[#C15A3D]" />
+                                        <span className="text-xl">Waktu tersisa tidak kurang dari {maxTime >= 30 ? 15 : maxTime / 2} detik</span>
+                                    </div>
+                                </>
+                            )}
                         </div>
 
                         <div className="flex items-center space-x-6">

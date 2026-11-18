@@ -120,8 +120,9 @@ function pickDiverseDanChars(charsPool: RawChar[], count: number): RawChar[] {
  */
 export function generateTheOtherOneQuestion(category: 'hiragana' | 'katakana'): TheOtherOneQuestion | null {
     const allChars = (charsDataRaw as RawChar[]).filter(c => c.category === category);
+    // Exclude union groups (yw-gyo, tw-special) so these characters are only tested through -dan questions
     const gyoGroups = (groupsDataRaw as RawGroup[]).filter(
-        g => g.category === category && g.char_member && g.char_member.length === 5
+        g => g.category === category && g.char_member && g.char_member.length === 5 && g.id !== 'yw-gyo' && g.id !== 'tw-special'
     );
 
     if (allChars.length === 0 || gyoGroups.length === 0) return null;
@@ -137,7 +138,7 @@ export function generateTheOtherOneQuestion(category: 'hiragana' | 'katakana'): 
 
             // Rule 3: If gyo is dakuon/handakuon, the odd one MUST also be dakuon/handakuon
             const candidateOthers = allChars.filter(c =>
-                c.group !== gyo.id && isDakuonOrHandakuon(c) === isGroupDakuon
+                !gyo.char_member.includes(c.char) && isDakuonOrHandakuon(c) === isGroupDakuon
             );
             const oddChar = candidateOthers[Math.floor(Math.random() * candidateOthers.length)].char;
 
@@ -187,7 +188,7 @@ export function generateTheOtherOneQuestion(category: 'hiragana' | 'katakana'): 
             ]);
 
             const candidateDistractors = allChars.filter(c =>
-                c.group !== gyo.id && isDakuonOrHandakuon(c) === isGroupDakuon
+                !gyo.char_member.includes(c.char) && isDakuonOrHandakuon(c) === isGroupDakuon
             );
             const distractors = shuffleArray(candidateDistractors)
                 .slice(0, 3)

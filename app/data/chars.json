@@ -465,7 +465,7 @@
       "か",
       "か"
     ],
-    "group": "yw-gyo"
+    "group": "y-gyo"
   },
   {
     "char": "ゆ",
@@ -478,7 +478,7 @@
       "め",
       "ぬ"
     ],
-    "group": "yw-gyo"
+    "group": "y-gyo"
   },
   {
     "char": "よ",
@@ -491,7 +491,7 @@
       "ほ",
       "ゆ"
     ],
-    "group": "yw-gyo"
+    "group": "y-gyo"
   },
   {
     "char": "ら",
@@ -569,7 +569,7 @@
       "ね",
       "め"
     ],
-    "group": "yw-gyo"
+    "group": "w-gyo"
   },
   {
     "char": "を",
@@ -582,7 +582,7 @@
       "ち",
       "と"
     ],
-    "group": "yw-gyo"
+    "group": "w-gyo"
   },
   {
     "char": "ん",
@@ -1752,7 +1752,7 @@
       "ハ",
       "マ"
     ],
-    "group": "yw-gyo"
+    "group": "y-gyo"
   },
   {
     "char": "ユ",
@@ -1765,7 +1765,7 @@
       "エ",
       "ヨ"
     ],
-    "group": "yw-gyo"
+    "group": "y-gyo"
   },
   {
     "char": "ヨ",
@@ -1778,7 +1778,7 @@
       "エ",
       "ユ"
     ],
-    "group": "yw-gyo"
+    "group": "y-gyo"
   },
   {
     "char": "ワ",
@@ -1791,7 +1791,7 @@
       "ラ",
       "フ"
     ],
-    "group": "yw-gyo"
+    "group": "w-gyo"
   },
   {
     "char": "ヲ",
@@ -1804,7 +1804,7 @@
       "ヨ",
       "フ"
     ],
-    "group": "yw-gyo"
+    "group": "w-gyo"
   },
   {
     "char": "ラ",
@@ -2636,7 +2636,7 @@
       "テ",
       "ディ"
     ],
-    "group": "tw-special"
+    "group": "ti-di-special"
   },
   {
     "char": "ディ",
@@ -2649,7 +2649,7 @@
       "デ",
       "ティ"
     ],
-    "group": "tw-special"
+    "group": "ti-di-special"
   },
   {
     "char": "ウィ",
@@ -2662,7 +2662,7 @@
       "イ",
       "フィ"
     ],
-    "group": "tw-special"
+    "group": "w-special"
   },
   {
     "char": "ウェ",
@@ -2675,7 +2675,7 @@
       "エ",
       "フェ"
     ],
-    "group": "tw-special"
+    "group": "w-special"
   },
   {
     "char": "ー",
@@ -2701,6 +2701,6 @@
       "オ",
       "フォ"
     ],
-    "group": "tw-special"
+    "group": "w-special"
   }
 ]

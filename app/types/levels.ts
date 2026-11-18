@@ -4,6 +4,7 @@ export type DrillType =
   | 'sequence'
   | 'sequence-2'
   | 'find-fill'
+  | 'find-fill-mugen'
   | 'check-truth'
   | 'fill-trace'
   | 'flip-it'
@@ -21,6 +22,14 @@ export interface StageConfig {
   scoreGoal: number;
   filepath: string;
   drillType: DrillType;
+  engineMode?: 'standard' | 'endless';
+  rulesPreset?: 'standard' | 'endless';
+  bonusTime?: {
+    everyAnswers?: number;
+    addSeconds: number;
+    description?: string;
+  };
+  starThresholds?: [number, number, number];
   options?: Record<string, any>;
 }
 

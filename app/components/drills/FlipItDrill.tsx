@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import { CharItem } from '../../types/kana';
 import { Check, Sparkles } from 'lucide-react';
 
@@ -13,6 +13,10 @@ interface FlipItDrillProps {
     pairsPerWave?: number;
     waveCount?: number;
     totalCards?: number;
+    isEndless?: boolean;
+    bonusSeconds?: number;
+    addBonusTime?: (seconds?: number) => void;
+    peekSeconds?: number;
 }
 
 type CardData = {
@@ -77,7 +81,7 @@ function buildWaves(groupChars: CharItem[], pairsPerWave: number, waveCount: num
     return waves;
 }
 
-function createCardsForWave(chars: CharItem[], waveIndex: number): CardData[] {
+function createCardsForWave(chars: CharItem[], waveIndex: number, startFlipped: boolean = false): CardData[] {
     const cards: CardData[] = [];
     chars.forEach((char, idx) => {
         // Use romaji as pairId so homophones like ぢ & じ ('ji') or づ & ず ('zu')
@@ -88,7 +92,7 @@ function createCardsForWave(chars: CharItem[], waveIndex: number): CardData[] {
             pairId,
             type: 'kana',
             text: char.k,
-            isFlipped: false,
+            isFlipped: startFlipped,
             isMatched: false,
         });
         cards.push({
@@ -96,7 +100,7 @@ function createCardsForWave(chars: CharItem[], waveIndex: number): CardData[] {
             pairId,
             type: 'romaji',
             text: char.r,
-            isFlipped: false,
+            isFlipped: startFlipped,
             isMatched: false,
         });
     });
@@ -112,10 +116,16 @@ const FlipItDrill: React.FC<FlipItDrillProps> = ({
     pairsPerWave: propPairsPerWave,
     waveCount: propWaveCount = 2,
     totalCards,
+    isEndless,
+    bonusSeconds,
+    addBonusTime,
+    peekSeconds,
 }) => {
     // Resolve pairsPerWave: prop > totalCards/2 > default 8 (16 tiles)
     const pairsPerWave = propPairsPerWave ?? (totalCards ? Math.floor(totalCards / 2) : 8);
     const waveCount = propWaveCount ?? 2;
+    const peekDurationMs = (peekSeconds ?? 0) * 1000;
+    const shouldPeek = peekDurationMs > 0;
 
     const waves = useMemo(() => {
         return buildWaves(groupChars, pairsPerWave, waveCount);
@@ -124,13 +134,35 @@ const FlipItDrill: React.FC<FlipItDrillProps> = ({
     const [currentWaveIndex, setCurrentWaveIndex] = useState(0);
     const [cards, setCards] = useState<CardData[]>(() => {
         if (waves.length > 0) {
-            return createCardsForWave(waves[0], 0);
+            return createCardsForWave(waves[0], 0, shouldPeek);
         }
         return [];
     });
     const [flippedIndices, setFlippedIndices] = useState<number[]>([]);
     const [isTransitioning, setIsTransitioning] = useState(false);
     const [isWaveEntering, setIsWaveEntering] = useState(false);
+    const [isPeeking, setIsPeeking] = useState(shouldPeek);
+    const peekTimeoutRef = React.useRef<NodeJS.Timeout | null>(null);
+
+    const triggerPeek = useCallback((durationMs: number) => {
+        if (durationMs <= 0) return;
+        setIsPeeking(true);
+        if (peekTimeoutRef.current) clearTimeout(peekTimeoutRef.current);
+        peekTimeoutRef.current = setTimeout(() => {
+            setCards(prev => prev.map(c => c.isMatched ? c : { ...c, isFlipped: false }));
+            setIsPeeking(false);
+        }, durationMs);
+    }, []);
+
+    // Initial mount peek
+    useEffect(() => {
+        if (shouldPeek) {
+            triggerPeek(peekDurationMs);
+        }
+        return () => {
+            if (peekTimeoutRef.current) clearTimeout(peekTimeoutRef.current);
+        };
+    }, [shouldPeek, peekDurationMs, triggerPeek]);
 
     // Sync if waves change (e.g. stage restarts or changes)
     const prevWavesRef = React.useRef(waves);
@@ -138,15 +170,18 @@ const FlipItDrill: React.FC<FlipItDrillProps> = ({
         if (prevWavesRef.current !== waves && waves.length > 0) {
             prevWavesRef.current = waves;
             setCurrentWaveIndex(0);
-            setCards(createCardsForWave(waves[0], 0));
+            setCards(createCardsForWave(waves[0], 0, shouldPeek));
             setFlippedIndices([]);
             setIsTransitioning(false);
             setIsWaveEntering(false);
+            if (shouldPeek) {
+                triggerPeek(peekDurationMs);
+            }
         }
-    }, [waves]);
+    }, [waves, shouldPeek, peekDurationMs, triggerPeek]);
 
     const handleCardClick = (index: number) => {
-        if (!isActive || isTransitioning) return;
+        if (!isActive || isTransitioning || isPeeking) return;
         if (cards[index].isMatched || cards[index].isFlipped) return;
 
         setFlippedIndices(prev => {
@@ -169,7 +204,7 @@ const FlipItDrill: React.FC<FlipItDrillProps> = ({
     };
 
     const handleMatchClick = () => {
-        if (!isActive || flippedIndices.length !== 2 || isTransitioning) return;
+        if (!isActive || flippedIndices.length !== 2 || isTransitioning || isPeeking) return;
 
         const card1 = cards[flippedIndices[0]];
         const card2 = cards[flippedIndices[1]];
@@ -187,6 +222,10 @@ const FlipItDrill: React.FC<FlipItDrillProps> = ({
             // Check if all cards in this wave are matched
             const allMatched = newCards.every(c => c.isMatched);
             if (allMatched) {
+                if (addBonusTime) {
+                    addBonusTime(bonusSeconds);
+                }
+
                 if (currentWaveIndex + 1 < waves.length) {
                     setIsTransitioning(true);
                     
@@ -195,12 +234,38 @@ const FlipItDrill: React.FC<FlipItDrillProps> = ({
                     setTimeout(() => {
                         const nextWaveIdx = currentWaveIndex + 1;
                         setCurrentWaveIndex(nextWaveIdx);
-                        setCards(createCardsForWave(waves[nextWaveIdx], nextWaveIdx));
+                        setCards(createCardsForWave(waves[nextWaveIdx], nextWaveIdx, shouldPeek));
                         setFlippedIndices([]);
                         setIsWaveEntering(true);
+                        if (shouldPeek) {
+                            triggerPeek(peekDurationMs);
+                        }
 
                         const cols = pairsPerWave > 8 ? 6 : 4;
                         const maxDiagonal = (cols - 1) + 3; // 4x4 -> 6, 6x4 -> 8
+                        const cascadeDuration = (maxDiagonal * 45) + 380;
+
+                        setTimeout(() => {
+                            setIsTransitioning(false);
+                            setIsWaveEntering(false);
+                        }, cascadeDuration);
+                    }, 300);
+                } else if (isEndless) {
+                    // Endless mode: continuously generate a new fresh wave
+                    setIsTransitioning(true);
+                    setTimeout(() => {
+                        const newWave = buildWaves(groupChars, pairsPerWave, 1)[0] || groupChars.slice(0, pairsPerWave);
+                        const nextWaveIdx = currentWaveIndex + 1;
+                        setCurrentWaveIndex(nextWaveIdx);
+                        setCards(createCardsForWave(newWave, nextWaveIdx, shouldPeek));
+                        setFlippedIndices([]);
+                        setIsWaveEntering(true);
+                        if (shouldPeek) {
+                            triggerPeek(peekDurationMs);
+                        }
+
+                        const cols = pairsPerWave > 8 ? 6 : 4;
+                        const maxDiagonal = (cols - 1) + 3;
                         const cascadeDuration = (maxDiagonal * 45) + 380;
 
                         setTimeout(() => {
@@ -229,12 +294,18 @@ const FlipItDrill: React.FC<FlipItDrillProps> = ({
             {/* Header with Wave Indicator */}
             <div className="absolute top-0 md:-top-8 w-full flex flex-col items-center">
                 <h2 className="text-xl font-bold font-sans">Flip and Match</h2>
-                {waves.length > 1 && (
-                    <span className={`text-xs font-semibold px-3 py-0.5 rounded-full mt-1 transition-all duration-300 ${
-                        isWaveEntering ? 'bg-[#DF7956] text-white scale-110 shadow-sm' : 'bg-[#DF7956]/20 text-[#5C3A21]'
-                    }`}>
-                        Gelombang {currentWaveIndex + 1} dari {waves.length}
+                {isPeeking ? (
+                    <span className="text-xs font-semibold px-3 py-0.5 rounded-full mt-1 transition-all duration-300 bg-[#DF7956] text-white animate-pulse shadow-sm">
+                        Ingat posisinya...
                     </span>
+                ) : (
+                    (waves.length > 1 || isEndless) && (
+                        <span className={`text-xs font-semibold px-3 py-0.5 rounded-full mt-1 transition-all duration-300 ${
+                            isWaveEntering ? 'bg-[#DF7956] text-white scale-110 shadow-sm' : 'bg-[#DF7956]/20 text-[#5C3A21]'
+                        }`}>
+                            {isEndless ? `Gelombang ${currentWaveIndex + 1}` : `Gelombang ${currentWaveIndex + 1} dari ${waves.length}`}
+                        </span>
+                    )
                 )}
             </div>
 
@@ -256,11 +327,11 @@ const FlipItDrill: React.FC<FlipItDrillProps> = ({
                             <button
                                 key={`${card.id}-${currentWaveIndex}`}
                                 onClick={() => handleCardClick(index)}
-                                disabled={card.isMatched || card.isFlipped || isTransitioning}
+                                disabled={card.isMatched || card.isFlipped || isTransitioning || isPeeking}
                                 className={`
                                     relative w-14 h-16 sm:w-18 sm:h-20 md:w-20 md:h-24 rounded-lg transition-all duration-300 transform-gpu
                                     ${card.isMatched ? 'opacity-0 pointer-events-none' : 'cursor-pointer drop-shadow-sm'}
-                                    ${!isVisible && !isTransitioning && 'hover:-translate-y-1'}
+                                    ${!isVisible && !isTransitioning && !isPeeking && 'hover:-translate-y-1'}
                                     ${isWaveEntering ? 'animate-domino' : ''}
                                 `}
                                 style={{ 
@@ -303,10 +374,10 @@ const FlipItDrill: React.FC<FlipItDrillProps> = ({
             <div className="mt-5 md:mt-6 flex justify-center w-full">
                 <button
                     onClick={handleMatchClick}
-                    disabled={flippedIndices.length !== 2 || isTransitioning}
+                    disabled={flippedIndices.length !== 2 || isTransitioning || isPeeking}
                     className={`
                         flex items-center space-x-2 px-7 py-2.5 sm:px-8 sm:py-3 rounded-full font-bold text-lg sm:text-xl transition-all duration-300
-                        ${flippedIndices.length === 2 && !isTransitioning
+                        ${flippedIndices.length === 2 && !isTransitioning && !isPeeking
                             ? 'bg-[#DF7956] text-white hover:scale-105 active:scale-95 drop-shadow-lg cursor-pointer' 
                             : 'bg-[#DF7956]/50 text-white/70 cursor-not-allowed scale-95'}
                     `}

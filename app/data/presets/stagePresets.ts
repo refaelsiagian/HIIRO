@@ -18,7 +18,7 @@ export const NORMAL_STAGES_PRESET: StageConfig[] = [
     displayName: 'True or False Multi',
     instruction: 'Tentukan apakah pasangan huruf kana dan romajinya benar atau salah',
     timer: 45,
-    scoreGoal: 0,
+    scoreGoal: 12,
     filepath: 'app/components/drills/TrueFalseDrill.tsx',
     drillType: 'true-false-multi',
     options: {
@@ -78,7 +78,7 @@ export const SHOTESTO_STAGES_PRESET: StageConfig[] = [
     displayName: 'Fill the Trace',
     instruction: 'Ingat urutan kana yang muncul lalu isi posisi yang ditandai',
     timer: 180,
-    scoreGoal: 1,
+    scoreGoal: 7,
     filepath: 'app/components/drills/FillTraceDrill.tsx',
     drillType: 'fill-trace',
     options: {
@@ -109,8 +109,8 @@ export const SHOTESTO_STAGES_PRESET: StageConfig[] = [
     options: {
       totalPairs: 36,
       columns: 9,
-      matchCount: 6,
-      barIntervalSeconds: 10,
+      matchCount: 8,
+      barIntervalSeconds: 15,
     },
   },
 ];
@@ -146,7 +146,7 @@ export const SHIKEN_STAGES_PRESET: StageConfig[] = [
     displayName: 'Flip It!',
     instruction: 'Buka kartu dan cocokkan pasangan kana dengan romaji yang tepat',
     timer: 210,
-    scoreGoal: 0, // Make sure the score to match the pairs times wave counts
+    scoreGoal: 24, // Make sure the score to match the pairs times wave counts
     filepath: 'app/components/drills/FlipItDrill.tsx',
     drillType: 'flip-it',
     options: {
@@ -158,28 +158,28 @@ export const SHIKEN_STAGES_PRESET: StageConfig[] = [
     id: 'quick-glance-1',
     displayName: 'Quick Glance',
     instruction: 'Temukan pasangan yang cocok di antara grid sebelum bar merah habis',
-    timer: 150,
-    scoreGoal: 10,
+    timer: 180,
+    scoreGoal: 20,
     filepath: 'app/components/drills/QuickGlanceDrill.tsx',
     drillType: 'quick-glance',
     options: {
       totalPairs: 45,
       columns: 9,
-      matchCount: 6,
-      barIntervalSeconds: 10,
+      matchCount: 8,
+      barIntervalSeconds: 15,
     },
   },
 ];
 
 /**
- * Comprehensive final exam preset used for Daishiken stages.
+ * Comprehensive final exam preset used for Honshiken stages (Daishiken part 1).
  * Consists of 4 distinct high-level quizzes based on daishiken.txt:
  * 1. The Other One (Odd-one-out or missing slot in a 5-letter group)
  * 2. Wordbuilder (Building vocabulary until the letter grid is empty)
  * 3. Under Guidance (Deducing sentence patterns from 4 references)
  * 4. Textbuilder (Completing an 8-sentence passage in sequential order)
  */
-export const DAISHIKEN_STAGES_PRESET: StageConfig[] = [
+export const HONSHIKEN_STAGES_PRESET: StageConfig[] = [
   {
     id: 'the-other-one-1',
     displayName: 'The Other One',
@@ -224,5 +224,96 @@ export const DAISHIKEN_STAGES_PRESET: StageConfig[] = [
     options: {
       sentenceCount: 8,
     },
+  },
+];
+
+export const DAISHIKEN_STAGES_PRESET: StageConfig[] = HONSHIKEN_STAGES_PRESET;
+
+/**
+ * Endless / Arcade mode preset used for Mugen stages (Daishiken part 2).
+ * Fast-paced continuous time-attack drills:
+ * 1. Check the Truth (Rapid true/false statements)
+ * 2. Flip It! (Continuous matching waves)
+ * 3. Quick Glance (Endless scanning grid)
+ * 4. Find & Fill: Mugen (-gyo & -dan boards)
+ */
+export const MUGEN_STAGES_PRESET: StageConfig[] = [
+  {
+    id: 'check-truth-mugen',
+    displayName: 'Check the Truth',
+    instruction: 'Periksa kesesuaian pasangan huruf secara cepat dan raih skor setinggi mungkin',
+    timer: 120,
+    scoreGoal: 60,
+    filepath: 'app/components/drills/CheckTruthDrill.tsx',
+    drillType: 'check-truth',
+    engineMode: 'endless',
+    rulesPreset: 'endless',
+    bonusTime: {
+      everyAnswers: 1,
+      addSeconds: 5,
+      description: '+5 detik tiap jawaban benar',
+    },
+    starThresholds: [20, 40, 60],
+  },
+  {
+    id: 'flip-it-mugen',
+    displayName: 'Flip It!',
+    instruction: 'Buka kartu dan pasangkan kana dengan romaji yang tepat secara berkesinambungan',
+    timer: 105,
+    scoreGoal: 60,
+    filepath: 'app/components/drills/FlipItDrill.tsx',
+    drillType: 'flip-it',
+    engineMode: 'endless',
+    rulesPreset: 'endless',
+    bonusTime: {
+      addSeconds: 60,
+      description: '+60 detik tiap gelombang tuntas',
+    },
+    starThresholds: [20, 40, 60],
+    options: {
+      pairsPerWave: 8,
+      waveCount: 999,
+      isEndless: true,
+      peekSeconds: 5,
+    },
+  },
+  {
+    id: 'quick-glance-mugen',
+    displayName: 'Quick Glance',
+    instruction: 'Temukan pasangan yang cocok di antara grid sebelum waktu habis',
+    timer: 60,
+    scoreGoal: 60,
+    filepath: 'app/components/drills/QuickGlanceDrill.tsx',
+    drillType: 'quick-glance',
+    engineMode: 'endless',
+    rulesPreset: 'endless',
+    bonusTime: {
+      everyAnswers: 1,
+      addSeconds: 5,
+      description: '+5 detik tiap pasangan cocok',
+    },
+    starThresholds: [20, 40, 60],
+    options: {
+      totalPairs: 45,
+      columns: 9,
+      matchCount: 8,
+      barIntervalSeconds: 15,
+    },
+  },
+  {
+    id: 'find-fill-mugen',
+    displayName: 'Find & Fill',
+    instruction: 'Tentukan letak huruf pada papan -gyo atau -dan yang sesuai untuk mengisi penuh papan',
+    timer: 60,
+    scoreGoal: 60,
+    filepath: 'app/components/drills/FindFillMugenDrill.tsx',
+    drillType: 'find-fill-mugen',
+    engineMode: 'endless',
+    rulesPreset: 'endless',
+    bonusTime: {
+      addSeconds: 10,
+      description: '+10 detik tiap papan tuntas',
+    },
+    starThresholds: [20, 40, 60],
   },
 ];

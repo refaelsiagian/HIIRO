@@ -344,6 +344,9 @@ const StageSelection: React.FC = () => {
                     isClosing={isClosingInfo}
                     onClose={closeInfoOverlay}
                     onStart={handleStartDrill}
+                    rulesPreset={infoOverlayData.stage.rulesPreset}
+                    starThresholds={infoOverlayData.stage.starThresholds}
+                    bonusTimeText={infoOverlayData.stage.bonusTime?.description}
                 />
             )}
         </div>

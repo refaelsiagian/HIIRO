@@ -80,8 +80,8 @@ export function resolveLevel(
     });
   }
 
-  // 4. Category-wide final exam (daishiken-final)
-  if (definition.id === 'daishiken-final') {
+  // 4. Category-wide final exam (daishiken-honshiken, daishiken-mugen, daishiken-final)
+  if (definition.id === 'daishiken-final' || definition.id.startsWith('daishiken')) {
     const catGroups = groupsData.filter((g) => g.category === category);
     catGroups.forEach((g) => {
       charStrings.push(...g.char_member);

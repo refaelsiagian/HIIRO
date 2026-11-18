@@ -1,9 +1,9 @@
 "use client";
 
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import { useGameStore } from '../../store/useGameStore';
-import { Pause, Heart, ArrowLeft, Ban } from 'lucide-react';
+import { Pause, Heart, ArrowLeft, Ban, Clock } from 'lucide-react';
 import { CountdownOverlay } from './overlays/CountdownOverlay';
 import { PostGameOverlay } from './overlays/PostGameOverlay';
 import { PauseOverlay } from './overlays/PauseOverlay';
@@ -18,12 +18,21 @@ interface DrillEngineProps {
     maxTime: number; // e.g. 60
     maxLives: number; // e.g. 3
     targetScore: number; // How many correct answers to win
+    engineMode?: 'standard' | 'endless';
+    bonusTime?: {
+        everyAnswers?: number;
+        addSeconds: number;
+        description?: string;
+    };
+    starThresholds?: [number, number, number];
+    rulesPreset?: 'standard' | 'endless';
     children: (props: {
         onCorrect: () => void;
         onWrong: () => void;
         isSansSerif: boolean;
         onToggleSansSerif: () => void;
         isActive?: boolean;
+        addBonusTime?: (seconds?: number) => void;
     }) => React.ReactNode;
     onClose: (postGameData?: any) => void;
     isSansSerif: boolean;
@@ -39,11 +48,18 @@ const DrillEngine: React.FC<DrillEngineProps> = ({
     maxTime,
     maxLives,
     targetScore,
+    engineMode = 'standard',
+    bonusTime,
+    starThresholds,
+    rulesPreset,
     children,
     onClose,
     isSansSerif,
     onToggleSansSerif
 }) => {
+    const isEndless = engineMode === 'endless';
+    const thresholds: [number, number, number] = starThresholds || [20, 40, 60];
+
     const { completeStage, failStage, petals, highestPetals } = useGameStore();
     const currentPetals = petals[category]?.[section]?.[groupId]?.[stageId] || 0;
     const stageHighestPetals = highestPetals?.[category]?.[section]?.[groupId]?.[stageId] || currentPetals;
@@ -51,12 +67,23 @@ const DrillEngine: React.FC<DrillEngineProps> = ({
     const [timeLeft, setTimeLeft] = useState(maxTime);
     const [lives, setLives] = useState(maxLives);
     const [score, setScore] = useState(0);
+    const scoreRef = useRef(0);
     const [gameState, setGameState] = useState<'ready' | 'playing' | 'finished'>('ready');
     const [starsEarned, setStarsEarned] = useState(0);
     const [isPaused, setIsPaused] = useState(false);
     const [hasPaused, setHasPaused] = useState(false);
     const [isClosingOverlay, setIsClosingOverlay] = useState(false);
     const [resetKey, setResetKey] = useState(0);
+    const [bonusNotification, setBonusNotification] = useState<{ id: number; text: string } | null>(null);
+
+    const triggerBonusTime = useCallback((seconds?: number) => {
+        const bonusAmount = seconds !== undefined ? seconds : (bonusTime?.addSeconds ?? 5);
+        setTimeLeft(prev => prev + bonusAmount);
+        setBonusNotification({ id: Date.now(), text: `+${bonusAmount}s` });
+        setTimeout(() => {
+            setBonusNotification(null);
+        }, 1200);
+    }, [bonusTime?.addSeconds]);
 
     const cat = (category === 'katakana' ? 'katakana' : 'hiragana') as 'hiragana' | 'katakana';
     const theme = getTierTheme(cat, groupId);
@@ -89,36 +116,62 @@ const DrillEngine: React.FC<DrillEngineProps> = ({
     const handleGameOver = useCallback((success: boolean) => {
         setGameState('finished');
 
-        if (!success) {
-            failStage(category, section, groupId, stageId);
-            setStarsEarned(0);
-        } else {
+        if (isEndless) {
             let stars = 0;
-            const timeThreshold = maxTime >= 30 ? 15 : maxTime / 2;
-            
-            if (success) stars += 1;
-            if (lives === maxLives) stars += 1;
-            if (timeLeft >= timeThreshold) stars += 1;
+            if (score >= thresholds[2]) stars = 3;
+            else if (score >= thresholds[1]) stars = 2;
+            else if (score >= thresholds[0]) stars = 1;
 
             setStarsEarned(stars);
-            completeStage(category, section, groupId, stageId, stars, score);
+            if (stars >= 1) {
+                completeStage(category, section, groupId, stageId, stars, score);
+            } else {
+                failStage(category, section, groupId, stageId);
+            }
+        } else {
+            if (!success) {
+                failStage(category, section, groupId, stageId);
+                setStarsEarned(0);
+            } else {
+                let stars = 0;
+                const timeThreshold = maxTime >= 30 ? 15 : maxTime / 2;
+                
+                if (success) stars += 1;
+                if (lives === maxLives) stars += 1;
+                if (timeLeft >= timeThreshold) stars += 1;
+
+                setStarsEarned(stars);
+                completeStage(category, section, groupId, stageId, stars, score);
+            }
         }
-    }, [category, section, groupId, stageId, maxLives, maxTime, score, lives, timeLeft, failStage, completeStage]);
+    }, [isEndless, thresholds, category, section, groupId, stageId, maxLives, maxTime, score, lives, timeLeft, failStage, completeStage]);
 
     useEffect(() => {
         if (gameState !== 'playing') return;
 
-        if (score >= targetScore) {
-            handleGameOver(true);
-        } else if (lives <= 0 || timeLeft <= 0) {
-            handleGameOver(false);
+        if (isEndless) {
+            if (lives <= 0 || timeLeft <= 0) {
+                handleGameOver(false);
+            }
+        } else {
+            if (score >= targetScore) {
+                handleGameOver(true);
+            } else if (lives <= 0 || timeLeft <= 0) {
+                handleGameOver(false);
+            }
         }
-    }, [score, lives, timeLeft, targetScore, gameState, handleGameOver]);
+    }, [score, lives, timeLeft, targetScore, gameState, isEndless, handleGameOver]);
 
     const handleCorrect = useCallback(() => {
         if (gameState !== 'playing') return;
-        setScore(prev => prev + 1);
-    }, [gameState]);
+        const nextScore = scoreRef.current + 1;
+        scoreRef.current = nextScore;
+        setScore(nextScore);
+
+        if (isEndless && bonusTime?.everyAnswers && nextScore % bonusTime.everyAnswers === 0) {
+            triggerBonusTime(bonusTime.addSeconds);
+        }
+    }, [gameState, isEndless, bonusTime, triggerBonusTime]);
 
     const handleWrong = useCallback(() => {
         if (gameState !== 'playing') return;
@@ -135,6 +188,7 @@ const DrillEngine: React.FC<DrillEngineProps> = ({
 
     const handleFinishedReload = () => {
         // Reset all state instantly
+        scoreRef.current = 0;
         setTimeLeft(maxTime);
         setLives(maxLives);
         setScore(0);
@@ -193,23 +247,61 @@ const DrillEngine: React.FC<DrillEngineProps> = ({
                     ))}
                 </div>
                 
-                {/* Timer */}
-                <div 
-                    className="font-outfit text-[44px] leading-none"
-                    style={{ color: activeRoom.fontColor }}
-                >
-                    {timeLeft}
-                </div>
-                
-                {/* Progress Bar */}
-                <div className="w-full max-w-[400px] h-3 bg-black/10 rounded-full mt-4 overflow-hidden relative">
+                {/* Center Value: Score in Endless Mode, Timer in Standard Mode */}
+                {isEndless ? (
                     <div 
-                        className="h-full transition-all duration-300 ease-out rounded-full"
-                        style={{ 
-                            width: `${Math.min(100, (score / targetScore) * 100)}%`,
-                            backgroundColor: activeRoom.fontColor,
-                        }}
-                    />
+                        className="font-outfit text-[44px] leading-none"
+                        style={{ color: activeRoom.fontColor }}
+                    >
+                        {score}
+                    </div>
+                ) : (
+                    <div 
+                        className="font-outfit text-[44px] leading-none"
+                        style={{ color: activeRoom.fontColor }}
+                    >
+                        {timeLeft}
+                    </div>
+                )}
+                
+                {/* Progress Bar Container */}
+                <div className="w-full max-w-[400px] mt-4 relative">
+                    <div className="w-full h-3 bg-black/10 rounded-full overflow-hidden relative">
+                        <div 
+                            className={`h-full rounded-full transition-all duration-300 ease-out ${
+                                isEndless && timeLeft <= 10 ? 'bg-red-500 animate-pulse' : ''
+                            }`}
+                            style={{ 
+                                width: isEndless
+                                    ? `${Math.min(100, Math.max(0, (timeLeft / maxTime) * 100))}%`
+                                    : `${Math.min(100, (score / targetScore) * 100)}%`,
+                                backgroundColor: isEndless && timeLeft <= 10 ? undefined : activeRoom.fontColor,
+                            }}
+                        />
+                    </div>
+
+                    {/* ENDLESS HUD: Clock-like timer with seconds under progress bar on the right */}
+                    {isEndless && (
+                        <div 
+                            className="flex items-center justify-end mt-1.5 font-outfit text-sm font-semibold tracking-wide"
+                            style={{ color: activeRoom.fontColor }}
+                        >
+                            <Clock size={16} className={`mr-1.5 ${timeLeft <= 10 ? 'text-red-500 animate-bounce' : 'opacity-80'}`} />
+                            <span className={timeLeft <= 10 ? 'text-red-500 font-bold' : 'opacity-90'}>
+                                {timeLeft}s
+                            </span>
+                        </div>
+                    )}
+
+                    {/* Floating Bonus Time Notification */}
+                    {bonusNotification && (
+                        <div 
+                            key={bonusNotification.id}
+                            className="absolute -top-7 right-0 text-emerald-600 font-outfit font-black text-xl animate-bounce drop-shadow-sm pointer-events-none"
+                        >
+                            {bonusNotification.text}
+                        </div>
+                    )}
                 </div>
             </div>
 
@@ -220,7 +312,8 @@ const DrillEngine: React.FC<DrillEngineProps> = ({
                     onWrong: handleWrong, 
                     isSansSerif, 
                     onToggleSansSerif,
-                    isActive: gameState === 'playing' && !isPaused
+                    isActive: gameState === 'playing' && !isPaused,
+                    addBonusTime: triggerBonusTime,
                 })}
             </div>
 
@@ -253,6 +346,8 @@ const DrillEngine: React.FC<DrillEngineProps> = ({
                     isClosing={isClosingOverlay}
                     onClose={handleFinishedClose}
                     onReload={handleFinishedReload}
+                    rulesPreset={rulesPreset || (isEndless ? 'endless' : 'standard')}
+                    starThresholds={thresholds}
                 />
             )}
         </div>

@@ -121,7 +121,7 @@ export const GOJUON_LEVEL_DEFINITIONS: SectionLevelDefinition = {
       displayName: 'Shōtesuto 3',
       subtitleKanji: '小テスト 3',
       includeGroups: ['m-gyo', 'r-gyo', 'yw-gyo'],
-      requiredPetals: 95,
+      requiredPetals: 60,
       gameModes: SHOTESTO_STAGES_PRESET,
     },
 
@@ -132,7 +132,7 @@ export const GOJUON_LEVEL_DEFINITIONS: SectionLevelDefinition = {
       displayName: 'Shiken',
       subtitleKanji: '試験',
       includeSections: ['gojuon'],
-      requiredPetals: 110,
+      requiredPetals: 65,
       gameModes: SHIKEN_STAGES_PRESET,
     },
   ],

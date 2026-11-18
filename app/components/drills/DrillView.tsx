@@ -5,6 +5,7 @@ import SequenceDrill from './SequenceDrill';
 import DrillEngine from './DrillEngine';
 import TrueFalseDrill from './TrueFalseDrill';
 import FindFillDrill from './FindFillDrill';
+import FindFillMugenDrill from './FindFillMugenDrill';
 import CheckTruthDrill from './CheckTruthDrill';
 import FillTraceDrill from './FillTraceDrill';
 import FlipItDrill from './FlipItDrill';
@@ -32,6 +33,7 @@ const DRILL_REGISTRY: Record<string, React.ComponentType<any>> = {
     'sequence': SequenceDrill,
     'sequence-2': SequenceDrill,
     'find-fill': FindFillDrill,
+    'find-fill-mugen': FindFillMugenDrill,
     'check-truth': CheckTruthDrill,
     'fill-trace': FillTraceDrill,
     'flip-it': FlipItDrill,
@@ -82,11 +84,15 @@ export default function DrillView({ category, groupId, stageId, mode, onClose, i
             maxTime={maxTime}
             maxLives={drillOptions?.maxLives ?? 3}
             targetScore={targetScore}
+            engineMode={stageConfig?.engineMode}
+            bonusTime={stageConfig?.bonusTime}
+            starThresholds={stageConfig?.starThresholds}
+            rulesPreset={stageConfig?.rulesPreset}
             onClose={onClose}
             isSansSerif={isSansSerif}
             onToggleSansSerif={onToggleSansSerif}
         >
-            {({ onCorrect, onWrong, isSansSerif, onToggleSansSerif, isActive }) => (
+            {({ onCorrect, onWrong, isSansSerif, onToggleSansSerif, isActive, addBonusTime }) => (
                 <GameComponent 
                     groupChars={level.chars} 
                     targetScore={targetScore}
@@ -96,6 +102,8 @@ export default function DrillView({ category, groupId, stageId, mode, onClose, i
                     onToggleSansSerif={onToggleSansSerif}
                     isMulti={isMulti}
                     isActive={isActive}
+                    bonusSeconds={stageConfig?.bonusTime?.addSeconds}
+                    addBonusTime={addBonusTime}
                     {...drillOptions}
                 />
             )}
