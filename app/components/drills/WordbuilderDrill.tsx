@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import { CharItem } from '../../types/kana';
-import { Sparkles } from 'lucide-react';
 import {
     generateWordbuilderGame,
     getNextRefillLetter,
@@ -18,6 +17,31 @@ interface WordbuilderDrillProps {
     onWrong: () => void;
     isSansSerif?: boolean;
     isActive?: boolean;
+}
+
+function getFullWordRomaji(slots: { char: string; romaji: string }[]): string {
+    let result = '';
+    for (let i = 0; i < slots.length; i++) {
+        const current = slots[i];
+        if (current.char === 'っ' || current.char === 'ッ') {
+            const next = slots[i + 1];
+            if (next && next.romaji) {
+                result += next.romaji[0];
+            } else {
+                result += 't';
+            }
+        } else if (current.char === 'ー') {
+            const prev = slots[i - 1];
+            if (prev && prev.romaji) {
+                result += prev.romaji.slice(-1);
+            } else {
+                result += '-';
+            }
+        } else {
+            result += current.romaji;
+        }
+    }
+    return result;
 }
 
 /**
@@ -74,9 +98,10 @@ const WordbuilderDrill: React.FC<WordbuilderDrillProps> = ({
     }, [category, targetScore]);
 
     const currentWord: TargetWord | undefined = gameState?.words[currentWordIndex];
-    const totalWords = gameState?.words.length ?? 0;
-    const totalLettersGoal = gameState?.totalLetters ?? targetScore;
-    const remainingLetters = totalLettersGoal - clearedCount;
+    const fullRomaji = useMemo(() => {
+        if (!currentWord) return '';
+        return getFullWordRomaji(currentWord.slots);
+    }, [currentWord]);
 
     // Handle tile selection
     const handleTileClick = useCallback((tileId: number) => {
@@ -194,120 +219,96 @@ const WordbuilderDrill: React.FC<WordbuilderDrillProps> = ({
     }
 
     return (
-        <div className="flex flex-col items-center justify-between w-full max-w-4xl mx-auto h-full text-[#5C3A21] px-2 sm:px-4 py-1 select-none">
-            {/* Top Info Bar */}
-            <div className="w-full flex items-center justify-between text-xs sm:text-sm font-bold text-[#5C3A21]/75 mb-1.5 px-2">
-                <span className="flex items-center gap-1.5">
-                    <span className="px-2.5 py-0.5 rounded-full bg-[#DF7956]/15 text-[#DF7956] border border-[#DF7956]/30 text-[11px] uppercase tracking-wider font-mono">
-                        Kata {currentWordIndex + 1} / {totalWords}
-                    </span>
-                    {currentWord.category && (
-                        <span className="hidden sm:inline-block text-[11px] text-[#5C3A21]/50 capitalize font-medium">
-                            • {currentWord.category}
-                        </span>
-                    )}
-                </span>
-                <span className="flex items-center gap-1 text-[#DF7956] font-mono text-xs font-bold">
-                    <Sparkles size={14} /> Sisa Huruf: {remainingLetters} / {totalLettersGoal}
-                </span>
-            </div>
-
-            {/* Target Word Card: Empty Slots with Romaji on Top, Meaning Below */}
-            <div className={`w-full max-w-md sm:max-w-lg bg-white/85 backdrop-blur-md border-2 rounded-2xl px-4 py-3 sm:py-3.5 shadow-sm text-center transition-all duration-300 ${
-                isWordCompleting ? 'border-emerald-500/60 ring-4 ring-emerald-500/20 bg-emerald-50/60' : 'border-[#DF7956]/40'
-            }`}>
-                {/* Kanji representation if available */}
-                {currentWord.kanjiDisplay && currentWord.kanjiDisplay !== currentWord.word && (
-                    <div className="text-xs text-[#5C3A21]/60 font-medium mb-1">
-                        Kanji: <span className="font-bold text-[#5C3A21]">{currentWord.kanjiDisplay}</span>
-                    </div>
-                )}
-
-                {/* 1. Empty Slots with Romaji on Top (Slightly bigger romaji) */}
-                <div className="flex items-center justify-center gap-2 sm:gap-3 my-1.5">
+        <div className="flex flex-col items-center justify-between w-full max-w-4xl mx-auto h-full text-[#5C3A21] px-2 sm:px-4 select-none pb-2 sm:pb-4">
+            {/* Target Word Guessing Section */}
+            <div className="flex-1 flex flex-col items-center justify-center pt-2 sm:pt-4 pb-2 sm:pb-4 text-center">
+                {/* Kana Slots Baseline */}
+                <div className="flex items-end justify-center gap-2 sm:gap-3 md:gap-4 h-16 sm:h-20">
                     {currentWord.slots.map((slot, idx) => {
                         const isFilled = idx < filledSlotCount;
                         const isActiveSlot = idx === filledSlotCount;
+                        const isCompound = slot.char.length > 1;
 
                         return (
-                            <div key={idx} className="flex flex-col items-center gap-1">
-                                {/* Romaji hint on top */}
-                                <span className={`text-sm sm:text-base font-mono font-bold tracking-wider transition-all ${
-                                    isFilled ? 'text-emerald-600' : isActiveSlot ? 'text-[#DF7956] scale-105' : 'text-[#DF7956]/70'
-                                }`}>
-                                    {slot.romaji}
-                                </span>
-
-                                {/* The slot box */}
-                                <div
-                                    className={`w-12 h-14 sm:w-14 sm:h-16 md:w-15 md:h-17 rounded-2xl flex items-center justify-center font-bold text-2xl sm:text-3xl transition-all duration-200 ${
-                                        isFilled
-                                            ? 'bg-gradient-to-br from-[#DF7956] to-[#C86443] text-white border-2 border-[#DF7956] shadow-sm scale-100'
-                                            : isActiveSlot
-                                            ? 'bg-white border-2 border-[#DF7956] ring-4 ring-[#DF7956]/20 text-[#DF7956]/30 shadow-inner'
-                                            : 'bg-white/40 border-2 border-dashed border-[#DF7956]/40 text-[#5C3A21]/20'
-                                    }`}
-                                >
-                                    {isFilled ? (
-                                        <span className={`animate-popup ${isSansSerif ? 'font-sans' : 'font-serif'}`}>
+                            <div
+                                key={idx}
+                                className={`relative flex flex-col items-center justify-end h-full transition-all duration-200 ${
+                                    isCompound ? 'w-12 sm:w-15 md:w-18' : 'w-9 sm:w-11 md:w-13'
+                                }`}
+                            >
+                                {isFilled ? (
+                                    <div className="flex items-center justify-center w-full h-full pb-0.5">
+                                        <span className={`text-3xl sm:text-4xl md:text-5xl font-bold text-[#5C3A21] animate-popup whitespace-nowrap leading-none ${
+                                            isCompound ? 'tracking-tighter' : ''
+                                        } ${isSansSerif ? 'font-sans' : 'font-serif'}`}>
                                             {slot.char}
                                         </span>
-                                    ) : (
-                                        <span className="text-sm font-mono text-[#5C3A21]/30">·</span>
-                                    )}
-                                </div>
+                                    </div>
+                                ) : (
+                                    <>
+                                        {/* Active slot cursor: vertical peach gradient box */}
+                                        {isActiveSlot && (
+                                            <div className="absolute inset-0 rounded-t-sm bg-gradient-to-t from-[#FFB7A3]/90 via-[#FFB7A3]/35 to-transparent animate-pulse" />
+                                        )}
+                                        {/* Baseline Underline for empty slots */}
+                                        <div className={`w-full h-[2.5px] sm:h-[3px] rounded-full z-10 transition-colors ${
+                                            isActiveSlot ? 'bg-[#5C3A21]' : 'bg-[#5C3A21]/40'
+                                        }`} />
+                                    </>
+                                )}
                             </div>
                         );
                     })}
                 </div>
 
-                {/* 2. Under the slots: Meaning (Smaller font) */}
-                <div className="text-center mt-1.5">
-                    <div className="text-sm sm:text-base font-semibold text-[#5C3A21]/80">
-                        {currentWord.meaning}
-                    </div>
-                    {currentWord.origin && (
-                        <div className="text-[11px] text-[#5C3A21]/60 font-medium mt-0.5">
-                            Kata Asal: <span className="font-semibold text-[#DF7956]">{currentWord.origin}</span>
-                        </div>
+                {/* Full Word Romaji */}
+                <div className="mt-3 sm:mt-4 text-xl sm:text-2xl font-arbutus text-[#5C3A21] tracking-wide">
+                    {fullRomaji}
+                </div>
+
+                {/* Meaning */}
+                <div className="mt-1 sm:mt-1.5 flex items-center justify-center gap-1.5 text-sm sm:text-base font-medium text-[#5C3A21]/75">
+                    <span>{currentWord.meaning}</span>
+                    {currentWord.kanjiDisplay && currentWord.kanjiDisplay !== currentWord.word && (
+                        <span className="text-xs text-[#5C3A21]/50 font-normal">
+                            ({currentWord.kanjiDisplay})
+                        </span>
                     )}
                 </div>
             </div>
 
-            {/* 3. The 4x9 Grid (36 Tiles, Dynamic Refill, Extra Large & Comfortable) */}
-            <div className="w-full mt-3 flex flex-col items-center">
-                <div className="w-full max-w-3xl sm:max-w-4xl p-2.5 sm:p-4 bg-[#5C3A21]/5 rounded-2xl border border-[#DF7956]/20 shadow-inner">
-                    <div 
-                        className="grid gap-2 sm:gap-2.5 md:gap-3"
-                        style={{ gridTemplateColumns: 'repeat(9, minmax(0, 1fr))' }}
-                    >
-                        {tiles.map((tile) => {
-                            const isWrong = wrongTileId === tile.id;
-                            const isRefilling = refillingTileIds.has(tile.id);
+            {/* 4x9 Grid Tiles (Directly floating on background, no outer container) */}
+            <div className="w-full flex justify-center pb-2 mt-6 sm:mt-8 md:mt-12">
+                <div 
+                    className="grid gap-2 sm:gap-2.5 md:gap-3 w-full max-w-3xl sm:max-w-4xl"
+                    style={{ gridTemplateColumns: 'repeat(9, minmax(0, 1fr))' }}
+                >
+                    {tiles.map((tile) => {
+                        const isWrong = wrongTileId === tile.id;
+                        const isRefilling = refillingTileIds.has(tile.id);
 
-                            return (
-                                <button
-                                    key={tile.id}
-                                    onClick={() => handleTileClick(tile.id)}
-                                    disabled={tile.isUsed}
-                                    aria-label={`Huruf ${tile.char}`}
-                                    className={`flex items-center justify-center aspect-square h-13 sm:h-15 md:h-17 lg:h-19 rounded-2xl border-2 transition-all duration-200 cursor-pointer ${
-                                        tile.isUsed
-                                            ? 'opacity-0 scale-50 pointer-events-none'
-                                            : isWrong
-                                            ? 'bg-rose-500/20 text-rose-600 border-rose-500 scale-105 shadow-md animate-bounce'
-                                            : isRefilling
-                                            ? 'bg-[#DF7956]/20 text-[#DF7956] border-[#DF7956] animate-popup'
-                                            : 'bg-white/95 hover:bg-white text-[#5C3A21] border-[#DF7956]/30 hover:border-[#DF7956] shadow-sm hover:shadow-md hover:scale-105 active:scale-95'
-                                    }`}
-                                >
-                                    <span className={`text-xl sm:text-2xl md:text-3xl font-bold leading-none ${isSansSerif ? 'font-sans' : 'font-serif'}`}>
-                                        {tile.char}
-                                    </span>
-                                </button>
-                            );
-                        })}
-                    </div>
+                        return (
+                            <button
+                                key={tile.id}
+                                onClick={() => handleTileClick(tile.id)}
+                                disabled={tile.isUsed}
+                                aria-label={`Huruf ${tile.char}`}
+                                className={`flex items-center justify-center aspect-square h-12 sm:h-14 md:h-16 lg:h-18 rounded-xl sm:rounded-2xl border transition-all duration-200 cursor-pointer ${
+                                    tile.isUsed
+                                        ? 'opacity-0 scale-50 pointer-events-none'
+                                        : isWrong
+                                        ? 'bg-rose-500/20 text-rose-600 border-rose-500 scale-105 shadow-md animate-bounce'
+                                        : isRefilling
+                                        ? 'bg-[#DF7956]/20 text-[#DF7956] border-[#DF7956] animate-popup'
+                                        : 'bg-[#FFF5F0] hover:bg-white text-[#5C3A21] border-[#DF7956]/20 hover:border-[#DF7956]/50 shadow-sm hover:shadow-md hover:scale-105 active:scale-95'
+                                }`}
+                            >
+                                <span className={`text-xl sm:text-2xl md:text-3xl font-bold leading-none ${isSansSerif ? 'font-sans' : 'font-serif'}`}>
+                                    {tile.char}
+                                </span>
+                            </button>
+                        );
+                    })}
                 </div>
             </div>
         </div>
