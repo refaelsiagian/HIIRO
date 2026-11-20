@@ -250,7 +250,7 @@ const TextbuilderDrill: React.FC<TextbuilderDrillProps> = ({
         <div className="flex flex-col items-center justify-center w-full max-w-4xl mx-auto h-full text-[#5C3A21] px-4 py-1 select-none">
             
             {/* 1. Story Passage Container (Open literary page layout with left vertical margin line) */}
-            <div className="relative w-full max-w-3xl xl:max-w-4xl mb-5 sm:mb-10">
+            <div className="relative w-full max-w-3xl xl:max-w-4xl mb-4 sm:mb-6 md:mb-10">
                 
                 {/* Flickering Top Arrow */}
                 {canScrollUp && (
@@ -263,9 +263,9 @@ const TextbuilderDrill: React.FC<TextbuilderDrillProps> = ({
                 <div
                     ref={passageRef}
                     onScroll={checkScroll}
-                    className="max-h-[220px] sm:max-h-[250px] md:max-h-[280px] overflow-y-auto hide-scrollbar border-l-5 border-[#DF7956] pl-4 sm:pl-6 py-2"
+                    className="max-h-[280px] sm:max-h-[300px] md:max-h-[280px] overflow-y-auto hide-scrollbar border-l-5 border-[#DF7956] pl-3.5 sm:pl-6 py-1.5 sm:py-2"
                 >
-                    <div className="flex flex-wrap items-start gap-x-6 sm:gap-x-2 gap-y-4 sm:gap-y-4">
+                    <div className="flex flex-wrap items-start gap-x-6 sm:gap-x-2 gap-y-2 sm:gap-y-2.5 md:gap-y-4">
                         {story.sentences.map((s) => {
                             const isSolved = solvedSentenceIds.has(s.id);
                             const isSelected = selectedSentenceId === s.id;
@@ -274,7 +274,7 @@ const TextbuilderDrill: React.FC<TextbuilderDrillProps> = ({
                                 <div
                                     key={s.id}
                                     onClick={() => handleSelectSentence(s)}
-                                    className={`group inline-flex flex-col justify-start transition-all duration-200 rounded-xl p-2 max-w-full ${
+                                    className={`group inline-flex flex-col justify-start transition-all duration-200 rounded-lg sm:rounded-xl p-1 sm:p-1.5 md:p-2 max-w-full w-full md:w-auto ${
                                         isSolved
                                             ? 'cursor-default hover:bg-[#7D4E94]/8'
                                             : isSelected
@@ -288,31 +288,31 @@ const TextbuilderDrill: React.FC<TextbuilderDrillProps> = ({
                                             <div className={`text-lg sm:text-xl md:text-2xl font-semibold text-[#5C3A21] leading-snug tracking-wide break-words ${isSansSerif ? 'font-sans' : 'font-serif'}`}>
                                                 {s.tokens.join(' ')}
                                             </div>
-                                            <div className="text-xs sm:text-sm md:text-base text-[#5C3A21] mt-2 font-normal leading-tight">
+                                            <div className="text-xs sm:text-sm md:text-base text-[#5C3A21] mt-1 md:mt-2 font-normal leading-tight">
                                                 {s.meaning}
                                             </div>
                                         </div>
                                     ) : isSelected ? (
                                         /* 2. Chosen State: Romaji on warm gradient bar with bottom orange underline + meaning below */
                                         <div className="flex flex-col">
-                                            <div className="px-3 py-1 bg-gradient-to-t from-[#DF7956]/25 via-[#DF7956]/10 to-transparent border-b-2 border-[#DF7956] rounded-t-md flex items-center min-h-[34px] sm:min-h-[38px] min-w-[170px] sm:min-w-[210px]">
-                                                <span className="font-arbutus text-sm sm:text-base md:text-lg font-medium text-[#8A513B] tracking-wide break-all">
+                                            <div className="px-2.5 py-0.5 sm:px-3 sm:py-1 bg-gradient-to-t from-[#DF7956]/25 via-[#DF7956]/10 to-transparent border-b-2 border-[#DF7956] rounded-t-md flex items-center min-h-[30px] sm:min-h-[34px] md:min-h-[38px] w-full md:w-auto md:min-w-[210px]">
+                                                <span className="font-arbutus text-base sm:text-base md:text-lg font-medium text-[#8A513B] tracking-wide break-all">
                                                     {s.romaji}
                                                 </span>
                                             </div>
-                                            <div className="text-xs sm:text-sm md:text-base text-[#5C3A21]/80 mt-1 font-normal px-1 leading-tight">
+                                            <div className="text-xs sm:text-sm md:text-base text-[#5C3A21]/80 mt-0.5 sm:mt-1 font-normal px-1 leading-tight">
                                                 {s.meaning}
                                             </div>
                                         </div>
                                     ) : (
                                         /* 3. Unsolved State: Romaji on subtle underline + meaning below */
                                         <div className="flex flex-col">
-                                            <div className="px-3 py-1 border-b-2 border-[#CC6E34] flex items-center min-h-[34px] sm:min-h-[38px] min-w-[170px] sm:min-w-[210px]">
-                                                <span className="font-arbutus text-sm sm:text-base md:text-lg italic font-medium text-[#5C3A21]/70 tracking-wide break-all">
+                                            <div className="px-2.5 py-0.5 sm:px-3 sm:py-1 border-b-2 border-[#CC6E34] flex items-center min-h-[30px] sm:min-h-[34px] md:min-h-[38px] w-full md:w-auto md:min-w-[210px]">
+                                                <span className="font-arbutus text-base sm:text-base md:text-lg italic font-medium text-[#5C3A21]/70 tracking-wide break-all">
                                                     {s.romaji}
                                                 </span>
                                             </div>
-                                            <div className="text-xs sm:text-sm md:text-base text-[#5C3A21] mt-1 font-normal leading-tight">
+                                            <div className="text-xs sm:text-sm md:text-base text-[#5C3A21] mt-0.5 sm:mt-1 font-normal leading-tight">
                                                 {s.meaning}
                                             </div>
                                         </div>
@@ -331,11 +331,11 @@ const TextbuilderDrill: React.FC<TextbuilderDrillProps> = ({
                 )}
             </div>
 
-            {/* 2. Target Sentence Textfield Area (Fixed Height: Romaji on top, Underline in middle, Meaning below) */}
-            <div className="w-full max-w-3xl xl:max-w-4xl h-[135px] sm:h-[145px] flex flex-col justify-between mb-4 sm:mb-6">
+            {/* 2. Target Sentence Textfield Area (Dynamic Height: Romaji on top, Underline in middle, Meaning below) */}
+            <div className="w-full max-w-3xl xl:max-w-4xl min-h-[110px] md:h-[145px] flex flex-col gap-1.5 md:gap-0 md:justify-between mb-4 sm:mb-6">
                 
                 {/* Top: Romaji guide of selected sentence */}
-                <div className="text-sm sm:text-base md:text-xl font-arbutus font-medium tracking-wide text-left flex items-center justify-between">
+                <div className="text-sm sm:text-base md:text-xl font-arbutus font-medium tracking-wide text-left flex items-center justify-between min-h-[22px] md:min-h-[30px]">
                     {selectedSentence ? (
                         <span className="text-[#8A513B]">
                             {selectedSentence.romaji}
@@ -348,7 +348,7 @@ const TextbuilderDrill: React.FC<TextbuilderDrillProps> = ({
                 </div>
 
                 {/* Middle: Placed Pills on top of the Underline */}
-                <div className={`min-h-[60px] sm:min-h-[68px] pb-2 flex flex-wrap items-end gap-2 border-b-2 transition-all duration-200 ${
+                <div className={`min-h-[48px] sm:min-h-[56px] md:min-h-[68px] pb-1.5 flex flex-wrap items-end gap-1.5 sm:gap-2 border-b-2 transition-all duration-200 ${
                     validationState === 'correct'
                         ? 'border-emerald-500'
                         : validationState === 'wrong'
@@ -366,7 +366,7 @@ const TextbuilderDrill: React.FC<TextbuilderDrillProps> = ({
                                 onClick={() => handleRemovePill(idx)}
                                 disabled={isAnswering}
                                 title="Klik untuk membatalkan"
-                                className={`px-4 py-2 sm:px-4.5 sm:py-2.5 rounded-xl font-semibold text-base sm:text-lg md:text-2xl transition-all duration-150 cursor-pointer shadow-xs active:scale-95 ${
+                                className={`px-3.5 py-1.5 sm:px-4 sm:py-2 md:px-4.5 md:py-2.5 rounded-xl font-semibold text-base sm:text-lg md:text-2xl transition-all duration-150 cursor-pointer shadow-xs active:scale-95 ${
                                     validationState === 'correct'
                                         ? 'bg-emerald-100 border border-emerald-500 text-emerald-800'
                                         : validationState === 'wrong'
@@ -383,13 +383,13 @@ const TextbuilderDrill: React.FC<TextbuilderDrillProps> = ({
                 </div>
 
                 {/* Bottom: Meaning of selected sentence */}
-                <div className="text-sm sm:text-base md:text-lg text-[#5C3A21]/80 font-medium text-left leading-relaxed pt-1.5 sm:pt-2">
+                <div className="text-sm sm:text-base md:text-lg text-[#5C3A21]/80 font-medium text-left leading-relaxed pt-1 sm:pt-2">
                     {selectedSentence ? selectedSentence.meaning : '\u00A0'}
                 </div>
             </div>
 
-            {/* 3. Word Pills Bank (Fixed Height so row changes don't shift layout) */}
-            <div className="w-full max-w-3xl xl:max-w-4xl h-[100px] sm:h-[110px] flex flex-wrap content-start items-center gap-2 sm:gap-2.5 mb-4 sm:mb-6">
+            {/* 3. Word Pills Bank (Flexible Height) */}
+            <div className="w-full max-w-3xl xl:max-w-4xl min-h-[60px] md:h-[110px] flex flex-wrap content-start items-center gap-1.5 sm:gap-2.5 mb-4 sm:mb-6">
                 {roundPills.map((pill) => {
                     const isUsed = selectedPillIds.has(pill.id);
                     if (isUsed) return null; // Disappears from bank when placed on the line
@@ -399,7 +399,7 @@ const TextbuilderDrill: React.FC<TextbuilderDrillProps> = ({
                             key={pill.id}
                             onClick={() => handleAddPill(pill)}
                             disabled={isAnswering}
-                            className="px-4 py-2 sm:px-5 sm:py-2.5 rounded-xl text-base sm:text-lg md:text-2xl font-semibold bg-white/80 hover:bg-white text-[#5C3A21] border border-[#FFB7A3]/60 shadow-xs hover:shadow hover:scale-105 active:scale-95 cursor-pointer transition-all duration-150"
+                            className="px-3.5 py-1.5 sm:px-4.5 sm:py-2 md:px-5 md:py-2.5 rounded-xl text-base sm:text-lg md:text-2xl font-semibold bg-white/80 hover:bg-white text-[#5C3A21] border border-[#FFB7A3]/60 shadow-xs hover:shadow hover:scale-105 active:scale-95 cursor-pointer transition-all duration-150"
                         >
                             <span className={isSansSerif ? 'font-sans' : 'font-serif'}>
                                 {pill.text}

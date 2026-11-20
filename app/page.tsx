@@ -42,7 +42,7 @@ const LandingPage: React.FC = () => {
     }
 
     return (
-        <div className="min-h-screen bg-transparent p-6 font-sans text-slate-800 flex flex-col justify-between items-center overflow-hidden relative">
+        <div className="min-h-screen bg-transparent p-4 sm:p-6 font-sans text-slate-800 flex flex-col justify-between items-center overflow-y-auto sm:overflow-hidden relative">
             <div /> {/* Spacer */}
 
             {/* MAIN HERO SECTION */}

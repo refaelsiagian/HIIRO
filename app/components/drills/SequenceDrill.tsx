@@ -128,100 +128,229 @@ const SequenceDrill: React.FC<SequenceDrillProps> = ({ groupChars, onCorrect, on
 
     if (sequence.length === 0) return <div>No data</div>;
 
-    return (
-        <div className="flex flex-col items-center justify-center w-full h-full text-[#5C3A21] relative select-none">
-            {/* Absolute positioning keeps the message stuck in place */}
-            <div className="absolute top-0 md:-top-8 w-full flex justify-center">
-                <h2 className="text-xl font-bold font-sans">{message}</h2>
-            </div>
-            
-            <div className="flex flex-col items-center justify-center min-h-[350px] w-full mt-12">
-                {isDisplaying ? (
-                    <div className="flex items-center justify-center min-h-[200px] sm:min-h-[240px]">
-                        {displayIndex < sequenceLength && (
-                            <span 
-                                className={`whitespace-nowrap leading-none select-none ${
-                                    sequence[displayIndex].k.length > 1
-                                        ? 'text-[130px] sm:text-[170px] md:text-[200px]'
-                                        : 'text-[180px] sm:text-[220px] md:text-[240px]'
-                                } ${!isSansSerif ? 'font-serif' : 'font-sans'}`}
-                            >
-                                {sequence[displayIndex].k}
-                            </span>
-                        )}
-                    </div>
-                ) : (
-                    <>
-                        {/* Blanks for answers */}
-                        <div className="flex justify-center space-x-4 sm:space-x-8 mb-16 min-h-[5rem] sm:min-h-[6rem] items-end">
-                            {sequence.map((item, index) => {
-                                const isAnswered = index < userInput.length;
-                                const isCompound = item.k.length > 1;
-                                
-                                return (
-                                    <div 
-                                        key={index} 
-                                        className={`flex items-end justify-center pb-2 h-20 sm:h-24 transition-all duration-200 ${
-                                            isCompound 
-                                                ? 'w-28 sm:w-32 md:w-[8.5rem]' 
-                                                : 'w-16 sm:w-20'
-                                        } ${
-                                            !isAnswered ? 'border-b-4 border-[#C15A3D]' : 'border-b-4 border-transparent'
-                                        }`}
-                                    >
-                                        {isAnswered && (
-                                            <span 
-                                                className={`whitespace-nowrap leading-none text-5xl sm:text-6xl ${
-                                                    !isSansSerif ? 'font-serif' : 'font-sans'
-                                                }`}
-                                            >
-                                                {item.k}
-                                            </span>
-                                        )}
-                                    </div>
-                                );
-                            })}
-                        </div>
+    // Options layout for mobile:
+    // If 3 or fewer options (e.g. Yoon with 3), keep all in 1 row (top row).
+    // If more than 3 options (e.g. 5 options for regular kana), split into 2 rows.
+    const isSingleRowOptions = options.length <= 3;
+    const splitIndex = isSingleRowOptions ? options.length : Math.ceil(options.length / 2);
+    const row1Options = options.slice(0, splitIndex);
+    const row2Options = options.slice(splitIndex);
 
-                        {/* Shuriken Options */}
-                        <div className="flex flex-wrap justify-center gap-6 max-w-3xl">
-                            {options.map((opt, index) => {
-                                const isUsed = level === 2 ? false : userInput.includes(opt.r);
-                                return (
-                                    <button
-                                        key={index}
-                                        onClick={() => handleChoice(opt.r)}
-                                        disabled={isUsed || !isActive}
-                                        className={`relative w-24 h-24 flex items-center justify-center transition-all
-                                            ${isUsed ? 'opacity-0 pointer-events-none scale-95' : 'hover:scale-105 active:scale-95 cursor-pointer drop-shadow-xl'}`}
-                                    >
-                                        {/* Shuriken Background Mask */}
-                                        <div 
-                                            className="absolute inset-0 w-full h-full bg-[#FFB7A3]"
-                                            style={{ 
-                                                backgroundColor: 'var(--theme-petal-bg, #FFB7A3)',
-                                                maskImage: 'url(/icons/shuriken.svg)', 
-                                                WebkitMaskImage: 'url(/icons/shuriken.svg)', 
-                                                maskSize: 'contain', 
-                                                WebkitMaskSize: 'contain',
-                                                maskPosition: 'center',
-                                                WebkitMaskPosition: 'center',
-                                                maskRepeat: 'no-repeat',
-                                                WebkitMaskRepeat: 'no-repeat'
-                                            }}
-                                        />
-                                        {/* Text on top */}
-                                        <span className="relative z-10 text-3xl font-arbutus text-[#5C3A21] mt-1 select-none">
-                                            {opt.r}
-                                        </span>
-                                    </button>
-                                );
-                            })}
-                        </div>
-                    </>
+    const renderMobileBlankItem = (item: CharItem, index: number) => {
+        const isAnswered = index < userInput.length;
+        const isCompound = item.k.length > 1;
+        const blankWidth = isCompound ? 'w-22' : 'w-16';
+        const charTextSize = isCompound ? 'text-4xl' : 'text-5xl';
+        
+        return (
+            <div 
+                key={index} 
+                className={`flex items-end justify-center pb-1.5 h-16 transition-all duration-200 ${blankWidth} ${
+                    !isAnswered ? 'border-b-4 border-[#C15A3D]' : 'border-b-4 border-transparent'
+                }`}
+            >
+                {isAnswered && (
+                    <span 
+                        className={`whitespace-nowrap leading-none ${charTextSize} ${
+                            !isSansSerif ? 'font-serif' : 'font-sans'
+                        }`}
+                    >
+                        {item.k}
+                    </span>
                 )}
             </div>
-        </div>
+        );
+    };
+
+    const renderMobileOptionButton = (opt: CharItem, index: number) => {
+        const isUsed = level === 2 ? false : userInput.includes(opt.r);
+        return (
+            <button
+                key={index}
+                onClick={() => handleChoice(opt.r)}
+                disabled={isUsed || !isActive}
+                className={`relative w-18 h-18 flex items-center justify-center transition-all
+                    ${isUsed ? 'opacity-0 pointer-events-none scale-95' : 'hover:scale-105 active:scale-95 cursor-pointer drop-shadow-lg'}`}
+            >
+                <div 
+                    className="absolute inset-0 w-full h-full bg-[#FFB7A3]"
+                    style={{ 
+                        backgroundColor: 'var(--theme-petal-bg, #FFB7A3)',
+                        maskImage: 'url(/icons/shuriken.svg)', 
+                        WebkitMaskImage: 'url(/icons/shuriken.svg)', 
+                        maskSize: 'contain', 
+                        WebkitMaskSize: 'contain',
+                        maskPosition: 'center',
+                        WebkitMaskPosition: 'center',
+                        maskRepeat: 'no-repeat',
+                        WebkitMaskRepeat: 'no-repeat'
+                    }}
+                />
+                <span className="relative z-10 text-2xl font-arbutus text-[#5C3A21] mt-0.5 select-none">
+                    {opt.r}
+                </span>
+            </button>
+        );
+    };
+
+    return (
+        <>
+            {/* DESKTOP VIEW (>= md) */}
+            <div className="hidden md:flex flex-col items-center justify-center w-full h-full text-[#5C3A21] select-none">
+                <div className="flex flex-col items-center justify-center min-h-[350px] w-full mt-12 relative">
+                    {/* Absolute positioning keeps the message stuck in place right above the drill content */}
+                    <div className="absolute -top-20 w-full flex justify-center">
+                        <h2 className="text-xl font-bold font-sans">{message}</h2>
+                    </div>
+                    {isDisplaying ? (
+                        <div className="flex items-center justify-center min-h-[200px] sm:min-h-[240px]">
+                            {displayIndex < sequenceLength && (
+                                <span 
+                                    className={`whitespace-nowrap leading-none select-none ${
+                                        sequence[displayIndex].k.length > 1
+                                            ? 'text-[130px] sm:text-[170px] md:text-[200px]'
+                                            : 'text-[180px] sm:text-[220px] md:text-[240px]'
+                                    } ${!isSansSerif ? 'font-serif' : 'font-sans'}`}
+                                >
+                                    {sequence[displayIndex].k}
+                                </span>
+                            )}
+                        </div>
+                    ) : (
+                        <>
+                            {/* Blanks for answers */}
+                            <div className="flex justify-center space-x-4 sm:space-x-8 mb-16 min-h-[5rem] sm:min-h-[6rem] items-end">
+                                {sequence.map((item, index) => {
+                                    const isAnswered = index < userInput.length;
+                                    const isCompound = item.k.length > 1;
+                                    
+                                    return (
+                                        <div 
+                                            key={index} 
+                                            className={`flex items-end justify-center pb-2 h-20 sm:h-24 transition-all duration-200 ${
+                                                isCompound 
+                                                    ? 'w-28 sm:w-32 md:w-[8.5rem]' 
+                                                    : 'w-16 sm:w-20'
+                                            } ${
+                                                !isAnswered ? 'border-b-4 border-[#C15A3D]' : 'border-b-4 border-transparent'
+                                            }`}
+                                        >
+                                            {isAnswered && (
+                                                <span 
+                                                    className={`whitespace-nowrap leading-none text-5xl sm:text-6xl ${
+                                                        !isSansSerif ? 'font-serif' : 'font-sans'
+                                                    }`}
+                                                >
+                                                    {item.k}
+                                                </span>
+                                            )}
+                                        </div>
+                                    );
+                                })}
+                            </div>
+
+                            {/* Shuriken Options */}
+                            <div className="flex flex-wrap justify-center gap-6 max-w-3xl">
+                                {options.map((opt, index) => {
+                                    const isUsed = level === 2 ? false : userInput.includes(opt.r);
+                                    return (
+                                        <button
+                                            key={index}
+                                            onClick={() => handleChoice(opt.r)}
+                                            disabled={isUsed || !isActive}
+                                            className={`relative w-24 h-24 flex items-center justify-center transition-all
+                                                ${isUsed ? 'opacity-0 pointer-events-none scale-95' : 'hover:scale-105 active:scale-95 cursor-pointer drop-shadow-xl'}`}
+                                        >
+                                            {/* Shuriken Background Mask */}
+                                            <div 
+                                                className="absolute inset-0 w-full h-full bg-[#FFB7A3]"
+                                                style={{ 
+                                                    backgroundColor: 'var(--theme-petal-bg, #FFB7A3)',
+                                                    maskImage: 'url(/icons/shuriken.svg)', 
+                                                    WebkitMaskImage: 'url(/icons/shuriken.svg)', 
+                                                    maskSize: 'contain', 
+                                                    WebkitMaskSize: 'contain',
+                                                    maskPosition: 'center',
+                                                    WebkitMaskPosition: 'center',
+                                                    maskRepeat: 'no-repeat',
+                                                    WebkitMaskRepeat: 'no-repeat'
+                                                }}
+                                            />
+                                            {/* Text on top */}
+                                            <span className="relative z-10 text-3xl font-arbutus text-[#5C3A21] mt-1 select-none">
+                                                {opt.r}
+                                            </span>
+                                        </button>
+                                    );
+                                })}
+                            </div>
+                        </>
+                    )}
+                </div>
+            </div>
+
+            {/* MOBILE VIEW (< md) - SPECIALIZED FOR TOUCH & COMPACT SCREENS */}
+            <div className="flex md:hidden flex-1 w-full max-w-md mx-auto flex-col items-center justify-between text-[#5C3A21] relative select-none min-h-0">
+                {/* Mobile Message Header */}
+                <div className="w-full flex justify-center pt-1 pb-2 shrink-0">
+                    <h2 className="text-lg font-bold font-sans tracking-wide text-center">{message}</h2>
+                </div>
+
+                {/* Mobile Middle: Question / Blanks Display */}
+                <div className="flex-1 w-full flex flex-col items-center justify-center min-h-0 py-2">
+                    {isDisplaying ? (
+                        <div className="flex items-center justify-center min-h-[180px] -translate-y-16">
+                            {displayIndex < sequenceLength && (
+                                <span 
+                                    className={`whitespace-nowrap leading-none select-none ${
+                                        sequence[displayIndex].k.length > 1
+                                            ? 'text-[120px]'
+                                            : 'text-[160px]'
+                                    } ${!isSansSerif ? 'font-serif' : 'font-sans'}`}
+                                >
+                                    {sequence[displayIndex].k}
+                                </span>
+                            )}
+                        </div>
+                    ) : (
+                        <>
+                            {level === 2 ? (
+                                /* Mobile Sequence 2: 2 rows of blanks (3 on top, 2 on bottom) */
+                                <div className="flex flex-col items-center gap-3 mb-4 px-2">
+                                    <div className="flex justify-center space-x-3">
+                                        {sequence.slice(0, 3).map((item, index) => renderMobileBlankItem(item, index))}
+                                    </div>
+                                    <div className="flex justify-center space-x-3">
+                                        {sequence.slice(3, 5).map((item, index) => renderMobileBlankItem(item, index + 3))}
+                                    </div>
+                                </div>
+                            ) : (
+                                /* Mobile Sequence 1: 1 row of 3 blanks */
+                                <div className="flex justify-center space-x-3 mb-4 min-h-[4.5rem] items-end px-2">
+                                    {sequence.map((item, index) => renderMobileBlankItem(item, index))}
+                                </div>
+                            )}
+                        </>
+                    )}
+                </div>
+
+                {/* Mobile Bottom: Shuriken Buttons (1 row for 3 options, 2 rows for 5 options) */}
+                {!isDisplaying && (
+                    <div className="w-full flex flex-col items-center justify-start pb-8 shrink-0 min-h-[170px]">
+                        <div className="flex flex-col items-center gap-3 w-full px-2">
+                            <div className="flex justify-center gap-3">
+                                {row1Options.map((opt, idx) => renderMobileOptionButton(opt, idx))}
+                            </div>
+                            {row2Options.length > 0 && (
+                                <div className="flex justify-center gap-3">
+                                    {row2Options.map((opt, idx) => renderMobileOptionButton(opt, idx + splitIndex))}
+                                </div>
+                            )}
+                        </div>
+                    </div>
+                )}
+            </div>
+        </>
     );
 };
 

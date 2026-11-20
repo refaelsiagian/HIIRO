@@ -46,31 +46,31 @@ const GroupSelection: React.FC = () => {
     const headerSub = rawDisplaySub.replace('\n', '・');
 
     return (
-        <div className="min-h-screen p-6 flex flex-col overflow-hidden">
+        <div className="min-h-screen p-4 sm:p-6 flex flex-col overflow-x-hidden">
             {/* HEADER NAVIGASI */}
-            <div className="absolute top-6 left-6 z-10 animate-fadein">
+            <div className="absolute top-4 left-4 sm:top-6 sm:left-6 z-10 animate-fadein">
                 <Link
                     href={`/select/${category}`}
                     prefetch={true}
-                    className="p-3 text-slate-800 hover:text-blue-600 transition-colors inline-block"
+                    className="p-2 sm:p-3 text-slate-800 hover:text-blue-600 transition-colors inline-block"
                 >
-                    <ArrowLeft size={40} strokeWidth={2} />
+                    <ArrowLeft className="w-8 h-8 sm:w-10 sm:h-10" strokeWidth={2} />
                 </Link>
             </div>
 
             {/* HEADER */}
-            <header className="text-center mt-12 mb-16 animate-header-enter">
-                <h1 className="text-5xl text-[#5C3A21] tracking-tight font-arbutus">
+            <header className="text-center mt-8 mb-6 sm:mt-12 sm:mb-16 animate-header-enter px-4">
+                <h1 className="text-3xl sm:text-5xl text-[#5C3A21] tracking-tight font-arbutus break-words">
                     {headerTitle}
                 </h1>
-                <p className="text-[#5C3A21]/70 mt-2 text-2xl font-akaya">
+                <p className="text-[#5C3A21]/70 mt-1 sm:mt-2 text-xl sm:text-2xl font-akaya">
                     {headerSub}
                 </p>
             </header>
 
             {/* HORIZONTAL CAROUSEL */}
-            <main className="flex-1 w-full flex items-center overflow-x-auto pb-12 snap-x snap-mandatory hide-scrollbar">
-                <div className="flex space-x-12 px-12 md:px-32 w-max mx-auto h-[480px] items-center">
+            <main className="flex-1 w-full flex items-center overflow-x-auto pb-8 sm:pb-12 snap-x snap-mandatory hide-scrollbar">
+                <div className="flex space-x-6 sm:space-x-12 px-6 sm:px-12 md:px-32 w-max mx-auto h-[440px] sm:h-[480px] items-center">
                     {groups.map((group, index) => {
                         const tier = group.tier;
                         const isExam = tier !== 'regular';
@@ -181,31 +181,31 @@ const GroupSelection: React.FC = () => {
                                     )}
                                     
                                     <div 
-                                        className={`absolute top-[36px] left-[30px] ${paper.letterOpacity} text-[48px] font-serif leading-[60px] font-normal tracking-[12px]`}
+                                        className={`absolute top-[28px] left-[20px] sm:top-[36px] sm:left-[30px] ${paper.letterOpacity} text-[36px] sm:text-[48px] font-serif leading-[48px] sm:leading-[60px] font-normal tracking-[8px] sm:tracking-[12px]`}
                                         style={{ writingMode: 'vertical-rl' }}
                                     >
                                         {displayChars}
                                     </div>
                                     
-                                    <div className="absolute top-[92px] left-[152px] right-0 pr-[42px] flex flex-col items-start z-10">
-                                        <h2 className="text-[32px] font-arbutus font-normal whitespace-pre-line leading-none mb-2 text-left">
+                                    <div className="absolute top-[72px] sm:top-[92px] left-[110px] sm:left-[152px] right-0 pr-5 sm:pr-[42px] flex flex-col items-start z-10">
+                                        <h2 className="text-2xl sm:text-[32px] font-arbutus font-normal whitespace-pre-line leading-tight sm:leading-none mb-1.5 sm:mb-2 text-left">
                                             {displayTitle}
                                         </h2>
                                         
-                                        <p className="text-[20px] font-serif font-normal opacity-80 mb-3 text-left">
+                                        <p className="text-base sm:text-[20px] font-serif font-normal opacity-80 mb-2 sm:mb-3 text-left">
                                             {displaySubTitle}
                                         </p>
-                                        <div className="flex items-center text-[16px] font-outfit font-normal opacity-90 text-left">
+                                        <div className="flex items-center text-sm sm:text-[16px] font-outfit font-normal opacity-90 text-left">
                                             <Star 
-                                                className="w-[20px] h-[20px] mr-2" 
+                                                className="w-4 h-4 sm:w-[20px] sm:h-[20px] mr-1.5 sm:mr-2" 
                                                 style={{ fill: paper.starColor, color: paper.starColor }}
                                             />
                                             {`${earnedStars}/${maxStars}`}
                                         </div>
                                     </div>
 
-                                    <div className="absolute bottom-[42px] right-[42px] z-10 text-right" style={{ color: paper.fontColor }}>
-                                        <p className="text-[16px] font-outfit font-normal">
+                                    <div className="absolute bottom-6 right-6 sm:bottom-[42px] sm:right-[42px] z-10 text-right" style={{ color: paper.fontColor }}>
+                                        <p className="text-sm sm:text-[16px] font-outfit font-normal">
                                             {tier === 'regular'
                                                 ? `${group.chars.length} huruf`
                                                 : tier === 'shotesto'
@@ -225,7 +225,7 @@ const GroupSelection: React.FC = () => {
                                     key={group.id}
                                     aria-disabled="true"
                                     style={{ animationDelay: `${index * 70}ms` }}
-                                    className="w-[360px] h-[480px] shrink-0 snap-center transition-all duration-300 relative text-left group opacity-60 cursor-not-allowed grayscale animate-card-deal"
+                                    className="h-[420px] sm:h-[480px] aspect-[360/480] shrink-0 snap-center transition-all duration-300 relative text-left group opacity-60 cursor-not-allowed grayscale animate-card-deal"
                                 >
                                     {cardInner}
                                 </div>
@@ -238,7 +238,7 @@ const GroupSelection: React.FC = () => {
                                 href={`/stage/${category}/${group.id}`}
                                 prefetch={true}
                                 style={{ animationDelay: `${index * 70}ms` }}
-                                className="w-[360px] h-[480px] shrink-0 snap-center transition-all duration-300 relative text-left group hover:scale-105 active:scale-95 animate-card-deal"
+                                className="h-[420px] sm:h-[480px] aspect-[360/480] shrink-0 snap-center transition-all duration-300 relative text-left group hover:scale-105 active:scale-95 animate-card-deal"
                             >
                                 {cardInner}
                             </Link>

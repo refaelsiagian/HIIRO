@@ -435,93 +435,221 @@ export const FindFillMugenDrill: React.FC<FindFillMugenDrillProps> = ({
         );
     };
 
-    return (
-        <div className="flex flex-col items-center justify-center w-full h-full text-[#5C3A21] relative select-none -translate-y-6 sm:-translate-y-8 md:-translate-y-10">
-            {/* Title / Instruction */}
-            <div className="w-full flex justify-center mb-2 md:mb-3">
-                <h2 className="text-lg md:text-xl font-bold font-sans opacity-90">
-                    Tentukan letaknya
-                </h2>
-            </div>
-            
-            <div className="flex w-full items-center justify-center gap-6 sm:gap-8 md:gap-14 lg:gap-16">
-                {/* Left 2 Boards */}
-                <div className="flex space-x-2 md:space-x-6">
-                    {renderBoard(activeBoards[0], 0)}
-                    {renderBoard(activeBoards[1], 1)}
-                </div>
+    const renderMobileBoard = (board: ActiveBoard, index: number) => {
+        const isHidden = hiddenBoards[index];
+        const isReverse = board.template.type === 'dan';
+        const boardBg = isReverse ? COLOR_REVERSE.bg : COLOR_NORMAL.bg;
+        const slotBg = isReverse ? COLOR_REVERSE.slot : COLOR_NORMAL.slot;
+        const textColor = isReverse ? COLOR_REVERSE.text : COLOR_NORMAL.text;
 
-                {/* Center Control */}
-                <div className="flex flex-col items-center justify-center">
-                    <div className="flex flex-col items-center justify-center h-[260px] md:h-[300px]">
+        return (
+            <button
+                key={index}
+                onClick={() => handleAction(index)}
+                disabled={!isActive || isHidden}
+                className={`relative flex-1 max-w-[84px] h-[310px] sm:h-[340px] flex justify-center items-center transition-all duration-300 active:scale-95 cursor-pointer select-none ${
+                    isHidden ? 'opacity-0 scale-95 pointer-events-none' : 'opacity-100 scale-100 hover:brightness-105 drop-shadow-md'
+                }`}
+                title={`Papan ${index + 1}`}
+            >
+                {/* Authentic board.svg mask with 2 brown color versions */}
+                <div 
+                    className="absolute inset-0 w-full h-full"
+                    style={{ 
+                        backgroundColor: boardBg,
+                        maskImage: 'url(/icons/board.svg)', 
+                        WebkitMaskImage: 'url(/icons/board.svg)', 
+                        maskSize: '100% 100%', 
+                        WebkitMaskSize: '100% 100%',
+                        maskPosition: 'center',
+                        WebkitMaskPosition: 'center',
+                        maskRepeat: 'no-repeat',
+                        WebkitMaskRepeat: 'no-repeat'
+                    }}
+                />
+                
+                {/* Slots */}
+                <div className="relative z-10 w-full h-full flex flex-col items-center justify-between py-10 sm:py-11">
+                    {Array.from({ length: 5 }).map((_, slotIdx) => {
+                        const isFilled = slotIdx < board.currentChars.length;
+                        const charItem = isFilled ? board.currentChars[slotIdx] : null;
+                        const isCompound = charItem ? charItem.k.length > 1 : false;
+
+                        return (
+                            <div key={slotIdx} className="w-full px-1 h-10 flex items-center justify-center">
+                                {isFilled && charItem ? (
+                                    <span 
+                                        className={`whitespace-nowrap leading-none select-none ${
+                                            isCompound 
+                                                ? 'text-xl sm:text-2xl tracking-tight' 
+                                                : 'text-3xl sm:text-4xl'
+                                        } ${!isSansSerif ? 'font-serif' : 'font-sans'}`}
+                                        style={{ color: textColor }}
+                                    >
+                                        {charItem.k}
+                                    </span>
+                                ) : (
+                                    <div 
+                                        className="w-6 h-6 sm:w-7 sm:h-7 rounded-sm transform rotate-45 opacity-80" 
+                                        style={{ backgroundColor: slotBg }}
+                                    />
+                                )}
+                            </div>
+                        );
+                    })}
+                </div>
+            </button>
+        );
+    };
+
+    return (
+        <>
+            {/* DESKTOP VIEW (>= md) - 100% UNTOUCHED ORIGINAL LAYOUT */}
+            <div className="hidden md:flex flex-col items-center justify-center w-full h-full text-[#5C3A21] relative select-none -translate-y-6 sm:-translate-y-8 md:-translate-y-10">
+                {/* Title / Instruction */}
+                <div className="w-full flex justify-center mb-2 md:mb-3">
+                    <h2 className="text-lg md:text-xl font-bold font-sans opacity-90">
+                        Tentukan letaknya
+                    </h2>
+                </div>
+                
+                <div className="flex w-full items-center justify-center gap-6 sm:gap-8 md:gap-14 lg:gap-16">
+                    {/* Left 2 Boards */}
+                    <div className="flex space-x-2 md:space-x-6">
+                        {renderBoard(activeBoards[0], 0)}
+                        {renderBoard(activeBoards[1], 1)}
+                    </div>
+
+                    {/* Center Control */}
+                    <div className="flex flex-col items-center justify-center">
+                        <div className="flex flex-col items-center justify-center h-[260px] md:h-[300px]">
+                            <span 
+                                className={`whitespace-nowrap select-none leading-none text-[#5C3A21] ${
+                                    question.char.k.length > 1
+                                        ? 'text-[90px] sm:text-[120px] md:text-[150px]'
+                                        : 'text-[120px] md:text-[180px]'
+                                } ${!isSansSerif ? 'font-serif' : 'font-sans'}`}
+                            >
+                                {question.char.k}
+                            </span>
+                            <span className="text-4xl md:text-5xl font-arbutus text-[#5C3A21] mt-6 md:mt-8">
+                                {question.displayRomaji}
+                            </span>
+                        </div>
+
+                        {/* Action Buttons using shuriken.svg */}
+                        <div className="flex space-x-3 sm:space-x-4 md:space-x-6 mt-14 md:mt-18">
+                            {[
+                                { action: 0, icon: <ChevronsLeft size={28} />, title: "Papan 1 (Kiri Luar)" },
+                                { action: 1, icon: <ChevronLeft size={28} />, title: "Papan 2 (Kiri Dalam)" },
+                                { action: 'discard', icon: <Ban size={24} strokeWidth={2.5} />, title: "Buang / Mismatch" },
+                                { action: 2, icon: <ChevronRight size={28} />, title: "Papan 3 (Kanan Dalam)" },
+                                { action: 3, icon: <ChevronsRight size={28} />, title: "Papan 4 (Kanan Luar)" },
+                            ].map((btn, idx) => {
+                                const isDiscard = btn.action === 'discard';
+                                const targetBoard = typeof btn.action === 'number' ? activeBoards[btn.action] : null;
+                                const isReverse = targetBoard?.template.type === 'dan';
+
+                                const shurikenBg = isDiscard ? '#FFB7A3' : (isReverse ? COLOR_REVERSE.bg : COLOR_NORMAL.bg);
+                                const iconColor = isDiscard ? '#C15A3D' : (isReverse ? COLOR_REVERSE.text : COLOR_NORMAL.text);
+
+                                return (
+                                    <button 
+                                        key={idx}
+                                        onClick={() => handleAction(btn.action as any)} 
+                                        disabled={!isActive}
+                                        title={btn.title}
+                                        className="relative w-12 h-12 md:w-16 md:h-16 flex items-center justify-center transition-transform hover:scale-110 active:scale-95 drop-shadow-md cursor-pointer"
+                                    >
+                                        <div 
+                                            className="absolute inset-0 w-full h-full"
+                                            style={{ 
+                                                backgroundColor: shurikenBg,
+                                                maskImage: 'url(/icons/shuriken.svg)', 
+                                                WebkitMaskImage: 'url(/icons/shuriken.svg)', 
+                                                maskSize: 'contain', 
+                                                WebkitMaskSize: 'contain',
+                                                maskPosition: 'center',
+                                                WebkitMaskPosition: 'center',
+                                                maskRepeat: 'no-repeat',
+                                                WebkitMaskRepeat: 'no-repeat'
+                                            }}
+                                        />
+                                        <span className="relative z-10" style={{ color: iconColor }}>
+                                            {btn.icon}
+                                        </span>
+                                    </button>
+                                );
+                            })}
+                        </div>
+                    </div>
+
+                    {/* Right 2 Boards */}
+                    <div className="flex space-x-2 md:space-x-6">
+                        {renderBoard(activeBoards[2], 2)}
+                        {renderBoard(activeBoards[3], 3)}
+                    </div>
+                </div>
+            </div>
+
+            {/* MOBILE VIEW (< md) - VERTICAL FLOW: KANA TOP, BOARDS MIDDLE, DISCARD BOTTOM */}
+            <div className="flex md:hidden flex-1 w-full max-w-md mx-auto flex-col items-center justify-center text-[#5C3A21] relative select-none min-h-0 px-2 py-2 -translate-y-6 sm:-translate-y-8">
+                
+                {/* Top Section: Title & Question Card - comfortably spaced from progress bar */}
+                <div className="w-full flex flex-col items-center mb-3 sm:mb-5 shrink-0 pt-1">
+                    <h2 className="text-base font-bold font-sans opacity-90 mb-0.5">Tentukan letaknya</h2>
+                    
+                    <div className="flex flex-col items-center justify-center py-0.5">
                         <span 
                             className={`whitespace-nowrap select-none leading-none text-[#5C3A21] ${
                                 question.char.k.length > 1
-                                    ? 'text-[90px] sm:text-[120px] md:text-[150px]'
-                                    : 'text-[120px] md:text-[180px]'
+                                    ? 'text-6xl sm:text-7xl'
+                                    : 'text-7xl sm:text-8xl'
                             } ${!isSansSerif ? 'font-serif' : 'font-sans'}`}
                         >
                             {question.char.k}
                         </span>
-                        <span className="text-4xl md:text-5xl font-arbutus text-[#5C3A21] mt-6 md:mt-8">
+                        <span className="text-2xl sm:text-3xl font-arbutus text-[#5C3A21] mt-1">
                             {question.displayRomaji}
                         </span>
                     </div>
-
-                    {/* Action Buttons using shuriken.svg */}
-                    <div className="flex space-x-3 sm:space-x-4 md:space-x-6 mt-14 md:mt-18">
-                        {[
-                            { action: 0, icon: <ChevronsLeft size={28} />, title: "Papan 1 (Kiri Luar)" },
-                            { action: 1, icon: <ChevronLeft size={28} />, title: "Papan 2 (Kiri Dalam)" },
-                            { action: 'discard', icon: <Ban size={24} strokeWidth={2.5} />, title: "Buang / Mismatch" },
-                            { action: 2, icon: <ChevronRight size={28} />, title: "Papan 3 (Kanan Dalam)" },
-                            { action: 3, icon: <ChevronsRight size={28} />, title: "Papan 4 (Kanan Luar)" },
-                        ].map((btn, idx) => {
-                            const isDiscard = btn.action === 'discard';
-                            const targetBoard = typeof btn.action === 'number' ? activeBoards[btn.action] : null;
-                            const isReverse = targetBoard?.template.type === 'dan';
-
-                            const shurikenBg = isDiscard ? '#FFB7A3' : (isReverse ? COLOR_REVERSE.bg : COLOR_NORMAL.bg);
-                            const iconColor = isDiscard ? '#C15A3D' : (isReverse ? COLOR_REVERSE.text : COLOR_NORMAL.text);
-
-                            return (
-                                <button 
-                                    key={idx}
-                                    onClick={() => handleAction(btn.action as any)} 
-                                    disabled={!isActive}
-                                    title={btn.title}
-                                    className="relative w-12 h-12 md:w-16 md:h-16 flex items-center justify-center transition-transform hover:scale-110 active:scale-95 drop-shadow-md cursor-pointer"
-                                >
-                                    <div 
-                                        className="absolute inset-0 w-full h-full"
-                                        style={{ 
-                                            backgroundColor: shurikenBg,
-                                            maskImage: 'url(/icons/shuriken.svg)', 
-                                            WebkitMaskImage: 'url(/icons/shuriken.svg)', 
-                                            maskSize: 'contain', 
-                                            WebkitMaskSize: 'contain',
-                                            maskPosition: 'center',
-                                            WebkitMaskPosition: 'center',
-                                            maskRepeat: 'no-repeat',
-                                            WebkitMaskRepeat: 'no-repeat'
-                                        }}
-                                    />
-                                    <span className="relative z-10" style={{ color: iconColor }}>
-                                        {btn.icon}
-                                    </span>
-                                </button>
-                            );
-                        })}
-                    </div>
                 </div>
 
-                {/* Right 2 Boards */}
-                <div className="flex space-x-2 md:space-x-6">
-                    {renderBoard(activeBoards[2], 2)}
-                    {renderBoard(activeBoards[3], 3)}
+                {/* Middle Section: 4 Bigger Boards Side-by-Side (Bigger, Centered, 2-Color Mechanism) */}
+                <div className="w-full flex justify-center items-center gap-2 sm:gap-2.5 my-1 shrink-0">
+                    {activeBoards.map((board, idx) => renderMobileBoard(board, idx))}
                 </div>
+
+                {/* Bottom Section: Single Discard / Ban Button */}
+                <div className="w-full flex flex-col items-center justify-center shrink-0 mt-5 sm:mt-7 pb-2">
+                    <button
+                        onClick={() => handleAction('discard')}
+                        disabled={!isActive}
+                        className="relative w-16 h-16 sm:w-18 sm:h-18 flex items-center justify-center transition-transform hover:scale-105 active:scale-95 drop-shadow-lg cursor-pointer"
+                        title="Buang / Mismatch"
+                    >
+                        <div 
+                            className="absolute inset-0 w-full h-full bg-[#FFB7A3]"
+                            style={{ 
+                                maskImage: 'url(/icons/shuriken.svg)', 
+                                WebkitMaskImage: 'url(/icons/shuriken.svg)', 
+                                maskSize: 'contain', 
+                                WebkitMaskSize: 'contain',
+                                maskPosition: 'center',
+                                WebkitMaskPosition: 'center',
+                                maskRepeat: 'no-repeat',
+                                WebkitMaskRepeat: 'no-repeat'
+                            }}
+                        />
+                        <span className="relative z-10 text-[#5C3A21]">
+                            <Ban size={28} strokeWidth={2.5} />
+                        </span>
+                    </button>
+                    <span className="text-xs font-sans text-[#5C3A21]/70 mt-1 font-medium">Buang jika salah</span>
+                </div>
+
             </div>
-        </div>
+        </>
     );
 };
 

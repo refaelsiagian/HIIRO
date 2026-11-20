@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { 
   Noto_Sans_JP, 
   Noto_Serif_JP, 
@@ -44,6 +44,11 @@ export const metadata: Metadata = {
   description: "Learn Hiragana and Katakana",
 };
 
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -55,8 +60,8 @@ export default function RootLayout({
         className={`${notoSansJP.variable} ${notoSerifJP.variable} ${outfit.variable} ${arbutusSlab.variable} ${akayaKanadaka.variable} font-sans antialiased text-slate-800 min-h-screen relative`}
       >
         <GlobalBackground />
-        {/* Anti-Scale Overlay Warning */}
-        <div className="hidden [@media(max-width:1500px)]:flex [@media(max-height:900px)]:flex fixed inset-0 z-[9999] bg-[#FFE8E0] text-[#543323] flex-col items-center justify-center p-8 text-center">
+        {/* Anti-Scale Overlay Warning: Desktop only (>= 1024px) when zoomed in */}
+        <div className="anti-scale-overlay fixed inset-0 z-[9999] bg-[#FFE8E0] text-[#543323] flex-col items-center justify-center p-8 text-center">
             <h1 className="text-[40px] font-arbutus tracking-tight mb-4">Skala Layar Terlalu Besar</h1>
             <p className="text-xl max-w-2xl font-sans leading-relaxed">
                 Situs ini tidak didukung dalam ukuran atau skala layar ini. Silahkan mengecilkan skala browser (Zoom Out) dengan menekan <br/><br/>

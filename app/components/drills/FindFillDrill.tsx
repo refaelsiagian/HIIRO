@@ -165,7 +165,13 @@ const FindFillDrill: React.FC<FindFillDrillProps> = ({ groupChars, onCorrect, on
         const isHidden = hiddenBoards[index];
 
         return (
-            <div key={index} className={`relative w-[100px] h-[400px] md:w-[120px] md:h-[500px] flex justify-center items-center transition-all duration-500 ${isHidden ? 'opacity-0 scale-95' : 'opacity-100 scale-100'}`}>
+            <div 
+                key={index} 
+                onClick={() => handleAction(index)}
+                className={`relative w-[100px] h-[400px] md:w-[120px] md:h-[500px] flex justify-center items-center transition-all duration-500 cursor-pointer hover:brightness-105 ${
+                    isHidden ? 'opacity-0 scale-95 pointer-events-none' : 'opacity-100 scale-100'
+                }`}
+            >
                 {/* Board SVG */}
                 <div 
                     className="absolute inset-0 w-full h-full bg-[#FFB7A3]"
@@ -211,81 +217,199 @@ const FindFillDrill: React.FC<FindFillDrillProps> = ({ groupChars, onCorrect, on
         );
     };
 
-    return (
-        <div className="flex flex-col items-center justify-center w-full h-full text-[#5C3A21] relative select-none -translate-y-6 sm:-translate-y-8 md:-translate-y-10">
-            {/* Title / Instruction: close to boards */}
-            <div className="w-full flex justify-center mb-3 md:mb-4">
-                <h2 className="text-lg md:text-xl font-bold font-sans opacity-90">Tentukan letaknya</h2>
-            </div>
-            
-            <div className="flex w-full items-center justify-center gap-6 sm:gap-8 md:gap-14 lg:gap-16">
-                
-                {/* Left Boards */}
-                <div className="flex space-x-2 md:space-x-6">
-                    {renderBoard(boards[0], 0)}
-                    {renderBoard(boards[1], 1)}
-                </div>
+    const renderMobileBoard = (board: CharItem[], index: number) => {
+        const isHidden = hiddenBoards[index];
 
-                {/* Center Control */}
-                <div className="flex flex-col items-center justify-center">
-                    <div className="flex flex-col items-center justify-center h-[260px] md:h-[300px]">
+        return (
+            <button
+                key={index}
+                onClick={() => handleAction(index)}
+                disabled={isHidden || !isActive}
+                className={`relative flex-1 max-w-[84px] h-[310px] sm:h-[340px] flex justify-center items-center transition-all duration-300 active:scale-95 cursor-pointer select-none ${
+                    isHidden ? 'opacity-0 scale-95 pointer-events-none' : 'opacity-100 scale-100 hover:brightness-105 drop-shadow-md'
+                }`}
+            >
+                {/* Board SVG - Authentic peachy #FFB7A3 */}
+                <div 
+                    className="absolute inset-0 w-full h-full bg-[#FFB7A3]"
+                    style={{ 
+                        maskImage: 'url(/icons/board.svg)', 
+                        WebkitMaskImage: 'url(/icons/board.svg)', 
+                        maskSize: '100% 100%', 
+                        WebkitMaskSize: '100% 100%',
+                        maskPosition: 'center',
+                        WebkitMaskPosition: 'center',
+                        maskRepeat: 'no-repeat',
+                        WebkitMaskRepeat: 'no-repeat'
+                    }}
+                />
+                
+                {/* Slots */}
+                <div className="relative z-10 w-full h-full flex flex-col items-center justify-between py-10 sm:py-11">
+                    {Array.from({ length: capacity }).map((_, slotIdx) => {
+                        const isFilled = slotIdx < board.length;
+                        const charItem = isFilled ? board[slotIdx] : null;
+                        const isCompound = charItem ? charItem.k.length > 1 : false;
+
+                        return (
+                            <div key={slotIdx} className="w-full px-1 h-10 flex items-center justify-center">
+                                {isFilled && charItem ? (
+                                    <span 
+                                        className={`whitespace-nowrap leading-none select-none text-[#5C3A21] ${
+                                            isCompound 
+                                                ? 'text-xl sm:text-2xl tracking-tight' 
+                                                : 'text-3xl sm:text-4xl'
+                                        } ${!isSansSerif ? 'font-serif' : 'font-sans'}`}
+                                    >
+                                        {charItem.k}
+                                    </span>
+                                ) : (
+                                    <div className="w-6 h-6 sm:w-7 sm:h-7 bg-[#C15A3D] rounded-sm transform rotate-45 opacity-80" />
+                                )}
+                            </div>
+                        );
+                    })}
+                </div>
+            </button>
+        );
+    };
+
+    return (
+        <>
+            {/* DESKTOP VIEW (>= md) - 100% UNTOUCHED ORIGINAL LAYOUT */}
+            <div className="hidden md:flex flex-col items-center justify-center w-full h-full text-[#5C3A21] relative select-none -translate-y-6 sm:-translate-y-8 md:-translate-y-10">
+                {/* Title / Instruction: close to boards */}
+                <div className="w-full flex justify-center mb-3 md:mb-4">
+                    <h2 className="text-lg md:text-xl font-bold font-sans opacity-90">Tentukan letaknya</h2>
+                </div>
+                
+                <div className="flex w-full items-center justify-center gap-6 sm:gap-8 md:gap-14 lg:gap-16">
+                    
+                    {/* Left Boards */}
+                    <div className="flex space-x-2 md:space-x-6">
+                        {renderBoard(boards[0], 0)}
+                        {renderBoard(boards[1], 1)}
+                    </div>
+
+                    {/* Center Control */}
+                    <div className="flex flex-col items-center justify-center">
+                        <div className="flex flex-col items-center justify-center h-[260px] md:h-[300px]">
+                            <span 
+                                className={`whitespace-nowrap select-none leading-none text-[#5C3A21] ${
+                                    question.char.k.length > 1
+                                        ? 'text-[100px] sm:text-[130px] md:text-[160px]'
+                                        : 'text-[120px] md:text-[180px]'
+                                } ${!isSansSerif ? 'font-serif' : 'font-sans'}`}
+                            >
+                                {question.char.k}
+                            </span>
+                            <span className="text-4xl md:text-5xl font-arbutus text-[#5C3A21] mt-6 md:mt-8">
+                                {question.romaji}
+                            </span>
+                        </div>
+
+                        {/* Buttons */}
+                        <div className="flex space-x-4 md:space-x-6 mt-16 md:mt-20">
+                            {[
+                                { action: 0, icon: <ChevronsLeft size={28} /> },
+                                { action: 1, icon: <ChevronLeft size={28} /> },
+                                { action: 'discard', icon: <Ban size={24} strokeWidth={2.5} /> },
+                                { action: 2, icon: <ChevronRight size={28} /> },
+                                { action: 3, icon: <ChevronsRight size={28} /> },
+                            ].map((btn, idx) => (
+                                <button 
+                                    key={idx}
+                                    onClick={() => handleAction(btn.action as any)} 
+                                    className="relative w-12 h-12 md:w-16 md:h-16 flex items-center justify-center transition-transform hover:scale-110 active:scale-95 drop-shadow-md cursor-pointer"
+                                >
+                                    <div 
+                                        className="absolute inset-0 w-full h-full bg-[#FFB7A3]"
+                                        style={{ 
+                                            maskImage: 'url(/icons/shuriken.svg)', 
+                                            WebkitMaskImage: 'url(/icons/shuriken.svg)', 
+                                            maskSize: 'contain', 
+                                            WebkitMaskSize: 'contain',
+                                            maskPosition: 'center',
+                                            WebkitMaskPosition: 'center',
+                                            maskRepeat: 'no-repeat',
+                                            WebkitMaskRepeat: 'no-repeat'
+                                        }}
+                                    />
+                                    <span className="relative z-10 text-[#5C3A21]">
+                                        {btn.icon}
+                                    </span>
+                                </button>
+                            ))}
+                        </div>
+                    </div>
+
+                    {/* Right Boards */}
+                    <div className="flex space-x-2 md:space-x-6">
+                        {renderBoard(boards[2], 2)}
+                        {renderBoard(boards[3], 3)}
+                    </div>
+
+                </div>
+            </div>
+
+            {/* MOBILE VIEW (< md) - VERTICAL FLOW: KANA TOP, BOARDS MIDDLE, DISCARD BOTTOM */}
+            <div className="flex md:hidden flex-1 w-full max-w-md mx-auto flex-col items-center justify-center text-[#5C3A21] relative select-none min-h-0 px-2 py-2 -translate-y-6 sm:-translate-y-8">
+                
+                {/* Top Section: Title & Question Card - comfortably spaced from progress bar */}
+                <div className="w-full flex flex-col items-center mb-3 sm:mb-5 shrink-0 pt-1">
+                    <h2 className="text-base font-bold font-sans opacity-90 mb-0.5">Tentukan letaknya</h2>
+                    
+                    <div className="flex flex-col items-center justify-center py-0.5">
                         <span 
                             className={`whitespace-nowrap select-none leading-none text-[#5C3A21] ${
                                 question.char.k.length > 1
-                                    ? 'text-[100px] sm:text-[130px] md:text-[160px]'
-                                    : 'text-[120px] md:text-[180px]'
+                                    ? 'text-6xl sm:text-7xl'
+                                    : 'text-7xl sm:text-8xl'
                             } ${!isSansSerif ? 'font-serif' : 'font-sans'}`}
                         >
                             {question.char.k}
                         </span>
-                        <span className="text-4xl md:text-5xl font-arbutus text-[#5C3A21] mt-6 md:mt-8">
+                        <span className="text-2xl sm:text-3xl font-arbutus text-[#5C3A21] mt-1">
                             {question.romaji}
                         </span>
                     </div>
-
-                    {/* Buttons */}
-                    <div className="flex space-x-4 md:space-x-6 mt-16 md:mt-20">
-                        {[
-                            { action: 0, icon: <ChevronsLeft size={28} /> },
-                            { action: 1, icon: <ChevronLeft size={28} /> },
-                            { action: 'discard', icon: <Ban size={24} strokeWidth={2.5} /> },
-                            { action: 2, icon: <ChevronRight size={28} /> },
-                            { action: 3, icon: <ChevronsRight size={28} /> },
-                        ].map((btn, idx) => (
-                            <button 
-                                key={idx}
-                                onClick={() => handleAction(btn.action as any)} 
-                                className="relative w-12 h-12 md:w-16 md:h-16 flex items-center justify-center transition-transform hover:scale-110 active:scale-95 drop-shadow-md cursor-pointer"
-                            >
-                                <div 
-                                    className="absolute inset-0 w-full h-full bg-[#FFB7A3]"
-                                    style={{ 
-                                        maskImage: 'url(/icons/shuriken.svg)', 
-                                        WebkitMaskImage: 'url(/icons/shuriken.svg)', 
-                                        maskSize: 'contain', 
-                                        WebkitMaskSize: 'contain',
-                                        maskPosition: 'center',
-                                        WebkitMaskPosition: 'center',
-                                        maskRepeat: 'no-repeat',
-                                        WebkitMaskRepeat: 'no-repeat'
-                                    }}
-                                />
-                                <span className="relative z-10 text-[#5C3A21]">
-                                    {btn.icon}
-                                </span>
-                            </button>
-                        ))}
-                    </div>
                 </div>
 
-                {/* Right Boards */}
-                <div className="flex space-x-2 md:space-x-6">
-                    {renderBoard(boards[2], 2)}
-                    {renderBoard(boards[3], 3)}
+                {/* Middle Section: 4 Bigger Boards Side-by-Side (Bigger, Centered, Authentic Peachy Color) */}
+                <div className="w-full flex justify-center items-center gap-2 sm:gap-2.5 my-1 shrink-0">
+                    {boards.map((board, idx) => renderMobileBoard(board, idx))}
+                </div>
+
+                {/* Bottom Section: Single Discard / Ban Button */}
+                <div className="w-full flex flex-col items-center justify-center shrink-0 mt-5 sm:mt-7 pb-2">
+                    <button
+                        onClick={() => handleAction('discard')}
+                        disabled={!isActive}
+                        className="relative w-16 h-16 sm:w-18 sm:h-18 flex items-center justify-center transition-transform hover:scale-105 active:scale-95 drop-shadow-lg cursor-pointer"
+                        title="Buang / Mismatch"
+                    >
+                        <div 
+                            className="absolute inset-0 w-full h-full bg-[#FFB7A3]"
+                            style={{ 
+                                maskImage: 'url(/icons/shuriken.svg)', 
+                                WebkitMaskImage: 'url(/icons/shuriken.svg)', 
+                                maskSize: 'contain', 
+                                WebkitMaskSize: 'contain',
+                                maskPosition: 'center',
+                                WebkitMaskPosition: 'center',
+                                maskRepeat: 'no-repeat',
+                                WebkitMaskRepeat: 'no-repeat'
+                            }}
+                        />
+                        <span className="relative z-10 text-[#5C3A21]">
+                            <Ban size={28} strokeWidth={2.5} />
+                        </span>
+                    </button>
+                    <span className="text-xs font-sans text-[#5C3A21]/70 mt-1 font-medium">Buang jika salah</span>
                 </div>
 
             </div>
-        </div>
+        </>
     );
 };
 

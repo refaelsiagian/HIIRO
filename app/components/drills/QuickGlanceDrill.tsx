@@ -170,8 +170,12 @@ const QuickGlanceDrill: React.FC<QuickGlanceDrillProps> = ({
 
     if (pairs.length === 0) return null;
 
+    const is36Pairs = totalPairs === 36;
+    const is45Pairs = totalPairs === 45;
+    const isCustomGrid = is36Pairs || is45Pairs;
+
     return (
-        <div className="flex flex-col items-center justify-center w-full h-full text-[#5C3A21] relative pb-12 select-none">
+        <div className="flex flex-col items-center justify-center w-full h-full text-[#5C3A21] relative pb-6 md:pb-12 select-none">
             
             {/* Header & Progress Bar */}
             <div className="absolute top-0 w-full flex flex-col items-center px-4 max-w-2xl md:-top-6">
@@ -185,24 +189,48 @@ const QuickGlanceDrill: React.FC<QuickGlanceDrillProps> = ({
             </div>
 
             {/* Grid */}
-            <div className="mt-16 md:mt-24 w-full max-w-6xl px-2 overflow-y-auto hide-scrollbar flex justify-center">
+            <div className="mt-8 sm:mt-10 md:mt-24 w-full max-w-6xl px-1 sm:px-2 overflow-y-auto hide-scrollbar flex justify-center pb-4">
                 <div 
-                    className="grid gap-1 sm:gap-1.5 md:gap-2 justify-center"
-                    style={{ gridTemplateColumns: `repeat(${columns}, minmax(0, 1fr))` }}
+                    className={`grid justify-center ${
+                        is36Pairs 
+                            ? 'grid-cols-4 md:grid-cols-9 gap-1.5 md:gap-2' 
+                            : is45Pairs 
+                                ? 'grid-cols-5 md:grid-cols-9 gap-1 sm:gap-1.5 md:gap-2'
+                                : 'gap-1 sm:gap-1.5 md:gap-2'
+                    }`}
+                    style={isCustomGrid ? undefined : { gridTemplateColumns: `repeat(${columns}, minmax(0, 1fr))` }}
                 >
                     {pairs.map((pair, index) => (
                         <button
                             key={pair.id}
                             onClick={() => handlePairClick(index)}
                             disabled={!isActive}
-                            className="flex flex-col items-center justify-center rounded bg-white/60 hover:bg-white active:scale-95 transition-all border border-[#FFB7A3] drop-shadow-sm cursor-pointer select-none w-[36px] h-[48px] sm:w-[56px] sm:h-[68px] md:w-[72px] md:h-[84px] lg:w-[76px] lg:h-[88px] px-1 py-1 sm:px-1.5 sm:py-1.5"
+                            className={`flex flex-col items-center justify-center rounded bg-white/60 hover:bg-white active:scale-95 transition-all border border-[#FFB7A3] drop-shadow-sm cursor-pointer select-none px-0.5 py-1 sm:px-1.5 sm:py-1.5 ${
+                                is36Pairs
+                                    ? 'w-[76px] h-[58px] sm:w-[82px] sm:h-[62px] md:w-[72px] md:h-[84px] lg:w-[76px] lg:h-[88px]'
+                                    : is45Pairs
+                                        ? 'w-[64px] h-[58px] sm:w-[68px] sm:h-[62px] md:w-[72px] md:h-[84px] lg:w-[76px] lg:h-[88px]'
+                                        : 'w-[42px] h-[52px] sm:w-[56px] sm:h-[68px] md:w-[72px] md:h-[84px] lg:w-[76px] lg:h-[88px]'
+                            }`}
                         >
                             <span 
-                                className={`whitespace-nowrap leading-none select-none tracking-tight text-[#5C3A21] text-lg sm:text-2xl md:text-3xl lg:text-[34px] ${!isSansSerif ? 'font-serif' : 'font-sans'}`}
+                                className={`whitespace-nowrap leading-none select-none tracking-tight text-[#5C3A21] ${
+                                    is36Pairs
+                                        ? 'text-2xl sm:text-3xl md:text-3xl lg:text-[34px]'
+                                        : is45Pairs
+                                            ? 'text-2xl sm:text-[26px] md:text-3xl lg:text-[34px]'
+                                            : 'text-lg sm:text-2xl md:text-3xl lg:text-[34px]'
+                                } ${!isSansSerif ? 'font-serif' : 'font-sans'}`}
                             >
                                 {pair.kana}
                             </span>
-                            <span className="text-[10px] sm:text-xs md:text-sm lg:text-base font-arbutus text-[#DF7956] mt-1 sm:mt-1.5 leading-none select-none whitespace-nowrap">
+                            <span className={`font-arbutus text-[#DF7956] leading-none select-none whitespace-nowrap ${
+                                is36Pairs
+                                    ? 'text-xs sm:text-sm md:text-sm lg:text-base mt-0.5 md:mt-1.5'
+                                    : is45Pairs
+                                        ? 'text-xs sm:text-sm md:text-sm lg:text-base mt-0.5 md:mt-1.5'
+                                        : 'text-[10px] sm:text-xs md:text-sm lg:text-base mt-0.5 sm:mt-1.5'
+                            }`}>
                                 {pair.romaji}
                             </span>
                         </button>

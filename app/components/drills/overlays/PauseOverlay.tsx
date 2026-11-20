@@ -38,13 +38,13 @@ export const PauseOverlay: React.FC<PauseOverlayProps> = ({ onContinue, onReturn
             <div className={`relative w-full max-w-5xl aspect-[1.8/1] max-h-[90vh] flex items-center justify-center text-[#5A301E] ${isClosing ? 'animate-popdown' : 'animate-popup'}`}>
                 <QuizOverlayBackgroundSVG className="absolute inset-0 w-full h-full object-fill drop-shadow-2xl" />
                 
-                <div className="relative z-10 w-full h-full p-8 flex flex-col justify-center items-center">
-                    <div className="text-center mb-16 mt-[8%]">
-                        <h2 className="text-6xl font-arbutus font-bold mb-6">Tertunda</h2>
-                        <p className="text-2xl font-outfit opacity-90">Tunda hanya berlaku 1 kali tiap permainan</p>
+                <div className="relative z-10 w-full h-full p-4 sm:p-6 md:p-8 flex flex-col justify-center items-center">
+                    <div className="text-center mb-6 sm:mb-12 md:mb-16 mt-[4%] sm:mt-[6%] md:mt-[8%]">
+                        <h2 className="text-3xl sm:text-5xl md:text-6xl font-arbutus font-bold mb-2 sm:mb-4 md:mb-6">Tertunda</h2>
+                        <p className="text-xs sm:text-lg md:text-2xl font-outfit opacity-90 px-2 sm:px-4">Tunda hanya berlaku 1 kali tiap permainan</p>
                     </div>
 
-                    <div className="flex w-full justify-around items-end mt-auto mb-[8%] px-16 font-outfit text-2xl font-bold">
+                    <div className="flex w-full justify-around items-end mt-auto mb-[4%] sm:mb-[6%] md:mb-[8%] px-2 sm:px-8 md:px-16 font-outfit text-xs sm:text-lg md:text-2xl font-bold">
                         <button onClick={handleReturn} disabled={internalIsClosing} className="hover:text-[#C15A3D] transition-colors disabled:pointer-events-none">
                             Kembali ke menu
                         </button>

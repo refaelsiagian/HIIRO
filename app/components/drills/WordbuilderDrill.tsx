@@ -219,99 +219,199 @@ const WordbuilderDrill: React.FC<WordbuilderDrillProps> = ({
     }
 
     return (
-        <div className="flex flex-col items-center justify-between w-full max-w-4xl mx-auto h-full text-[#5C3A21] px-2 sm:px-4 select-none pb-2 sm:pb-4">
-            {/* Target Word Guessing Section */}
-            <div className="flex-1 flex flex-col items-center justify-center pt-2 sm:pt-4 pb-2 sm:pb-4 text-center">
-                {/* Kana Slots Baseline */}
-                <div className="flex items-end justify-center gap-2 sm:gap-3 md:gap-4 h-16 sm:h-20">
-                    {currentWord.slots.map((slot, idx) => {
-                        const isFilled = idx < filledSlotCount;
-                        const isActiveSlot = idx === filledSlotCount;
-                        const isCompound = slot.char.length > 1;
+        <>
+            {/* Mobile View (6x6 Grid, compact mobile layout) */}
+            <div className="flex md:hidden flex-col items-center justify-between w-full max-w-4xl mx-auto h-full text-[#5C3A21] px-2 sm:px-4 select-none pb-8 sm:pb-10">
+                {/* Target Word Guessing Section */}
+                <div className="flex-1 flex flex-col items-center justify-center pt-2 sm:pt-4 pb-2 sm:pb-4 text-center">
+                    {/* Kana Slots Baseline */}
+                    <div className="flex items-end justify-center gap-2.5 sm:gap-3 h-16 sm:h-20">
+                        {currentWord.slots.map((slot, idx) => {
+                            const isFilled = idx < filledSlotCount;
+                            const isActiveSlot = idx === filledSlotCount;
+                            const isCompound = slot.char.length > 1;
 
-                        return (
-                            <div
-                                key={idx}
-                                className={`relative flex flex-col items-center justify-end h-full transition-all duration-200 ${
-                                    isCompound ? 'w-12 sm:w-15 md:w-18' : 'w-9 sm:w-11 md:w-13'
-                                }`}
-                            >
-                                {isFilled ? (
-                                    <div className="flex items-center justify-center w-full h-full pb-0.5">
-                                        <span className={`text-3xl sm:text-4xl md:text-5xl font-bold text-[#5C3A21] animate-popup whitespace-nowrap leading-none ${
-                                            isCompound ? 'tracking-tighter' : ''
-                                        } ${isSansSerif ? 'font-sans' : 'font-serif'}`}>
-                                            {slot.char}
-                                        </span>
-                                    </div>
-                                ) : (
-                                    <>
-                                        {/* Active slot cursor: vertical peach gradient box */}
-                                        {isActiveSlot && (
-                                            <div className="absolute inset-0 rounded-t-sm bg-gradient-to-t from-[#FFB7A3]/90 via-[#FFB7A3]/35 to-transparent animate-pulse" />
-                                        )}
-                                        {/* Baseline Underline for empty slots */}
-                                        <div className={`w-full h-[2.5px] sm:h-[3px] rounded-full z-10 transition-colors ${
-                                            isActiveSlot ? 'bg-[#5C3A21]' : 'bg-[#5C3A21]/40'
-                                        }`} />
-                                    </>
-                                )}
-                            </div>
-                        );
-                    })}
+                            return (
+                                <div
+                                    key={idx}
+                                    className={`relative flex flex-col items-center justify-end h-full transition-all duration-200 ${
+                                        isCompound ? 'w-13 sm:w-15' : 'w-10 sm:w-11'
+                                    }`}
+                                >
+                                    {isFilled ? (
+                                        <div className="flex items-center justify-center w-full h-full pb-0.5">
+                                            <span className={`text-4xl sm:text-4xl font-bold text-[#5C3A21] animate-popup whitespace-nowrap leading-none ${
+                                                isCompound ? 'tracking-tighter' : ''
+                                            } ${isSansSerif ? 'font-sans' : 'font-serif'}`}>
+                                                {slot.char}
+                                            </span>
+                                        </div>
+                                    ) : (
+                                        <>
+                                            {/* Active slot cursor: vertical peach gradient box */}
+                                            {isActiveSlot && (
+                                                <div className="absolute inset-0 rounded-t-sm bg-gradient-to-t from-[#FFB7A3]/90 via-[#FFB7A3]/35 to-transparent animate-pulse" />
+                                            )}
+                                            {/* Baseline Underline for empty slots */}
+                                            <div className={`w-full h-[3px] rounded-full z-10 transition-colors ${
+                                                isActiveSlot ? 'bg-[#5C3A21]' : 'bg-[#5C3A21]/40'
+                                            }`} />
+                                        </>
+                                    )}
+                                </div>
+                            );
+                        })}
+                    </div>
+
+                    {/* Full Word Romaji */}
+                    <div className="mt-3 sm:mt-4 text-2xl font-arbutus text-[#5C3A21] tracking-wide">
+                        {fullRomaji}
+                    </div>
+
+                    {/* Meaning */}
+                    <div className="mt-1.5 sm:mt-2 flex items-center justify-center gap-1.5 text-base font-medium text-[#5C3A21]/75">
+                        <span>{currentWord.meaning}</span>
+                        {currentWord.kanjiDisplay && currentWord.kanjiDisplay !== currentWord.word && (
+                            <span className="text-xs sm:text-sm text-[#5C3A21]/50 font-normal">
+                                ({currentWord.kanjiDisplay})
+                            </span>
+                        )}
+                    </div>
                 </div>
 
-                {/* Full Word Romaji */}
-                <div className="mt-3 sm:mt-4 text-xl sm:text-2xl font-arbutus text-[#5C3A21] tracking-wide">
-                    {fullRomaji}
-                </div>
+                {/* 6x6 Grid Tiles on Mobile */}
+                <div className="w-full flex justify-center pb-2 mt-2 sm:mt-4 mb-3 sm:mb-4">
+                    <div className="grid grid-cols-6 gap-1.5 sm:gap-2 w-full max-w-[340px] sm:max-w-[400px]">
+                        {tiles.map((tile) => {
+                            const isWrong = wrongTileId === tile.id;
+                            const isRefilling = refillingTileIds.has(tile.id);
+                            const isCompound = tile.char.length > 1;
 
-                {/* Meaning */}
-                <div className="mt-1 sm:mt-1.5 flex items-center justify-center gap-1.5 text-sm sm:text-base font-medium text-[#5C3A21]/75">
-                    <span>{currentWord.meaning}</span>
-                    {currentWord.kanjiDisplay && currentWord.kanjiDisplay !== currentWord.word && (
-                        <span className="text-xs text-[#5C3A21]/50 font-normal">
-                            ({currentWord.kanjiDisplay})
-                        </span>
-                    )}
+                            return (
+                                <button
+                                    key={tile.id}
+                                    onClick={() => handleTileClick(tile.id)}
+                                    disabled={tile.isUsed}
+                                    aria-label={`Huruf ${tile.char}`}
+                                    className={`flex items-center justify-center w-full aspect-square rounded-xl border transition-all duration-200 cursor-pointer ${
+                                        tile.isUsed
+                                            ? 'opacity-0 scale-50 pointer-events-none'
+                                            : isWrong
+                                            ? 'bg-rose-500/20 text-rose-600 border-rose-500 scale-105 shadow-md animate-bounce'
+                                            : isRefilling
+                                            ? 'bg-[#DF7956]/20 text-[#DF7956] border-[#DF7956] animate-popup'
+                                            : 'bg-[#FFF5F0] hover:bg-white text-[#5C3A21] border-[#DF7956]/20 hover:border-[#DF7956]/50 shadow-sm hover:shadow-md hover:scale-105 active:scale-95'
+                                    }`}
+                                >
+                                    <span className={`font-bold leading-none ${
+                                        isCompound
+                                            ? 'text-lg tracking-tighter'
+                                            : 'text-2xl'
+                                    } ${isSansSerif ? 'font-sans' : 'font-serif'}`}>
+                                        {tile.char}
+                                    </span>
+                                </button>
+                            );
+                        })}
+                    </div>
                 </div>
             </div>
 
-            {/* 4x9 Grid Tiles (Directly floating on background, no outer container) */}
-            <div className="w-full flex justify-center pb-2 mt-6 sm:mt-8 md:mt-12">
-                <div 
-                    className="grid gap-2 sm:gap-2.5 md:gap-3 w-full max-w-3xl sm:max-w-4xl"
-                    style={{ gridTemplateColumns: 'repeat(9, minmax(0, 1fr))' }}
-                >
-                    {tiles.map((tile) => {
-                        const isWrong = wrongTileId === tile.id;
-                        const isRefilling = refillingTileIds.has(tile.id);
+            {/* Desktop View (100% exact original reference: centered layout, 9-col grid, original fonts, original gaps & sizing) */}
+            <div className="hidden md:flex flex-col items-center justify-center w-full max-w-4xl mx-auto h-full text-[#5C3A21] px-2 sm:px-4 select-none pb-10 lg:pb-12">
+                {/* Target Word Guessing Section */}
+                <div className="flex-initial flex flex-col items-center justify-center pt-2 sm:pt-4 pb-2 sm:pb-4 text-center mb-8 lg:mb-10">
+                    {/* Kana Slots Baseline */}
+                    <div className="flex items-end justify-center gap-2 sm:gap-3 md:gap-4 h-16 sm:h-20">
+                        {currentWord.slots.map((slot, idx) => {
+                            const isFilled = idx < filledSlotCount;
+                            const isActiveSlot = idx === filledSlotCount;
+                            const isCompound = slot.char.length > 1;
 
-                        return (
-                            <button
-                                key={tile.id}
-                                onClick={() => handleTileClick(tile.id)}
-                                disabled={tile.isUsed}
-                                aria-label={`Huruf ${tile.char}`}
-                                className={`flex items-center justify-center aspect-square h-12 sm:h-14 md:h-16 lg:h-18 rounded-xl sm:rounded-2xl border transition-all duration-200 cursor-pointer ${
-                                    tile.isUsed
-                                        ? 'opacity-0 scale-50 pointer-events-none'
-                                        : isWrong
-                                        ? 'bg-rose-500/20 text-rose-600 border-rose-500 scale-105 shadow-md animate-bounce'
-                                        : isRefilling
-                                        ? 'bg-[#DF7956]/20 text-[#DF7956] border-[#DF7956] animate-popup'
-                                        : 'bg-[#FFF5F0] hover:bg-white text-[#5C3A21] border-[#DF7956]/20 hover:border-[#DF7956]/50 shadow-sm hover:shadow-md hover:scale-105 active:scale-95'
-                                }`}
-                            >
-                                <span className={`text-xl sm:text-2xl md:text-3xl font-bold leading-none ${isSansSerif ? 'font-sans' : 'font-serif'}`}>
-                                    {tile.char}
-                                </span>
-                            </button>
-                        );
-                    })}
+                            return (
+                                <div
+                                    key={idx}
+                                    className={`relative flex flex-col items-center justify-end h-full transition-all duration-200 ${
+                                        isCompound ? 'w-12 sm:w-15 md:w-18' : 'w-9 sm:w-11 md:w-13'
+                                    }`}
+                                >
+                                    {isFilled ? (
+                                        <div className="flex items-center justify-center w-full h-full pb-0.5">
+                                            <span className={`text-3xl sm:text-4xl md:text-5xl font-bold text-[#5C3A21] animate-popup whitespace-nowrap leading-none ${
+                                                isCompound ? 'tracking-tighter' : ''
+                                            } ${isSansSerif ? 'font-sans' : 'font-serif'}`}>
+                                                {slot.char}
+                                            </span>
+                                        </div>
+                                    ) : (
+                                        <>
+                                            {/* Active slot cursor: vertical peach gradient box */}
+                                            {isActiveSlot && (
+                                                <div className="absolute inset-0 rounded-t-sm bg-gradient-to-t from-[#FFB7A3]/90 via-[#FFB7A3]/35 to-transparent animate-pulse" />
+                                            )}
+                                            {/* Baseline Underline for empty slots */}
+                                            <div className={`w-full h-[2.5px] sm:h-[3px] rounded-full z-10 transition-colors ${
+                                                isActiveSlot ? 'bg-[#5C3A21]' : 'bg-[#5C3A21]/40'
+                                            }`} />
+                                        </>
+                                    )}
+                                </div>
+                            );
+                        })}
+                    </div>
+
+                    {/* Full Word Romaji */}
+                    <div className="mt-3 sm:mt-4 text-xl sm:text-2xl font-arbutus text-[#5C3A21] tracking-wide">
+                        {fullRomaji}
+                    </div>
+
+                    {/* Meaning */}
+                    <div className="mt-1 sm:mt-1.5 flex items-center justify-center gap-1.5 text-sm sm:text-base font-medium text-[#5C3A21]/75">
+                        <span>{currentWord.meaning}</span>
+                        {currentWord.kanjiDisplay && currentWord.kanjiDisplay !== currentWord.word && (
+                            <span className="text-xs text-[#5C3A21]/50 font-normal">
+                                ({currentWord.kanjiDisplay})
+                            </span>
+                        )}
+                    </div>
+                </div>
+
+                {/* 4x9 Grid Tiles (Directly floating on background, no outer container) */}
+                <div className="w-full flex justify-center">
+                    <div 
+                        className="grid gap-2 sm:gap-2.5 md:gap-3 w-full max-w-3xl sm:max-w-4xl"
+                        style={{ gridTemplateColumns: 'repeat(9, minmax(0, 1fr))' }}
+                    >
+                        {tiles.map((tile) => {
+                            const isWrong = wrongTileId === tile.id;
+                            const isRefilling = refillingTileIds.has(tile.id);
+
+                            return (
+                                <button
+                                    key={tile.id}
+                                    onClick={() => handleTileClick(tile.id)}
+                                    disabled={tile.isUsed}
+                                    aria-label={`Huruf ${tile.char}`}
+                                    className={`flex items-center justify-center aspect-square h-12 sm:h-14 md:h-16 lg:h-18 rounded-xl sm:rounded-2xl border transition-all duration-200 cursor-pointer ${
+                                        tile.isUsed
+                                            ? 'opacity-0 scale-50 pointer-events-none'
+                                            : isWrong
+                                            ? 'bg-rose-500/20 text-rose-600 border-rose-500 scale-105 shadow-md animate-bounce'
+                                            : isRefilling
+                                            ? 'bg-[#DF7956]/20 text-[#DF7956] border-[#DF7956] animate-popup'
+                                            : 'bg-[#FFF5F0] hover:bg-white text-[#5C3A21] border-[#DF7956]/20 hover:border-[#DF7956]/50 shadow-sm hover:shadow-md hover:scale-105 active:scale-95'
+                                    }`}
+                                >
+                                    <span className={`text-xl sm:text-2xl md:text-3xl font-bold leading-none ${isSansSerif ? 'font-sans' : 'font-serif'}`}>
+                                        {tile.char}
+                                    </span>
+                                </button>
+                            );
+                        })}
+                    </div>
                 </div>
             </div>
-        </div>
+        </>
     );
 };
 

@@ -38,31 +38,31 @@ const SectionSelection: React.FC = () => {
     }
 
     return (
-        <div className="min-h-screen p-6 flex flex-col overflow-hidden">
+        <div className="min-h-screen p-4 sm:p-6 flex flex-col overflow-x-hidden">
             {/* HEADER NAVIGASI */}
-            <div className="absolute top-6 left-6 z-10 animate-fadein">
+            <div className="absolute top-4 left-4 sm:top-6 sm:left-6 z-10 animate-fadein">
                 <Link
                     href="/home"
                     prefetch={true}
-                    className="p-3 text-[#5C3A21] hover:text-[#DF7956] transition-colors inline-block"
+                    className="p-2 sm:p-3 text-[#5C3A21] hover:text-[#DF7956] transition-colors inline-block"
                 >
-                    <ArrowLeft size={40} strokeWidth={2} />
+                    <ArrowLeft className="w-8 h-8 sm:w-10 sm:h-10" strokeWidth={2} />
                 </Link>
             </div>
 
             {/* HEADER */}
-            <header className="text-center mt-12 mb-16 animate-header-enter">
-                <h1 className="text-6xl text-[#5C3A21] tracking-tight capitalize font-akaya">
+            <header className="text-center mt-8 mb-6 sm:mt-12 sm:mb-16 animate-header-enter">
+                <h1 className="text-4xl sm:text-6xl text-[#5C3A21] tracking-tight capitalize font-akaya">
                     {category}
                 </h1>
-                <p className="text-[#5C3A21]/70 mt-2 text-3xl font-serif">
+                <p className="text-[#5C3A21]/70 mt-1 sm:mt-2 text-2xl sm:text-3xl font-serif">
                     {category === 'hiragana' ? 'ひらがな' : 'カタカナ'}
                 </p>
             </header>
 
             {/* HORIZONTAL CAROUSEL */}
-            <main className="flex-1 w-full flex items-center overflow-x-auto pb-12 snap-x snap-mandatory hide-scrollbar">
-                <div className="flex space-x-[64px] px-12 md:px-32 w-max mx-auto h-[520px]">
+            <main className="flex-1 w-full flex items-center overflow-x-auto pb-8 sm:pb-12 snap-x snap-mandatory hide-scrollbar">
+                <div className="flex space-x-6 sm:space-x-[64px] px-6 sm:px-12 md:px-32 w-max mx-auto h-[460px] sm:h-[520px] items-center">
                     {catTypes.map((typeData, index) => {
                         const sectionKey = typeData.id;
                         const displaySub = category === 'katakana' ? typeData.subtitle_katakana : typeData.subtitle_hiragana;
@@ -127,33 +127,33 @@ const SectionSelection: React.FC = () => {
                                 href={`/select/${category}/${sectionKey}`}
                                 prefetch={true}
                                 style={{ animationDelay: `${index * 85}ms` }}
-                                className={`w-[358px] h-[520px] shrink-0 snap-center ${cardStyle} shadow-2xl p-8 flex flex-col justify-between ${fontColor} hover:scale-105 active:scale-95 transition-all duration-300 relative overflow-hidden text-left animate-card-deal`}
+                                className={`h-[460px] sm:h-[520px] aspect-[358/520] shrink-0 snap-center ${cardStyle} shadow-2xl p-6 sm:p-8 flex flex-col justify-between ${fontColor} hover:scale-105 active:scale-95 transition-all duration-300 relative overflow-hidden text-left animate-card-deal`}
                             >
                                 <div 
-                                    className={`absolute top-[36px] left-[30px] ${kanjiOpacity} text-[48px] font-serif leading-[60px] font-normal tracking-[12px]`}
+                                    className={`absolute top-[28px] left-[22px] sm:top-[36px] sm:left-[30px] ${kanjiOpacity} text-[36px] sm:text-[48px] font-serif leading-[46px] sm:leading-[60px] font-normal tracking-[8px] sm:tracking-[12px]`}
                                     style={{ writingMode: 'vertical-rl' }}
                                 >
                                     {typeData.subtitle_kanji.replace(/\s/g, '').substring(0, 6)}
                                 </div>
                                 
-                                <div className="absolute top-[56px] right-[28px] flex flex-col items-end z-10 text-right">
-                                    <h2 className="text-[36px] font-arbutus font-normal whitespace-pre-line leading-[1.2] mb-2">
+                                <div className="absolute top-[40px] right-[22px] sm:top-[56px] sm:right-[28px] flex flex-col items-end z-10 text-right">
+                                    <h2 className="text-[28px] sm:text-[36px] font-arbutus font-normal whitespace-pre-line leading-[1.2] mb-1.5 sm:mb-2">
                                         {typeData.display_name}
                                     </h2>
-                                    <p className="text-[20px] font-serif font-normal opacity-80 mb-3 whitespace-pre-line">
+                                    <p className="text-lg sm:text-[20px] font-serif font-normal opacity-80 mb-2 sm:mb-3 whitespace-pre-line">
                                         {displaySub}
                                     </p>
-                                    <div className="flex items-center justify-end text-[16px] font-outfit font-normal opacity-90">
-                                        <Star className={`w-[20px] h-[20px] mr-2 ${starColor}`} />
+                                    <div className="flex items-center justify-end text-sm sm:text-[16px] font-outfit font-normal opacity-90">
+                                        <Star className={`w-[18px] h-[18px] sm:w-[20px] sm:h-[20px] mr-1.5 sm:mr-2 ${starColor}`} />
                                         <span>{stars.earned}/{stars.total}</span>
                                     </div>
                                 </div>
 
-                                <div className={`absolute bottom-[42px] right-[42px] z-10 text-right ${fontColor}`}>
+                                <div className={`absolute bottom-[28px] right-[24px] sm:bottom-[42px] sm:right-[42px] z-10 text-right ${fontColor}`}>
                                     {isDaishiken ? (
-                                        <p className="text-[16px] font-outfit font-normal">Ujian akhir</p>
+                                        <p className="text-sm sm:text-[16px] font-outfit font-normal">Ujian akhir</p>
                                     ) : (
-                                        <p className="text-[16px] font-outfit font-normal">{totalHuruf} huruf</p>
+                                        <p className="text-sm sm:text-[16px] font-outfit font-normal">{totalHuruf} huruf</p>
                                     )}
                                 </div>
                             </Link>

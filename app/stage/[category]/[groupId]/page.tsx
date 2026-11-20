@@ -28,6 +28,7 @@ const StageSelection: React.FC = () => {
 
     const [isSansSerif, setIsSansSerif] = useState(false);
     const [selectedCharIndex, setSelectedCharIndex] = useState(0);
+    const [mobileTab, setMobileTab] = useState<'chars' | 'stages'>('chars');
     const [activeDrill, setActiveDrill] = useState<{stageId: string, mode: string} | null>(null);
 
     useEffect(() => {
@@ -148,25 +149,88 @@ const StageSelection: React.FC = () => {
                 '--theme-letter-highlight': room.letterHighlight,
             } as React.CSSProperties}
         >
-            {/* LEFT PANEL */}
-            <div className="w-full md:w-5/12 flex flex-col h-full overflow-y-auto hide-scrollbar relative">
-                    
-                    {/* Independent Back Button */}
+            {/* Desktop Independent Back Button */}
+            <Link 
+                href={`/select/${category}/${section}`}
+                prefetch={true}
+                className="hidden md:block absolute top-12 left-12 hover:opacity-70 transition-opacity z-30 animate-fadein"
+                style={{ color: room.fontColor }}
+            >
+                <ArrowLeft className="w-10 h-10" strokeWidth={2} />
+            </Link>
+
+            {/* MOBILE HEADER: Back Button, Title, Stars, and Selector (Visible only on mobile/tablet < md) */}
+            <div className="md:hidden w-full flex flex-col px-6 pt-5 pb-2 z-30 shrink-0 animate-fadein">
+                {/* Mobile Back Button with comfortable spacing below */}
+                <div className="mb-4">
                     <Link 
                         href={`/select/${category}/${section}`}
                         prefetch={true}
-                        className="absolute top-12 left-12 hover:opacity-70 transition-opacity z-20 animate-fadein"
+                        className="hover:opacity-70 transition-opacity p-1 -ml-1 inline-flex items-center justify-center"
                         style={{ color: room.fontColor }}
                     >
-                        <ArrowLeft size={40} strokeWidth={2} />
+                        <ArrowLeft className="w-8 h-8" strokeWidth={2} />
                     </Link>
+                </div>
+
+                {/* Title Section */}
+                <div className="flex items-baseline mb-1.5">
+                    <h1 
+                        className="text-3xl sm:text-4xl leading-none font-arbutus tracking-tight mr-3"
+                        style={{ color: room.fontColor }}
+                    >
+                        {level.displayName}
+                    </h1>
+                    <p 
+                        className="text-lg opacity-70 font-sans"
+                        style={{ color: room.fontColor }}
+                    >
+                        {level.subtitleKanji}
+                    </p>
+                </div>
                 
+                {/* Star Count */}
+                <div className="flex items-center font-outfit text-sm" style={{ color: room.fontColor }}>
+                    <Star className="w-4 h-4 mr-1.5" style={{ color: room.starColor, fill: room.starColor }} />
+                    {earnedStars}/{totalStars}
+                </div>
+
+                {/* Selector under Star Count */}
+                <div className="flex items-center p-1 bg-black/10 rounded-full w-fit mt-4 mb-2 self-center mx-auto">
+                    <button
+                        onClick={() => setMobileTab('chars')}
+                        className={`px-4 py-1.5 rounded-full text-xs font-bold font-outfit transition-all ${
+                            mobileTab === 'chars'
+                                ? 'bg-white shadow-sm'
+                                : 'opacity-70 hover:opacity-100'
+                        }`}
+                        style={{ color: room.fontColor }}
+                    >
+                        Karakter ({displayChars.length})
+                    </button>
+                    <button
+                        onClick={() => setMobileTab('stages')}
+                        className={`px-4 py-1.5 rounded-full text-xs font-bold font-outfit transition-all ${
+                            mobileTab === 'stages'
+                                ? 'bg-white shadow-sm'
+                                : 'opacity-70 hover:opacity-100'
+                        }`}
+                        style={{ color: room.fontColor }}
+                    >
+                        Tahap ({activeStages.length})
+                    </button>
+                </div>
+            </div>
+
+            {/* LEFT PANEL (Characters) */}
+            <div className={`w-full md:w-5/12 flex-col h-full overflow-y-auto hide-scrollbar relative ${
+                mobileTab === 'chars' ? 'flex flex-1' : 'hidden md:flex'
+            }`}>
                 {/* Content Container */}
-                <div className="flex-1 flex flex-col pl-[200px] pt-[120px]">
+                <div className="flex-1 flex flex-col px-4 pt-1 sm:px-8 md:pl-[200px] md:pr-0 md:pt-[120px]">
                     
-                    {/* Title Section */}
-                    <div className="mb-8 animate-header-enter">
-                        {/* Title Row */}
+                    {/* Desktop Title Section */}
+                    <div className="hidden md:block mb-8 animate-header-enter">
                         <div className="flex items-baseline mb-4">
                             <h1 
                                 className="text-[48px] leading-none font-arbutus tracking-tight mr-4"
@@ -182,7 +246,6 @@ const StageSelection: React.FC = () => {
                             </p>
                         </div>
                         
-                        {/* Star Counter */}
                         <div className="flex items-center font-outfit" style={{ color: room.fontColor }}>
                             <Star className="w-5 h-5 mr-2" style={{ color: room.starColor, fill: room.starColor }} />
                             {earnedStars}/{totalStars}
@@ -191,10 +254,10 @@ const StageSelection: React.FC = () => {
 
                     {/* Centered Elements: Grid, Large Preview, Radio */}
                     {displayChars.length > 0 && (
-                        <div className="flex flex-col items-center flex-1 w-full pt-4">
+                        <div className="flex flex-col items-center flex-1 w-full pt-2 md:pt-4">
                             
                             {/* Character Grid - Horizontal */}
-                            <div className="flex space-x-4 mb-16 max-w-full overflow-x-auto hide-scrollbar px-2">
+                            <div className="flex space-x-2 sm:space-x-4 mb-8 sm:mb-12 md:mb-16 max-w-full overflow-x-auto hide-scrollbar px-2">
                                 {displayChars.map((char, index) => {
                                     const isSelected = selectedCharIndex === index;
                                     const highlightColor = room.letterHighlight || '#A55B38';
@@ -213,20 +276,20 @@ const StageSelection: React.FC = () => {
                                                     ? `linear-gradient(to bottom, transparent, ${highlightBg})` 
                                                     : undefined
                                             }}
-                                            className="flex flex-col items-center justify-center min-w-[80px] w-[80px] h-[134px] transition-all duration-300 border-b-[2px] flex-shrink-0 hover:bg-black/5"
+                                            className="flex flex-col items-center justify-center min-w-[60px] w-[60px] h-[96px] sm:min-w-[80px] sm:w-[80px] sm:h-[134px] transition-all duration-300 border-b-[2px] flex-shrink-0 hover:bg-black/5"
                                         >
-                                            <span className={`text-[40px] mb-4 leading-none ${!isSansSerif ? 'font-serif' : 'font-sans'}`}>{char.k}</span>
-                                            <span className="text-2xl font-outfit leading-none">{char.r}</span>
+                                            <span className={`text-2xl sm:text-[40px] mb-2 sm:mb-4 leading-none ${!isSansSerif ? 'font-serif' : 'font-sans'}`}>{char.k}</span>
+                                            <span className="text-base sm:text-2xl font-outfit leading-none">{char.r}</span>
                                         </button>
                                     );
                                 })}
                             </div>
 
                             {/* Large Character Preview */}
-                            <div className="flex flex-col items-center justify-center mb-16">
+                            <div className="flex flex-col items-center justify-center my-4 sm:my-6 md:my-0 mb-10 sm:mb-14 md:mb-16">
                                 <span 
                                     key={selectedCharIndex}
-                                    className={`text-[280px] leading-none animate-stamp ${!isSansSerif ? 'font-serif' : 'font-sans'}`}
+                                    className={`text-[190px] sm:text-[230px] md:text-[280px] leading-none animate-stamp ${!isSansSerif ? 'font-serif' : 'font-sans'}`}
                                     style={{ color: room.fontColor }}
                                 >
                                     {displayChars[selectedCharIndex]?.k || '?'}
@@ -234,17 +297,26 @@ const StageSelection: React.FC = () => {
                             </div>
 
                             {/* Font Toggle (Under Big Letter) */}
-                            <div className="flex items-center text-sm font-medium pb-24" style={{ color: room.fontColor }}>
+                            <div className="flex items-center text-sm font-medium pb-8 md:pb-24" style={{ color: room.fontColor }}>
                                 <button 
                                     onClick={() => setIsSansSerif(!isSansSerif)}
-                                    className="flex items-center space-x-3 group"
+                                    className="flex items-center space-x-2.5 sm:space-x-3 group"
                                 >
-                                    <div className={`w-5 h-5 rounded-full border-[2px] border-current flex items-center justify-center`}>
-                                        {isSansSerif && <div className="w-2.5 h-2.5 rounded-full bg-current"></div>}
+                                    <div className={`w-4 h-4 sm:w-5 sm:h-5 rounded-full border-[2px] border-current flex items-center justify-center`}>
+                                        {isSansSerif && <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-current"></div>}
                                     </div>
-                                    <span className="font-outfit text-xl opacity-80 group-hover:opacity-100 transition-opacity">Ganti ke sans-serif</span>
+                                    <span className="font-outfit text-base sm:text-xl opacity-80 group-hover:opacity-100 transition-opacity">Ganti ke sans-serif</span>
                                 </button>
                             </div>
+
+                            {/* Mobile CTA Button: Jump to Stages */}
+                            <button
+                                onClick={() => setMobileTab('stages')}
+                                className="md:hidden mb-12 px-6 py-2.5 rounded-full bg-[#DF7956] text-white font-outfit font-semibold text-xs shadow-md active:scale-95 transition-all flex items-center space-x-1.5"
+                            >
+                                <span>Lanjut ke Pilihan Tahap</span>
+                                <span>→</span>
+                            </button>
 
                         </div>
                     )}
@@ -252,9 +324,11 @@ const StageSelection: React.FC = () => {
             </div>
 
             {/* RIGHT PANEL (Stages List) */}
-            <div className="w-full md:w-7/12 relative h-full flex justify-center items-start">
-                <div className="absolute inset-y-[120px] left-0 right-0 overflow-y-auto hide-scrollbar flex justify-center px-8 md:px-12">
-                    <div className="w-full max-w-2xl space-y-8 pb-8">
+            <div className={`w-full md:w-7/12 relative h-full flex justify-center items-start ${
+                mobileTab === 'stages' ? 'flex-1 flex' : 'hidden md:flex'
+            }`}>
+                <div className="absolute inset-y-0 pt-2 pb-6 md:inset-y-[120px] md:pt-0 md:pb-0 left-0 right-0 overflow-y-auto hide-scrollbar flex justify-center px-4 sm:px-8 md:px-12">
+                    <div className="w-full max-w-2xl space-y-4 sm:space-y-8 pb-8">
                     {activeStages.map((stage, index) => {
                         const stageStars = groupProgress[stage.id]?.stars || 0;
                         let isUnlocked = true;
@@ -279,38 +353,37 @@ const StageSelection: React.FC = () => {
                                     }
                                 }}
                                 style={{ animationDelay: `${index * 60}ms` }}
-                                className={`relative w-[707px] max-w-full h-auto aspect-[707/194] flex items-center justify-between transition-all duration-300 group animate-stage-plate ${!isUnlocked ? 'opacity-60 grayscale cursor-not-allowed' : 'cursor-pointer'}`}
+                                className={`relative w-full max-w-[707px] h-auto aspect-[707/194] flex items-center justify-between transition-all duration-300 group animate-stage-plate ${!isUnlocked ? 'opacity-60 grayscale cursor-not-allowed' : 'cursor-pointer'}`}
                             >
                                 {/* SVG QUIZ BACKGROUND */}
                                 <QuizBackgroundSVG 
                                     className="absolute inset-0 w-full h-full transition-all duration-300 group-hover:brightness-[0.95] group-active:brightness-90" 
                                     bgColor={plateBg} 
                                     borderColor={plateBorder} 
-                                
                                 />
 
                                 {/* INNER CONTENT LAYER */}
-                                <div className="absolute inset-0 p-[20px] flex justify-between z-10 w-full h-full">
+                                <div className="absolute inset-0 p-3 sm:p-5 md:p-[20px] flex justify-between z-10 w-full h-full">
                                     
-                                    <div className="text-left flex flex-col justify-between h-full py-[4px]" style={{ color: room.fontColor }}>
+                                    <div className="text-left flex flex-col justify-between h-full py-0.5 md:py-[4px]" style={{ color: room.fontColor }}>
                                         <div>
-                                            <span className="text-[16px] font-outfit font-normal tracking-wide block leading-none mb-[8px]">
+                                            <span className="text-[11px] sm:text-sm md:text-[16px] font-outfit font-normal tracking-wide block leading-none mb-1 md:mb-[8px]">
                                                 Tahap {index + 1}
                                             </span>
-                                            <h3 className="text-[32px] font-arbutus flex items-center leading-none">
+                                            <h3 className="text-lg sm:text-2xl md:text-[32px] font-arbutus flex items-center leading-none">
                                                 {stage.displayName}
-                                                {!isUnlocked && <Lock className="w-5 h-5 ml-3 opacity-60" />}
+                                                {!isUnlocked && <Lock className="w-4 h-4 sm:w-5 sm:h-5 ml-1.5 md:ml-3 opacity-60" />}
                                             </h3>
                                         </div>
                                         
                                         {/* Stars */}
-                                        <div className="flex gap-[16px]">
+                                        <div className="flex gap-1.5 sm:gap-3 md:gap-[16px]">
                                             {[1, 2, 3].map(starNum => {
                                                 const isFilled = starNum <= stageStars;
                                                 return (
                                                     <Star 
                                                         key={starNum} 
-                                                        className={`w-[40px] h-[40px] transition-all duration-300 ${!isFilled ? 'opacity-35' : ''}`}
+                                                        className={`w-6 h-6 sm:w-8 sm:h-8 md:w-[40px] md:h-[40px] transition-all duration-300 ${!isFilled ? 'opacity-35' : ''}`}
                                                         style={{ 
                                                             color: room.starColor,
                                                             fill: isFilled ? room.starColor : 'none'
@@ -323,7 +396,7 @@ const StageSelection: React.FC = () => {
                                     </div>
 
                                     {/* Flower (Petals) */}
-                                    <div className="flex-shrink-0 flex items-center justify-center pr-[12px]">
+                                    <div className="flex-shrink-0 flex items-center justify-center pr-1 md:pr-[12px] scale-[0.6] sm:scale-75 md:scale-100 origin-right">
                                         {renderFlower(index, isUnlocked, stagePetals, stageHighestPetals, room.petalBg)}
                                     </div>
                                 </div>

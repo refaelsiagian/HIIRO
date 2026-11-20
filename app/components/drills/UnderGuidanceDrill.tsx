@@ -149,14 +149,14 @@ const UnderGuidanceDrill: React.FC<UnderGuidanceDrillProps> = ({
     const isReadyToCheck = selectedTokens.length === question.targetTokens.length;
 
     return (
-        <div className="flex flex-col items-center justify-center w-full max-w-4xl mx-auto h-full text-[#5C3A21] px-4 py-2 select-none">
+        <div className="flex flex-col items-center justify-center w-full max-w-4xl mx-auto h-full text-[#5C3A21] px-4 py-3 sm:py-4 select-none overflow-y-auto hide-scrollbar">
             
-            {/* 1. 4 Guidance Sentences (2x2 Grid with Generous Room & Clean Width) */}
-            <div className="w-full max-w-3xl xl:max-w-4xl min-h-[145px] sm:min-h-[160px] flex flex-col justify-center mb-8 sm:mb-10">
-                <div className="grid grid-cols-2 gap-x-10 sm:gap-x-16 gap-y-4 sm:gap-y-6 w-full text-left">
+            {/* 1. 4 Guidance Sentences (1 column on mobile, 2x2 grid on desktop) */}
+            <div className="w-full max-w-3xl xl:max-w-4xl flex flex-col justify-center mb-8 sm:mb-9 md:mb-10">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 sm:gap-x-16 gap-y-3.5 sm:gap-y-4 md:gap-y-6 w-full text-left">
                     {question.references.map((ref, idx) => (
                         <div key={idx} className="flex flex-col">
-                            <span className={`text-2xl sm:text-[28px] md:text-[28px] text-[#5C3A21] font-semibold leading-snug tracking-wide ${isSansSerif ? 'font-sans' : 'font-serif'}`}>
+                            <span className={`text-2xl sm:text-[26px] md:text-[28px] text-[#5C3A21] font-semibold leading-snug tracking-wide whitespace-normal ${isSansSerif ? 'font-sans' : 'font-serif'}`}>
                                 {ref.kana}
                             </span>
                             <span className="text-sm sm:text-base text-[#5C3A21]/75 mt-1 font-sans">
@@ -168,9 +168,9 @@ const UnderGuidanceDrill: React.FC<UnderGuidanceDrillProps> = ({
             </div>
 
             {/* 2. Target Sentence Area (Accompanying Romaji, Placed Tiles, Underline, and Target Meaning) */}
-            <div className="w-full max-w-3xl xl:max-w-4xl h-[125px] sm:h-[135px] flex flex-col justify-between mb-8 sm:mb-10">
+            <div className="w-full max-w-3xl xl:max-w-4xl flex flex-col gap-1.5 md:gap-0 md:justify-between md:h-[135px] mb-5 sm:mb-6 md:mb-10 pt-2 sm:pt-2 md:pt-0">
                 {/* Top: Accompanying Romaji for currently placed pills */}
-                <div className="text-sm sm:text-base md:text-xl font-arbutus font-medium tracking-wide text-left min-h-[26px] sm:min-h-[30px] flex items-center transition-all duration-150">
+                <div className="text-sm sm:text-base md:text-xl font-arbutus font-medium tracking-wide text-left min-h-[22px] sm:min-h-[26px] md:min-h-[30px] flex items-center transition-all duration-150">
                     {selectedTokens.length > 0 ? (
                         <span className="text-[#8A513B] tracking-wide">
                             {selectedTokens.map(t => t.romaji).join(' ')}
@@ -181,7 +181,7 @@ const UnderGuidanceDrill: React.FC<UnderGuidanceDrillProps> = ({
                 </div>
 
                 {/* Placed Tiles sitting on top of the Underline */}
-                <div className={`min-h-[56px] sm:min-h-[62px] pb-1.5 flex flex-wrap items-end gap-2 border-b-2 transition-all duration-200 ${
+                <div className={`min-h-[52px] sm:min-h-[58px] md:min-h-[62px] pb-1.5 flex flex-wrap items-end gap-2 border-b-2 transition-all duration-200 ${
                     validationState === 'correct'
                         ? 'border-emerald-500'
                         : validationState === 'wrong'
@@ -199,7 +199,7 @@ const UnderGuidanceDrill: React.FC<UnderGuidanceDrillProps> = ({
                                 onClick={() => handleRemoveToken(idx)}
                                 disabled={isAnswering}
                                 title="Klik untuk membatalkan"
-                                className={`px-4 py-1.5 sm:px-5 sm:py-2 rounded-xl font-semibold text-lg sm:text-2xl transition-all duration-150 cursor-pointer shadow-xs active:scale-95 ${
+                                className={`px-4 py-2 sm:px-5 sm:py-2 rounded-xl font-semibold text-lg sm:text-xl md:text-2xl transition-all duration-150 cursor-pointer shadow-xs active:scale-95 ${
                                     validationState === 'correct'
                                         ? 'bg-emerald-100 border border-emerald-500 text-emerald-800'
                                         : validationState === 'wrong'
@@ -216,13 +216,13 @@ const UnderGuidanceDrill: React.FC<UnderGuidanceDrillProps> = ({
                 </div>
 
                 {/* Target meaning directly underneath the line */}
-                <div className="text-base sm:text-lg text-[#5C3A21]/85 font-medium text-left mt-1.5">
+                <div className="text-base sm:text-base md:text-lg text-[#5C3A21]/85 font-medium text-left mt-1.5">
                     {question.questionMeaning}
                 </div>
             </div>
 
-            {/* 3. Bank of Words and Particles (Fixed Height so 1 vs 2 rows never shifts the button) */}
-            <div className="w-full max-w-3xl xl:max-w-4xl h-[105px] sm:h-[115px] flex flex-wrap content-start items-center gap-2 sm:gap-2.5 mb-6 sm:mb-8">
+            {/* 3. Bank of Words and Particles */}
+            <div className="w-full max-w-3xl xl:max-w-4xl flex flex-wrap content-start items-center gap-2 sm:gap-2.5 mb-5 sm:mb-6 md:mb-8 md:h-[115px]">
                 {question.bankTokens.map((token) => {
                     const isUsed = selectedTokenIds.has(token.id);
                     if (isUsed) return null; // Disappears from bank when placed on the line
@@ -232,7 +232,7 @@ const UnderGuidanceDrill: React.FC<UnderGuidanceDrillProps> = ({
                             key={token.id}
                             onClick={() => handleAddToken(token)}
                             disabled={isAnswering}
-                            className="px-4 py-2 sm:px-5 sm:py-2.5 rounded-xl text-lg sm:text-2xl font-semibold bg-white/80 hover:bg-white text-[#5C3A21] border border-[#FFB7A3]/60 shadow-xs hover:shadow hover:scale-105 active:scale-95 cursor-pointer transition-all duration-150"
+                            className="px-4 py-2 sm:px-5 sm:py-2.5 rounded-xl text-lg sm:text-xl md:text-2xl font-semibold bg-white/80 hover:bg-white text-[#5C3A21] border border-[#FFB7A3]/60 shadow-xs hover:shadow hover:scale-105 active:scale-95 cursor-pointer transition-all duration-150"
                         >
                             <span className={isSansSerif ? 'font-sans' : 'font-serif'}>
                                 {token.text}
@@ -243,7 +243,7 @@ const UnderGuidanceDrill: React.FC<UnderGuidanceDrillProps> = ({
             </div>
 
             {/* 4. Controls: Reset and Periksa Button (Fixed Height & Anchored Center Position) */}
-            <div className="relative flex items-center justify-center w-full max-w-3xl xl:max-w-4xl h-[52px] sm:h-[58px]">
+            <div className="relative flex items-center justify-center w-full max-w-3xl xl:max-w-4xl h-[52px] sm:h-[58px] pb-1 sm:pb-0">
                 {/* Reset button positioned gracefully to the left without shifting Periksa's center */}
                 <button
                     onClick={handleReset}

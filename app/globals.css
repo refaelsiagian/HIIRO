@@ -28,6 +28,32 @@
       -ms-overflow-style: none;
       scrollbar-width: none;
   }
+
+  /* Anti-scale overlay: only for desktop/laptop (>= 1024px) when zoomed in */
+  .anti-scale-overlay {
+      display: none;
+  }
+  @media (min-width: 1024px) and ((max-width: 1500px) or (max-height: 900px)) {
+      .anti-scale-overlay {
+          display: flex;
+      }
+  }
+
+  /* Petal flower modal scaling */
+  .petal-flower-modal {
+      transform: scale(0.55);
+      transform-origin: center;
+  }
+  @media (min-width: 640px) {
+      .petal-flower-modal {
+          transform: scale(0.75);
+      }
+  }
+  @media (min-width: 768px) {
+      .petal-flower-modal {
+          transform: scale(1);
+      }
+  }
 }
 
 /* Custom Animations */

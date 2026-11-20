@@ -204,7 +204,7 @@ const DrillEngine: React.FC<DrillEngineProps> = ({
 
     return (
         <div 
-            className="min-h-screen p-6 font-sans flex flex-col items-center justify-between relative overflow-hidden"
+            className="h-[100dvh] min-h-screen p-3 sm:p-6 font-sans flex flex-col items-center justify-between relative overflow-hidden"
             style={{
                 background: 'transparent',
                 color: activeRoom.fontColor,
@@ -218,7 +218,7 @@ const DrillEngine: React.FC<DrillEngineProps> = ({
         >
             
             {/* TOP HUD */}
-            <div className="w-full relative flex flex-col items-center pt-8">
+            <div className="w-full relative flex flex-col items-center pt-3 sm:pt-6 md:pt-8">
                 {/* Pause Button */}
                 <button 
                     onClick={() => {
@@ -228,21 +228,21 @@ const DrillEngine: React.FC<DrillEngineProps> = ({
                         }
                     }}
                     disabled={hasPaused}
-                    className={`absolute top-8 right-8 md:right-12 transition-opacity flex items-center justify-center w-12 h-12 ${hasPaused ? 'opacity-50 cursor-not-allowed' : 'hover:opacity-70'}`}
+                    className={`absolute top-2 right-2 sm:top-6 sm:right-6 md:top-8 md:right-12 transition-opacity flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 ${hasPaused ? 'opacity-50 cursor-not-allowed' : 'hover:opacity-70'}`}
                     style={{ color: activeRoom.fontColor }}
                 >
-                    <Pause size={36} fill="currentColor" strokeWidth={0} />
+                    <Pause className="w-6 h-6 sm:w-8 sm:h-8 md:w-9 md:h-9" fill="currentColor" strokeWidth={0} />
                     {hasPaused && (
-                        <Ban size={44} className="absolute text-red-500" strokeWidth={4} />
+                        <Ban className="w-8 h-8 sm:w-10 sm:h-10 md:w-11 md:h-11 absolute text-red-500" strokeWidth={4} />
                     )}
                 </button>
                 
                 {/* Hearts */}
-                <div className="flex space-x-2 mb-2">
+                <div className="flex space-x-1.5 sm:space-x-2 mb-1 sm:mb-2">
                     {[...Array(maxLives)].map((_, i) => (
                         <Heart 
                             key={i} 
-                            className={`w-8 h-8 ${i < lives ? 'fill-red-600 text-red-600' : 'text-red-200/50'}`} 
+                            className={`w-6 h-6 sm:w-8 sm:h-8 ${i < lives ? 'fill-red-600 text-red-600' : 'text-red-200/50'}`} 
                         />
                     ))}
                 </div>
@@ -250,14 +250,14 @@ const DrillEngine: React.FC<DrillEngineProps> = ({
                 {/* Center Value: Score in Endless Mode, Timer in Standard Mode */}
                 {isEndless ? (
                     <div 
-                        className="font-outfit text-[44px] leading-none"
+                        className="font-outfit text-3xl sm:text-4xl md:text-[44px] leading-none"
                         style={{ color: activeRoom.fontColor }}
                     >
                         {score}
                     </div>
                 ) : (
                     <div 
-                        className="font-outfit text-[44px] leading-none"
+                        className="font-outfit text-3xl sm:text-4xl md:text-[44px] leading-none"
                         style={{ color: activeRoom.fontColor }}
                     >
                         {timeLeft}
@@ -265,8 +265,8 @@ const DrillEngine: React.FC<DrillEngineProps> = ({
                 )}
                 
                 {/* Progress Bar Container */}
-                <div className="w-full max-w-[400px] mt-4 relative">
-                    <div className="w-full h-3 bg-black/10 rounded-full overflow-hidden relative">
+                <div className="w-full max-w-[280px] sm:max-w-[340px] md:max-w-[400px] mt-2.5 sm:mt-4 relative px-2 sm:px-0">
+                    <div className="w-full h-2.5 sm:h-3 bg-black/10 rounded-full overflow-hidden relative">
                         <div 
                             className={`h-full rounded-full transition-all duration-300 ease-out ${
                                 isEndless && timeLeft <= 10 ? 'bg-red-500 animate-pulse' : ''
@@ -306,7 +306,7 @@ const DrillEngine: React.FC<DrillEngineProps> = ({
             </div>
 
             {/* Game Content */}
-            <div key={resetKey} className="w-full max-w-6xl 2xl:max-w-7xl pb-6 flex-1 flex flex-col items-center justify-center relative">
+            <div key={resetKey} className="w-full max-w-6xl 2xl:max-w-7xl pb-1 sm:pb-6 flex-1 flex flex-col items-center justify-center relative min-h-0">
                 {children({ 
                     onCorrect: handleCorrect, 
                     onWrong: handleWrong, 

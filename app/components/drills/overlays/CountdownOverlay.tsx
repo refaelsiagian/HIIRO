@@ -11,7 +11,7 @@ export const CountdownOverlay: React.FC<CountdownOverlayProps> = ({ isClosing })
             <div className={`relative w-full max-w-5xl aspect-[1.8/1] max-h-[90vh] flex items-center justify-center text-[#5A301E] ${isClosing ? 'animate-popdown' : ''}`}>
                 <QuizOverlayBackgroundSVG className="absolute inset-0 w-full h-full object-fill drop-shadow-2xl" />
                 <div className="relative z-10 flex items-center justify-center">
-                    <h2 className="text-6xl font-arbutus font-bold">Bersiap..</h2>
+                    <h2 className="text-4xl sm:text-5xl md:text-6xl font-arbutus font-bold">Bersiap..</h2>
                 </div>
             </div>
         </div>
